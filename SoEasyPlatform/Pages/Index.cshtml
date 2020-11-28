@@ -1,0 +1,41 @@
+﻿@page
+@{
+    ViewData["Title"] = "数据库连接管理";
+}
+@section js{
+    <script src="~/views/user/usermanager.js"></script>
+}
+<div class="x_panel search_box">
+    <div class="x_title">
+        <h2><i class="fa fa-newspaper-o"></i> 数据库连接管理</h2>
+        <div class="clearfix"></div>
+    </div>
+
+    <div class="x_content">
+        <form id="divFrom" class="form-inline">
+            <div class="form-group">
+                <label for="ex3" class="col-form-label">用户名：</label>
+                <input type="text" id="UserName" name="UserName" class="form-control input" placeholder=" ">
+            </div>
+            <div class="form-group">
+                <label for="ex4" class="col-form-label">昵称：</label>
+                <input type="text" id="NickName" name="NickName" class="form-control input" placeholder=" ">
+            </div>
+            <button id="btnSearch" type="button" class="btn btn-search"><i class="fa fa-search"></i>搜索</button>
+            <button id="btnReset" type="button" class="btn btn-green"><i class="fa fa-refresh"></i>重置</button>
+            @Html.Partial("Page")
+        </form>
+    </div>
+    <div class="x_content">
+        <button id="btnAdd" type="button" class="btn btn-blue"><i class="fa fa-plus"></i>添加</button>
+        <button id="btnEdit" type="button" class="btn btn-blue"><i class="fa fa-edit"></i>修改</button>
+        <button id="btnDel" type="button" class="btn btn-blue"><i class="fa fa-close"></i>删除</button>
+    </div>
+    <div class="x_content">
+        <table id="divGrid"></table>
+        <div id="divGridPage" class="pagination"></div>
+    </div>
+    <div id="divOpen" style="display:none">
+ 
+    </div>
+</div>
