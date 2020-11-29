@@ -67,7 +67,10 @@ namespace SoEasyPlatform
             var result = new ApiResult<TableModel<DBConnectionGridViewModel>>();
             result.Data = new TableModel<DBConnectionGridViewModel>();
             int count = 0;
-            var list = DBConnectionDb.AsQueryable().ToPageList(model.PageIndex, model.PageSize, ref count);
+            var list = DBConnectionDb.AsQueryable()
+                .Where(it=>it.IsDeleted==null||it.IsDeleted==false)
+                .WhereIF(!string.IsNullOrEmpty(model.Desc),it=>it.Desc.Contains(model.Desc))
+                .ToPageList(model.PageIndex, model.PageSize, ref count);
             result.Data.Rows = base.mapper.Map<List<DBConnectionGridViewModel>>(list);
             result.Data.Total = count;
             result.Data.PageSize = model.PageSize;
@@ -127,6 +130,7 @@ namespace SoEasyPlatform
                 }
                 DBConnectionDb.Update(it => new DBConnection() { IsDeleted = true }, exp.ToExpression());
             }
+            result.IsSuccess = true;
             return result;
         }
 

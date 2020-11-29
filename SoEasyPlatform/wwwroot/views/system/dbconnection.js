@@ -1,6 +1,6 @@
 ﻿var configs = {
     url: {
-        GetUsers: _root + "system/getdbconnection",
+        Get: _root + "system/getdbconnection",
         Del: _root + "system/deletedbconnection",
         SaveSystem: _root + "system/savedbconnection",
         GetDbType: _root+"system/getdbtype"
@@ -16,21 +16,21 @@
     }
 };
 divFrom.$Form({
-    url: configs.url.GetUsers,
+    url: configs.url.Get,
     callback: function (msg) {
-        msg.data.Dblfunc = function () {
+        msg.Data.Dblfunc = function () {
             btnEdit.click();
         };
-        divGrid.$Grid(msg.data);
+        divGrid.$Grid(msg.Data);
     }
 })
 btnSearch.$Button({
-    url: configs.url.GetUsers,
+    url: configs.url.Get,
     callback: function (msg) {
-        msg.data.Dblfunc = function () {
+        msg.Data.Dblfunc = function () {
             btnEdit.click();
         };
-        divGrid.$Grid(msg.data);
+        divGrid.$Grid(msg.Data);
     }
 });
 
@@ -55,12 +55,12 @@ btnAdd.$Open("#divOpen", {
         frmSave.$Form({
             url: configs.url.SaveSystem,
             callback: function (msg) {
-                if (msg.isKeyValuePair) {
-                    $sugar.$Validate(msg.data, "save");
+                if (msg.IsKeyValuePair) {
+                    $sugar.$Validate(msg.Data, "save");
                 } else {
                     $sugar.$Validate("clear");
-                    msg.data.$Alert();
-                    if (msg.isSuccess) {
+                    msg.Data.$Alert();
+                    if (msg.IsSuccess) {
                         btnSearch.click();
                         $sugar.$CloseAll(divOpen.getAttribute("dataindex"));
                     }
@@ -91,10 +91,10 @@ btnEdit.$Open("#divOpen", {
             url: configs.url.SaveSystem,
             callback: function (msg) {
                 if (msg.IsKeyValuePair) {
-                    $sugar.$Validate(msg.data, "save");
+                    $sugar.$Validate(msg.Data, "save");
                 } else {
                     $sugar.$Validate("clear");
-                    msg.data.$Alert();
+                    msg.Data.$Alert();
                     if (msg.IsSuccess) {
                         btnSearch.click();
                         $sugar.$CloseAll(divOpen.getAttribute("dataindex"));
@@ -120,10 +120,10 @@ btnDel.$Confirm({
                     }
                     else
                     {
-                        msg.data.$Alert();
+                        msg.Data.$Alert();
                     }
                 },
-                data: { "systems": JSON.stringify(gridInfo) }
+                data: { "model": JSON.stringify(gridInfo) }
             })
         } else {
             "请选择一条数据".$Alert();

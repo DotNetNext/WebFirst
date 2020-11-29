@@ -33,7 +33,7 @@ var SugarContext = {
             success: function (msg) {
                 var url = value.url;
                 var selectTree = $(element).comboTree({
-                    source: [{id: 0,title:"根目录", subs: msg.data}],
+                    source: [{id: 0,title:"根目录", subs: msg.Data}],
                     isMultiple: value.isMultiple,
                     cascadeSelect: value.cascadeSelect,
                     collapse: value.collapse
@@ -56,12 +56,12 @@ var SugarContext = {
                 type: "post",
                 success: function (msg) {
               
-                    var isArray = $.isArray(msg.data)
+                    var isArray = $.isArray(msg.Data)
                     var vm = new Vue({
                         el: '#' + element.id,
-                        data: isArray ? msg : msg.data
+                        data: isArray ? msg : msg.Data
                     })
-                    if (msg.issuccess == false && msg.url == "error")
+                    if (msg.Issuccess == false && msg.Url == "error")
                     {
                         window.location.href = "/";
                     }
