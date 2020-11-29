@@ -5,7 +5,7 @@ using System.Text;
 using System.Linq;
 using Newtonsoft.Json.Serialization;
 
-namespace SugarSite.Enties
+namespace SoEasyPlatform
 {
     public class TableModel<T>
     {

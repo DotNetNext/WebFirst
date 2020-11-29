@@ -106,6 +106,12 @@ var SugarContext = {
         data.pagination = false;
         $(element).bootstrapTable(data);
         $(element).bootstrapTable("refresh");
+ 
+        var totalpage = (data.total + data.pageSize - 1) / data.pageSize;
+        if (data.total == 0 || data.total < data.pageSize)
+        {
+            totalpage = 1;
+        }
         var options = {
             itemTexts: function (type, page, current) {
                 switch (type) {
@@ -118,7 +124,7 @@ var SugarContext = {
             },
             numberOfPages: 10,
             currentPage: data.pageNumber,
-            totalPages: (data.total + data.pageSize - 1) / data.pageSize,
+            totalPages: totalpage,
             onPageClicked: function (event, originalEvent, type, page) {
                 $("[name=PageIndex]").val(page);
                 btnSearch.click();

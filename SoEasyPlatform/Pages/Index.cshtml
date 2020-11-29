@@ -3,7 +3,7 @@
     ViewData["Title"] = "数据库连接管理";
 }
 @section js{
-    <script src="~/views/user/usermanager.js"></script>
+    <script src="~/views/system/dbconnection.js"></script>
 }
 <div class="x_panel search_box">
     <div class="x_title">
@@ -36,6 +36,62 @@
         <div id="divGridPage" class="pagination"></div>
     </div>
     <div id="divOpen" style="display:none">
- 
+        <form id="frmSave" class="" action="" method="post" novalidate="">
+            <div class="x_content" style="margin-top:20px">
+                <div class="field item form-group">
+                    <label class="col-form-label col-md-1 col-sm-1  label-align">用户名<span class="required">*</span></label>
+                    <div class="col-md-5 col-sm-5">
+                        <input class="form-control" id="saveUserName" name="UserName" type="text" />
+                        <input type="hidden" id="saveId" name="Id" />
+                    </div>
+                    <label class="col-form-label col-md-1 col-sm-1  label-align">头像<span class="required">*</span></label>
+                    <div class="col-md-5 col-sm-5">
+
+
+                    </div>
+                </div>
+                <div class="field item form-group">
+                    <label class="col-form-label col-md-1 col-sm-1  label-align">妮称<span class="required">*</span></label>
+                    <div class="col-md-5 col-sm-5">
+                        <input id="saveNickName" name="NickName" class="form-control" type="text" />
+                    </div>
+                    <label class="col-form-label col-md-1 col-sm-1  label-align"> </label>
+                    <div class="col-md-5 col-sm-5">
+
+                    </div>
+                </div>
+                <div class="field item form-group">
+                    <label class="col-form-label col-md-1 col-sm-1  label-align">密码<span class="required">*</span></label>
+                    <div class="col-md-5 col-sm-5">
+                        <input id="savePassword" name="Password" class="form-control" type="text" />
+                    </div>
+                    <label class="col-form-label col-md-1 col-sm-1  label-align"> </label>
+                    <div class="col-md-5 col-sm-5">
+
+                    </div>
+                </div>
+                <div class="field item form-group">
+                    <label class="col-form-label col-md-1 col-sm-1  label-align">确认密码<span class="required">*</span></label>
+                    <div class="col-md-5 col-sm-5">
+                        <input id="saveConfirmPassword" name="ConfirmPassword" class="form-control" type="text" />
+                    </div>
+                    <label class="col-form-label col-md-1 col-sm-1  label-align"> </label>
+                    <div class="col-md-5 col-sm-5">
+
+                    </div>
+                </div>
+                <div class="field item form-group">
+                    <label class="col-form-label col-md-1 col-sm-1  label-align">  </label>
+                    <div class="col-md-5 col-sm-5">
+
+                    </div>
+                    <label class="col-form-label col-md-1 col-sm-1  label-align">  </label>
+                    <div class="col-md-5 col-sm-5">
+
+                    </div>
+                </div>
+
+            </div>
+        </form>
     </div>
 </div>

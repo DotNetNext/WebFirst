@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SugarSite.Enties
+namespace SoEasyPlatform
 {
     public class ApiResult<T>
     {

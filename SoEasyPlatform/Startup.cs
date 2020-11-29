@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -41,6 +43,14 @@ namespace SoEasyPlatform
                 c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "API", Version = "v1" });
             });
             services.AddRazorPages();
+
+            services.AddAutoMapper(typeof(SoEasyPlatform.MapperProfiles).Assembly);
+
+#if DEBUG
+            //∆Ù”√∂ØÃ¨±‡“Î
+            services.AddControllersWithViews()
+            .AddRazorRuntimeCompilation();
+#endif
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -69,7 +79,9 @@ namespace SoEasyPlatform
                 c.InjectJavascript("");
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "API");
             });
+
             InitTable.Start();
+ 
         }
     }
 }
