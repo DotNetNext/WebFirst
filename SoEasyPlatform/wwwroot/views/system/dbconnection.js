@@ -2,7 +2,12 @@
     url: {
         GetUsers: _root + "system/getdbconnection",
         Del: _root + "system/deletedbconnection",
-        SaveSystem: _root + "system/savesdbconnection"
+        SaveSystem: _root + "system/savedbconnection"
+    },
+    text:
+    {
+        add: "添加数据库连接",
+        edit:"修改数据库连接"
     }
 };
 divFrom.$Form({
@@ -28,9 +33,9 @@ btnReset.$Reset();
 
 
 btnAdd.$Open("#divOpen", {
-    title: "添加系统",
-    w: 350,
-    h: 200,
+    title: configs.text.add,
+    w: 400,
+    h: 300,
     validate: function () {
         frmSave.$ClearControls();
         return true;
@@ -39,12 +44,12 @@ btnAdd.$Open("#divOpen", {
         frmSave.$Form({
             url: configs.url.SaveSystem,
             callback: function (msg) {
-                if (msg.IsKeyValuePair) {
+                if (msg.isKeyValuePair) {
                     $sugar.$Validate(msg.data, "save");
                 } else {
                     $sugar.$Validate("clear");
                     msg.data.$Alert();
-                    if (msg.IsSuccess) {
+                    if (msg.isSuccess) {
                         btnSearch.click();
                         $sugar.$CloseAll(divOpen.getAttribute("dataindex"));
                     }
@@ -56,9 +61,9 @@ btnAdd.$Open("#divOpen", {
 });
 
 btnEdit.$Open("#divOpen", {
-    title: "编辑系统",
-    w: 350,
-    h: 200,
+    title: configs.text.edit,
+    w: 400,
+    h: 300,
     validate: function () {
         var gridInfo = divGrid.$GridInfo();
         if (gridInfo.length == 0) {
