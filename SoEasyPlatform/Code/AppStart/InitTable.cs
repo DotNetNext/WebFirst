@@ -24,6 +24,7 @@ namespace SoEasyPlatform
                       Icon="fa fa-edit",
                         Child=new List<Menu>()
                         {
+                             new Menu{ MenuName="数据库连接" , Url="/"},
                              new Menu{ MenuName="实体" },
                              new Menu{ MenuName="业务" },
                              new Menu{ MenuName="WEB框架" }
@@ -32,12 +33,11 @@ namespace SoEasyPlatform
                     ,
                      new Menu()
                      {
-                        MenuName="数据库管理",
+                        MenuName="数据库维护",
                         Icon="fa fa-bar-chart-o",
                         Child=new List<Menu>()
                         {
                              new Menu{ MenuName="数据迁移" },
-                             new Menu{ MenuName="数据连接管理" },
                              new Menu{ MenuName="数据表管理" }
                         }
                      } 

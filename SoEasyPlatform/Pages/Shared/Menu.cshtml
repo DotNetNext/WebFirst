@@ -5,7 +5,7 @@
                 <a class="name" v-cloak><i :class="item.Icon"></i> {{item.MenuName}} <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu"  v-cloak>
                     <template v-for="child in item.Child">
-                        <li><a :href="child.url">{{child.MenuName}}</a></li>
+                        <li><a :href="child.Url">{{child.MenuName}}</a></li>
                     </template>
                 </ul>
             </li>
