@@ -20,9 +20,12 @@ namespace SoEasyPlatform
             {
                 if (types.Any(it => it.Name != item.Name && it.Name.Contains(item.Name)))
                 {
-                    var mapType = types.First(it => it.Name != item.Name && it.Name.Contains(item.Name));
-                    CreateMap(item, mapType);
-                    CreateMap(mapType, item);
+                    var mapTypes = types.Where(it => it.Name != item.Name && it.Name.Contains(item.Name));
+                    foreach (var mapType in mapTypes)
+                    {
+                        CreateMap(item, mapType);
+                        CreateMap(mapType, item);
+                    }
                 }
             }
         }

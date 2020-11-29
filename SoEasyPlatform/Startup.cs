@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace SoEasyPlatform
 {
@@ -51,6 +53,14 @@ namespace SoEasyPlatform
             services.AddControllersWithViews()
             .AddRazorRuntimeCompilation();
 #endif
+            services.AddControllersWithViews().AddNewtonsoftJson(opt =>
+            {
+                //忽略循环引用
+                opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+
+                //不改变字段大小
+                opt.SerializerSettings.ContractResolver = new DefaultContractResolver();
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

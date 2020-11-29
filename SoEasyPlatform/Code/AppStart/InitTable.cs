@@ -45,7 +45,10 @@ namespace SoEasyPlatform
 
                 })
                 .AddSubList(it=>it.Child.First().ParentId).ExecuteReturnPrimaryKey();
-
+            if (db.DbMaintenance.IsAnyTable("DBConnection"))
+            {
+                db.DbMaintenance.DropTable("DBConnection");
+            }
             db.CodeFirst.InitTables<DBConnection>();
         }
     }

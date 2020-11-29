@@ -2,12 +2,17 @@
     url: {
         GetUsers: _root + "system/getdbconnection",
         Del: _root + "system/deletedbconnection",
-        SaveSystem: _root + "system/savedbconnection"
+        SaveSystem: _root + "system/savedbconnection",
+        GetDbType: _root+"system/getdbtype"
     },
     text:
     {
         add: "添加数据库连接",
         edit:"修改数据库连接"
+    },
+    w: {
+        w: 600,
+        h:400
     }
 };
 divFrom.$Form({
@@ -29,13 +34,19 @@ btnSearch.$Button({
     }
 });
 
+
+saveDbTypeName.$SelectTree({
+    isMultiple: false,
+    url: configs.url.GetDbType
+})
+
 btnReset.$Reset();
 
 
 btnAdd.$Open("#divOpen", {
     title: configs.text.add,
-    w: 400,
-    h: 300,
+    w: configs.w.w,
+    h: configs.w.h,
     validate: function () {
         frmSave.$ClearControls();
         return true;
@@ -62,8 +73,8 @@ btnAdd.$Open("#divOpen", {
 
 btnEdit.$Open("#divOpen", {
     title: configs.text.edit,
-    w: 400,
-    h: 300,
+    w: configs.w.w,
+    h: configs.w.h,
     validate: function () {
         var gridInfo = divGrid.$GridInfo();
         if (gridInfo.length == 0) {

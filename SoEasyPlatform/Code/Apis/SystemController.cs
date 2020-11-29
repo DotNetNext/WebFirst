@@ -34,6 +34,28 @@ namespace SoEasyPlatform
             return result;
         }
 
+
+        [HttpPost]
+        [AuthorizeFilter]
+        [Route("getdbtype")]
+        public ActionResult<ApiResult<List<TreeModel>>> GetDbType()
+        {
+            List<TreeModel> trees = new List<TreeModel>();
+            foreach (DbType type in Enum.GetValues(typeof(DbType)))
+            {
+                trees.Add(new TreeModel()
+                {
+                     Id=((int)type).ToString(),
+                     Title=type.ToString(),
+                     IsSelectable=true
+                });
+            }
+            ApiResult<List<TreeModel>> result = new ApiResult<List<TreeModel>>();
+            result.Data = trees;
+            result.IsSuccess = true;
+            return result;
+        }
+
         /// <summary>
         /// 获取系统列表
         /// </summary>
@@ -65,7 +87,7 @@ namespace SoEasyPlatform
         {
             JsonResult errorResult = base.ValidateModel(model.Id);
             if (errorResult != null) return errorResult;
-            var saveObject =base.mapper.Map<DBConnection>(model);
+            var saveObject = base.mapper.Map<DBConnection>(model);
             var result = new ApiResult<string>();
             if (saveObject.Id == 0)
             {
