@@ -15,15 +15,16 @@ namespace SoEasyPlatform
 
         public string Content { get; set; }
 
-        public int TemplateTypeName { get; set; }
+        public string TemplateTypeName { get; set; }
 
         /// <summary>
         /// 是否是系统数据
         /// </summary>
-        public int IsSystemData { get; set; }
+        public bool IsSystemData { get; set; }
+
+        public int Sort { get; set; }
 
         public DateTime ChangeTime { get; set; }
 
-       
     }
 }

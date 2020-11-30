@@ -26,8 +26,10 @@ namespace SoEasyPlatform
                         {
                              new Menu{ MenuName="数据库连接" , Url="/"},
                              new Menu{ MenuName="实体" , Url="/Table"},
-                             new Menu{ MenuName="业务" },
-                             new Menu{ MenuName="WEB框架" }
+                             new Menu{ MenuName="业务",Url="/BLL" },
+                             new Menu{ MenuName="WEB框架" ,Url="/Web"},
+                             new Menu{ MenuName="模版管理" , Url="/Template"} ,
+                             new Menu{ MenuName="项目管理" , Url="/Project"} ,
                         }
                      }
                     ,
@@ -48,6 +50,30 @@ namespace SoEasyPlatform
  
             db.CodeFirst.InitTables<DBConnection>();
             db.CodeFirst.InitTables<Template, TemplateType>();
+            if (db.Queryable<Template>().Count() == 0)
+            {
+                db.Insertable(new List<TemplateType>()
+                {
+                     new  TemplateType(){   Name="实体" },
+                     new  TemplateType(){   Name="业务" },
+                     new  TemplateType(){   Name="Web" }
+
+                }).ExecuteCommand();
+            }
+            if (db.Queryable<Template>().Count() == 0) 
+            {
+                db.Insertable(new Template()
+                {
+                     ChangeTime=DateTime.Now,
+                     Content =  RazorFirst.DefaultRazorClassTemplate ,
+                     IsSystemData=true,
+                     TemplateTypeName="实体",
+                     Sort=0,
+                     TemplateTypeId=1,
+                     Title="生成实体"
+
+            }).ExecuteCommand();
+            }
         }
     }
 }
