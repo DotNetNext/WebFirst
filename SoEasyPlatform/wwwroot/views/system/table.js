@@ -3,7 +3,7 @@
         Get: _root + "table/gettable",
         GetDbType: _root + "table/getdbtype",
         GetDatabase: _root + "system/getdatabase",
-        GetTemp: _root + "system/getdatabase",
+        GetTemp: _root + "system/getTemplate?type=1",
     },
     text:
     {

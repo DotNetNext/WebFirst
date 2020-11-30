@@ -83,6 +83,29 @@ namespace SoEasyPlatform
         }
 
 
+        [HttpPost]
+        [AuthorizeFilter]
+        [Route("gettemplate")]
+        public ActionResult<ApiResult<List<TreeModel>>> GetTemplate(int type)
+        {
+            List<TreeModel> trees = new List<TreeModel>();
+            var databses = TemplateDb.GetList(it => it.IsDeleted == false&&it.TemplateTypeId==type);
+            foreach (var db in databses)
+            {
+                trees.Add(new TreeModel()
+                {
+                    Id = db.Id.ToString(),
+                    Title = db.Title,
+                    IsSelectable = true
+                });
+            }
+            ApiResult<List<TreeModel>> result = new ApiResult<List<TreeModel>>();
+            result.Data = trees;
+            result.IsSuccess = true;
+            return result;
+        }
+
+
         /// <summary>
         /// 获取系统列表
         /// </summary>

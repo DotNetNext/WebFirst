@@ -50,6 +50,7 @@ namespace SoEasyPlatform
                 .AddSubList(it=>it.Child.First().ParentId).ExecuteReturnPrimaryKey();
  
             db.CodeFirst.InitTables<DBConnection>();
+            db.DbMaintenance.DropTable("Template");
             db.CodeFirst.InitTables<Template, TemplateType>();
             if (db.Queryable<Template>().Count() == 0)
             {
@@ -61,6 +62,7 @@ namespace SoEasyPlatform
 
                 }).ExecuteCommand();
             }
+
             if (db.Queryable<Template>().Count() == 0) 
             {
                 db.Insertable(new Template()
@@ -71,7 +73,7 @@ namespace SoEasyPlatform
                      TemplateTypeName="实体",
                      Sort=0,
                      TemplateTypeId=1,
-                     Title="生成实体"
+                     Title="SqlSugar默认实体模版"
 
             }).ExecuteCommand();
             }
