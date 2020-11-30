@@ -33,7 +33,7 @@ var SugarContext = {
             success: function (msg) {
                 var url = value.url;
                 var selectTree = $(element).comboTree({
-                    source: [{id: 0,title:"根目录", subs: msg.Data}],
+                    source: [{ id: 0, title: "根目录", subs: msg.Data, isSelectable: value.rootIsSelect}],
                     isMultiple: value.isMultiple,
                     cascadeSelect: value.cascadeSelect,
                     collapse: value.collapse
@@ -41,8 +41,10 @@ var SugarContext = {
                 if (value.maxHeight != null)
                 {
                     $(element).parent().next().css("max-height", value.maxHeight);
+                    $(element).parent().next().find(".comboTreeItemTitle ").first().next().css("height", value.maxHeight+20);
                 }
-               //selectTree.setSource(SampleJSONData2);
+                //selectTree.setSource(SampleJSONData2);
+             
             },
             error: function (msg) {
                 layer.msg("服务器请求失败.");

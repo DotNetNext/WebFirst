@@ -36,6 +36,13 @@
         <form id="frmSave" class="" action="" method="post" novalidate="">
             <div class="x_content" style="margin-top:20px">
                 <div class="field item form-group">
+                    <label class="col-form-label col-md-2 col-sm-2  label-align">数据库类型<span class="required">*</span></label>
+                    <div class="col-md-10 col-sm-9">
+                        <input type="text" id="saveDbTypeName" name="DbTypeName" placeholder="Select" autocomplete="off" />
+                        <input id="saveDbType" type="hidden" value="0" name="DbType" />
+                    </div>
+                </div>
+                <div class="field item form-group">
                     <label class="col-form-label col-md-2 col-sm-2  label-align">描述<span class="required">*</span></label>
                     <div class="col-md-10 col-sm-9">
                         <input id="saveDesc" name="Desc" class="form-control" type="text" />
@@ -47,13 +54,6 @@
                     <label class="col-form-label col-md-2 col-sm-2  label-align">连接字符串<span class="required">*</span></label>
                     <div class="col-md-10 col-sm-9">
                         <input id="saveConnection" name="Connection" class="form-control" type="text" />
-                    </div>
-                </div>
-                <div class="field item form-group">
-                    <label class="col-form-label col-md-2 col-sm-2  label-align">数据库类型<span class="required">*</span></label>
-                    <div class="col-md-10 col-sm-9">
-                        <input type="text" id="saveDbTypeName" name="DbTypeName" placeholder="Select" autocomplete="off" />
-                        <input id="saveDbType" type="hidden" value="0" name="DbType" />
                     </div>
                 </div>
             </div>
