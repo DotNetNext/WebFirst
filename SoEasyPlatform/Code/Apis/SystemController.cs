@@ -68,7 +68,7 @@ namespace SoEasyPlatform
             result.Data = new TableModel<DBConnectionGridViewModel>();
             int count = 0;
             var list = DBConnectionDb.AsQueryable()
-                .Where(it=>it.IsDeleted==null||it.IsDeleted==false)
+                .Where(it=>it.IsDeleted==false)
                 .WhereIF(!string.IsNullOrEmpty(model.Desc),it=>it.Desc.Contains(model.Desc))
                 .ToPageList(model.PageIndex, model.PageSize, ref count);
             result.Data.Rows = base.mapper.Map<List<DBConnectionGridViewModel>>(list);
