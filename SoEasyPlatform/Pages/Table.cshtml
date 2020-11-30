@@ -35,5 +35,29 @@
         <table id="divGrid"></table>
         <div id="divGridPage" class="pagination"></div>
     </div>
-
+    <div id="divTemOpen" style="display:none">
+        <form id="frmSave" class="" action="" method="post" novalidate="">
+            <div class="x_content" style="margin-top:20px">
+                <div class="field item form-group">
+                    <label class="col-form-label col-md-2 col-sm-2  label-align">模版<span class="required">*</span></label>
+                    <div class="col-md-10 col-sm-9">
+                        <input type="text" id="saveDbTypeName" name="DbTypeName" placeholder="Select" autocomplete="off" />
+                        <input id="saveDbType" type="hidden" value="0" name="DbType" />
+                    </div>
+                </div>
+                <div class="field item form-group">
+                    <label class="col-form-label col-md-2 col-sm-2  label-align">路径<span class="required">*</span></label>
+                    <div class="col-md-10 col-sm-9">
+                         <input type="file" />
+                    </div>
+                </div>
+                <div class="field item form-group">
+                    <label class="col-form-label col-md-2 col-sm-2  label-align">连接字符串<span class="required">*</span></label>
+                    <div class="col-md-10 col-sm-9">
+                        <input id="saveConnection" name="Connection" class="form-control" type="text" />
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
