@@ -35,7 +35,33 @@
         <table id="divGrid"></table>
         <div id="divGridPage" class="pagination"></div>
     </div>
-    <div id="divTemOpen" style="display:none">
+    <div id="divPathOpen" style="display:none">
+        <form id="frmSave" class="" action="" method="post" novalidate="">
+            <div class="x_content" style="margin-top:20px">
+                <div class="field item form-group">
+                    <label class="col-form-label col-md-2 col-sm-2  label-align">模版<span class="required">*</span></label>
+                    <div class="col-md-10 col-sm-9">
+                        <input type="text" id="saveTemplateName1" name="TemplateName1" placeholder="Select" autocomplete="off" />
+                        <input id="saveTemplateId1" type="hidden" value="0" name="TemplateId1" />
+                    </div>
+                </div>
+                <div class="field item form-group">
+                    <label class="col-form-label col-md-2 col-sm-2  label-align">生成路径<span class="required">*</span></label>
+                    <div class="col-md-10 col-sm-9">
+                        <input id="txtPath" name="Path" type="text" placeholder="例如 C:\project\demo" class="form-control" />
+
+                    </div>
+                </div>
+                <div class="field item form-group">
+                    <label class="col-form-label col-md-2 col-sm-2  label-align">项目名称 </label>
+                    <div class="col-md-10 col-sm-9">
+                        <input id="txtProjentName" name="ProjentName" type="text" class="form-control" placeholder="填写名称将保存到项目方便下次使用" />
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div id="divProject" style="display:none">
         <form id="frmSave" class="" action="" method="post" novalidate="">
             <div class="x_content" style="margin-top:20px">
                 <div class="field item form-group">
@@ -48,7 +74,7 @@
                 <div class="field item form-group">
                     <label class="col-form-label col-md-2 col-sm-2  label-align">路径<span class="required">*</span></label>
                     <div class="col-md-10 col-sm-9">
-                         <input type="file" />
+                        <input type="file" webkitdirectory directory   />
                     </div>
                 </div>
                 <div class="field item form-group">
