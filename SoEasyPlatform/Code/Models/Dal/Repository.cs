@@ -26,5 +26,15 @@ namespace SoEasyPlatform
                 ConnectionString ="DataSource="+ AppContext.BaseDirectory + @"\database\sqlite.db"
             });
         }
+        public static SqlSugarClient GetInstance(DbType type,string connection)
+        {
+            return new SqlSugarClient(new ConnectionConfig()
+            {
+                DbType = type,
+                InitKeyType = InitKeyType.Attribute,
+                IsAutoCloseConnection = true,
+                ConnectionString = connection
+            });
+        }
     }
 }

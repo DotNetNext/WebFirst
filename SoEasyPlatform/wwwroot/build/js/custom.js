@@ -119,8 +119,8 @@ function init_sidebar() {
 
 
     setTimeout(function () {
-    
-        CURRENT_URL = CURRENT_URL.replace(window.location.href, "/");
+        debugger
+        CURRENT_URL = CURRENT_URL.replace(window.location.origin, "");
         // check active menu
         $SIDEBAR_MENU.find('a[href="' + CURRENT_URL + '"]').parent('li').addClass('current-page');
 

@@ -7,14 +7,14 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SqlSugar;
 
-namespace SoEasyPlatform 
+namespace SoEasyPlatform
 {
     [Route("api/[controller]")]
     [ApiController]
     public class BaseController : ControllerBase
     {
-        protected  IMapper mapper;
-        protected Repository<Menu> MenuDb=> new Repository<Menu>();
+        protected IMapper mapper;
+        protected Repository<Menu> MenuDb => new Repository<Menu>();
         protected Repository<DBConnection> DBConnectionDb => new Repository<DBConnection>();
 
         /// <summary>
@@ -52,6 +52,30 @@ namespace SoEasyPlatform
             }
 
             return errorResult;
+        }
+
+
+        protected SqlSugarClient GetTryDb(DBConnection db)
+        {
+            try
+            {
+                using (var Db = Repository<object>.GetInstance(db.DbType, db.Connection))
+                {
+                    Db.Open();
+                    return Db;
+                }
+            }
+            catch  
+            {
+
+                throw new Exception(db.Connection+" "+db.DbType+"无法连接到数据库，请认真检查DbType和连接字符串");
+            }
+        }
+
+        protected void Check(bool isOk, string message)
+        {
+            if (isOk)
+                throw new Exception(message);
         }
     }
 }

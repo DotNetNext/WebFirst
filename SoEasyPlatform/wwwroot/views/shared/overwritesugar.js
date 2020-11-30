@@ -107,8 +107,17 @@ var SugarContext = {
             $(element).bootstrapTable("uncheckBy", { field: column.field, values: [row[column.field]] });
         }
         data.pagination = false;
+        if (data.pagination == null)
+        {
+            this.Alert(data);
+            return;
+        }
+        debugger
+ 
         $(element).bootstrapTable(data);
         $(element).bootstrapTable("refresh");
+
+        $(element).bootstrapTable('resetView', { height: 600 });
  
         var totalpage = (data.total + data.pageSize - 1) / data.pageSize;
         if (data.total == 0 || data.total < data.pageSize)

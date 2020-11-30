@@ -25,7 +25,7 @@ namespace SoEasyPlatform
                         Child=new List<Menu>()
                         {
                              new Menu{ MenuName="数据库连接" , Url="/"},
-                             new Menu{ MenuName="实体" },
+                             new Menu{ MenuName="实体" , Url="/Table"},
                              new Menu{ MenuName="业务" },
                              new Menu{ MenuName="WEB框架" }
                         }
@@ -47,6 +47,7 @@ namespace SoEasyPlatform
                 .AddSubList(it=>it.Child.First().ParentId).ExecuteReturnPrimaryKey();
  
             db.CodeFirst.InitTables<DBConnection>();
+            db.CodeFirst.InitTables<Template, TemplateType>();
         }
     }
 }

@@ -34,7 +34,10 @@ namespace SoEasyPlatform
             return result;
         }
 
-
+        /// <summary>
+        /// 获取数据库类型
+        /// </summary>
+        /// <returns></returns>
         [HttpPost]
         [AuthorizeFilter]
         [Route("getdbtype")]
@@ -55,6 +58,30 @@ namespace SoEasyPlatform
             result.IsSuccess = true;
             return result;
         }
+
+
+        [HttpPost]
+        [AuthorizeFilter]
+        [Route("getdatabase")]
+        public ActionResult<ApiResult<List<TreeModel>>> GetDatabase()
+        {
+            List<TreeModel> trees = new List<TreeModel>();
+            var databses = DBConnectionDb.GetList(it=>it.IsDeleted==false);
+            foreach (var db in databses)
+            {
+                trees.Add(new TreeModel()
+                {
+                    Id =db.Id.ToString(),
+                    Title = db.Desc,
+                    IsSelectable = true
+                });
+            }
+            ApiResult<List<TreeModel>> result = new ApiResult<List<TreeModel>>();
+            result.Data = trees;
+            result.IsSuccess = true;
+            return result;
+        }
+
 
         /// <summary>
         /// 获取系统列表
