@@ -75,7 +75,12 @@ namespace SoEasyPlatform.Code.Apis
             var data = TemplateDb.GetById(model.TemplateId1);
             var tables = Newtonsoft.Json.JsonConvert.DeserializeObject<List<TableGridViewModel>>(model.Tables);
             var tableArray = tables.Select(it => it.TableName).ToArray();
-            sqlsugarDb.DbFirst.Where(tableArray).UseRazorAnalysis(data.Content).CreateClassFile(model.Path);
+            var content = data.Content;
+            if (model.FileFormat != null) 
+            {
+               content=content+ "$格式化类名$" + model.FileFormat;
+            }
+            sqlsugarDb.DbFirst.Where(tableArray).UseRazorAnalysis(content).CreateClassFile(model.Path);
             result.IsSuccess = true;
             return result;
         }

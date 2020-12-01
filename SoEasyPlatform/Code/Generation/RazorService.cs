@@ -20,6 +20,12 @@ namespace SoEasyPlatform
                     try
                     {
                         item.ClassName = item.DbTableName;//这边可以格式化类名
+                        if (razorTemplate.Contains("$格式化类名$")) 
+                        {
+                            var array = razorTemplate.Split("$格式化类名$");
+                            razorTemplate = array[0];
+                            item.ClassName = GetClassName(item.ClassName, array[1]);
+                        }
                         string key = "RazorService.GetClassStringList" + razorTemplate.Length;
                         var classString = Engine.Razor.RunCompile(razorTemplate, key, item.GetType(), item);
                         result.Add(new KeyValuePair<string, string>(item.ClassName, classString));
@@ -34,6 +40,22 @@ namespace SoEasyPlatform
             else
             {
                 return new List<KeyValuePair<string, string>>();
+            }
+        }
+
+        private string GetClassName(string className, string format)
+        {
+            var old = format;
+            try
+            {
+                format = "@(" + format.Replace("{表名}", className) + ")";
+                var key = "formatclassnamekey";
+                var classString = Engine.Razor.RunCompile(format, key);
+                return classString;
+            }
+            catch  
+            {
+               throw  new Exception(old+"格式错误");
             }
         }
     }
