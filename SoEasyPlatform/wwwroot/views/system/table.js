@@ -4,6 +4,7 @@
         GetDbType: _root + "table/getdbtype",
         GetDatabase: _root + "system/getdatabase",
         GetTemp: _root + "system/getTemplate?type=1",
+        CreateFile: _root + "table/createfile",
     },
     text:
     {
@@ -11,8 +12,8 @@
         Cpa: "生成实体到指定目录"
     },
     w: {
-        w: 600,
-        h: 300
+        w: 850,
+        h: 400
     }
 };
 divFrom.$Form({
@@ -58,6 +59,8 @@ btnPath.$Open("#divPathOpen", {
     h: configs.w.h,
     validate: function () {
         var gridInfo = divGrid.$GridInfo();
+        debugger
+        saveFileName.value = "String.Format(\"{ 0 } { 1 } Entity\" ,{表名}.Substring(0,1).ToUpper() , {表名}.Substring(1))";
         if (gridInfo.length == 0) {
             "请选择记录".$Alert();
             return false;
@@ -68,8 +71,11 @@ btnPath.$Open("#divPathOpen", {
         }
     },
     yes: function () {
-        frmSave.$Form({
-            url: configs.url.SaveSystem,
+ 
+        SaveTable1.value = JSON.stringify(divGrid.$GridInfo());
+      
+        frmPathSave.$Form({
+            url: configs.url.CreateFile + "?databaseId=" + Database.value,
             callback: function (msg) {
                 if (msg.IsKeyValuePair) {
                     $sugar.$Validate(msg.Data, "save");
@@ -103,7 +109,9 @@ btnProject.$Open("#divProjectOpen", {
         }
     },
     yes: function () {
-        frmSave.$Form({
+        
+        SaveTable2.value = JSON.stringify(divGrid.$GridInfo());
+        frmProjectSave.$Form({
             url: configs.url.SaveSystem,
             callback: function (msg) {
                 if (msg.IsKeyValuePair) {
@@ -121,6 +129,5 @@ btnProject.$Open("#divProjectOpen", {
     },
     btn: ['保存', '关闭']
 });
+
  
-
-

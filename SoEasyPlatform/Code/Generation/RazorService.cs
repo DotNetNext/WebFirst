@@ -6,9 +6,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SoEasyPlatform.Code.AppStart
+namespace SoEasyPlatform 
 {
-    public class RazorService : IRazorService
+    public class RazorService:IRazorService  
     {
         public List<KeyValuePair<string, string>> GetClassStringList(string razorTemplate, List<RazorTableInfo> model)
         {

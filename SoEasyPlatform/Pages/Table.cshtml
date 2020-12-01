@@ -15,12 +15,14 @@
     <div class="x_content">
         <form id="divFrom" class="form-inline">
             <div class="form-group">
-                <label for="ex3" class="col-form-label">表名：</label>
-                <input type="text" id="TableName" name="TableName" class="form-control input" placeholder=" ">
+                <label for="ex3" class="col-form-label">数据库：</label>
+                <input type="text" id="DatabaseName" name="DatabaseName" placeholder="Select" autocomplete="off" />
+                <input id="Database" type="hidden" value="0" name="Database" />
             </div>
-
-            <input type="text" id="DatabaseName" name="DatabaseName" placeholder="Select" autocomplete="off" />
-            <input id="Database" type="hidden" value="0" name="Database" />
+            <div class="form-group">
+                <label for="ex3" class="col-form-label">&nbsp; 表名：</label>
+                <input type="text" id="TableName" name="TableName" class="form-control input" placeholder=" 模糊搜索 ">
+            </div>
 
             <button id="btnSearch" type="button" class="btn btn-search"><i class="fa fa-search"></i>搜索</button>
             <button id="btnReset" type="button" class="btn btn-green"><i class="fa fa-refresh"></i>重置</button>
@@ -36,7 +38,7 @@
         <div id="divGridPage" class="pagination"></div>
     </div>
     <div id="divPathOpen" style="display:none">
-        <form id="frmSave" class="" action="" method="post" novalidate="">
+        <form id="frmPathSave" class="" action="" method="post" novalidate="">
             <div class="x_content" style="margin-top:20px">
                 <div class="field item form-group">
                     <label class="col-form-label col-md-2 col-sm-2  label-align">模版<span class="required">*</span></label>
@@ -48,21 +50,28 @@
                 <div class="field item form-group">
                     <label class="col-form-label col-md-2 col-sm-2  label-align">生成路径<span class="required">*</span></label>
                     <div class="col-md-10 col-sm-9">
-                        <input id="txtPath" name="Path" type="text" placeholder="例如 C:\project\demo" class="form-control" />
+                        <input id="savePath" name="Path" type="text" value="C:\suagrdemo\database" class="form-control" />
 
+                    </div>
+                </div>
+                <div class="field item form-group">
+                    <label class="col-form-label col-md-2 col-sm-2  label-align">文件名称<span class="required">*</span></label>
+                    <div class="col-md-10 col-sm-9">
+                        <input id="saveFileName" name="FileFormat" type="text"   class="form-control" />
                     </div>
                 </div>
                 <div class="field item form-group">
                     <label class="col-form-label col-md-2 col-sm-2  label-align">项目名称 </label>
                     <div class="col-md-10 col-sm-9">
-                        <input id="txtProjentName" name="ProjentName" type="text" class="form-control" placeholder="填写名称将保存到项目方便下次使用" />
+                        <input id="saveProjentName" name="ProjentName" type="text" class="form-control" placeholder="填写名称将保存到项目方便下次使用" />
                     </div>
+                    <input id="SaveTable1" type="hidden" name="Tables" value="" />
                 </div>
             </div>
         </form>
     </div>
     <div id="divProject" style="display:none">
-        <form id="frmSave" class="" action="" method="post" novalidate="">
+        <form id="frmProjectSave" class="" action="" method="post" novalidate="">
             <div class="x_content" style="margin-top:20px">
                 <div class="field item form-group">
                     <label class="col-form-label col-md-2 col-sm-2  label-align">模版<span class="required">*</span></label>
@@ -74,7 +83,7 @@
                 <div class="field item form-group">
                     <label class="col-form-label col-md-2 col-sm-2  label-align">路径<span class="required">*</span></label>
                     <div class="col-md-10 col-sm-9">
-                        <input type="file" webkitdirectory directory   />
+                        <input type="file" webkitdirectory directory />
                     </div>
                 </div>
                 <div class="field item form-group">
@@ -84,6 +93,7 @@
                     </div>
                 </div>
             </div>
+    
         </form>
     </div>
 </div>

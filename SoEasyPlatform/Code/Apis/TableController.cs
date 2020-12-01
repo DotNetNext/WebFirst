@@ -26,17 +26,25 @@ namespace SoEasyPlatform.Code.Apis
             var listDb = DBConnectionDb.GetList();
             var db = listDb.FirstOrDefault(it => it.Id == model.Database);
             if (db == null)
+            {
+                result.Data.Total = 0;
+                result.Data.PageSize = int.MaxValue;
+                result.Data.PageNumber = 1;
+                result.IsSuccess = true;
+                result.Data.Rows = new List<TableGridViewModel>();
                 return result;
+            }
             int count = 0;
             var sqlsugarDb = base.GetTryDb(db);
-            var tableList= sqlsugarDb.DbMaintenance.GetTableInfoList(false);
+            var tableList = sqlsugarDb.DbMaintenance.GetTableInfoList(false);
             foreach (var item in tableList)
             {
                 TableGridViewModel tgv = new TableGridViewModel()
                 {
                     Database = db.Desc,
                     TableDesc = item.Description,
-                    TableName = item.Name
+                    TableName = item.Name,
+                    Id = tableList.IndexOf(item) + 1
                 };
                 if (result.Data.Rows == null)
                     result.Data.Rows = new List<TableGridViewModel>();
@@ -49,5 +57,27 @@ namespace SoEasyPlatform.Code.Apis
             return result;
         }
 
+
+        /// <summary>
+        /// 生成实体
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        [FormValidateFilter]
+        [ExceptionFilter]
+        [Route("createfile")]
+        public ActionResult<ApiResult<bool>> CreateFile([FromForm] TableToTemplateViewModel model, int databaseId)
+        {
+            var result = new ApiResult<bool>();
+            var listDb = DBConnectionDb.GetList();
+            var db = listDb.FirstOrDefault(it => it.Id == databaseId);
+            var sqlsugarDb = base.GetTryDb(db);
+            var data = TemplateDb.GetById(model.TemplateId1);
+            var tables = Newtonsoft.Json.JsonConvert.DeserializeObject<List<TableGridViewModel>>(model.Tables);
+            var tableArray = tables.Select(it => it.TableName).ToArray();
+            sqlsugarDb.DbFirst.Where(tableArray).UseRazorAnalysis(data.Content).CreateClassFile(model.Path);
+            result.IsSuccess = true;
+            return result;
+        }
     }
 }
