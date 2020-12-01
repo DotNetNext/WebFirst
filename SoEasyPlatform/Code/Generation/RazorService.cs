@@ -15,14 +15,15 @@ namespace SoEasyPlatform
             if (model != null && model.Any())
             {
                 var result = new List<KeyValuePair<string, string>>();
+                var old = razorTemplate;
                 foreach (var item in model)
                 {
                     try
                     {
                         item.ClassName = item.DbTableName;//这边可以格式化类名
-                        if (razorTemplate.Contains("$格式化类名$")) 
+                        if (old.Contains("$格式化类名$")) 
                         {
-                            var array = razorTemplate.Split("$格式化类名$");
+                            var array = old.Split("$格式化类名$");
                             razorTemplate = array[0];
                             item.ClassName = GetClassName(item.ClassName, array[1]);
                         }
@@ -48,12 +49,13 @@ namespace SoEasyPlatform
             var old = format;
             try
             {
-                format = "@(" + format.Replace("{表名}", className) + ")";
-                var key = "formatclassnamekey";
-                var classString = Engine.Razor.RunCompile(format, key);
+ 
+                format = "@(" + format.Replace("{表名}", "(@Model)") + ")";
+                var key = "formatclassnamekey"+format;
+                var classString = Engine.Razor.RunCompile(format, key, typeof(string), className);
                 return classString;
             }
-            catch  
+            catch(Exception ex)  
             {
                throw  new Exception(old+"格式错误");
             }

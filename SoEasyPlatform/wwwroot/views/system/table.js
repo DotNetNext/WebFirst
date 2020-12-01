@@ -60,7 +60,7 @@ btnPath.$Open("#divPathOpen", {
     validate: function () {
         var gridInfo = divGrid.$GridInfo();
         debugger
-        saveFileName.value = "String.Format(\"{ 0 } { 1 } Entity\" ,{表名}.Substring(0,1).ToUpper() , {表名}.Substring(1))";
+        saveFileName.value = "String.Format(\"{0}{1}Entity\" ,{表名}.Substring(0,1).ToUpper() , {表名}.Substring(1))";
         if (gridInfo.length == 0) {
             "请选择记录".$Alert();
             return false;
