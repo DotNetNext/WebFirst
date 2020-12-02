@@ -30,6 +30,8 @@ namespace SoEasyPlatform
                              new Menu{ MenuName="WEB框架" ,Url="/Web"},
                              new Menu{ MenuName="模版管理" , Url="/Template"} ,
                              new Menu{ MenuName="项目管理" , Url="/Project"} ,
+                             new Menu{ MenuName="方案管理" , Url="/Project"} ,
+                             new Menu{ MenuName="Nuget管理" , Url="/Nuget"} ,
                              new Menu{ MenuName="解决方案" , Url="/Solution"} ,
                         }
                      }

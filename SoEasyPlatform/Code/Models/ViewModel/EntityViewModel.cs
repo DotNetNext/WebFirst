@@ -46,5 +46,6 @@ namespace SoEasyPlatform
         public string Tables { get; set; }
         public string NetVersion { get; set; }
         public string LibraryName { get; set; }
+        public string Nuget { get; set; }
     }
 }

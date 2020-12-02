@@ -210,4 +210,19 @@
     <Folder Include="Code\Util\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Code\Generation\template\NET4.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Code\Generation\template\NET45.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Code\Generation\template\NET5.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Code\Generation\template\NETCORE31.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
