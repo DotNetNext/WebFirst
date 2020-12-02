@@ -112,8 +112,7 @@ var SugarContext = {
             this.Alert(data);
             return;
         }
-        debugger
- 
+      
         $(element).bootstrapTable(data);
         $(element).bootstrapTable("refresh");
 
