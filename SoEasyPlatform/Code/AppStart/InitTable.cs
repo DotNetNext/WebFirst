@@ -50,7 +50,6 @@ namespace SoEasyPlatform
                 .AddSubList(it=>it.Child.First().ParentId).ExecuteReturnPrimaryKey();
  
             db.CodeFirst.InitTables<DBConnection>();
-            db.DbMaintenance.DropTable("Template");
             db.CodeFirst.InitTables<Template, TemplateType>();
             if (db.Queryable<Template>().Count() == 0)
             {
