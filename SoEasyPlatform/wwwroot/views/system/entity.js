@@ -1,10 +1,10 @@
 ﻿var configs = {
     url: {
-        Get: _root + "table/gettable",
-        GetDbType: _root + "table/getdbtype",
+        Get: _root + "entity/gettable",
+        GetDbType: _root + "entity/getdbtype",
         GetDatabase: _root + "system/getdatabase",
         GetTemp: _root + "system/getTemplate?type=1",
-        CreateFile: _root + "table/createfile",
+        CreateFile: _root + "entity/createfile",
     },
     text:
     {

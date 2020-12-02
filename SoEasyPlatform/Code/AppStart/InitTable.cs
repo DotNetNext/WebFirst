@@ -25,7 +25,7 @@ namespace SoEasyPlatform
                         Child=new List<Menu>()
                         {
                              new Menu{ MenuName="数据库连接" , Url="/"},
-                             new Menu{ MenuName="实体" , Url="/Table"},
+                             new Menu{ MenuName="实体" , Url="/Entity"},
                              new Menu{ MenuName="业务",Url="/BLL" },
                              new Menu{ MenuName="WEB框架" ,Url="/Web"},
                              new Menu{ MenuName="模版管理" , Url="/Template"} ,

@@ -9,7 +9,7 @@ namespace SoEasyPlatform.Code.Apis
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TableController : BaseController
+    public class EntityController : BaseController
     {
 
         /// <summary>
