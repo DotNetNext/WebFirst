@@ -16,7 +16,9 @@
             Validate:object.Validate,
             FillControls:object.FillControls,
             ClearControls:object.ClearControls,
-            SelectTree:object.SelectTree
+            SelectTree:object.SelectTree,
+            Loading:object.Loading,
+            CloseLoading:object.CloseLoading
         };
         HTMLElement.prototype.$Fill = function (value) {
             var element=this;
@@ -100,6 +102,20 @@
             }
             return sugarParameters.Open(divElement,value);
             });
+        }
+       HTMLElement.prototype.$Loading = function () {
+            var element=this;
+            if (sugarParameters.Loading == null) {
+                  alert("请配置sugar.Loading"); return;
+            }
+           return sugarParameters.Loading(element);
+        }
+       HTMLElement.prototype.$CloseLoading = function () {
+            var element=this;
+            if (sugarParameters.CloseLoading == null) {
+                  alert("请配置sugar.CloseLoading"); return;
+            }
+           return sugarParameters.CloseLoading(element);
         }
         String.prototype.$Alert = function () {
             if (sugarParameters.Alert == null) {

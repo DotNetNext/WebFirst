@@ -59,7 +59,7 @@ btnPath.$Open("#divPathOpen", {
     h: configs.w.h,
     validate: function () {
         var gridInfo = divGrid.$GridInfo();
-        debugger
+ 
         saveFileName.value = "String.Format(\"{0}{1}Entity\" ,{表名}.Substring(0,1).ToUpper() , {表名}.Substring(1))";
         if (gridInfo.length == 0) {
             "请选择记录".$Alert();
@@ -73,7 +73,7 @@ btnPath.$Open("#divPathOpen", {
     yes: function () {
  
         SaveTable1.value = JSON.stringify(divGrid.$GridInfo());
-      
+        btnPath.$Loading();
         frmPathSave.$Form({
             url: configs.url.CreateFile + "?databaseId=" + Database.value,
             callback: function (msg) {
@@ -81,12 +81,18 @@ btnPath.$Open("#divPathOpen", {
                     $sugar.$Validate(msg.Data, "save");
                 } else {
                     $sugar.$Validate("clear");
-                    msg.Data.$Alert();
                     if (msg.IsSuccess) {
+                        "生成成功".$Alert();
                         btnSearch.click();
-                        $sugar.$CloseAll(divOpen.getAttribute("dataindex"));
+                        //$sugar.$CloseAll(divOpen.getAttribute("divPathOpen"));
+                    } else
+                    {
+                        msg.Message.$Alert();
                     }
                 }
+                debugger
+                btnPath.$CloseLoading();
+             
             }
         });
     },
