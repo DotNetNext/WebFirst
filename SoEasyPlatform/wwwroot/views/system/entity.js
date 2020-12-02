@@ -83,11 +83,11 @@ btnPath.$Open("#divPathOpen", {
                     $sugar.$Validate("clear");
                     if (msg.IsSuccess) {
                         "生成成功".$Alert();
-                        btnSearch.click();
+                        //btnSearch.click();
                         //$sugar.$CloseAll(divOpen.getAttribute("divPathOpen"));
                     } else
                     {
-                        msg.Message.$Alert();
+                        msg.Data.$Alert();
                     }
                 }
                 debugger

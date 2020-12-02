@@ -33,7 +33,7 @@ namespace SoEasyPlatform
                     }
                     catch (Exception ex)
                     {
-                        new Exception(item.DbTableName + " error ." + ex.Message);
+                        throw new Exception(item.DbTableName + " error ." + ex.Message);
                     }
                 }
                 return result;
