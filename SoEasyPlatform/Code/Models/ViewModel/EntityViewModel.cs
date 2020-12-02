@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace SoEasyPlatform 
 {
-    public class TableViewModel : PageViewModel, IView
+    public class EntityViewModel : PageViewModel, IView
     {
         [PropertyName("表名")]
         public string TableName { get; set; }
@@ -15,7 +15,7 @@ namespace SoEasyPlatform
         public int Database { get; set; }
     }
 
-    public class TableGridViewModel  
+    public class EntityGridViewModel  
     {
 
         [DisplayName("编号")]
@@ -44,5 +44,7 @@ namespace SoEasyPlatform
         public string FileFormat { get; set; }
         [PropertyName("数据表")]
         public string Tables { get; set; }
+        public string NetVersion { get; set; }
+        public string LibraryName { get; set; }
     }
 }

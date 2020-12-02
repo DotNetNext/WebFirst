@@ -30,8 +30,8 @@
         </form>
     </div>
     <div class="x_content">
-        <button id="btnProject" type="button" class="btn btn-blue"><i class="fa fa-plus"></i>生成实体到项目</button>
-        <button id="btnPath" type="button" class="btn btn-blue"><i class="fa fa-plus"></i>生成实体到指定路径</button>
+        <button id="btnPath" type="button" class="btn btn-blue"><i class="fa fa-plus"></i>生成实体</button>
+        <button id="btnProject" type="button" class="btn btn-blue"><i class="fa fa-plus"></i>生成实体根据方案</button>
     </div>
     <div class="x_content">
         <table id="divGrid"></table>
@@ -57,13 +57,26 @@
                 <div class="field item form-group">
                     <label class="col-form-label col-md-2 col-sm-2  label-align">文件名称<span class="required">*</span></label>
                     <div class="col-md-10 col-sm-9">
-                        <input id="saveFileName" name="FileFormat" type="text"   class="form-control" />
+                        <input id="saveFileName" name="FileFormat" type="text" class="form-control" />
                     </div>
                 </div>
                 <div class="field item form-group">
-                    <label class="col-form-label col-md-2 col-sm-2  label-align">项目名称 </label>
+                    <label class="col-form-label col-md-2 col-sm-2  label-align">.NET类库<span class="required">*</span></label>
                     <div class="col-md-10 col-sm-9">
-                        <input id="saveProjentName" name="ProjentName" type="text" class="form-control" placeholder="填写名称将保存到项目方便下次使用" />
+                        <input type="text" id="saveNetVersionName" name="NetVersion" placeholder="Select" autocomplete="off" />
+                        <input id="saveNetVersion" type="hidden" value="0" name="NetVersion" />
+                    </div>
+                </div>
+                <div class="field item form-group">
+                    <label class="col-form-label col-md-2 col-sm-2  label-align">类库名<span class="required">*</span></label>
+                    <div class="col-md-10 col-sm-9">
+                        <input id="saveLibraryName" name="LibraryName" value="默认取命名空间" type="text" class="form-control" />
+                    </div>
+                </div>
+                <div class="field item form-group">
+                    <label class="col-form-label col-md-2 col-sm-2  label-align">保存方案</label>
+                    <div class="col-md-10 col-sm-9">
+                        <input id="saveProjentName" name="ProjentName" type="text" class="form-control" placeholder="填写方案名称可以保当前操作，方便下次使用" />
                     </div>
                     <input id="SaveTable1" type="hidden" name="Tables" value="" />
                 </div>

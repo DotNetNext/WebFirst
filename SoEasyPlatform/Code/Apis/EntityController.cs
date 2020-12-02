@@ -19,10 +19,10 @@ namespace SoEasyPlatform.Code.Apis
         [HttpPost]
         [ExceptionFilter]
         [Route("gettable")]
-        public ActionResult<ApiResult<TableModel<TableGridViewModel>>> GetTable([FromForm] TableViewModel model)
+        public ActionResult<ApiResult<TableModel<EntityGridViewModel>>> GetTable([FromForm] EntityViewModel model)
         {
-            var result = new ApiResult<TableModel<TableGridViewModel>>();
-            result.Data = new TableModel<TableGridViewModel>();
+            var result = new ApiResult<TableModel<EntityGridViewModel>>();
+            result.Data = new TableModel<EntityGridViewModel>();
             var listDb = DBConnectionDb.GetList();
             var db = listDb.FirstOrDefault(it => it.Id == model.Database);
             if (db == null)
@@ -31,7 +31,7 @@ namespace SoEasyPlatform.Code.Apis
                 result.Data.PageSize = int.MaxValue;
                 result.Data.PageNumber = 1;
                 result.IsSuccess = true;
-                result.Data.Rows = new List<TableGridViewModel>();
+                result.Data.Rows = new List<EntityGridViewModel>();
                 return result;
             }
             int count = 0;
@@ -43,7 +43,7 @@ namespace SoEasyPlatform.Code.Apis
             }
             foreach (var item in tableList)
             {
-                TableGridViewModel tgv = new TableGridViewModel()
+                EntityGridViewModel tgv = new EntityGridViewModel()
                 {
                     Database = db.Desc,
                     TableDesc = item.Description,
@@ -51,7 +51,7 @@ namespace SoEasyPlatform.Code.Apis
                     Id = tableList.IndexOf(item) + 1
                 };
                 if (result.Data.Rows == null)
-                    result.Data.Rows = new List<TableGridViewModel>();
+                    result.Data.Rows = new List<EntityGridViewModel>();
                 result.Data.Rows.Add(tgv);
             }
             result.Data.Total = count;
@@ -77,7 +77,7 @@ namespace SoEasyPlatform.Code.Apis
             var db = listDb.FirstOrDefault(it => it.Id == databaseId);
             var sqlsugarDb = base.GetTryDb(db);
             var data = TemplateDb.GetById(model.TemplateId1);
-            var tables = Newtonsoft.Json.JsonConvert.DeserializeObject<List<TableGridViewModel>>(model.Tables);
+            var tables = Newtonsoft.Json.JsonConvert.DeserializeObject<List<EntityGridViewModel>>(model.Tables);
             var tableArray = tables.Select(it => it.TableName).ToArray();
             var content = data.Content;
             if (model.FileFormat != null) 

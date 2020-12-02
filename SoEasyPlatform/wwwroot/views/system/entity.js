@@ -3,6 +3,7 @@
         Get: _root + "entity/gettable",
         GetDbType: _root + "entity/getdbtype",
         GetDatabase: _root + "system/getdatabase",
+        GetNetVersion: _root + "system/getnetversion",
         GetTemp: _root + "system/getTemplate?type=1",
         CreateFile: _root + "entity/createfile",
     },
@@ -13,7 +14,7 @@
     },
     w: {
         w: 850,
-        h: 400
+        h: 450
     }
 };
 divFrom.$Form({
@@ -49,6 +50,14 @@ saveTemplateName1.$SelectTree({
     maxHeight: 180,
     rootIsSelect: false
 })
+
+saveNetVersionName.$SelectTree({
+    isMultiple: false,
+    url: configs.url.GetNetVersion,
+    maxHeight: 180,
+    rootIsSelect: false
+})
+
 
 btnReset.$Reset();
 

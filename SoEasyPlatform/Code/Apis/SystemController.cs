@@ -82,6 +82,28 @@ namespace SoEasyPlatform
             return result;
         }
 
+        [HttpPost]
+        [AuthorizeFilter]
+        [Route("getnetversion")]
+        public ActionResult<ApiResult<List<TreeModel>>> GetVersion()
+        {
+            List<TreeModel> trees = new List<TreeModel>();
+            var databses = NetVersionDb.GetList();
+            foreach (var db in databses)
+            {
+                trees.Add(new TreeModel()
+                {
+                    Id = db.Id.ToString(),
+                    Title = db.Name,
+                    IsSelectable = true
+                });
+            }
+            ApiResult<List<TreeModel>> result = new ApiResult<List<TreeModel>>();
+            result.Data = trees;
+            result.IsSuccess = true;
+            return result;
+        }
+
 
         [HttpPost]
         [AuthorizeFilter]
