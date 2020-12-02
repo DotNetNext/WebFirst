@@ -37,6 +37,10 @@ namespace SoEasyPlatform.Code.Apis
             int count = 0;
             var sqlsugarDb = base.GetTryDb(db);
             var tableList = sqlsugarDb.DbMaintenance.GetTableInfoList(false);
+            if (model.TableName != null && tableList != null) 
+            {
+                tableList = tableList.Where(it => it.Name.ToLower().Contains(model.TableName.ToLower())).ToList();
+            }
             foreach (var item in tableList)
             {
                 TableGridViewModel tgv = new TableGridViewModel()
