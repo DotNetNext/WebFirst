@@ -91,7 +91,6 @@ namespace SoEasyPlatform
             });
 
             InitTable.Start();
- 
         }
     }
 }
