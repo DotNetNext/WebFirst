@@ -2,15 +2,12 @@
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>  @ViewData["Title"] </title>
-    <!--ui css-->
-    @Html.Partial("UiCss")
-    <!--page css-->
-    @RenderSection("css", false)
+@Html.Partial("UiCss")
+@RenderSection("css", false)
 </head>
 <body class="nav-md footer_fixed">
     <div class="container body">
@@ -113,12 +110,10 @@
             <!-- /footer content -->
         </div>
     </div>
-    <!---  ui js  -->
-    @Html.Partial("UiJs")
-    <script src="~/vendors/sugarjs/sugar.js"></script>
-    <script src="~/views/shared/overwritesugar.js"></script>
-    <script src="~/views/shared/layout.js"></script>
-    <!---  page js  -->
-    @RenderSection("js", false)
+@Html.Partial("UiJs")
+<script src="~/vendors/sugarjs/sugar.js"></script>
+<script src="~/views/shared/overwritesugar.js"></script>
+<script src="~/views/shared/layout.js"></script>
+@RenderSection("js", false)
 </body>
 </html>
