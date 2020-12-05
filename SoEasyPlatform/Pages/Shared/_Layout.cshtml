@@ -7,19 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>  @ViewData["Title"] </title>
-    <!-- Bootstrap -->
-    <link href="~/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="~/vendors/bootstrap-table/bootstrap-table.css" rel="stylesheet" />
-    <link href="~/vendors/bootstrap-paginator/pagination.css" rel="stylesheet" />
-    <link href="~/vendors/combo-tree/comboTreePlugin.css" rel="stylesheet" />
-    <!-- Font Awesome -->
-    <link href="~/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <!-- NProgress -->
-    <link href="~/vendors/nprogress/nprogress.css" rel="stylesheet">
-    <!-- jQuery custom content scroller -->
-    <link href="~/vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet" />
-    <!-- Custom Theme Style -->
-    <link href="~/build/css/custom.css" rel="stylesheet">
+    <!--ui css-->
+    @Html.Partial("UiCss")
+    <!--page css-->
     @RenderSection("css", false)
 </head>
 <body class="nav-md footer_fixed">
@@ -47,7 +37,7 @@
                     <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                         @Html.Partial("Menu")
                     </div>
-          
+
                 </div>
             </div>
             <!-- top navigation -->
@@ -64,15 +54,15 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
                                     @*<a class="dropdown-item" href="javascript:;"> Profile</a>
-                                    <a class="dropdown-item" href="javascript:;">
-                                        <span class="badge bg-red pull-right">50%</span>
-                                        <span>Settings</span>
-                                    </a>
-                                    <a class="dropdown-item" href="javascript:;">Help</a>*@
+                                        <a class="dropdown-item" href="javascript:;">
+                                            <span class="badge bg-red pull-right">50%</span>
+                                            <span>Settings</span>
+                                        </a>
+                                        <a class="dropdown-item" href="javascript:;">Help</a>*@
                                     <a class="dropdown-item" onclick="window.location.href='http://www.codeisbug.com'"><i class="fa fa-sign-out pull-right"></i>官方网址</a>
                                 </div>
                             </li>
-                      
+
                             <li role="presentation" class="nav-item dropdown open">
                                 <ul class="dropdown-menu list-unstyled msg_list" role="menu" aria-labelledby="navbarDropdown1">
                                     <li class="nav-item">
@@ -123,28 +113,13 @@
             <!-- /footer content -->
         </div>
     </div>
-    <script src="~/vendors/vue/vue.js">window</script>
-    <!-- jQuery -->
-    <script src="~/vendors/jquery/dist/jquery.min.js"></script>
-    <script src="~/vendors/jquery-forms/jquery.forms.js"></script>
-    <script src="~/vendors/layer/layer/layer.js"></script>
-    <!-- Bootstrap -->
-    <script src="~/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/vendors/bootstrap-paginator/bootstrap-paginator.min.js"></script>
-    <script src="~/vendors/bootstrap-table/bootstrap-table.js"></script>
-    <script src="~/vendors/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
-    <script src="~/vendors/combo-tree/comboTreePlugin.js"></script>
-    <!-- FastClick -->
-    <script src="~/vendors/fastclick/lib/fastclick.js"></script>
-    <!-- NProgress -->
-    <script src="~/vendors/nprogress/nprogress.js"></script>
-    <!-- jQuery custom content scroller -->
-    <script src="~/vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
-    <!-- Custom Theme Scripts -->
-    <script src="~/build/js/custom.js"></script>
+
     <script src="~/vendors/sugarjs/sugar.js"></script>
     <script src="~/views/shared/overwritesugar.js"></script>
     <script src="~/views/shared/layout.js"></script>
+    <!---  ui js  -->
+    @Html.Partial("UiJs")
+    <!---  page js  -->
     @RenderSection("js", false)
 </body>
 </html>
