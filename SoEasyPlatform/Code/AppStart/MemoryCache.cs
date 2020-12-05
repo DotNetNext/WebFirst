@@ -91,6 +91,19 @@ namespace SoEasyPlatform
         {
             Set(key, value, ts, false);
         }
+
+        /// <summary>
+        /// 添加缓存
+        /// </summary>
+        /// <param name="key">缓存Key</param>
+        /// <param name="value">缓存Value</param>
+        /// <param name="ts"></param>
+        /// <returns></returns>
+        public void Set(string key, object value, int minutes)
+        {
+            var ts=TimeSpan.FromMinutes(minutes);
+            Set(key, value, ts, false);
+        }
         #region 删除缓存
 
         /// <summary>
