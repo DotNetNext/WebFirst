@@ -6,18 +6,18 @@
  *     // code here
  * });
  */
-(function($,sr){
+(function ($, sr) {
     // debouncing function from John Hann
     // http://unscriptable.com/index.php/2009/03/20/debouncing-javascript-methods/
     var debounce = function (func, threshold, execAsap) {
-      var timeout;
+        var timeout;
 
-        return function debounced () {
+        return function debounced() {
             var obj = this, args = arguments;
-            function delayed () {
+            function delayed() {
                 if (!execAsap)
-                    func.apply(obj, args); 
-                timeout = null; 
+                    func.apply(obj, args);
+                timeout = null;
             }
 
             if (timeout)
@@ -25,14 +25,14 @@
             else if (execAsap)
                 func.apply(obj, args);
 
-            timeout = setTimeout(delayed, threshold || 100); 
+            timeout = setTimeout(delayed, threshold || 100);
         };
     };
 
     // smartresize 
-    jQuery.fn[sr] = function(fn){  return fn ? this.bind('resize', debounce(fn)) : this.trigger(sr); };
+    jQuery.fn[sr] = function (fn) { return fn ? this.bind('resize', debounce(fn)) : this.trigger(sr); };
 
-})(jQuery,'smartresize');
+})(jQuery, 'smartresize');
 /**
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -72,7 +72,7 @@ function init_sidebar() {
         $SIDEBAR_MENU.find('li ul').slideUp();
     }
 
-    $SIDEBAR_MENU.on('click',".side-menu a", function (ev) {
+    $SIDEBAR_MENU.on('click', ".side-menu a", function (ev) {
         var $li = $(this).parent();
 
         if ($li.is('.active')) {
@@ -117,9 +117,18 @@ function init_sidebar() {
         $('.dataTable').each(function () { $(this).dataTable().fnDraw(); });
     });
 
+    var setInt = setInterval(function () {
+        if ($(".active .child_menu:visible").size() == 0)
+        {
+            MenuInit();
+        }
+        else
+        {
+            clearInterval(setInt);
+        }
+    }, 500);
 
-    setTimeout(function () {
-        debugger
+    function MenuInit() {
         CURRENT_URL = CURRENT_URL.replace(window.location.origin, "");
         // check active menu
         $SIDEBAR_MENU.find('a[href="' + CURRENT_URL + '"]').parent('li').addClass('current-page');
@@ -129,7 +138,7 @@ function init_sidebar() {
         }).parent('li').addClass('current-page').parents('ul').slideDown(function () {
             setContentHeight();
         }).parent().addClass('active');
-   
+
         $(".current-page").parent().prev().click();
         // recompute content when resizing
         $(window).smartresize(function () {
@@ -146,7 +155,7 @@ function init_sidebar() {
                 mouseWheel: { preventDefault: true }
             });
         }
-    },300)
+    }
 }
 // /Sidebar
 
