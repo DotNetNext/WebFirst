@@ -126,7 +126,7 @@ function init_sidebar() {
         {
             clearInterval(setInt);
         }
-    }, 500);
+    }, 100);
 
     function MenuInit() {
         CURRENT_URL = CURRENT_URL.replace(window.location.origin, "");
