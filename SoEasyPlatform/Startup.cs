@@ -40,10 +40,7 @@ namespace SoEasyPlatform
                 );
 
             });
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "API", Version = "v1" });
-            });
+    
             services.AddRazorPages();
 
             services.AddAutoMapper(typeof(SoEasyPlatform.MapperProfiles).Assembly);
@@ -83,13 +80,7 @@ namespace SoEasyPlatform
                 endpoints.MapRazorPages();
                 endpoints.MapControllers();
             });
-            app.UseSwagger();
-            app.UseSwaggerUI(c =>
-            {
-                c.InjectJavascript("");
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "API");
-            });
-
+ 
             InitTable.Start();
         }
     }
