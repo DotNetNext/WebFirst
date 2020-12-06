@@ -15,5 +15,7 @@ namespace SoEasyPlatform
         public string Version { get; set; }
 
         public int NetVersion { get; set; }
+
+        public bool IsDeleted { get; set; }
     }
 }

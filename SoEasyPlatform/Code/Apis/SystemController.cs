@@ -48,9 +48,9 @@ namespace SoEasyPlatform
             {
                 trees.Add(new TreeModel()
                 {
-                     Id=((int)type).ToString(),
-                     Title=type.ToString(),
-                     IsSelectable=true
+                    Id = ((int)type).ToString(),
+                    Title = type.ToString(),
+                    IsSelectable = true
                 });
             }
             ApiResult<List<TreeModel>> result = new ApiResult<List<TreeModel>>();
@@ -66,12 +66,12 @@ namespace SoEasyPlatform
         public ActionResult<ApiResult<List<TreeModel>>> GetDatabase()
         {
             List<TreeModel> trees = new List<TreeModel>();
-            var databses =  connectionDb.GetList(it=>it.IsDeleted==false);
+            var databses = connectionDb.GetList(it => it.IsDeleted == false);
             foreach (var db in databses)
             {
                 trees.Add(new TreeModel()
                 {
-                    Id =db.Id.ToString(),
+                    Id = db.Id.ToString(),
                     Title = db.Desc,
                     IsSelectable = true
                 });
@@ -103,6 +103,30 @@ namespace SoEasyPlatform
             result.IsSuccess = true;
             return result;
         }
+
+
+        [HttpPost]
+        [AuthorizeFilter]
+        [Route("getnuget")]
+        public ActionResult<ApiResult<List<TreeModel>>> GetNuget()
+        {
+            List<TreeModel> trees = new List<TreeModel>();
+            var databses = NugetDb.GetList(it=>it.IsDeleted == false);
+            foreach (var db in databses)
+            {
+                trees.Add(new TreeModel()
+                {
+                    Id = db.Id.ToString(),
+                    Title = db.Name,
+                    IsSelectable = true
+                });
+            }
+            ApiResult<List<TreeModel>> result = new ApiResult<List<TreeModel>>();
+            result.Data = trees;
+            result.IsSuccess = true;
+            return result;
+        }
+
         [HttpPost]
         [AuthorizeFilter]
         [Route("getgoodnetversion")]

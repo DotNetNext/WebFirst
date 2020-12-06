@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace SoEasyPlatform 
 {
-    public class NugetViewModel
+    public class NugetViewModel:PageViewModel,IView
     {
         [PropertyName("编号")]
         public int? Id { get; set; }
@@ -14,7 +14,7 @@ namespace SoEasyPlatform
         [PropertyName("类库版本")]
         public string Version { get; set; }
         [PropertyName(".Net版本")]
-        public int NetVersion { get; set; }
+        public int? NetVersion { get; set; }
     }
     public class NugetGridViewModel
     {
