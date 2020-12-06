@@ -18,6 +18,11 @@
                 <label for="ex3" class="col-form-label">名称：</label>
                 <input type="text" id="Name" name="Name" class="form-control input" placeholder=" ">
             </div>
+            <div class="form-group" style="width:500px !important">
+                <label for="ex3" class="col-form-label">.Net版本：</label>
+                <input type="text" id="txtNetVersionName" name="NetVersionName" placeholder="Select" autocomplete="off" />
+                <input id="txtNetVersion" type="hidden" value="0" name="NetVersion" />
+            </div>
             <button id="btnSearch" type="button" class="btn btn-search"><i class="fa fa-search"></i>搜索</button>
             <button id="btnReset" type="button" class="btn btn-green"><i class="fa fa-refresh"></i>重置</button>
             @Html.Partial("Page")

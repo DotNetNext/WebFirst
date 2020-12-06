@@ -43,6 +43,11 @@ var SugarContext = {
                     $(element).parent().next().css("max-height", value.maxHeight);
                     $(element).parent().next().find(".comboTreeItemTitle ").first().next().css("height", value.maxHeight+20);
                 }
+
+                if (value.width != null)
+                {
+                    $(element).parent().css("width", value.width);
+                }
                 //selectTree.setSource(SampleJSONData2);
              
             },

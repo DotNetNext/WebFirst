@@ -42,6 +42,14 @@ saveNetVersionName.$SelectTree({
     rootIsSelect: false
 })
 
+txtNetVersionName.$SelectTree({
+    isMultiple: false,
+    url: configs.url.getNetVersion,
+    maxHeight: 180,
+    width: 400,
+    rootIsSelect: true
+})
+
 btnReset.$Reset();
 
 

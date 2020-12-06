@@ -9,10 +9,13 @@ namespace SoEasyPlatform
     {
         [PropertyName("编号")]
         public int? Id { get; set; }
+        [ValidateReduired()]
         [PropertyName("类库名")]
         public string Name { get; set; }
+        [ValidateReduired()]
         [PropertyName("类库版本")]
         public string Version { get; set; }
+        [ValidateReduired()]
         [PropertyName(".Net版本")]
         public int? NetVersion { get; set; }
     }

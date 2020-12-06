@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SqlSugar;
@@ -12,6 +13,10 @@ namespace SoEasyPlatform.Code.Apis
     [ApiController]
     public class NugetController : BaseController
     {
+        public NugetController(IMapper mapper)
+        {
+            base.mapper = mapper;
+        }
         /// <summary>
         /// 获取系统列表
         /// </summary>
