@@ -66,7 +66,7 @@ namespace SoEasyPlatform
         public ActionResult<ApiResult<List<TreeModel>>> GetDatabase()
         {
             List<TreeModel> trees = new List<TreeModel>();
-            var databses = DBConnectionDb.GetList(it=>it.IsDeleted==false);
+            var databses =  connectionDb.GetList(it=>it.IsDeleted==false);
             foreach (var db in databses)
             {
                 trees.Add(new TreeModel()
@@ -85,7 +85,7 @@ namespace SoEasyPlatform
         [HttpPost]
         [AuthorizeFilter]
         [Route("getnetversion")]
-        public ActionResult<ApiResult<List<TreeModel>>> GetVersion()
+        public ActionResult<ApiResult<List<TreeModel>>> GetNetVersion()
         {
             List<TreeModel> trees = new List<TreeModel>();
             var databses = NetVersionDb.GetList();
@@ -103,7 +103,27 @@ namespace SoEasyPlatform
             result.IsSuccess = true;
             return result;
         }
-
+        [HttpPost]
+        [AuthorizeFilter]
+        [Route("getgoodnetversion")]
+        public ActionResult<ApiResult<List<TreeModel>>> GetGoodNetVersion()
+        {
+            List<TreeModel> trees = new List<TreeModel>();
+            var databses = NetVersionDb.GetList(it=>it.Id!=1);
+            foreach (var db in databses)
+            {
+                trees.Add(new TreeModel()
+                {
+                    Id = db.Id.ToString(),
+                    Title = db.Name,
+                    IsSelectable = true
+                });
+            }
+            ApiResult<List<TreeModel>> result = new ApiResult<List<TreeModel>>();
+            result.Data = trees;
+            result.IsSuccess = true;
+            return result;
+        }
 
         [HttpPost]
         [AuthorizeFilter]
@@ -139,7 +159,7 @@ namespace SoEasyPlatform
             var result = new ApiResult<TableModel<DBConnectionGridViewModel>>();
             result.Data = new TableModel<DBConnectionGridViewModel>();
             int count = 0;
-            var list = DBConnectionDb.AsQueryable()
+            var list =connectionDb.AsQueryable()
                 .Where(it=>it.IsDeleted==false)
                 .WhereIF(!string.IsNullOrEmpty(model.Desc),it=>it.Desc.Contains(model.Desc))
                 .ToPageList(model.PageIndex, model.PageSize, ref count);
@@ -168,7 +188,7 @@ namespace SoEasyPlatform
             {
                 saveObject.ChangeTime = DateTime.Now;
                 saveObject.IsDeleted = false;
-                DBConnectionDb.Insert(saveObject);
+                connectionDb.Insert(saveObject);
                 result.IsSuccess = true;
                 result.Data = Pubconst.MESSAGEADDSUCCESS;
             }
@@ -176,7 +196,7 @@ namespace SoEasyPlatform
             {
                 saveObject.ChangeTime = DateTime.Now;
                 saveObject.IsDeleted = false;
-                DBConnectionDb.Update(saveObject);
+                connectionDb.Update(saveObject);
                 result.IsSuccess = true;
                 result.Data = Pubconst.MESSAGEADDSUCCESS;
             }
@@ -200,7 +220,7 @@ namespace SoEasyPlatform
                 {
                     exp.Or(it => it.Id == item.Id);
                 }
-                DBConnectionDb.Update(it => new DBConnection() { IsDeleted = true }, exp.ToExpression());
+                connectionDb.Update(it => new DBConnection() { IsDeleted = true }, exp.ToExpression());
             }
             result.IsSuccess = true;
             return result;

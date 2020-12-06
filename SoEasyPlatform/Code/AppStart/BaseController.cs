@@ -15,8 +15,9 @@ namespace SoEasyPlatform
     {
         protected IMapper mapper;
         protected Repository<Menu> MenuDb => new Repository<Menu>();
-        protected Repository<DBConnection> DBConnectionDb => new Repository<DBConnection>();
+        protected Repository<DBConnection> connectionDb => new Repository<DBConnection>();
         protected Repository<NetVersion> NetVersionDb => new Repository<NetVersion>();
+        protected Repository<Nuget> NugetDb => new Repository<Nuget>();
         protected Repository<Template> TemplateDb => new Repository<Template>();
         /// <summary>
         /// 验证数据库逻辑是否符合要求
