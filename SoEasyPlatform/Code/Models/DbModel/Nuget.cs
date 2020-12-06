@@ -13,5 +13,7 @@ namespace SoEasyPlatform
         public string Name { get; set; }
 
         public string Version { get; set; }
+
+        public int NetVersion { get; set; }
     }
 }

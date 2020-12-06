@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace SoEasyPlatform 
 {
-    public class DBConnectionViewModel : PageViewModel,IView
+    public class IndexViewModel : PageViewModel,IView
     {
         [PropertyName("编号")]
         public int? Id { get; set; }

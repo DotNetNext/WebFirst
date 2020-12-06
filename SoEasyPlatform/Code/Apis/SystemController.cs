@@ -134,7 +134,7 @@ namespace SoEasyPlatform
         /// <returns></returns>
         [HttpPost]
         [Route("getdbconnection")]
-        public ActionResult<ApiResult<TableModel<DBConnectionGridViewModel>>> GetDbConnection([FromForm] DBConnectionViewModel model)
+        public ActionResult<ApiResult<TableModel<DBConnectionGridViewModel>>> GetDbConnection([FromForm] IndexViewModel model)
         {
             var result = new ApiResult<TableModel<DBConnectionGridViewModel>>();
             result.Data = new TableModel<DBConnectionGridViewModel>();
@@ -158,7 +158,7 @@ namespace SoEasyPlatform
         [HttpPost]
         [FormValidateFilter]
         [Route("savedbconnection")]
-        public ActionResult<ApiResult<string>> SaveDbConnection([FromForm] DBConnectionViewModel model)
+        public ActionResult<ApiResult<string>> SaveDbConnection([FromForm] IndexViewModel model)
         {
             JsonResult errorResult = base.ValidateModel(model.Id);
             if (errorResult != null) return errorResult;
@@ -194,7 +194,7 @@ namespace SoEasyPlatform
             var result = new ApiResult<bool>();
             if (!string.IsNullOrEmpty(model))
             {
-                var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<DBConnectionViewModel>>(model);
+                var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<IndexViewModel>>(model);
                 var exp = Expressionable.Create<DBConnection>();
                 foreach (var item in list)
                 {
