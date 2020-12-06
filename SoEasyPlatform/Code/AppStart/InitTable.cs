@@ -107,6 +107,36 @@ namespace SoEasyPlatform
                      }
 
                 }).ExecuteCommand();
+
+            }
+            db.DbMaintenance.DropTable("Nuget");
+            db.CodeFirst.InitTables<Nuget>();
+            if (db.Queryable<Nuget>().Count() == 0)
+            {
+                db.Insertable(new List<Nuget>() {
+                     new Nuget(){
+                        NetVersion=2,
+                        Version="4.9.9.11",
+                        Name="sqlSugar"
+                     } }).ExecuteCommand();
+                db.Insertable(new List<Nuget>() {
+                     new Nuget(){
+                        NetVersion=3,
+                        Version="5.0.1.5",
+                        Name="sqlSugar"
+                     } }).ExecuteCommand();
+                db.Insertable(new List<Nuget>() {
+                     new Nuget(){
+                        NetVersion=21,
+                        Version="5.0.1.5",
+                        Name="sqlSugarCore"
+                     } }).ExecuteCommand();
+                db.Insertable(new List<Nuget>() {
+                     new Nuget(){
+                        NetVersion=31,
+                        Version="5.0.1.5",
+                        Name="sqlSugarCore"
+                     } }).ExecuteCommand();
             }
         }
     }
