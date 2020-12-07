@@ -108,11 +108,15 @@ namespace SoEasyPlatform
         [HttpPost]
         [AuthorizeFilter]
         [Route("getnuget")]
-        public ActionResult<ApiResult<List<TreeModel>>> GetNuget()
+        public ActionResult<ApiResult<List<TreeModel>>> GetNuget(int? netVersion)
         {
             List<TreeModel> trees = new List<TreeModel>();
-            var databses = NugetDb.GetList(it=>it.IsDeleted == false);
-            foreach (var db in databses)
+            var databases = NugetDb.GetList(it=>it.IsDeleted == false);
+            if (netVersion > 0) 
+            {
+                databases = databases.Where(it => it.NetVersion == netVersion.Value).ToList();
+            }
+            foreach (var db in databases)
             {
                 trees.Add(new TreeModel()
                 {
