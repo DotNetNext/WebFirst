@@ -133,30 +133,32 @@ namespace SoEasyPlatform
                 {
                     new Menu()
                      {
-                      MenuName="代码生成",
+                      MenuName="WebFirst",
                       Icon="fa fa-edit",
                         Child=new List<Menu>()
                         {
-                             new Menu{ MenuName="数据库连接" , Url="/"},
-                             new Menu{ MenuName="实体" , Url="/Entity"},
-                             new Menu{ MenuName="业务",Url="/BLL" },
-                             new Menu{ MenuName="WEB框架" ,Url="/Web"},
+                             new Menu{ MenuName="数据库管理" , Url="/"},
+                             new Menu{ MenuName="配置虚拟类" , Url="/CodeTable"},
+                             new Menu{ MenuName="生成实体" , Url="/CodeEntity"},
+                             new Menu{ MenuName="生成业务",Url="/BIZ" },
+                             new Menu{ MenuName="生成Web" ,Url="/Web"},
                              new Menu{ MenuName="模版管理" , Url="/Template"} ,
-                             new Menu{ MenuName="项目管理" , Url="/Project"} ,
                              new Menu{ MenuName="方案管理" , Url="/Project"} ,
                              new Menu{ MenuName="Nuget管理" , Url="/Nuget"} ,
-                             new Menu{ MenuName="解决方案" , Url="/Solution"} ,
+                             new Menu{ MenuName="解决方案" , Url="/Solution"},
+                             new Menu{ MenuName="数据类型" , Url="/CodeType"},
                         }
                      }
                     ,
                      new Menu()
                      {
-                        MenuName="数据库维护",
+                        MenuName="敬请期待",
                         Icon="fa fa-bar-chart-o",
                         Child=new List<Menu>()
                         {
-                             new Menu{ MenuName="数据迁移" },
-                             new Menu{ MenuName="数据表管理" }
+                             new Menu{ MenuName="待定1" },
+                             new Menu{ MenuName="待定2" },
+                       
                         }
                      }
 
