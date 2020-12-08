@@ -210,7 +210,7 @@ namespace SoEasyPlatform
         {
             JsonResult errorResult = base.ValidateModel(model.Id);
             if (errorResult != null) return errorResult;
-            var saveObject = base.mapper.Map<DBConnection>(model);
+            var saveObject = base.mapper.Map<Database>(model);
             var result = new ApiResult<string>();
             if (saveObject.Id == 0)
             {
@@ -243,12 +243,12 @@ namespace SoEasyPlatform
             if (!string.IsNullOrEmpty(model))
             {
                 var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<IndexViewModel>>(model);
-                var exp = Expressionable.Create<DBConnection>();
+                var exp = Expressionable.Create<Database>();
                 foreach (var item in list)
                 {
                     exp.Or(it => it.Id == item.Id);
                 }
-                connectionDb.Update(it => new DBConnection() { IsDeleted = true }, exp.ToExpression());
+                connectionDb.Update(it => new Database() { IsDeleted = true }, exp.ToExpression());
             }
             result.IsSuccess = true;
             return result;

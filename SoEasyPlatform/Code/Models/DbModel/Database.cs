@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 namespace SoEasyPlatform 
 {
-    public class DBConnection
+    public class Database
     {
         [SugarColumn(IsPrimaryKey = true, IsIdentity = true)]
         public int Id { get; set; }
