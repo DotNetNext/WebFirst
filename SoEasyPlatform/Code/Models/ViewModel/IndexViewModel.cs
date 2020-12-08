@@ -21,7 +21,7 @@ namespace SoEasyPlatform
         [PropertyName("更新时间")]
         public DateTime ChangeTime { get; set; }
     }
-    public class DBConnectionGridViewModel  
+    public class DatabaseGridViewModel  
     {
         [DisplayName("编号")]
         public int Id { get; set; }

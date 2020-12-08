@@ -182,16 +182,16 @@ namespace SoEasyPlatform
         /// <returns></returns>
         [HttpPost]
         [Route("getdbconnection")]
-        public ActionResult<ApiResult<TableModel<DBConnectionGridViewModel>>> GetDbConnection([FromForm] IndexViewModel model)
+        public ActionResult<ApiResult<TableModel<DatabaseGridViewModel>>> GetDbConnection([FromForm] IndexViewModel model)
         {
-            var result = new ApiResult<TableModel<DBConnectionGridViewModel>>();
-            result.Data = new TableModel<DBConnectionGridViewModel>();
+            var result = new ApiResult<TableModel<DatabaseGridViewModel>>();
+            result.Data = new TableModel<DatabaseGridViewModel>();
             int count = 0;
             var list =connectionDb.AsQueryable()
                 .Where(it=>it.IsDeleted==false)
                 .WhereIF(!string.IsNullOrEmpty(model.Desc),it=>it.Desc.Contains(model.Desc))
                 .ToPageList(model.PageIndex, model.PageSize, ref count);
-            result.Data.Rows = base.mapper.Map<List<DBConnectionGridViewModel>>(list);
+            result.Data.Rows = base.mapper.Map<List<DatabaseGridViewModel>>(list);
             result.Data.Total = count;
             result.Data.PageSize = model.PageSize;
             result.Data.PageNumber = model.PageIndex;
