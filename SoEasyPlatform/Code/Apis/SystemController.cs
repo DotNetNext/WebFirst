@@ -66,7 +66,7 @@ namespace SoEasyPlatform
         public ActionResult<ApiResult<List<TreeModel>>> GetDatabase()
         {
             List<TreeModel> trees = new List<TreeModel>();
-            var databses = connectionDb.GetList(it => it.IsDeleted == false);
+            var databses = databaseDb.GetList(it => it.IsDeleted == false);
             foreach (var db in databses)
             {
                 trees.Add(new TreeModel()
@@ -187,7 +187,7 @@ namespace SoEasyPlatform
             var result = new ApiResult<TableModel<DatabaseGridViewModel>>();
             result.Data = new TableModel<DatabaseGridViewModel>();
             int count = 0;
-            var list =connectionDb.AsQueryable()
+            var list =databaseDb.AsQueryable()
                 .Where(it=>it.IsDeleted==false)
                 .WhereIF(!string.IsNullOrEmpty(model.Desc),it=>it.Desc.Contains(model.Desc))
                 .ToPageList(model.PageIndex, model.PageSize, ref count);
@@ -216,7 +216,7 @@ namespace SoEasyPlatform
             {
                 saveObject.ChangeTime = DateTime.Now;
                 saveObject.IsDeleted = false;
-                connectionDb.Insert(saveObject);
+                databaseDb.Insert(saveObject);
                 result.IsSuccess = true;
                 result.Data = Pubconst.MESSAGEADDSUCCESS;
             }
@@ -224,7 +224,7 @@ namespace SoEasyPlatform
             {
                 saveObject.ChangeTime = DateTime.Now;
                 saveObject.IsDeleted = false;
-                connectionDb.Update(saveObject);
+                databaseDb.Update(saveObject);
                 result.IsSuccess = true;
                 result.Data = Pubconst.MESSAGEADDSUCCESS;
             }
@@ -248,7 +248,7 @@ namespace SoEasyPlatform
                 {
                     exp.Or(it => it.Id == item.Id);
                 }
-                connectionDb.Update(it => new Database() { IsDeleted = true }, exp.ToExpression());
+                databaseDb.Update(it => new Database() { IsDeleted = true }, exp.ToExpression());
             }
             result.IsSuccess = true;
             return result;

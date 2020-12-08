@@ -23,7 +23,7 @@ namespace SoEasyPlatform.Code.Apis
         {
             var result = new ApiResult<TableModel<EntityGridViewModel>>();
             result.Data = new TableModel<EntityGridViewModel>();
-            var listDb = connectionDb.GetList();
+            var listDb = databaseDb.GetList();
             var db = listDb.FirstOrDefault(it => it.Id == model.Database);
             if (db == null)
             {
@@ -73,7 +73,7 @@ namespace SoEasyPlatform.Code.Apis
         public ActionResult<ApiResult<bool>> CreateFile([FromForm] TableToTemplateViewModel model, int databaseId)
         {
             var result = new ApiResult<bool>();
-            var listDb = connectionDb.GetList();
+            var listDb = databaseDb.GetList();
             var db = listDb.FirstOrDefault(it => it.Id == databaseId);
             var sqlsugarDb = base.GetTryDb(db);
             var data = TemplateDb.GetById(model.TemplateId1);
