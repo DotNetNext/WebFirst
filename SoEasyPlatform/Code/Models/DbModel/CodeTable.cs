@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
+using SqlSugar;
 namespace SoEasyPlatform 
 {
     public class CodeTable
     {
+        [SugarColumn(IsPrimaryKey = true, IsIdentity = true)]
+        public int Id { get; set; }
         public int DbId { get; set; }
         public int ClassName { get; set; }
         public int TableName { get; set; }
@@ -14,6 +16,7 @@ namespace SoEasyPlatform
     }
     public class CodeColumns
     {
+        [SugarColumn(IsPrimaryKey = true, IsIdentity = true)]
         public int Id { get; set; }
         public string ClassProperName { get; set; }
         public string DbColumnName { get; set; }

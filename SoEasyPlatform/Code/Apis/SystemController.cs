@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SqlSugar;
 
-namespace SoEasyPlatform
+namespace SoEasyPlatform.Code.Apis
 {
     [Route("api/[controller]")]
     [ApiController]
