@@ -79,6 +79,24 @@ namespace SoEasyPlatform
             }
         }
 
+        protected bool IsConnectionDb(Database db)
+        {
+            try
+            {
+                using (var Db = Repository<object>.GetInstance(db.DbType, db.Connection))
+                {
+                    Db.Ado.CommandTimeOut = 1;
+                    Db.Open();
+                    Db.DbMaintenance.CreateDatabase();
+                    return true;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         protected void Check(bool isOk, string message)
         {
             if (isOk)

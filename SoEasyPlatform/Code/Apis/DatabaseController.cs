@@ -11,9 +11,9 @@ namespace SoEasyPlatform.Code.Apis
     /// <summary>
     /// 数据库管理
     /// </summary>
-    public class DatabaseController :BaseController
+    public class DatabaseController : BaseController
     {
-        public DatabaseController(IMapper mapper) : base(mapper) 
+        public DatabaseController(IMapper mapper) : base(mapper)
         {
 
         }
@@ -35,6 +35,25 @@ namespace SoEasyPlatform.Code.Apis
                 .WhereIF(!string.IsNullOrEmpty(model.Desc), it => it.Desc.Contains(model.Desc))
                 .ToPageList(model.PageIndex, model.PageSize, ref count);
             result.Data.Rows = base.mapper.Map<List<DatabaseGridViewModel>>(list);
+            foreach (var item in result.Data.Rows)
+            {
+
+                if (base.IsConnectionDb(mapper.Map<Database>(item)))
+                {
+
+                    try
+                    {
+                        item.IsExist = true;
+                        item.IsConnection = true;
+                    }
+                    catch  
+                    {
+                        item.IsExist = false;
+                        item.IsConnection = false;
+                    }
+                }
+
+            }
             result.Data.Total = count;
             result.Data.PageSize = model.PageSize;
             result.Data.PageNumber = model.PageIndex;
