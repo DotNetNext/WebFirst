@@ -11,8 +11,12 @@ namespace SoEasyPlatform
         public int Id { get; set; }
         public int DbId { get; set; }
         public int ClassName { get; set; }
-        public int TableName { get; set; }
+        public string TableName { get; set; }
         public string Description { get; set; }
+        public DateTime CreateTime { get; set; }
+        public DateTime PreUpdateTime { get; set; }
+        public DateTime UpdateTime { get; set; }
+        public bool IsDeleted { get; set; }
     }
     public class CodeColumns
     {
