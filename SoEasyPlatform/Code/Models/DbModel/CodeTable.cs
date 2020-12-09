@@ -10,7 +10,7 @@ namespace SoEasyPlatform
         [SugarColumn(IsPrimaryKey = true, IsIdentity = true)]
         public int Id { get; set; }
         public int DbId { get; set; }
-        public int ClassName { get; set; }
+        public string ClassName { get; set; }
         public string TableName { get; set; }
         public string Description { get; set; }
         public DateTime CreateTime { get; set; }

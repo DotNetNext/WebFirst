@@ -20,24 +20,23 @@ namespace SoEasyPlatform.Code.Apis
         /// <returns></returns>
         [HttpPost]
         [Route("getnugetlist")]
-        public ActionResult<ApiResult<TableModel<NugetGridViewModel>>> GetNugetList([FromForm] NugetViewModel model)
+        public ActionResult<ApiResult<TableModel<CodeTableGridViewModel>>> GetNugetList([FromForm] CodeTableViewModel model)
         {
-            var result = new ApiResult<TableModel<NugetGridViewModel>>();
-            result.Data = new TableModel<NugetGridViewModel>();
+            var result = new ApiResult<TableModel<CodeTableGridViewModel>>();
+            result.Data = new TableModel<CodeTableGridViewModel>();
             int count = 0;
-            var list = NugetDb.AsSugarClient().Queryable<Nuget, NetVersion>(
-                 (it, nvs) => new JoinQueryInfos(
-                       JoinType.Left, it.NetVersion == nvs.Id
+            var list = NugetDb.AsSugarClient().Queryable<CodeTable, Database>(
+                 (it, db) => new JoinQueryInfos(
+                       JoinType.Left, it.DbId == db.Id
                      )
                 )
                 .Where(it => it.IsDeleted == false)
-                .WhereIF(!string.IsNullOrEmpty(model.Name), it => it.Name.Contains(model.Name))
-                .WhereIF(model.NetVersion > 0, it => it.NetVersion == model.NetVersion.Value)
-                .OrderBy(it => new { it.Name, it.Version })
-                .Select((it, nvs) => new NugetGridViewModel()
+                .WhereIF(!string.IsNullOrEmpty(model.ClassName), it => it.ClassName.Contains(model.ClassName) || it.TableName.Contains(model.ClassName))
+                .OrderBy(it => it.Id)
+                .Select((it, db) => new CodeTableGridViewModel()
                 {
                     Id = SqlFunc.GetSelfAndAutoFill(it.Id),
-                    NetVersionName = nvs.Name
+                    DbName = db.Desc
                 })
                 .ToPageList(model.PageIndex, model.PageSize, ref count);
             result.Data.Rows = list;
@@ -55,23 +54,23 @@ namespace SoEasyPlatform.Code.Apis
         [HttpPost]
         [FormValidateFilter]
         [Route("savenuget")]
-        public ActionResult<ApiResult<string>> SaveNuget([FromForm] NugetViewModel model)
+        public ActionResult<ApiResult<string>> SaveNuget([FromForm] CodeTableViewModel model)
         {
             JsonResult errorResult = base.ValidateModel(model.Id);
             if (errorResult != null) return errorResult;
-            var saveObject = base.mapper.Map<Nuget>(model);
+            var saveObject = base.mapper.Map<CodeTable>(model);
             var result = new ApiResult<string>();
             if (saveObject.Id == 0)
             {
                 saveObject.IsDeleted = false;
-                NugetDb.Insert(saveObject);
+                CodeTableDb.Insert(saveObject);
                 result.IsSuccess = true;
                 result.Data = Pubconst.MESSAGEADDSUCCESS;
             }
             else
             {
                 saveObject.IsDeleted = false;
-                NugetDb.Update(saveObject);
+                CodeTableDb.Update(saveObject);
                 result.IsSuccess = true;
                 result.Data = Pubconst.MESSAGEADDSUCCESS;
             }
@@ -89,16 +88,17 @@ namespace SoEasyPlatform.Code.Apis
             var result = new ApiResult<bool>();
             if (!string.IsNullOrEmpty(model))
             {
-                var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<DatabaseViewModel>>(model);
-                var exp = Expressionable.Create<Nuget>();
+                var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<CodeTableViewModel>>(model);
+                var exp = Expressionable.Create<CodeTable>();
                 foreach (var item in list)
                 {
                     exp.Or(it => it.Id == item.Id);
                 }
-                NugetDb.Update(it => new Nuget() { IsDeleted = true }, exp.ToExpression());
+                CodeTableDb.Update(it => new CodeTable() { IsDeleted = true }, exp.ToExpression());
             }
             result.IsSuccess = true;
             return result;
         }
+
     }
 }

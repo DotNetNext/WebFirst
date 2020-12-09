@@ -24,6 +24,8 @@ namespace SoEasyPlatform
         protected Repository<NetVersion> NetVersionDb => new Repository<NetVersion>();
         protected Repository<Nuget> NugetDb => new Repository<Nuget>();
         protected Repository<Template> TemplateDb => new Repository<Template>();
+        protected Repository<CodeTable> CodeTableDb = new Repository<CodeTable>();
+        protected Repository<CodeType> CodeTypeDb = new Repository<CodeType>();
         /// <summary>
         /// 验证数据库逻辑是否符合要求
         /// </summary>
