@@ -19,7 +19,7 @@ namespace SoEasyPlatform.Code.Apis
         /// <returns></returns>
         [HttpPost]
         [Route("getdatabase")]
-        public ActionResult<ApiResult<TableModel<DatabaseGridViewModel>>> GetDatabase([FromForm] IndexViewModel model)
+        public ActionResult<ApiResult<TableModel<DatabaseGridViewModel>>> GetDatabase([FromForm] DatabaseViewModel model)
         {
             var result = new ApiResult<TableModel<DatabaseGridViewModel>>();
             result.Data = new TableModel<DatabaseGridViewModel>();
@@ -43,7 +43,7 @@ namespace SoEasyPlatform.Code.Apis
         [HttpPost]
         [FormValidateFilter]
         [Route("savedatabase")]
-        public ActionResult<ApiResult<string>> SaveDatabase([FromForm] IndexViewModel model)
+        public ActionResult<ApiResult<string>> SaveDatabase([FromForm] DatabaseViewModel model)
         {
             JsonResult errorResult = base.ValidateModel(model.Id);
             if (errorResult != null) return errorResult;
@@ -79,7 +79,7 @@ namespace SoEasyPlatform.Code.Apis
             var result = new ApiResult<bool>();
             if (!string.IsNullOrEmpty(model))
             {
-                var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<IndexViewModel>>(model);
+                var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<DatabaseViewModel>>(model);
                 var exp = Expressionable.Create<Database>();
                 foreach (var item in list)
                 {

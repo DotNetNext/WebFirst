@@ -91,7 +91,7 @@ namespace SoEasyPlatform.Code.Apis
             var result = new ApiResult<bool>();
             if (!string.IsNullOrEmpty(model))
             {
-                var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<IndexViewModel>>(model);
+                var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<DatabaseViewModel>>(model);
                 var exp = Expressionable.Create<Nuget>();
                 foreach (var item in list)
                 {
