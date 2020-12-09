@@ -20,7 +20,7 @@ namespace SoEasyPlatform.Code.Apis
 
 
         /// <summary>
-        /// 获取系统列表
+        /// 获取数据库列表
         /// </summary>
         /// <returns></returns>
         [HttpPost]
