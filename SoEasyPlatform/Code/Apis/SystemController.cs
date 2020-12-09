@@ -17,9 +17,9 @@ namespace SoEasyPlatform.Code.Apis
     public class SystemController : BaseController
     {
 
-        public SystemController(IMapper mapper)
+        public SystemController(IMapper mapper) : base(mapper)
         {
-            base.mapper = mapper;
+
         }
 
         /// <summary>

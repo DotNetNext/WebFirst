@@ -13,9 +13,9 @@ namespace SoEasyPlatform.Code.Apis
     [ApiController]
     public class NugetController : BaseController
     {
-        public NugetController(IMapper mapper)
+        public NugetController(IMapper mapper) : base(mapper)
         {
-            base.mapper = mapper;
+
         }
         /// <summary>
         /// 获取系统列表

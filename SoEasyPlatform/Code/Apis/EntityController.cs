@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,6 +12,10 @@ namespace SoEasyPlatform.Code.Apis
     [ApiController]
     public class EntityController : BaseController
     {
+        public EntityController(IMapper mapper) : base(mapper)
+        {
+
+        }
 
         /// <summary>
         /// 获取系统列表

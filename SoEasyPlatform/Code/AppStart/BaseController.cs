@@ -13,6 +13,11 @@ namespace SoEasyPlatform
     [ApiController]
     public class BaseController : ControllerBase
     {
+        public BaseController(IMapper mapper)
+        {
+            this.mapper = mapper;
+        }
+
         protected IMapper mapper;
         protected Repository<Menu> MenuDb => new Repository<Menu>();
         protected Repository<Database> databaseDb => new Repository<Database>();

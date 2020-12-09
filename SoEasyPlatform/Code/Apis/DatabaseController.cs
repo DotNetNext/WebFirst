@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using SqlSugar;
 
@@ -12,6 +13,11 @@ namespace SoEasyPlatform.Code.Apis
     /// </summary>
     public class DatabaseController :BaseController
     {
+        public DatabaseController(IMapper mapper) : base(mapper) 
+        {
+
+        }
+
 
         /// <summary>
         /// 获取系统列表
