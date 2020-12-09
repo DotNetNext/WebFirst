@@ -10,11 +10,9 @@ namespace SoEasyPlatform
         public static void Start()
         {
             var db = Repository<Menu>.GetInstance();
+
             db.DbMaintenance.CreateDatabase();
-            if (db.DbMaintenance.IsAnyTable("Menu"))
-            {
-                db.DbMaintenance.DropTable("Menu");
-            }
+
             InitMenu(db);
 
             InitConnection(db);
@@ -24,6 +22,14 @@ namespace SoEasyPlatform
             InitNetVersion(db);
 
             InitNuget(db);
+
+            InitCodeTable(db);
+        }
+
+        private static void InitCodeTable(SqlSugarClient db)
+        {
+            db.CodeFirst.InitTables<CodeTable>();
+            db.CodeFirst.InitTables<CodeType>();
         }
 
         private static void InitConnection(SqlSugarClient db)
@@ -128,6 +134,10 @@ namespace SoEasyPlatform
 
         private static void InitMenu(SqlSugarClient db)
         {
+            if (db.DbMaintenance.IsAnyTable("Menu"))
+            {
+                db.DbMaintenance.DropTable("Menu");
+            }
             db.CodeFirst.InitTables<Menu>();
             db.Insertable(new List<Menu>()
                 {
