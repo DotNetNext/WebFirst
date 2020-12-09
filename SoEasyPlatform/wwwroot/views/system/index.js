@@ -1,8 +1,8 @@
 ﻿var configs = {
     url: {
-        Get: _root + "system/getdbconnection",
-        Del: _root + "system/deletedbconnection",
-        SaveSystem: _root + "system/savedbconnection",
+        Get: _root + "database/getdatabase",
+        Del: _root + "database/deletedatabase",
+        SaveSystem: _root + "database/savedatabase",
         GetDbType: _root+"system/getdbtype"
     },
     text:

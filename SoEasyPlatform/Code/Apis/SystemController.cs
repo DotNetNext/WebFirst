@@ -9,6 +9,9 @@ using SqlSugar;
 
 namespace SoEasyPlatform.Code.Apis
 {
+    /// <summary>
+    /// 系统常用接口
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class SystemController : BaseController
@@ -59,6 +62,10 @@ namespace SoEasyPlatform.Code.Apis
             return result;
         }
 
+        /// <summary>
+        /// 获取数据库
+        /// </summary>
+        /// <returns></returns>
 
         [HttpPost]
         [AuthorizeFilter]
@@ -82,6 +89,10 @@ namespace SoEasyPlatform.Code.Apis
             return result;
         }
 
+        /// <summary>
+        /// 获取.net版本
+        /// </summary>
+        /// <returns></returns>
         [HttpPost]
         [AuthorizeFilter]
         [Route("getnetversion")]
@@ -104,6 +115,11 @@ namespace SoEasyPlatform.Code.Apis
             return result;
         }
 
+        /// <summary>
+        /// 获取nuget
+        /// </summary>
+        /// <param name="netVersion"></param>
+        /// <returns></returns>
 
         [HttpPost]
         [AuthorizeFilter]
@@ -131,6 +147,10 @@ namespace SoEasyPlatform.Code.Apis
             return result;
         }
 
+        /// <summary>
+        /// 获取.NET版本，不包含1
+        /// </summary>
+        /// <returns></returns>
         [HttpPost]
         [AuthorizeFilter]
         [Route("getgoodnetversion")]
@@ -153,6 +173,11 @@ namespace SoEasyPlatform.Code.Apis
             return result;
         }
 
+        /// <summary>
+        /// 根据类型获取模版
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
         [HttpPost]
         [AuthorizeFilter]
         [Route("gettemplate")]
@@ -174,85 +199,5 @@ namespace SoEasyPlatform.Code.Apis
             result.IsSuccess = true;
             return result;
         }
-
-
-        /// <summary>
-        /// 获取系统列表
-        /// </summary>
-        /// <returns></returns>
-        [HttpPost]
-        [Route("getdbconnection")]
-        public ActionResult<ApiResult<TableModel<DatabaseGridViewModel>>> GetDbConnection([FromForm] IndexViewModel model)
-        {
-            var result = new ApiResult<TableModel<DatabaseGridViewModel>>();
-            result.Data = new TableModel<DatabaseGridViewModel>();
-            int count = 0;
-            var list =databaseDb.AsQueryable()
-                .Where(it=>it.IsDeleted==false)
-                .WhereIF(!string.IsNullOrEmpty(model.Desc),it=>it.Desc.Contains(model.Desc))
-                .ToPageList(model.PageIndex, model.PageSize, ref count);
-            result.Data.Rows = base.mapper.Map<List<DatabaseGridViewModel>>(list);
-            result.Data.Total = count;
-            result.Data.PageSize = model.PageSize;
-            result.Data.PageNumber = model.PageIndex;
-            result.IsSuccess = true;
-            return result;
-        }
-
-        /// <summary>
-        /// 保存
-        /// </summary>
-        /// <returns></returns>
-        [HttpPost]
-        [FormValidateFilter]
-        [Route("savedbconnection")]
-        public ActionResult<ApiResult<string>> SaveDbConnection([FromForm] IndexViewModel model)
-        {
-            JsonResult errorResult = base.ValidateModel(model.Id);
-            if (errorResult != null) return errorResult;
-            var saveObject = base.mapper.Map<Database>(model);
-            var result = new ApiResult<string>();
-            if (saveObject.Id == 0)
-            {
-                saveObject.ChangeTime = DateTime.Now;
-                saveObject.IsDeleted = false;
-                databaseDb.Insert(saveObject);
-                result.IsSuccess = true;
-                result.Data = Pubconst.MESSAGEADDSUCCESS;
-            }
-            else
-            {
-                saveObject.ChangeTime = DateTime.Now;
-                saveObject.IsDeleted = false;
-                databaseDb.Update(saveObject);
-                result.IsSuccess = true;
-                result.Data = Pubconst.MESSAGEADDSUCCESS;
-            }
-            return result;
-        }
-
-        /// <summary>
-        /// 删除
-        /// </summary>
-        /// <returns></returns>
-        [HttpPost]
-        [Route("deletedbconnection")]
-        public ActionResult<ApiResult<bool>> DeleteDbconnection([FromForm] string model)
-        {
-            var result = new ApiResult<bool>();
-            if (!string.IsNullOrEmpty(model))
-            {
-                var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<IndexViewModel>>(model);
-                var exp = Expressionable.Create<Database>();
-                foreach (var item in list)
-                {
-                    exp.Or(it => it.Id == item.Id);
-                }
-                databaseDb.Update(it => new Database() { IsDeleted = true }, exp.ToExpression());
-            }
-            result.IsSuccess = true;
-            return result;
-        }
-
     }
 }
