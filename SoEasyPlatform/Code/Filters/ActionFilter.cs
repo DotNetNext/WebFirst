@@ -107,7 +107,6 @@ namespace SoEasyPlatform
         public override void OnActionExecuted(ActionExecutedContext context)
         {
             base.OnActionExecuted(context);
-
         }
         /// <summary>
         /// 控制器中加了该属性的方法执行完成后才会来执行该方法。比OnActionExecuted()方法还晚执行。
@@ -117,7 +116,6 @@ namespace SoEasyPlatform
         /// <returns></returns>
         public override Task OnResultExecutionAsync(ResultExecutingContext context, ResultExecutionDelegate next)
         {
-
             return base.OnResultExecutionAsync(context, next);
         }
     }

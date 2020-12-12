@@ -17,7 +17,6 @@ namespace SoEasyPlatform
 {
     public class Startup
     {
-        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -28,60 +27,15 @@ namespace SoEasyPlatform
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
-            services.AddCors(options =>
-            {
-                options.AddPolicy(MyAllowSpecificOrigins,
-
-                builder => builder.AllowAnyOrigin()
-                .AllowAnyHeader()
-                .WithMethods("GET", "POST", "HEAD", "PUT", "DELETE", "OPTIONS")
-
-                );
-
-            });
-    
-            services.AddRazorPages();
-
-            services.AddAutoMapper(typeof(SoEasyPlatform.MapperProfiles).Assembly);
-
-#if DEBUG
-            //启用动态编译
-            services.AddControllersWithViews()
-            .AddRazorRuntimeCompilation();
-#endif
-            services.AddControllersWithViews().AddNewtonsoftJson(opt =>
-            {
-                //忽略循环引用
-                opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-
-                //不改变字段大小
-                opt.SerializerSettings.ContractResolver = new DefaultContractResolver();
-            });
+            Services.AddServices(services);
         }
+
+       
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-
-          
-            app.UseStaticFiles();
-
-            app.UseRouting();
-
-            app.UseCors(MyAllowSpecificOrigins);
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapRazorPages();
-                endpoints.MapControllers();
-            });
- 
-            InitTable.Start();
+            Configures.AddConfigure(app, env);
         }
     }
 }
