@@ -2,16 +2,18 @@
     url: {
         Get: _root + "codetable/getcodetablelist",
         Del: _root + "codetable/deleteCodetable",
-        GetDatabase: _root + "system/getdatabase"
+        GetDatabase: _root + "system/getdatabase",
+        Info:"/CodeTableInfo"
     },
     text:
     {
-        add: "添加Nuget",
-        edit: "修改Nuget"
+        add: "添加",
+        addDbFirst: "DbFirst添加",
+        edit: "修改"
     },
     w: {
-        w: 600,
-        h: 330
+        w: "100%",
+        h: "100%"
     }
 };
 divFrom.$Form({
@@ -50,26 +52,13 @@ btnAdd.$Open("#divOpen", {
     title: configs.text.add,
     w: configs.w.w,
     h: configs.w.h,
+    url: configs.url.Info,
     validate: function () {
-        frmSave.$ClearControls();
+     
         return true;
     },
     yes: function () {
-        frmSave.$Form({
-            url: configs.url.SaveSystem,
-            callback: function (msg) {
-                if (msg.IsKeyValuePair) {
-                    $sugar.$Validate(msg.Data, "save");
-                } else {
-                    $sugar.$Validate("clear");
-                    msg.Data.$Alert();
-                    if (msg.IsSuccess) {
-                        btnSearch.click();
-                        $sugar.$CloseAll(divOpen.getAttribute("dataindex"));
-                    }
-                }
-            }
-        });
+       
     },
     btn: ['添加', '关闭']
 });

@@ -1,0 +1,20 @@
+{
+    "name": "editTable",
+    "version": "0.2.0",
+    "description": "jQuery plugin that implement a data table input",
+    "keywords": [
+        "table",
+        "input"
+    ],
+    "main": [
+        "jquery.edittable.min.js",
+        "jquery.edittable.min.css"
+    ],
+    "ignore": [
+      "demo"
+    ],
+    "dependencies": {
+        "jquery": ">=1.7.0"
+    },
+    "license": "MIT"
+}

@@ -1,6 +1,7 @@
 ﻿/// <reference path="../../vendors/jquery/dist/jquery.js" />
 /// <reference path="../../vendors/jquery-forms/jquery.forms.js" />
 /// <reference path="../../vendors/sugarjs/sugar.js" />
+
 var _root = "/api/";
 var SugarContext = {
     Form: function (element, value) {
@@ -33,23 +34,21 @@ var SugarContext = {
             success: function (msg) {
                 var url = value.url;
                 var selectTree = $(element).comboTree({
-                    source: [{ id: 0, title: "根目录", subs: msg.Data, isSelectable: value.rootIsSelect}],
+                    source: [{ id: 0, title: "根目录", subs: msg.Data, isSelectable: value.rootIsSelect }],
                     isMultiple: value.isMultiple,
                     cascadeSelect: value.cascadeSelect,
                     collapse: value.collapse
                 });
-                if (value.maxHeight != null)
-                {
+                if (value.maxHeight != null) {
                     $(element).parent().next().css("max-height", value.maxHeight);
-                    $(element).parent().next().find(".comboTreeItemTitle ").first().next().css("height", value.maxHeight+20);
+                    $(element).parent().next().find(".comboTreeItemTitle ").first().next().css("height", value.maxHeight + 20);
                 }
 
-                if (value.width != null)
-                {
+                if (value.width != null) {
                     $(element).parent().css("width", value.width);
                 }
                 //selectTree.setSource(SampleJSONData2);
-             
+
             },
             error: function (msg) {
                 layer.msg("服务器请求失败.");
@@ -62,14 +61,13 @@ var SugarContext = {
                 url: value.SugarUrl,
                 type: "post",
                 success: function (msg) {
-              
+
                     var isArray = $.isArray(msg.Data)
                     var vm = new Vue({
                         el: '#' + element.id,
                         data: isArray ? msg : msg.Data
                     })
-                    if (msg.Issuccess == false && msg.Url == "error")
-                    {
+                    if (msg.Issuccess == false && msg.Url == "error") {
                         window.location.href = "/";
                     }
                 },
@@ -101,7 +99,7 @@ var SugarContext = {
     }
     ,
     Grid: function (element, data) {
-     
+
         $(element).bootstrapTable('destroy');
         data.onDblClickRow = function (row, ele) {
             var column = data.columns[1];
@@ -112,20 +110,18 @@ var SugarContext = {
             $(element).bootstrapTable("uncheckBy", { field: column.field, values: [row[column.field]] });
         }
         data.pagination = false;
-        if (data.pagination == null)
-        {
+        if (data.pagination == null) {
             this.Alert(data);
             return;
         }
-      
+
         $(element).bootstrapTable(data);
         $(element).bootstrapTable("refresh");
 
         $(element).bootstrapTable('resetView', { height: 600 });
- 
+
         var totalpage = (data.total + data.pageSize - 1) / data.pageSize;
-        if (data.total == 0 || data.total < data.pageSize)
-        {
+        if (data.total == 0 || data.total < data.pageSize) {
             totalpage = 1;
         }
         var options = {
@@ -187,12 +183,24 @@ var SugarContext = {
         }
         var w = data.w == null ? 800 : data.w;
         var h = data.h == null ? 500 : data.h;
+        if (w == "100%") {
+            w = $(window).width() - $(window).width() / 5;
+        }
+        if (h == "100%") {
+            h = $(window).height() - $(window).height() / 5;
+        }
+        var content = $(divElement);
+        var type = 1;
+        if (data.url != null) {
+            type = 2;
+            content = data.url;
+        }
         var index = layer.open({
             title: data.title,
-            type: 1,
+            type: type,
             skin: 'layui-layer-rim', //加上边框
             area: [w + 'px', h + 'px'], //宽高
-            content: $(divElement),
+            content: content,
             btn: data.btn,
             yes: data.yes
         });
@@ -202,8 +210,7 @@ var SugarContext = {
 
         layer.close(index);
     },
-    Loading: function (divElement)
-    {
+    Loading: function (divElement) {
         //loading层
 
         var index = layer.load(1, {
