@@ -8,6 +8,11 @@ using SqlSugar;
 
 namespace SoEasyPlatform.Code.Apis
 {
+    /// <summary>
+    /// 虚拟类配置
+    /// </summary>
+    [Route("api/[controller]")]
+    [ApiController]
     public class CodeTableController : BaseController
     {
         public CodeTableController(IMapper mapper) : base(mapper)
@@ -15,12 +20,12 @@ namespace SoEasyPlatform.Code.Apis
         }
 
         /// <summary>
-        /// 获取系统列表
+        /// 获取虚拟类
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        [Route("getnugetlist")]
-        public ActionResult<ApiResult<TableModel<CodeTableGridViewModel>>> GetNugetList([FromForm] CodeTableViewModel model)
+        [Route("GetCodeTableList")]
+        public ActionResult<ApiResult<TableModel<CodeTableGridViewModel>>> GetCodeTableList([FromForm] CodeTableViewModel model)
         {
             var result = new ApiResult<TableModel<CodeTableGridViewModel>>();
             result.Data = new TableModel<CodeTableGridViewModel>();
@@ -48,13 +53,13 @@ namespace SoEasyPlatform.Code.Apis
         }
 
         /// <summary>
-        /// 保存
+        /// 保存虚拟类
         /// </summary>
         /// <returns></returns>
         [HttpPost]
         [FormValidateFilter]
-        [Route("savenuget")]
-        public ActionResult<ApiResult<string>> SaveNuget([FromForm] CodeTableViewModel model)
+        [Route("SaveCodeTable")]
+        public ActionResult<ApiResult<string>> SaveCodeTable([FromForm] CodeTableViewModel model)
         {
             JsonResult errorResult = base.ValidateModel(model.Id);
             if (errorResult != null) return errorResult;
@@ -78,12 +83,12 @@ namespace SoEasyPlatform.Code.Apis
         }
 
         /// <summary>
-        /// 删除
+        /// 删除虚拟类
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        [Route("deletenuget")]
-        public ActionResult<ApiResult<bool>> DeleteNuget([FromForm] string model)
+        [Route("DeleteCodeTable")]
+        public ActionResult<ApiResult<bool>> DeleteCodeTable([FromForm] string model)
         {
             var result = new ApiResult<bool>();
             if (!string.IsNullOrEmpty(model))

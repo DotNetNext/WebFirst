@@ -1,29 +1,55 @@
 ﻿var configs = {
     url: {
-        GetUsers: _root + "user/getusers",
-        Del: _root + "user/deleteuser",
-        SaveSystem: _root + "user/saveuser"
+        Get: _root + "codetable/getcodetablelist",
+        Del: _root + "codetable/deleteCodetable",
+        GetDatabase: _root + "system/getdatabase"
+    },
+    text:
+    {
+        add: "添加Nuget",
+        edit: "修改Nuget"
+    },
+    w: {
+        w: 600,
+        h: 330
     }
 };
 divFrom.$Form({
-    url: configs.url.GetUsers,
+    url: configs.url.Get,
     callback: function (msg) {
+        msg.Data.Dblfunc = function () {
+            btnEdit.click();
+        };
         divGrid.$Grid(msg.Data);
     }
 })
 btnSearch.$Button({
-    url: configs.url.GetUsers,
+    url: configs.url.Get,
     callback: function (msg) {
+        msg.Data.Dblfunc = function () {
+            btnEdit.click();
+        };
         divGrid.$Grid(msg.Data);
     }
 });
 
+
+txtDbIdName.$SelectTree({
+    isMultiple: false,
+    url: configs.url.GetDatabase,
+    maxHeight: 180,
+    rootIsSelect: false
+})
+
+ 
+
 btnReset.$Reset();
 
+
 btnAdd.$Open("#divOpen", {
-    title: "添加用户",
-    w: 950,
-    h: 400,
+    title: configs.text.add,
+    w: configs.w.w,
+    h: configs.w.h,
     validate: function () {
         frmSave.$ClearControls();
         return true;
@@ -49,9 +75,9 @@ btnAdd.$Open("#divOpen", {
 });
 
 btnEdit.$Open("#divOpen", {
-    title: "编辑用户",
-    w: 800,
-    h: 400,
+    title: configs.text.edit,
+    w: configs.w.w,
+    h: configs.w.h,
     validate: function () {
         var gridInfo = divGrid.$GridInfo();
         if (gridInfo.length == 0) {
@@ -67,7 +93,6 @@ btnEdit.$Open("#divOpen", {
         frmSave.$Form({
             url: configs.url.SaveSystem,
             callback: function (msg) {
-                debugger
                 if (msg.IsKeyValuePair) {
                     $sugar.$Validate(msg.Data, "save");
                 } else {
@@ -84,21 +109,28 @@ btnEdit.$Open("#divOpen", {
     btn: ['保存', '关闭']
 });
 
+
 btnDel.$Confirm({
-    title:"是否删除记录",
+    title: "是否删除记录",
     ok: function () {
         var gridInfo = divGrid.$GridInfo();
         if (gridInfo.length > 0) {
             configs.url.Del.$Ajax({
                 callback: function (msg) {
-                    "删除成功".$Alert();
-                    btnSearch.click();
+                    if (msg.IsSuccess) {
+                        "删除成功".$Alert();
+                        btnSearch.click();
+                    }
+                    else {
+                        msg.Data.$Alert();
+                    }
                 },
-                data: { "users": JSON.stringify(gridInfo) }
+                data: { "model": JSON.stringify(gridInfo) }
             })
-        } else
-        {
+        } else {
             "请选择一条数据".$Alert();
         }
     }
 })
+
+

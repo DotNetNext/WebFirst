@@ -4,11 +4,11 @@
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 @section js{
-    <script src="~/views/system/nuget.js"></script>
+    <script src="~/views/system/codetable.js"></script>
 }
 <div class="x_panel search_box">
     <div class="x_title">
-        <h2><i class="fa fa-newspaper-o"></i> Nuget管理</h2>
+        <h2><i class="fa fa-newspaper-o"></i> 虚拟类配置</h2>
         <div class="clearfix"></div>
     </div>
 
@@ -16,12 +16,12 @@
         <form id="divFrom" class="form-inline">
             <div class="form-group">
                 <label for="ex3" class="col-form-label">名称：</label>
-                <input type="text" id="Name" name="Name" class="form-control input" placeholder=" ">
+                <input type="text" id="ClassName" name="ClassName" class="form-control input" placeholder=" 类名或者表名 ">
             </div>
             <div class="form-group" style="width:500px !important">
-                <label for="ex3" class="col-form-label">.Net版本：</label>
-                <input type="text" id="txtNetVersionName" name="NetVersionName" placeholder="Select" autocomplete="off" />
-                <input id="txtNetVersion" type="hidden" value="0" name="NetVersion" />
+                <label for="ex3" class="col-form-label">数据库：</label>
+                <input type="text" id="txtDbIdName" name="DbIdName" placeholder="Select" autocomplete="off" />
+                <input id="txtDbId" type="hidden" value="0" name="DbId" />
             </div>
             <button id="btnSearch" type="button" class="btn btn-search"><i class="fa fa-search"></i>搜索</button>
             <button id="btnReset" type="button" class="btn btn-green"><i class="fa fa-refresh"></i>重置</button>
@@ -29,8 +29,8 @@
         </form>
     </div>
     <div class="x_content">
-        <button id="btnSaveTable" type="button" class="btn btn-blue"><i class="fa fa-edit"></i>编辑实体</button>
-        <button id="btnCreateTable" type="button" class="btn btn-blue"><i class="fa fa-edit"></i>生成表</button>
+        <button id="btnAdd" type="button" class="btn btn-blue"><i class="fa fa-edit"></i>添加虚拟类</button>
+        <button id="btnEdit" type="button" class="btn btn-blue"><i class="fa fa-edit"></i>保存虚拟类</button>
     </div>
     <div class="x_content">
         <table id="divGrid"></table>
