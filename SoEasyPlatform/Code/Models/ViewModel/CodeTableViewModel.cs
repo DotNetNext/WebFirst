@@ -18,6 +18,8 @@ namespace SoEasyPlatform
         public string TableName { get; set; }
         [PropertyName("备注")]
         public string Description { get; set; }
+        [PropertyName("锁表")]
+        public bool IsLock { get; set; }
     }
     public class CodeTableGridViewModel  
     {
@@ -31,5 +33,7 @@ namespace SoEasyPlatform
         public string TableName { get; set; }
         [DisplayName("备注")]
         public string Description { get; set; }
+        [DisplayName("锁表")]
+        public bool IsLock { get; set; }
     }
 }

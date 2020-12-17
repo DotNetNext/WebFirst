@@ -17,6 +17,7 @@ namespace SoEasyPlatform
         public DateTime PreUpdateTime { get; set; }
         public DateTime UpdateTime { get; set; }
         public bool IsDeleted { get; set; }
+        public bool IsLock { get; set; }
     }
     public class CodeColumns
     {
@@ -30,5 +31,6 @@ namespace SoEasyPlatform
         public string Description { get; set; }
         public string CodeType { get; set; }
         public int CodeTableId { get; set; }
+        public int Sort { get; set; }
     }
 }
