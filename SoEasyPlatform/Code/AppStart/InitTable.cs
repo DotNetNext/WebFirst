@@ -30,6 +30,212 @@ namespace SoEasyPlatform
         {
             db.CodeFirst.InitTables<CodeTable>();
             db.CodeFirst.InitTables<CodeType>();
+            if (!db.Queryable<CodeType>().Any())
+            {
+                var list = new List<CodeType>
+                {
+                    new CodeType{  Name="int",
+                                  CSharepType=CSharpDataType.@int.ToString(),
+                                  DbType=new  DbTypeInfo[]{
+                                                            new DbTypeInfo() { Name="int" },
+                                                            new DbTypeInfo() { Name="int4" },
+                                                            new DbTypeInfo() { Name="number", Length=9, DecimalDigits=0 }
+                                    }
+                    },
+                    new CodeType{
+                                  Name="string10",
+                                  CSharepType=CSharpDataType.@string.ToString(),
+                                  DbType=new DbTypeInfo[]{
+                                                           new DbTypeInfo(){  Name="varchar",Length=10},
+                                                           new DbTypeInfo(){  Name="varchar",Length=10}
+                                }
+                    },
+                    new CodeType{
+                                  Name="nString10",
+                                  CSharepType=CSharpDataType.@string.ToString(),
+                                  DbType=new DbTypeInfo[]{
+                                                           new DbTypeInfo(){  Name="nvarchar",Length=10},
+                                                           new DbTypeInfo(){  Name="varchar",Length=10}
+                                }
+                    },
+                    new CodeType{
+                                  Name="string36",
+                                  CSharepType=CSharpDataType.@string.ToString(),
+                                  DbType=new DbTypeInfo[]{
+                                                           new DbTypeInfo(){  Name="varchar",Length=36},
+                                                           new DbTypeInfo(){  Name="varchar",Length=36}
+                                }
+                    },
+                    new CodeType{
+                                  Name="nString36",
+                                  CSharepType=CSharpDataType.@string.ToString(),
+                                  DbType=new DbTypeInfo[]{
+                                                           new DbTypeInfo(){  Name="nvarchar",Length=36},
+                                                           new DbTypeInfo(){  Name="varchar",Length=36}
+                                }
+                    },
+                    new CodeType{
+                                  Name="string100",
+                                  CSharepType=CSharpDataType.@string.ToString(),
+                                  DbType=new DbTypeInfo[]{
+                                                           new DbTypeInfo(){  Name="varchar",Length=100},
+                                                           new DbTypeInfo(){  Name="varchar",Length=100}
+                                }
+                    },
+                    new CodeType{
+                                  Name="nString100",
+                                  CSharepType=CSharpDataType.@string.ToString(),
+                                  DbType=new DbTypeInfo[]{
+                                                           new DbTypeInfo(){  Name="nvarchar",Length=100},
+                                                           new DbTypeInfo(){  Name="varchar",Length=100}
+                                }
+                    },
+                    new CodeType{
+                                  Name="string200",
+                                  CSharepType=CSharpDataType.@string.ToString(),
+                                  DbType=new DbTypeInfo[]{
+                                                           new DbTypeInfo(){  Name="varchar",Length=100},
+                                                           new DbTypeInfo(){  Name="varchar",Length=100}
+                                }
+                    },
+                    new CodeType{
+                                  Name="nString200",
+                                  CSharepType=CSharpDataType.@string.ToString(),
+                                  DbType=new DbTypeInfo[]{
+                                                           new DbTypeInfo(){  Name="nvarchar",Length=200},
+                                                           new DbTypeInfo(){  Name="varchar",Length=200}
+                                }
+                    },
+                    new CodeType{
+                                  Name="string500",
+                                  CSharepType=CSharpDataType.@string.ToString(),
+                                  DbType=new DbTypeInfo[]{
+                                                           new DbTypeInfo(){  Name="varchar",Length=500},
+                                                           new DbTypeInfo(){  Name="varchar",Length=500}
+                                }
+                    },
+                    new CodeType{
+                                  Name="nString500",
+                                  CSharepType=CSharpDataType.@string.ToString(),
+                                  DbType=new DbTypeInfo[]{
+                                                           new DbTypeInfo(){  Name="nvarchar",Length=500},
+                                                           new DbTypeInfo(){  Name="varchar",Length=500}
+                                }
+                    },
+                    new CodeType{
+                                  Name="string2000",
+                                  CSharepType=CSharpDataType.@string.ToString(),
+                                  DbType=new DbTypeInfo[]{
+                                                           new DbTypeInfo(){  Name="varchar",Length=2000},
+                                                           new DbTypeInfo(){  Name="varchar",Length=2000}
+                                }
+                    },
+                    new CodeType{
+                                  Name="nString2000",
+                                  CSharepType=CSharpDataType.@string.ToString(),
+                                  DbType=new DbTypeInfo[]{
+                                                           new DbTypeInfo(){  Name="nvarchar",Length=2000},
+                                                           new DbTypeInfo(){  Name="varchar",Length=2000}
+                                }
+                    },
+                    new CodeType{
+                                  Name="maxString",
+                                  CSharepType=CSharpDataType.@string.ToString(),
+                                  DbType=new DbTypeInfo[]{
+                                                           new DbTypeInfo(){  Name="text"},
+                                                           new DbTypeInfo(){  Name="clob"}
+                                }
+                    },
+                    new CodeType{
+                                  Name="bool",
+                                  CSharepType=CSharpDataType.@bool.ToString(),
+                                  DbType=new DbTypeInfo[]{
+                                                           new DbTypeInfo(){  Name="bit"},
+                                                           new DbTypeInfo(){  Name="number", Length=1},
+                                                           new DbTypeInfo(){  Name="boolean" }
+                                }
+                    },
+                    new CodeType{
+                                  Name="DateTime",
+                                  CSharepType=CSharpDataType.DateTime.ToString(),
+                                  DbType=new DbTypeInfo[]{
+                                                           new DbTypeInfo(){  Name="date"},
+                                                           new DbTypeInfo(){  Name="datetime"}
+                                }
+                    },
+                    new CodeType{
+                                  Name="decimal_18_4",
+                                  CSharepType=CSharpDataType.@decimal.ToString(),
+                                  DbType=new DbTypeInfo[]{
+                                                           new DbTypeInfo(){  Name="decimal",Length=18, DecimalDigits=4},
+                                                           new DbTypeInfo(){  Name="number",Length=18, DecimalDigits=4}
+                                }
+                    },
+                    new CodeType{
+                                  Name="decimal_18_2",
+                                  CSharepType=CSharpDataType.@decimal.ToString(),
+                                  DbType=new DbTypeInfo[]{
+                                                           new DbTypeInfo(){  Name="decimal",Length=18, DecimalDigits=2},
+                                                           new DbTypeInfo(){  Name="number",Length=18, DecimalDigits=2}
+                                }
+                    },
+                    new CodeType{
+                                  Name="guid",
+                                  CSharepType=CSharpDataType.Guid.ToString(),
+                                  DbType=new DbTypeInfo[]{
+                                                           new DbTypeInfo(){  Name="uniqueidentifier"},
+                                                           new DbTypeInfo(){  Name="guid"},
+                                                           new DbTypeInfo(){  Name="char",Length=36}
+                                }
+                    },
+                    new CodeType{
+                                  Name="byte",
+                                  CSharepType=CSharpDataType.Guid.ToString(),
+                                  DbType=new DbTypeInfo[]{
+                                                           new DbTypeInfo(){  Name="tinyint"},
+                                                           new DbTypeInfo(){  Name="varbit"},
+                                                           new DbTypeInfo(){  Name="number",Length=3}
+                                }
+                    },
+                    new CodeType{
+                                  Name="short",
+                                  CSharepType=CSharpDataType.@short.ToString(),
+                                  DbType=new DbTypeInfo[]{
+                                                           new DbTypeInfo(){  Name="short"},
+                                                           new DbTypeInfo(){  Name="int2"},
+                                                           new DbTypeInfo(){  Name="int16"},
+                                                           new DbTypeInfo(){  Name="smallint"},
+                                                           new DbTypeInfo(){  Name="number",Length=5}
+
+                                }
+                    },
+                    new CodeType{
+                                  Name="long",
+                                  CSharepType=CSharpDataType.@long.ToString(),
+                                  DbType=new DbTypeInfo[]{
+                                                           new DbTypeInfo(){  Name="long"},
+                                                           new DbTypeInfo(){  Name="int8"},
+                                                           new DbTypeInfo(){  Name="int32"},
+                                                           new DbTypeInfo(){  Name="bigint"},
+                                                           new DbTypeInfo(){  Name="number",Length=19}
+
+                                }
+                    },
+                    new CodeType{
+                                  Name="byteArray",
+                                  CSharepType=CSharpDataType.byteArray.ToString(),
+                                  DbType=new DbTypeInfo[]{
+                                                           new DbTypeInfo(){  Name="clob"},
+                                                           new DbTypeInfo(){  Name="bit"},
+                                                           new DbTypeInfo(){  Name="longblob"},
+                                                           new DbTypeInfo(){  Name="binary"}
+
+                                }
+                    }
+
+                };
+                db.Insertable(list).ExecuteCommand();
+            }
         }
 
         private static void InitConnection(SqlSugarClient db)
@@ -168,7 +374,7 @@ namespace SoEasyPlatform
                         {
                              new Menu{ MenuName="待定1" },
                              new Menu{ MenuName="待定2" },
-                       
+
                         }
                      }
 
