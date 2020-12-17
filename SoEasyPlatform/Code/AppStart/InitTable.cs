@@ -159,8 +159,9 @@ namespace SoEasyPlatform
                                   Name="DateTime",
                                   CSharepType=CSharpDataType.DateTime.ToString(),
                                   DbType=new DbTypeInfo[]{
-                                                           new DbTypeInfo(){  Name="date"},
-                                                           new DbTypeInfo(){  Name="datetime"}
+                                                           new DbTypeInfo(){  Name="datetime"},
+                                                           new DbTypeInfo(){  Name="date"}
+                                                          
                                 }
                     },
                     new CodeType{
@@ -215,7 +216,7 @@ namespace SoEasyPlatform
                                   DbType=new DbTypeInfo[]{
                                                            new DbTypeInfo(){  Name="long"},
                                                            new DbTypeInfo(){  Name="int8"},
-                                                           new DbTypeInfo(){  Name="int32"},
+                                                           new DbTypeInfo(){  Name="int64"},
                                                            new DbTypeInfo(){  Name="bigint"},
                                                            new DbTypeInfo(){  Name="number",Length=19}
 
