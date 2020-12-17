@@ -13,6 +13,8 @@ namespace SoEasyPlatform
         public string CSharepType { get; set; }
         [SugarColumn(ColumnDataType = "text", IsJson = true)]
         public DbTypeInfo[] DbType { get; set; } 
+
+        public int Sort { get; set; }
     }
     public class DbTypeInfo 
     {
