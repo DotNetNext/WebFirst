@@ -327,7 +327,6 @@ namespace SoEasyPlatform
                 {
                     ChangeTime = DateTime.Now,
                     Content = RazorFirst.DefaultRazorClassTemplate,
-                    IsSystemData = true,
                     TemplateTypeName = "实体",
                     Sort = 0,
                     TemplateTypeId = 1,
