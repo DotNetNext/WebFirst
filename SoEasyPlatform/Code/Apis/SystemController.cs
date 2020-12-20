@@ -199,5 +199,33 @@ namespace SoEasyPlatform.Code.Apis
             result.IsSuccess = true;
             return result;
         }
+
+
+        /// <summary>
+        /// 获取模版类型
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [AuthorizeFilter]
+        [Route("gettemplatetype")]
+        public ActionResult<ApiResult<List<TreeModel>>> GetTemplateType(int type)
+        {
+            List<TreeModel> trees = new List<TreeModel>();
+            var databses = TemplateTypeDb.GetList();
+            foreach (var db in databses)
+            {
+                trees.Add(new TreeModel()
+                {
+                    Id = db.Id.ToString(),
+                    Title = db.Name,
+                    IsSelectable = true
+                });
+            }
+            ApiResult<List<TreeModel>> result = new ApiResult<List<TreeModel>>();
+            result.Data = trees;
+            result.IsSuccess = true;
+            return result;
+        }
     }
 }

@@ -17,11 +17,6 @@ namespace SoEasyPlatform
 
         public string TemplateTypeName { get; set; }
 
-        /// <summary>
-        /// 是否是系统数据
-        /// </summary>
-        public bool IsSystemData { get; set; }
-
         public int Sort { get; set; }
 
         public DateTime ChangeTime { get; set; }
