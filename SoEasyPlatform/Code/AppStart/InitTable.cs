@@ -351,16 +351,15 @@ namespace SoEasyPlatform
                       Icon="fa fa-edit",
                         Child=new List<Menu>()
                         {
-                             new Menu{ MenuName="数据库管理" , Url="/"},
-                             new Menu{ MenuName="配置虚拟类" , Url="/CodeTable"},
-                             new Menu{ MenuName="生成实体" , Url="/CodeEntity"},
-                             new Menu{ MenuName="生成业务",Url="/BIZ" },
-                             new Menu{ MenuName="生成Web" ,Url="/Web"},
-                             new Menu{ MenuName="模版管理" , Url="/Template"} ,
-                             new Menu{ MenuName="方案管理" , Url="/Project"} ,
-                             new Menu{ MenuName="Nuget管理" , Url="/Nuget"} ,
-                             new Menu{ MenuName="解决方案" , Url="/Solution"},
-                             new Menu{ MenuName="数据类型" , Url="/CodeType"},
+                             new Menu{ MenuName="配置数据库 √" , Url="/"},
+                             new Menu{ MenuName="配置虚拟类 √" , Url="/CodeTable"},
+                             new Menu{ MenuName="配置业务 ×",Url="/BIZ" },
+                             new Menu{ MenuName="配置Web ×" ,Url="/Web"},
+                             new Menu{ MenuName="模版管理 √" , Url="/Template"} ,
+                             new Menu{ MenuName="方案管理 √" , Url="/Project"} ,
+                             new Menu{ MenuName="Nuget管理 √" , Url="/Nuget"} ,
+                             new Menu{ MenuName="解决方案 ×" , Url="/Solution"},
+                             new Menu{ MenuName="数据类型 √" , Url="/CodeType"},
                         }
                      }
                     ,
