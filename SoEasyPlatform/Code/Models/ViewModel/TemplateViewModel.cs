@@ -7,8 +7,19 @@ namespace SoEasyPlatform
 {
     public class TemplateViewModel : PageViewModel, IView
     {
-        [PropertyName("模版类型")]
-        public string TableName { get; set; }
+        
+            [SugarColumn(IsPrimaryKey = true, IsIdentity = true)]
+            public int Id { get; set; }
+
+            public string Title { get; set; }
+            public int TemplateTypeId { get; set; }
+
+            public string Content { get; set; }
+
+            public string TemplateTypeName { get; set; }
+
+            public int Sort { get; set; }
+
     }
 
     public class TemplateGridViewModel
