@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace SoEasyPlatform
@@ -40,11 +41,10 @@ namespace SoEasyPlatform
                         var reqAttr = cusAttr.FirstOrDefault(it => it is ValidateReduired) as ValidateReduired;
                         var uniqueAttr = cusAttr.FirstOrDefault(it => it is ValidateUnique) as ValidateUnique;
                         var equalAttr = cusAttr.FirstOrDefault(it => it is ValidateEqual) as ValidateEqual;
-
+                        var intAttr = cusAttr.FirstOrDefault(it => it is ValidateInt) as ValidateInt;
                         var md5Convert = cusAttr.FirstOrDefault(it => it is ConvertMd5) as ConvertMd5;
                         var properyName = cusAttr.FirstOrDefault(it => it is PropertyName) as PropertyName;
-
-
+                        var wordAttr = cusAttr.FirstOrDefault(it => it is ValidateWord) as ValidateWord;
                         var name = properyName == null ? property.Name : properyName.Name;
                         var propertyValue = property.GetValue(item.Value);
                         if (reqAttr != null)
@@ -52,6 +52,22 @@ namespace SoEasyPlatform
                             if (propertyValue == null)
                             {
                                 errorParamters.Add(new KeyValuePair<string, string>(property.Name, $"{name}不能为空"));
+                            }
+                        }
+                        if (intAttr != null)
+                        {
+                            
+                            if (!Regex.IsMatch(propertyValue+"",@"^\d+$"))
+                            {
+                                errorParamters.Add(new KeyValuePair<string, string>(property.Name, $"{name}只能是数字"));
+                            }
+                        }
+                        if (wordAttr != null)
+                        {
+
+                            if (!Regex.IsMatch(propertyValue + "", @"^[a-z,A-Z]+$"))
+                            {
+                                errorParamters.Add(new KeyValuePair<string, string>(property.Name, $"{name}只能是字母"));
                             }
                         }
                         if (lenAttr != null && item.Value != null)

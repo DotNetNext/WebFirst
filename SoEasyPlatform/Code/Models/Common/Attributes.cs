@@ -53,6 +53,24 @@ namespace SoEasyPlatform
         }
     }
 
+    [AttributeUsage(AttributeTargets.Property, Inherited = true)]
+    public class ValidateInt : Attribute
+    {
+        public ValidateInt()
+        {
+
+        }
+    }
+
+    [AttributeUsage(AttributeTargets.Property, Inherited = true)]
+    public class ValidateWord : Attribute
+    {
+        public ValidateWord()
+        {
+
+        }
+    }
+
     public class ValidateEqual : Attribute
     {
 

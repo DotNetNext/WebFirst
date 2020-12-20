@@ -19,6 +19,7 @@ namespace SoEasyPlatform.Code.Apis
         {
         }
 
+        #region Code Table
         /// <summary>
         /// 获取虚拟类
         /// </summary>
@@ -104,6 +105,78 @@ namespace SoEasyPlatform.Code.Apis
             result.IsSuccess = true;
             return result;
         }
+
+        #endregion
+
+        #region Code Type
+
+        /// <summary>
+        /// 获取类型
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("GetCodeTypeList")]
+        public ActionResult<ApiResult<TableModel<CodeTypeGridViewModel>>> GetCodeTypeList([FromForm] CodeTypeViewModel model)
+        {
+            model.PageSize = 20;
+            var result = new ApiResult<TableModel<CodeTypeGridViewModel>>();
+            result.Data = new TableModel<CodeTypeGridViewModel>();
+            int count = 0;
+            var list = CodeTypeDb.AsSugarClient().Queryable<CodeType>()
+                .WhereIF(!string.IsNullOrEmpty(model.Name), it => it.Name.Contains(model.Name) || it.CSharepType.Contains(model.Name))
+                .OrderBy(it => it.Sort)
+                .OrderBy(it => it.Id)
+                .ToPageList(model.PageIndex, model.PageSize, ref count);
+            var codeGridList = mapper.Map<List<CodeTypeGridViewModel>>(list);
+            foreach (var item in codeGridList)
+            {
+                var dbType = list.First(it => it.Id == item.Id).DbType;
+                item.DbType = Newtonsoft.Json.JsonConvert.SerializeObject(dbType);
+            }
+            result.Data.Rows = codeGridList;
+            result.Data.Total = count;
+            result.Data.PageSize = model.PageSize;
+            result.Data.PageNumber = model.PageIndex;
+            result.IsSuccess = true;
+            return result;
+        }
+
+        /// <summary>
+        /// 添加类型
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        [FormValidateFilter]
+        [Route("SaveCodeType")]
+        public ActionResult<ApiResult<string>> SaveCodeType([FromForm] CodeTypeViewModel model)
+        {   
+            var result = new ApiResult<string>();
+            JsonResult errorResult = base.ValidateModel(model.Id);
+            if (errorResult != null) return errorResult;
+            CodeType codetype = new CodeType()
+            {
+                Id = 0,
+                CSharepType = model.CSharepType,
+                Name = model.Name,
+                Sort = model.Sort.Value
+            };
+            try
+            {
+                codetype.DbType = Newtonsoft.Json.JsonConvert.DeserializeObject<DbTypeInfo[]>(model.DbType);
+            }
+            catch 
+            {
+                result.IsSuccess = false;
+                result.Data=model.DbType + "格式不正确";
+                return result;
+            }
+
+            CodeTypeDb.Insert(codetype);
+            result.IsSuccess = true;
+            result.Data = Pubconst.MESSAGEADDSUCCESS;
+            return result;
+        }
+        #endregion
 
     }
 }

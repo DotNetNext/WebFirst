@@ -1,0 +1,66 @@
+﻿@page
+@{
+    ViewData["Title"] = "数据类型配置";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+@section js{
+    <script src="~/views/system/codetype.js"></script>
+}
+<div class="x_panel search_box">
+    <div class="x_title">
+        <h2><i class="fa fa-newspaper-o"></i> @ViewData["Title"] </h2>
+        <div class="clearfix"></div>
+    </div>
+
+    <div class="x_content">
+        <form id="divFrom" class="form-inline">
+            <div class="form-group">
+                <label for="ex3" class="col-form-label">名称：</label>
+                <input type="text" id="Name" name="Name" class="form-control input" placeholder=" ">
+            </div>
+            <button id="btnSearch" type="button" class="btn btn-search"><i class="fa fa-search"></i>搜索</button>
+            <button id="btnReset" type="button" class="btn btn-green"><i class="fa fa-refresh"></i>重置</button>
+            @Html.Partial("Page")
+        </form>
+    </div>
+    <div class="x_content">
+        <button id="btnAdd" type="button" class="btn btn-blue"><i class="fa fa-plus"></i>添加</button>
+        <button id="btnEdit" type="button" class="btn btn-blue"><i class="fa fa-edit"></i>修改排序</button>
+    </div>
+    <div class="x_content">
+        <table id="divGrid"></table>
+        <div id="divGridPage" class="pagination"></div>
+    </div>
+    <div id="divOpen" style="display:none">
+        <form id="frmSave" class="" action="" method="post" novalidate="">
+            <div class="x_content" style="margin-top:20px">
+                <div class="field item form-group">
+                    <label class="col-form-label col-md-2 col-sm-2  label-align">名称<span class="required">*</span></label>
+                    <div class="col-md-10 col-sm-9">
+                        <input id="saveName" name="Name" class="form-control" type="text" />
+                    </div>
+                </div>
+                <div class="field item form-group">
+                    <label class="col-form-label col-md-2 col-sm-2  label-align">数据类型<span class="required">*</span></label>
+                    <div class="col-md-10 col-sm-9">
+                        <textarea id="saveDbType" style="height:100px" name="DbType" class="form-control" type="text"></textarea>
+                    </div>
+                </div>
+                <div class="field item form-group">
+                    <label class="col-form-label col-md-2 col-sm-2  label-align">C#类型<span class="required">*</span></label>
+                    <div class="col-md-10 col-sm-9">
+                        <input id="saveCSharepType" name="CSharepType" class="form-control" type="text" />
+                    </div>
+                </div>
+                <div class="field item form-group">
+                    <label class="col-form-label col-md-2 col-sm-2  label-align">排序<span class="required">*</span></label>
+                    <div class="col-md-10 col-sm-9">
+                        <input type="text" value="1000" id="saveSort" name="Sort" class="form-control" autocomplete="off" />
+                        <input id="saveId" type="hidden" value="0" name="Id" />
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>

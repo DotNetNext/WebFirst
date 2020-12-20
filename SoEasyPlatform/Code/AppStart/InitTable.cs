@@ -46,8 +46,7 @@ namespace SoEasyPlatform
                                   Name="string10",
                                   CSharepType=CSharpDataType.@string.ToString(),
                                   DbType=new DbTypeInfo[]{
-                                                           new DbTypeInfo(){  Name="varchar",Length=10},
-                                                           new DbTypeInfo(){  Name="varchar",Length=10}
+                                                           new DbTypeInfo(){  Name="varchar",Length=10} 
                                 }
                     },
                     new CodeType{
@@ -62,8 +61,7 @@ namespace SoEasyPlatform
                                   Name="string36",
                                   CSharepType=CSharpDataType.@string.ToString(),
                                   DbType=new DbTypeInfo[]{
-                                                           new DbTypeInfo(){  Name="varchar",Length=36},
-                                                           new DbTypeInfo(){  Name="varchar",Length=36}
+                                                           new DbTypeInfo(){  Name="varchar",Length=36} 
                                 }
                     },
                     new CodeType{
@@ -78,8 +76,7 @@ namespace SoEasyPlatform
                                   Name="string100",
                                   CSharepType=CSharpDataType.@string.ToString(),
                                   DbType=new DbTypeInfo[]{
-                                                           new DbTypeInfo(){  Name="varchar",Length=100},
-                                                           new DbTypeInfo(){  Name="varchar",Length=100}
+                                                           new DbTypeInfo(){  Name="varchar",Length=100} 
                                 }
                     },
                     new CodeType{
@@ -94,8 +91,7 @@ namespace SoEasyPlatform
                                   Name="string200",
                                   CSharepType=CSharpDataType.@string.ToString(),
                                   DbType=new DbTypeInfo[]{
-                                                           new DbTypeInfo(){  Name="varchar",Length=100},
-                                                           new DbTypeInfo(){  Name="varchar",Length=100}
+                                                           new DbTypeInfo(){  Name="varchar",Length=100} 
                                 }
                     },
                     new CodeType{
@@ -110,8 +106,7 @@ namespace SoEasyPlatform
                                   Name="string500",
                                   CSharepType=CSharpDataType.@string.ToString(),
                                   DbType=new DbTypeInfo[]{
-                                                           new DbTypeInfo(){  Name="varchar",Length=500},
-                                                           new DbTypeInfo(){  Name="varchar",Length=500}
+                                                           new DbTypeInfo(){  Name="varchar",Length=500} 
                                 }
                     },
                     new CodeType{
@@ -126,8 +121,7 @@ namespace SoEasyPlatform
                                   Name="string2000",
                                   CSharepType=CSharpDataType.@string.ToString(),
                                   DbType=new DbTypeInfo[]{
-                                                           new DbTypeInfo(){  Name="varchar",Length=2000},
-                                                           new DbTypeInfo(){  Name="varchar",Length=2000}
+                                                           new DbTypeInfo(){  Name="varchar",Length=2000} 
                                 }
                     },
                     new CodeType{
@@ -235,6 +229,10 @@ namespace SoEasyPlatform
                     }
 
                 };
+                foreach (var item in list)
+                {
+                    item.Sort = 1000;
+                }
                 db.Insertable(list).ExecuteCommand();
             }
         }
