@@ -31,11 +31,11 @@ namespace SoEasyPlatform
         public string Connection { get; set; }
         [DisplayName("数据库类型")]
         public string DbType { get; set; }
-        [DisplayName("更新时间")]
-        public DateTime ChangeTime { get; set; }
         [DisplayName("有效连接")]
         public bool IsConnection { get; set; }
         [DisplayName("库已经创建")]
         public bool IsExist { get; set; }
+        [DisplayName("更新时间")]
+        public DateTime ChangeTime { get; set; }
     }
 }
