@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <title>jQuery editTable</title>
+    <meta name="description" content="jQuery editTable is a very small jQuery Plugin (~1Kb gzipped) that fill the gap left by the missing of a default input field for data tables.">
+    <link rel="stylesheet" href="main.css?v=0.2.0">
+
+    <script src="../jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="jquery.edittable.js?v=0.2.0"></script>
+    <script src="jquery-ui.js"></script>
+    <link rel="stylesheet" href="jquery.edittable.css?v=0.2.0">
+    <link href="jquery-ui.css" rel="stylesheet" />
+    <script>$(window).ready(function () {
+
+
+            // Example 4
+            // Custom fields & validation
+            var mynewtable = $('#examplex').editTable({
+                field_templates: {
+                    'checkbox': {
+                        html: '<input type="checkbox"/>',
+                        getValue: function (input) {
+                            return $(input).is(':checked');
+                        },
+                        setValue: function (input, value) {
+                            if (value) {
+                                return $(input).attr('checked', true);
+                            }
+                            return $(input).removeAttr('checked');
+                        }
+                    },
+                    'textarea': {
+                        html: '<textarea/>',
+                        getValue: function (input) {
+                            return $(input).val();
+                        },
+                        setValue: function (input, value) {
+                            return $(input).text(value);
+                        }
+                    },
+                    'select': {
+                        html: '<select><option value="">None</option><option>All</option></select>',
+                        getValue: function (input) {
+                            return $(input).val();
+                        },
+                        setValue: function (input, value) {
+                            var select = $(input);
+                            select.find('option').filter(function () {
+                                return $(this).val() == value;
+                            }).attr('selected', true);
+                            return select;
+                        }
+                    }
+                },
+                row_template: ['checkbox', 'text', 'text', 'textarea', 'select'],
+                headerCols: ['Yes/No', 'Date', 'Value', 'Description', 'Which?'],
+                first_row: false,
+                data: [
+                    [false, "01/30/2013", "50,00 €", "Lorem ipsum...\n\nDonec in dui nisl. Nam ac libero eget magna iaculis faucibus eu non arcu. Proin sed diam ut nisl scelerisque fermentum."],
+                    [true, "02/28/2013", "50,00 €", 'This is a <textarea>', 'All']
+                ],
+                validate_field: function (col_id, value, col_type, $element) {
+                    if (col_type === 'checkbox') {
+                        $element.parent('td').animate({ 'background-color': '#fff' });
+                        if (value === false) {
+                            $element.parent('td').animate({ 'background-color': '#DB4A39' });
+                            return false;
+                        }
+                    }
+                    return true;
+                },
+                tableClass: 'inputtable custom'
+            });
+
+            $('#examplexconsole').click(function (e) {
+                console.log(mynewtable.getData());
+                if (!mynewtable.isValidated()) {
+                    alert('Not validated');
+                }
+                e.preventDefault();
+            });
+
+            $('.showcode').click(function () {
+                $($(this).attr('href')).slideToggle(300);
+                return false;
+            });
+
+        });</script>
+</head>
+
+<body>
+
+    <div class="container">
+
+    
+        <form method="post" action="#output">
+            <textarea id="examplex" style="display: none;" name="myField"></textarea>
+        </form>
+
+     
+ 
+
+    </div>
+
+</body>
+</html>

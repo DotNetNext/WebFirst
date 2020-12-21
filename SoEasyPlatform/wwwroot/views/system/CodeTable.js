@@ -7,9 +7,9 @@
     },
     text:
     {
-        add: "添加",
-        addDbFirst: "DbFirst添加",
-        edit: "修改"
+        add: "创建虚拟类",
+        addDbFirst: "导入虚拟类",
+        edit: "修改虚拟类"
     },
     w: {
         w: "100%",
@@ -60,7 +60,7 @@ btnAdd.$Open("#divOpen", {
     yes: function () {
        
     },
-    btn: ['添加', '关闭']
+    btn: ['保存', '关闭']
 });
 
 btnEdit.$Open("#divOpen", {
