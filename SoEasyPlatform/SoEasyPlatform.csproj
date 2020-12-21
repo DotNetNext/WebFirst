@@ -37,10 +37,8 @@
     <None Include="wwwroot\vendors\bootstrap\.github\ISSUE_TEMPLATE\feature.md" />
     <None Include="wwwroot\vendors\bootstrap\.github\ISSUE_TEMPLATE\feature_request.md" />
     <None Include="wwwroot\vendors\bootstrap\.github\SUPPORT.md" />
-    <None Include="wwwroot\vendors\editTable\.gitignore" />
     <None Include="wwwroot\vendors\editTable\jquery.edittable.js" />
     <None Include="wwwroot\vendors\editTable\jquery.edittable.min.js" />
-    <None Include="wwwroot\vendors\editTable\README.md" />
   </ItemGroup>
 
   <ItemGroup>
