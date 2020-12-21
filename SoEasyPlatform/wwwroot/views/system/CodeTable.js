@@ -3,7 +3,8 @@
         Get: _root + "codetable/getcodetablelist",
         Del: _root + "codetable/deleteCodetable",
         GetDatabase: _root + "system/getdatabase",
-        Info:"/CodeTableInfo"
+        Info: "/CodeTableInfo",
+        Save: _root+"codetable/savecodetable"
     },
     text:
     {
@@ -58,7 +59,7 @@ btnAdd.$Open("#divOpen", {
         return true;
     },
     yes: function () {
-       
+        var data = document.getElementById("layui-layer-iframe1").contentWindow.GetData();
     },
     btn: ['保存', '关闭']
 });

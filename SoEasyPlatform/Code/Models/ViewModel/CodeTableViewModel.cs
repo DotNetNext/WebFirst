@@ -20,6 +20,8 @@ namespace SoEasyPlatform
         public string Description { get; set; }
         [PropertyName("锁表")]
         public bool IsLock { get; set; }
+        [PropertyName("属性")]
+        public List<CodeColumns> ColumnInfoList { get; set; }
     }
     public class CodeTableGridViewModel  
     {
