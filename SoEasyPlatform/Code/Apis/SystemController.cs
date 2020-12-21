@@ -227,5 +227,33 @@ namespace SoEasyPlatform.Code.Apis
             result.IsSuccess = true;
             return result;
         }
+
+
+        /// <summary>
+        /// 获取数据类型
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [AuthorizeFilter]
+        [Route("getdatatype")]
+        public ActionResult<ApiResult<List<TreeModel>>> GetDataType(int type)
+        {
+            List<TreeModel> trees = new List<TreeModel>();
+            var datas = CodeTypeDb.AsQueryable().OrderBy(it=>new { it.Sort,it.Id }).ToList();
+            foreach (var data in datas)
+            {
+                trees.Add(new TreeModel()
+                {
+                    Id = data.Id.ToString(),
+                    Title = data.Name,
+                    IsSelectable = true
+                });
+            }
+            ApiResult<List<TreeModel>> result = new ApiResult<List<TreeModel>>();
+            result.Data = trees;
+            result.IsSuccess = true;
+            return result;
+        }
     }
 }

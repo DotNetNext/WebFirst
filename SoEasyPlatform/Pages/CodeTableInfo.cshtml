@@ -12,17 +12,13 @@
         var data = {
             Columns:
                 [
-                    ["Id", "Id", "", "编号", 1, 1, 1],
-                    [],
-                    [],
-                    [],
-                    [],
-                    [],
-                    [],
-                    [],
-                    [],
+                    ["Id", "Id", "", "编号", 1, 1, 1]
                 ]
         };
+        for (var i = 0; i < 8; i++) {
+            data.Columns.push([]);
+        }
+        var selectTypeData;
         function GetData() {
             var json = {
                 "ClassName": $("#txtClassName").val(),
@@ -55,7 +51,7 @@
             }
             return json;
         }
-        function InitData() {
+        function InitEelement() {
             mynewtable = $('#examplex').editTable({
                 field_templates: {
                     'checkbox': {
@@ -80,7 +76,7 @@
                         }
                     },
                     'select': {
-                        html: '<select calss="selCstype"><option value="">int</option><option>string</option></select>',
+                        html: '<select class="selCstype"><option  class="option_init"></option></select>',
                         getValue: function (input) {
                             return $(input).val();
                         },
@@ -94,21 +90,24 @@
                     }
                 },
                 row_template: ['text', 'text', 'select', 'text', 'checkbox', 'checkbox', 'checkbox'],
-                headerCols: ['实体属名', '数据库字段', "类型", '备注', '必填', '主键', '自增'],
+                headerCols: ['实体属性', '数据字段', "类型", '备注', '必填', '主键', '自增'],
                 first_row: false,
                 data: data.Columns,
-                validate_field: function (col_id, value, col_type, $element) {
-                    if (col_type === 'checkbox') {
-                        $element.parent('td').animate({ 'background-color': '#fff' });
-                        if (value === false) {
-                            $element.parent('td').animate({ 'background-color': '#DB4A39' });
-                            return false;
-                        }
-                    }
-                    return true;
-                },
                 tableClass: 'inputtable custom'
             });
+            var ajaxParam = {
+                callback: function (msg) {
+                    $(".selCstype").each(function () {
+                        var th = $(this);
+                        th.html("");
+                        selectTypeData = msg.Data;
+                        $.each(msg.Data, (function (i,v) {
+                            th.append("<option>"+v.title+"</option>");
+                        }));       
+                    });
+                }
+            };
+            (_root + "system/getdatatype").$Ajax(ajaxParam);
         }
         function InitEevent() {
             $("#txtClassName").blur(function () {
@@ -121,8 +120,19 @@
                 }
             });
         }
-        InitData();
+        InitEelement();
         InitEevent();
+        setInterval(function () {
+            var size = $(".option_init").size();
+            if (size > 0)
+            {
+                var sel = $(".option_init").parent();
+                sel.html("");
+                $.each(selectTypeData, (function (i, v) {
+                    sel.append("<option>" + v.title + "</option>");
+                }));
+            }
+        }, 600);
     </script>
 }
 @section css

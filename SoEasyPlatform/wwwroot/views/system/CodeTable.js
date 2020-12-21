@@ -58,8 +58,9 @@ btnAdd.$Open("#divOpen", {
      
         return true;
     },
-    yes: function () {
-        var data = document.getElementById("layui-layer-iframe1").contentWindow.GetData();
+    yes: function ()
+    {
+        var data = document.getElementsByTagName("iframe")[0].contentWindow.GetData();
     },
     btn: ['保存', '关闭']
 });
