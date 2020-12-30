@@ -20,13 +20,14 @@ function GetData() {
     if (columns != null) {
         $.each(columns, function (i, v) {
             if (v.length >= 7) {
-                var propertyName = v[0];
-                var fieldName = v[1];
-                var ctype = v[2];
-                var desc = v[3];
-                var required = v[4];
-                var isPk = v[5];
-                var isIdentity = v[6];
+                var id = v[0];
+                var propertyName = v[1];
+                var fieldName = v[2];
+                var ctype = v[3];
+                var desc = v[4];
+                var required = v[5];
+                var isPk = v[6];
+                var isIdentity = v[7];
                 json.ColumnInfoList.push({
                     ClassProperName: propertyName,
                     DbColumnName: fieldName,
@@ -34,7 +35,8 @@ function GetData() {
                     IsIdentity: isIdentity,
                     IsPrimaryKey: isPk,
                     Description: desc,
-                    CodeType: ctype
+                    CodeType: ctype,
+                    Id:id
                 });
             }
         })
@@ -54,6 +56,15 @@ function InitEelement() {
                         return $(input).attr('checked', true);
                     }
                     return $(input).removeAttr('checked');
+                }
+            },
+            'no': {
+                html: '<input class="code_number"  readonly type="textbox"/>',
+                getValue: function (input) {
+                    return $(input).val();
+                },
+                setValue: function (input, value) {
+                    return $(input).val(value);
                 }
             },
             'textarea': {
@@ -79,8 +90,8 @@ function InitEelement() {
                 }
             }
         },
-        row_template: ['text', 'text', 'select', 'text', 'checkbox', 'checkbox', 'checkbox'],
-        headerCols: ['实体属性', '数据字段(可不填)', "类型", '备注', '必填', '主键', '自增'],
+        row_template: ['no','text', 'text', 'select', 'text', 'checkbox', 'checkbox', 'checkbox'],
+        headerCols: ['编号','实体属性', '数据字段(可不填)', "类型", '备注', '必填', '主键', '自增'],
         first_row: false,
         data: data.Columns,
         tableClass: 'inputtable custom'

@@ -44,13 +44,16 @@ txtDbIdName.$SelectTree({
     rootIsSelect: false
 })
 
-
+txtDbIdName.onchange = function ()
+{
+    btnSearch.click();
+} 
 
 btnReset.$Reset();
 
 
 btnAdd.$Open("#divOpen", {
-    title: configs.text.add,
+    title:configs.text.add,
     w: configs.w.w,
     h: configs.w.h,
     url: configs.url.Info,
