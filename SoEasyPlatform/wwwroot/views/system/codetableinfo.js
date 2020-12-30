@@ -80,7 +80,7 @@ function InitEelement() {
             }
         },
         row_template: ['text', 'text', 'select', 'text', 'checkbox', 'checkbox', 'checkbox'],
-        headerCols: ['实体属性', '数据字段', "类型", '备注', '必填', '主键', '自增'],
+        headerCols: ['实体属性', '数据字段(可不填)', "类型", '备注', '必填', '主键', '自增'],
         first_row: false,
         data: data.Columns,
         tableClass: 'inputtable custom'

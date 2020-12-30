@@ -30,6 +30,7 @@ namespace SoEasyPlatform
         {
             db.CodeFirst.InitTables<CodeTable>();
             db.CodeFirst.InitTables<CodeType>();
+            db.CodeFirst.InitTables<CodeColumns>();
             if (!db.Queryable<CodeType>().Any())
             {
                 var list = new List<CodeType>

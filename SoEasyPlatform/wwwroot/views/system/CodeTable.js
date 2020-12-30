@@ -4,7 +4,7 @@
         Del: _root + "codetable/deleteCodetable",
         GetDatabase: _root + "system/getdatabase",
         Info: "/CodeTableInfo",
-        Save: _root+"codetable/savecodetable"
+        Save: _root + "codetable/savecodetable"
     },
     text:
     {
@@ -44,7 +44,7 @@ txtDbIdName.$SelectTree({
     rootIsSelect: false
 })
 
- 
+
 
 btnReset.$Reset();
 
@@ -55,12 +55,32 @@ btnAdd.$Open("#divOpen", {
     h: configs.w.h,
     url: configs.url.Info,
     validate: function () {
-     
-        return true;
+
+        if (txtDbId.value == null || txtDbId.value == "" || txtDbId.value == "0")
+        {
+            "请选择数据库".$Alert();
+            return false;
+        }
+        else {
+            return true;
+        }
     },
-    yes: function ()
-    {
+    yes: function () {
         var data = document.getElementsByTagName("iframe")[0].contentWindow.GetData();
+        data.DbId = txtDbId.value;
+        configs.url.Save.$Ajax({
+            callback: function (msg) {
+                if (msg.IsSuccess) {
+                    "添加成功".$Alert();
+                    $sugar.$CloseAll(divOpen.getAttribute("dataindex"));
+                    btnSearch.click();
+                }
+                else {
+                    msg.Data.$Alert();
+                }
+            },
+            data: { "model": JSON.stringify(data) }
+        })
     },
     btn: ['保存', '关闭']
 });

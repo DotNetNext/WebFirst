@@ -37,6 +37,7 @@ namespace SoEasyPlatform.Code.Apis
                      )
                 )
                 .Where(it => it.IsDeleted == false)
+                .Where(it=>it.DbId==model.DbId)
                 .WhereIF(!string.IsNullOrEmpty(model.ClassName), it => it.ClassName.Contains(model.ClassName) || it.TableName.Contains(model.ClassName))
                 .OrderBy(it => it.Id)
                 .Select((it, db) => new CodeTableGridViewModel()
@@ -56,32 +57,29 @@ namespace SoEasyPlatform.Code.Apis
         /// <summary>
         /// 保存虚拟类
         /// </summary>
+        /// <param name="model"></param>
         /// <returns></returns>
         [HttpPost]
         [FormValidateFilter]
+        [ExceptionFilter]
         [Route("SaveCodeTable")]
-        public ActionResult<ApiResult<string>> SaveCodeTable([FromForm] CodeTableViewModel model)
+        public ActionResult<ApiResult<bool>> SaveCodeTable([FromForm]  string model)
         {
-            JsonResult errorResult = base.ValidateModel(model.Id);
-            if (errorResult != null) return errorResult;
-            var saveObject = base.mapper.Map<CodeTable>(model);
-            var result = new ApiResult<string>();
-            if (saveObject.Id == 0)
-            {
-                saveObject.IsDeleted = false;
-                CodeTableDb.Insert(saveObject);
-                result.IsSuccess = true;
-                result.Data = Pubconst.MESSAGEADDSUCCESS;
-            }
-            else
-            {
-                saveObject.IsDeleted = false;
-                CodeTableDb.Update(saveObject);
-                result.IsSuccess = true;
-                result.Data = Pubconst.MESSAGEADDSUCCESS;
-            }
+            var result = new ApiResult<bool>();
+            CodeTableViewModel viewModel = Newtonsoft.Json.JsonConvert.DeserializeObject<CodeTableViewModel>(model);
+            base.Check(string.IsNullOrEmpty(viewModel.TableName) || string.IsNullOrEmpty(viewModel.ClassName), "表名或者实体类名必须填一个");
+            viewModel.ColumnInfoList = viewModel.ColumnInfoList.Where(it => !string.IsNullOrEmpty(it.ClassProperName) || !string.IsNullOrEmpty(it.DbColumnName)).ToList();
+            base.Check(viewModel.ColumnInfoList.Count == 0, "请配置实体属性");
+            var dbTable = mapper.Map<CodeTable>(viewModel);
+            CodeTableWaste.AutoFillTable(dbTable);
+            var dbColumns = mapper.Map<List<CodeColumns>>(viewModel.ColumnInfoList);
+            CodeTableWaste.AutoFillColumns(dbColumns);
+            CodeTableDb.Insert(dbTable);
+            CodeColumnsDb.InsertRange(dbColumns);
+            result.IsSuccess = true;
             return result;
         }
+
 
         /// <summary>
         /// 删除虚拟类
