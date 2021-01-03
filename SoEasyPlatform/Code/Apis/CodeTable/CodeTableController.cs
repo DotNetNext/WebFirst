@@ -74,8 +74,16 @@ namespace SoEasyPlatform.Code.Apis
             CodeTableWaste.AutoFillTable(dbTable);
             var dbColumns = mapper.Map<List<CodeColumns>>(viewModel.ColumnInfoList);
             CodeTableWaste.AutoFillColumns(dbColumns);
-            CodeTableDb.Insert(dbTable);
-            CodeColumnsDb.InsertRange(dbColumns);
+            if (viewModel.Id == 0)
+            {
+                CodeTableWaste.CheckAddName(viewModel, CodeTableDb);
+                CodeTableDb.Insert(dbTable);
+                CodeColumnsDb.InsertRange(dbColumns);
+            }
+            else 
+            {
+
+            }
             result.IsSuccess = true;
             return result;
         }

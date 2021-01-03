@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace SoEasyPlatform 
@@ -33,6 +34,19 @@ namespace SoEasyPlatform
                     item.DbColumnName = item.ClassProperName;
                 }
             }
+        }
+
+        public static void CheckAddName(CodeTableViewModel viewModel, Repository<CodeTable> codeTableDb)
+        {
+            var First = viewModel.ClassName.First().ToString();
+            if (Regex.IsMatch(First, @"\d")) 
+            {
+                new Exception(viewModel.ClassName + "不是有效类名");
+            }
+        }
+        public static void CheckUpdateName(CodeTableViewModel viewModel)
+        {
+            throw new NotImplementedException();
         }
     }
 }
