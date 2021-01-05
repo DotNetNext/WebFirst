@@ -2,12 +2,13 @@
 @model SoEasyPlatform.Pages.CodeTableInfoModel
 @{
     Layout = "~/Pages/Shared/_Window.cshtml";
+    var edit =string.IsNullOrEmpty(Request.QueryString.Value)?"":"edit";
 }
 @section js
 {
     <script src="~/vendors/editTable/jquery.edittable.js"></script>
     <script src="~/vendors/editTable/jquery-ui.js"></script>
-    <script src="~/views/system/codetableinfo.js?id=1"></script>
+    <script src="~/views/system/codetableinfo@(edit).js"></script>
 }
 @section css
 {
