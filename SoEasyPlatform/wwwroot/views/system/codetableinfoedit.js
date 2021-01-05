@@ -1,19 +1,43 @@
-﻿var mynewtable;
-var data = {
-    Columns:
-        [
-            ["Id", "Id", "", "编号", 1, 1, 1]
-        ]
-};
-for (var i = 0; i < 8; i++) {
-    data.Columns.push([]);
+﻿var configs = {
+    url: {
+        Get: _root + "codetable/GetCodeTableInfo",
+    }
 }
+var mynewtable;
+var data = {
+    Columns:[]
+};
 var selectTypeData;
+configs.url.Get.$Ajax({
+    data: { id: $sugar.$GetUrlParam("id") },
+    callback: function (msg) {
+        $("#txtClassName").val(msg.Data.ClassName);
+        $("#txtTableName").val(msg.Data.TableName);
+        $("#txtDesc").val(msg.Data.Description);
+        $("#txtId").val(msg.Data.Id);
+        $.each(msg.Data.ColumnInfoList, function (i, v) {
+            var row = [];
+            row.push(v.ClassProperName);
+            row.push(v.fieldName);
+            row.push(v.required);
+            row.push(v.isIdentity);
+            row.push(v.IsPrimaryKey);
+            row.push(v.Description);
+            row.push(v.CodeType);
+            row.push(v.Id);
+            data.columns.push(row);
+        });
+        InitEelement();
+        InitEevent();
+    }
+})
+
 function GetData() {
     var json = {
         "ClassName": $("#txtClassName").val(),
         "TableName": $("#txtTableName").val(),
         "Description": $("#txtDesc").val(),
+        "Id": $("#txtId").val(),
         "ColumnInfoList": []
     };
     var columns = mynewtable.getData();
@@ -121,8 +145,7 @@ function InitEevent() {
         }
     });
 }
-InitEelement();
-InitEevent();
+
 setInterval(function () {
     var size = $(".option_init").size();
     if (size > 0) {

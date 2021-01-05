@@ -54,6 +54,22 @@ namespace SoEasyPlatform.Code.Apis
             return result;
         }
 
+
+        /// <summary>
+        /// 获取虚拟类根据主键
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("GetCodeTableInfo")]
+        public ActionResult<ApiResult<CodeTableViewModel>> GetCodeTableInfo([FromForm]string id)
+        {
+            var result = new ApiResult<CodeTableViewModel>();
+            result.Data= mapper.Map< CodeTableViewModel >(base.CodeTableDb.GetById(id));
+            result.Data.ColumnInfoList = mapper.Map<List<CodeColumnsViewModel>>(base.CodeColumnsDb.GetList(it=>it.CodeTableId==Convert.ToInt32(id)));
+            result.IsSuccess = true;
+            return result;
+        }
+
         /// <summary>
         /// 保存虚拟类
         /// </summary>
@@ -78,7 +94,11 @@ namespace SoEasyPlatform.Code.Apis
             if (viewModel.Id ==null||viewModel.Id == 0)
             {
                 CodeTableWaste.CheckAddName(viewModel, CodeTableDb);
-                CodeTableDb.Insert(dbTable);
+                var id=CodeTableDb.InsertReturnIdentity(dbTable);
+                foreach (var item in dbColumns)
+                {
+                    item.CodeTableId = id;
+                }
                 CodeColumnsDb.InsertRange(dbColumns);
             }
             else 
