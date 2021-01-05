@@ -104,6 +104,28 @@ namespace SoEasyPlatform.Code.Apis
             else 
             {
                 CodeTableWaste.CheckUpdateName(viewModel, CodeTableDb);
+                CodeTableDb.Update(dbTable);
+                foreach (var item in dbColumns)
+                {
+                    item.CodeTableId = dbTable.Id;
+                }
+
+                var oldIds = CodeColumnsDb.GetList(it => it.CodeTableId == dbTable.Id).Select(it => it.Id).ToList();
+                var delIds = oldIds.Where(it => !dbColumns.Select(y => y.Id).Contains(it)).ToList();
+                CodeColumnsDb.DeleteByIds(delIds.Select(it => (object)it).ToArray());
+
+                var updateColumns = dbColumns.Where(it => it.Id > 0).ToList();
+                if (updateColumns.Count > 0)
+                {
+                    CodeColumnsDb.UpdateRange(updateColumns);
+                }
+
+                var insertColumns = dbColumns.Where(it => it.Id == 0).ToList();
+                if (insertColumns.Count > 0)
+                {
+                    CodeColumnsDb.InsertRange(insertColumns);
+                }
+              
             }
             result.IsSuccess = true;
             return result;

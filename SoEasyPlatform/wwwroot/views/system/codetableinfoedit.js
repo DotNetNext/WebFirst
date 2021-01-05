@@ -17,15 +17,19 @@ configs.url.Get.$Ajax({
         $("#txtId").val(msg.Data.Id);
         $.each(msg.Data.ColumnInfoList, function (i, v) {
             var row = [];
-            row.push(v.ClassProperName);
-            row.push(v.fieldName);
-            row.push(v.required);
-            row.push(v.isIdentity);
-            row.push(v.IsPrimaryKey);
-            row.push(v.Description);
-            row.push(v.CodeType);
             row.push(v.Id);
-            data.columns.push(row);
+            row.push(v.ClassProperName);
+            row.push(v.DbColumnName);
+            row.push(v.CodeType);
+            row.push(v.Description);
+            row.push(v.Required);
+            row.push(v.IsPrimaryKey);
+            row.push(v.IsIdentity);
+
+
+        
+
+            data.Columns.push(row);
         });
         InitEelement();
         InitEevent();
@@ -83,12 +87,12 @@ function InitEelement() {
                 }
             },
             'no': {
-                html: '<input class="code_number"  readonly type="textbox"/>',
+                html: '<span/>',
                 getValue: function (input) {
-                    return $(input).val();
+                    return $(input).text();
                 },
                 setValue: function (input, value) {
-                    return $(input).val(value);
+                    return $(input).html(value);
                 }
             },
             'textarea': {
