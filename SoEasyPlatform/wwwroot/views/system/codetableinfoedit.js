@@ -8,33 +8,38 @@ var data = {
     Columns:[]
 };
 var selectTypeData;
-configs.url.Get.$Ajax({
-    data: { id: $sugar.$GetUrlParam("id") },
+var selectOptions;
+var ajaxParam = {
     callback: function (msg) {
-        $("#txtClassName").val(msg.Data.ClassName);
-        $("#txtTableName").val(msg.Data.TableName);
-        $("#txtDesc").val(msg.Data.Description);
-        $("#txtId").val(msg.Data.Id);
-        $.each(msg.Data.ColumnInfoList, function (i, v) {
-            var row = [];
-            row.push(v.Id);
-            row.push(v.ClassProperName);
-            row.push(v.DbColumnName);
-            row.push(v.CodeType);
-            row.push(v.Description);
-            row.push(v.Required);
-            row.push(v.IsPrimaryKey);
-            row.push(v.IsIdentity);
-
-
-        
-
-            data.Columns.push(row);
-        });
-        InitEelement();
-        InitEevent();
+        $.each(msg.Data, (function (i, v) {
+            selectOptions+=("<option>" + v.title + "</option>");
+        }));
+        configs.url.Get.$Ajax({
+            data: { id: $sugar.$GetUrlParam("id") },
+            callback: function (msg) {
+                $("#txtClassName").val(msg.Data.ClassName);
+                $("#txtTableName").val(msg.Data.TableName);
+                $("#txtDesc").val(msg.Data.Description);
+                $("#txtId").val(msg.Data.Id);
+                $.each(msg.Data.ColumnInfoList, function (i, v) {
+                    var row = [];
+                    row.push(v.Id);
+                    row.push(v.ClassProperName);
+                    row.push(v.DbColumnName);
+                    row.push(v.CodeType);
+                    row.push(v.Description);
+                    row.push(v.Required);
+                    row.push(v.IsPrimaryKey);
+                    row.push(v.IsIdentity);
+                    data.Columns.push(row);
+                });
+                InitEelement();
+                InitEevent();
+            }
+        })
     }
-})
+};
+(_root + "system/getdatatype").$Ajax(ajaxParam);
 
 function GetData() {
     var json = {
@@ -105,7 +110,7 @@ function InitEelement() {
                 }
             },
             'select': {
-                html: '<select class="selCstype"><option  class="option_init"></option></select>',
+                html: '<select class="selCstype">'+selectOptions+'</select>',
                 getValue: function (input) {
                     return $(input).val();
                 },
@@ -124,19 +129,6 @@ function InitEelement() {
         data: data.Columns,
         tableClass: 'inputtable custom'
     });
-    var ajaxParam = {
-        callback: function (msg) {
-            $(".selCstype").each(function () {
-                var th = $(this);
-                th.html("");
-                selectTypeData = msg.Data;
-                $.each(msg.Data, (function (i, v) {
-                    th.append("<option>" + v.title + "</option>");
-                }));
-            });
-        }
-    };
-    (_root + "system/getdatatype").$Ajax(ajaxParam);
 }
 function InitEevent() {
     $("#txtClassName").blur(function () {
