@@ -189,6 +189,10 @@ var SugarContext = {
         if (h == "100%") {
             h = $(window).height() - $(window).height() / 5;
         }
+        if (data.format != null)
+        {
+            data.format(data);
+        }
         var content = $(divElement);
         var type = 1;
         if (data.url != null) {

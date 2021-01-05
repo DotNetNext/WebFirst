@@ -44,23 +44,21 @@ txtDbIdName.$SelectTree({
     rootIsSelect: false
 })
 
-txtDbIdName.onchange = function ()
-{
+txtDbIdName.onchange = function () {
     btnSearch.click();
-} 
+}
 
 btnReset.$Reset();
 
 
 btnAdd.$Open("#divOpen", {
-    title:configs.text.add,
+    title: configs.text.add,
     w: configs.w.w,
     h: configs.w.h,
     url: configs.url.Info,
     validate: function () {
 
-        if (txtDbId.value == null || txtDbId.value == "" || txtDbId.value == "0")
-        {
+        if (txtDbId.value == null || txtDbId.value == "" || txtDbId.value == "0") {
             "请选择数据库".$Alert();
             return false;
         }
@@ -92,35 +90,39 @@ btnEdit.$Open("#divOpen", {
     title: configs.text.edit,
     w: configs.w.w,
     h: configs.w.h,
+    url: configs.url.Info,
+    format: function (msg) {
+        msg.url = configs.url.Info+ "?id=" + divGrid.$GridInfo()[0].Id;
+    },
     validate: function () {
         var gridInfo = divGrid.$GridInfo();
         if (gridInfo.length == 0) {
-            "请选择记录".$Alert();
-            return false;
-        } else {
-            gridInfo = gridInfo[0];
-            frmSave.$FillControls(gridInfo);
-            return true;
+            if (txtDbId.value == null || txtDbId.value == "" || txtDbId.value == "0") {
+                "请选择数据库".$Alert();
+                return false;
+            } else if (gridInfo.length == 0) {
+                "请选择记录".$Alert();
+                return false;
+            }
         }
+        return true;
     },
     yes: function () {
-        var index=sugarbody.$Loading();
-        frmSave.$Form({
-            url: configs.url.SaveSystem,
+        var data = document.getElementsByTagName("iframe")[0].contentWindow.GetData();
+        data.DbId = txtDbId.value;
+        configs.url.Save.$Ajax({
             callback: function (msg) {
-                if (msg.IsKeyValuePair) {
-                    $sugar.$Validate(msg.Data, "save");
-                } else {
-                    $sugar.$Validate("clear");
-                    msg.Data.$Alert();
-                    if (msg.IsSuccess) {
-                        btnSearch.click();
-                        $sugar.$CloseAll(divOpen.getAttribute("dataindex"));
-                    }
+                if (msg.IsSuccess) {
+                    "添加成功".$Alert();
+                    $sugar.$CloseAll(divOpen.getAttribute("dataindex"));
+                    btnSearch.click();
                 }
-                $sugar.$CloseAll(index);
-            }
-        });
+                else {
+                    msg.Data.$Alert();
+                }
+            },
+            data: { "model": JSON.stringify(data) }
+        })
     },
     btn: ['保存', '关闭']
 });
