@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace SoEasyPlatform 
+namespace SoEasyPlatform
 {
     public class CodeTableWaste
     {
@@ -38,15 +38,30 @@ namespace SoEasyPlatform
 
         public static void CheckAddName(CodeTableViewModel viewModel, Repository<CodeTable> codeTableDb)
         {
+            CheckClassName(viewModel);
+            var isAny = codeTableDb.IsAny(it => it.TableName == viewModel.TableName && it.IsDeleted == false);
+            if (isAny) 
+            {
+                throw new Exception(viewModel.TableName + "表名已存在");
+            }
+        }
+        public static void CheckUpdateName(CodeTableViewModel viewModel, Repository<CodeTable> codeTableDb)
+        {
+            CheckClassName(viewModel);
+            var isAny = codeTableDb.IsAny(it => it.TableName == viewModel.TableName && it.IsDeleted == false&&it.Id!=viewModel.Id);
+            if (isAny)
+            {
+                throw new Exception(viewModel.TableName + "表名已存在");
+            }
+        }
+        private static void CheckClassName(CodeTableViewModel viewModel)
+        {
             var First = viewModel.ClassName.First().ToString();
-            if (Regex.IsMatch(First, @"\d")) 
+            if (Regex.IsMatch(First, @"\d"))
             {
                 new Exception(viewModel.ClassName + "不是有效类名");
             }
         }
-        public static void CheckUpdateName(CodeTableViewModel viewModel)
-        {
-            throw new NotImplementedException();
-        }
+
     }
 }

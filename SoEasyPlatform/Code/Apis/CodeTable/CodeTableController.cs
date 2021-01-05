@@ -68,13 +68,14 @@ namespace SoEasyPlatform.Code.Apis
             var result = new ApiResult<bool>();
             CodeTableViewModel viewModel = Newtonsoft.Json.JsonConvert.DeserializeObject<CodeTableViewModel>(model);
             base.Check(string.IsNullOrEmpty(viewModel.TableName) || string.IsNullOrEmpty(viewModel.ClassName), "表名或者实体类名必须填一个");
-            viewModel.ColumnInfoList = viewModel.ColumnInfoList.Where(it => !string.IsNullOrEmpty(it.ClassProperName) || !string.IsNullOrEmpty(it.DbColumnName)).ToList();
+            viewModel.ColumnInfoList = viewModel.ColumnInfoList
+                .Where(it => !string.IsNullOrEmpty(it.ClassProperName) || !string.IsNullOrEmpty(it.DbColumnName)).ToList();
             base.Check(viewModel.ColumnInfoList.Count == 0, "请配置实体属性");
             var dbTable = mapper.Map<CodeTable>(viewModel);
             CodeTableWaste.AutoFillTable(dbTable);
             var dbColumns = mapper.Map<List<CodeColumns>>(viewModel.ColumnInfoList);
             CodeTableWaste.AutoFillColumns(dbColumns);
-            if (viewModel.Id == 0)
+            if (viewModel.Id ==null||viewModel.Id == 0)
             {
                 CodeTableWaste.CheckAddName(viewModel, CodeTableDb);
                 CodeTableDb.Insert(dbTable);
@@ -82,7 +83,7 @@ namespace SoEasyPlatform.Code.Apis
             }
             else 
             {
-
+                CodeTableWaste.CheckUpdateName(viewModel, CodeTableDb);
             }
             result.IsSuccess = true;
             return result;

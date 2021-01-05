@@ -22,7 +22,7 @@ namespace SoEasyPlatform
     public class CodeColumns
     {
         [SugarColumn(IsPrimaryKey = true, IsIdentity = true)]
-        public int? Id { get; set; }
+        public int Id { get; set; }
         public string ClassProperName { get; set; }
         public string DbColumnName { get; set; }
         public bool Required { get; set; }

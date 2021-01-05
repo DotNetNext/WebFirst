@@ -104,6 +104,7 @@ btnEdit.$Open("#divOpen", {
         }
     },
     yes: function () {
+        var index=sugarbody.$Loading();
         frmSave.$Form({
             url: configs.url.SaveSystem,
             callback: function (msg) {
@@ -117,6 +118,7 @@ btnEdit.$Open("#divOpen", {
                         $sugar.$CloseAll(divOpen.getAttribute("dataindex"));
                     }
                 }
+                $sugar.$CloseAll(index);
             }
         });
     },
