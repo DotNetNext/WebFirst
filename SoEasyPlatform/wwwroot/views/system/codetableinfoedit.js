@@ -1,12 +1,7 @@
-﻿var configs = {
-    url: {
-        Get: _root + "codetable/GetCodeTableInfo",
-    }
-}
+﻿//全局变量
+var configs = { url: {Get: _root + "codetable/GetCodeTableInfo",}}
 var mynewtable;
-var data = {
-    Columns:[]
-};
+var data = {Columns:[]};
 var selectTypeData;
 var selectOptions;
 var ajaxParam = {
@@ -17,30 +12,18 @@ var ajaxParam = {
         configs.url.Get.$Ajax({
             data: { id: $sugar.$GetUrlParam("id") },
             callback: function (msg) {
-                $("#txtClassName").val(msg.Data.ClassName);
-                $("#txtTableName").val(msg.Data.TableName);
-                $("#txtDesc").val(msg.Data.Description);
-                $("#txtId").val(msg.Data.Id);
-                $.each(msg.Data.ColumnInfoList, function (i, v) {
-                    var row = [];
-                    row.push(v.Id);
-                    row.push(v.ClassProperName);
-                    row.push(v.DbColumnName);
-                    row.push(v.CodeType);
-                    row.push(v.Description);
-                    row.push(v.Required);
-                    row.push(v.IsPrimaryKey);
-                    row.push(v.IsIdentity);
-                    data.Columns.push(row);
-                });
+                BindData(msg);
                 InitEelement();
                 InitEevent();
             }
         })
     }
 };
+
+//页面初始化方法
 (_root + "system/getdatatype").$Ajax(ajaxParam);
 
+//业务方法
 function GetData() {
     var json = {
         "ClassName": $("#txtClassName").val(),
@@ -75,6 +58,25 @@ function GetData() {
         })
     }
     return json;
+}
+function BindData(msg)
+{
+    $("#txtClassName").val(msg.Data.ClassName);
+    $("#txtTableName").val(msg.Data.TableName);
+    $("#txtDesc").val(msg.Data.Description);
+    $("#txtId").val(msg.Data.Id);
+    $.each(msg.Data.ColumnInfoList, function (i, v) {
+        var row = [];
+        row.push(v.Id);
+        row.push(v.ClassProperName);
+        row.push(v.DbColumnName);
+        row.push(v.CodeType);
+        row.push(v.Description);
+        row.push(v.Required);
+        row.push(v.IsPrimaryKey);
+        row.push(v.IsIdentity);
+        data.Columns.push(row);
+    });
 }
 function InitEelement() {
     mynewtable = $('#examplex').editTable({
@@ -142,6 +144,7 @@ function InitEevent() {
     });
 }
 
+//定时方法
 setInterval(function () {
     var size = $(".option_init").size();
     if (size > 0) {
