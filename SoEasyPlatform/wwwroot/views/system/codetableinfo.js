@@ -1,14 +1,21 @@
-﻿var mynewtable;
+﻿//全局变量
+var mynewtable;
+var selectTypeData;
 var data = {
     Columns:
         [
             ["Id", "Id", "", "编号", 1, 1, 1]
         ]
 };
+
+//初始化方法
+InitEelement();
+InitEevent();
 for (var i = 0; i < 8; i++) {
     data.Columns.push([]);
 }
-var selectTypeData;
+
+//业务方法
 function GetData() {
     var json = {
         "ClassName": $("#txtClassName").val(),
@@ -121,8 +128,8 @@ function InitEevent() {
         }
     });
 }
-InitEelement();
-InitEevent();
+
+//定时方法
 setInterval(function () {
     var size = $(".option_init").size();
     if (size > 0) {

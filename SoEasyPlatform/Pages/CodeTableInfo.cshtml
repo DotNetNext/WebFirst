@@ -2,7 +2,7 @@
 @model SoEasyPlatform.Pages.CodeTableInfoModel
 @{
     Layout = "~/Pages/Shared/_Window.cshtml";
-    var edit =string.IsNullOrEmpty(Request.QueryString.Value)?"":"edit";
+    var edit = string.IsNullOrEmpty(Request.QueryString.Value) ? "" : "edit";
 }
 @section js
 {
@@ -14,37 +14,7 @@
 {
     <link href="~/vendors/editTable/jquery.edittable.css" rel="stylesheet" />
     <link href="~/vendors/editTable/jquery-ui.css" rel="stylesheet" />
-    <style>
-        #Frm_table .form-group {
-            margin-right: 10px;
-        }
-
-        #divBtn .btn {
-            font-size: 14px !important;
-            padding: 3px 4px;
-            background: #87979e;
-            border: #87979e;
-        }
-
-        .x_title h2 {
-            font-size: 16px;
-            font-weight: 400;
-            margin-top: 20px !important;
-        }
-
-        .t1 h2 {
-            font-size: 16px;
-            font-weight: 400;
-            margin-top: 5px !important;
-        }
-        .code_number {
-            width: 50px;
-            border: 0;
-        }
-        .selCstype {
-           border:none
-        }
-    </style>
+    <link href="~/views/system/css/CodeTableInfo.css" rel="stylesheet" />
 }
 
 <div style="padding:10px">
@@ -56,7 +26,7 @@
         <form id="Frm_table" class="form-inline">
             <div class="form-group">
                 <label for="ex3" class="col-form-label"> 类名：</label>
-                <input  id="txtId" type="hidden"/>
+                <input id="txtId" type="hidden" />
                 <input id="txtClassName" type="text" name="Desc" class="form-control input" placeholder=" ">
             </div>
             <div class="form-group">

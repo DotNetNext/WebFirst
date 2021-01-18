@@ -1,0 +1,31 @@
+﻿#Frm_table .form-group {
+    margin-right: 10px;
+}
+
+#divBtn .btn {
+    font-size: 14px !important;
+    padding: 3px 4px;
+    background: #87979e;
+    border: #87979e;
+}
+
+.x_title h2 {
+    font-size: 16px;
+    font-weight: 400;
+    margin-top: 20px !important;
+}
+
+.t1 h2 {
+    font-size: 16px;
+    font-weight: 400;
+    margin-top: 5px !important;
+}
+
+.code_number {
+    width: 50px;
+    border: 0;
+}
+
+.selCstype {
+    border: none
+}
