@@ -11,9 +11,29 @@
 }
 @section css
 {
+    <div class="x_content">
+        <form id="divFrom" class="form-inline">
+            <div class="form-group m-3">
+                <label for="ex3" class="col-form-label">表名：</label>
+                <input type="text" id="txtName" name="DbName" class="form-control"  />
+            </div>
+            <div class="form-group m-3">
+                <label for="ex3" class="col-form-label">状态：</label>
+                <select class="form-control"  name="Type">
+                    <option>全部</option>
+                    <option value="1">已导入</option>
+                    <option value="2">未导入</option>
+                </select>
+            </div>
 
+            <button id="btnSearch" type="button" class="btn btn-search"><i class="fa fa-search"></i>搜索</button>
+            <button id="btnReset" type="reset" class="btn btn-green"><i class="fa fa-refresh"></i>重置</button>
+        </form>
+    </div>
 }
-<div class="x_content">
-    <table id="divGrid"></table>
-    <div id="divGridPage" class="pagination"></div>
+<div style="padding:10px">
+    <div class="x_content">
+        <table id="divGrid"></table>
+        <div id="divGridPage" class="pagination"></div>
+    </div>
 </div>

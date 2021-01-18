@@ -129,12 +129,24 @@ btnEdit.$Open("#divOpen", {
 });
 
 btnDbFirstAdd.$Open("#divOpen", {
+    validate: function () {
+        if (txtDbId.value == null || txtDbId.value == "" || txtDbId.value == "0") {
+            "请选择数据库".$Alert();
+            return false;
+        }
+        else {
+            return true;
+        }
+    },
     title: configs.text.addDbFirst,
     w: configs.w.w,
     h: configs.w.h,
-    url: configs.url.Import
+    url: configs.url.Import,
+    format: function (msg) {
+        msg.url = configs.url.Import + "?dbId=" + txtDbId.value ;
+    },
+    btn: ['导入', '关闭']
 })
-
 
 btnDel.$Confirm({
     title: "是否删除记录",

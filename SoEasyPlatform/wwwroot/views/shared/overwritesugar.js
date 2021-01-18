@@ -256,6 +256,16 @@ var SugarContext = {
                 layer.msg("服务器请求失败.");
             }
         })
+    },
+    QueryString: function (obj) {
+        var variable = obj.toString();
+        var query = window.location.search.substring(1);
+        var vars = query.split("&");
+        for (var i = 0; i < vars.length; i++) {
+            var pair = vars[i].split("=");
+            if (pair[0] == variable) { return pair[1]; }
+        }
+        return (false);
     }
 };
 $sugar.init(SugarContext);

@@ -1,6 +1,6 @@
 ﻿var configs = {
     url: {
-        Get: _root + "DbTable/GetTableList",
+        Get: _root + "DbTable/GetTableList?dbid=" + "dbId".$QueryString(),
     }
 };
 

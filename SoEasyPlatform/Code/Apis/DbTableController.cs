@@ -16,11 +16,20 @@ namespace SoEasyPlatform.Code.Apis
         [HttpPost]
         [ExceptionFilter]
         [Route("GetTableList")]
-        public ActionResult<ApiResult<List<DbTableInfo>>> GetTableList()
+        public ActionResult<ApiResult<TableModel<DbTableViewModel>>> GetTableList(int? dbId)
         {
-            ApiResult<List<DbTableInfo>> result = new ApiResult<List<DbTableInfo>>();
-            result.Data=Db.DbMaintenance.GetTableInfoList();
+           var result =new  ApiResult<TableModel<DbTableViewModel>>();
+            result.Data = new TableModel<DbTableViewModel>();
+            var db = GetTryDb(databaseDb.GetById(dbId.Value));
+            result.Data.Rows=mapper.Map<List<DbTableViewModel>> (db.DbMaintenance.GetTableInfoList());
+            var codetable = CodeTableDb.GetList(it => it.DbId == dbId.Value);
+            foreach (var item in result.Data.Rows)
+            {
+                item.IsImport = codetable.Any(it => it.TableName.Equals(item.Name, StringComparison.CurrentCultureIgnoreCase)) ? "已导入" : "未导入";
+            }
             result.IsSuccess = true;
+            result.Data.PageNumber = 1;
+            result.Data.PageSize = result.Data.Rows.Count;
             return result;
         }
     }

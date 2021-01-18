@@ -18,7 +18,8 @@
             ClearControls: object.ClearControls,
             SelectTree: object.SelectTree,
             Loading: object.Loading,
-            CloseLoading: object.CloseLoading
+            CloseLoading: object.CloseLoading,
+            QueryString: object.QueryString
         };
         HTMLElement.prototype.$Fill = function (value) {
             var element = this;
@@ -137,6 +138,12 @@
                 alert("请配置sugar.Ajax"); return;
             }
             sugarParameters.Ajax(this, value);
+        }
+        String.prototype.$QueryString = function (value) {
+            if (sugarParameters.QueryString == null) {
+                alert("请配置sugar.QueryString"); return;
+            }
+           return sugarParameters.QueryString(this,value);
         }
         $sugar.$CloseAll = function (index) {
             if (sugarParameters.CloseAll == null) {
