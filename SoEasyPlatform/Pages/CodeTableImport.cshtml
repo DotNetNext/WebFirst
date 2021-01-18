@@ -1,0 +1,19 @@
+﻿@page
+@model SoEasyPlatform.Pages.CodeTableInfoModel
+@{
+    Layout = "~/Pages/Shared/_Window.cshtml";
+    var edit = string.IsNullOrEmpty(Request.QueryString.Value) ? "" : "edit";
+}
+@section js
+{
+
+    <script src="~/views/system/codetableimport.js"></script>
+}
+@section css
+{
+
+}
+<div class="x_content">
+    <table id="divGrid"></table>
+    <div id="divGridPage" class="pagination"></div>
+</div>

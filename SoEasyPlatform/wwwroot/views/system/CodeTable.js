@@ -4,7 +4,8 @@
         Del: _root + "codetable/deleteCodetable",
         GetDatabase: _root + "system/getdatabase",
         Info: "/CodeTableInfo",
-        Save: _root + "codetable/savecodetable"
+        Save: _root + "codetable/savecodetable",
+        Import: "/CodeTableImport"
     },
     text:
     {
@@ -17,6 +18,7 @@
         h: "100%"
     }
 };
+
 divFrom.$Form({
     url: configs.url.Get,
     callback: function (msg) {
@@ -26,6 +28,7 @@ divFrom.$Form({
         divGrid.$Grid(msg.Data);
     }
 })
+
 btnSearch.$Button({
     url: configs.url.Get,
     callback: function (msg) {
@@ -35,7 +38,6 @@ btnSearch.$Button({
         divGrid.$Grid(msg.Data);
     }
 });
-
 
 txtDbIdName.$SelectTree({
     isMultiple: false,
@@ -49,7 +51,6 @@ txtDbIdName.onchange = function () {
 }
 
 btnReset.$Reset();
-
 
 btnAdd.$Open("#divOpen", {
     title: configs.text.add,
@@ -126,6 +127,13 @@ btnEdit.$Open("#divOpen", {
     },
     btn: ['保存', '关闭']
 });
+
+btnDbFirstAdd.$Open("#divOpen", {
+    title: configs.text.addDbFirst,
+    w: configs.w.w,
+    h: configs.w.h,
+    url: configs.url.Import
+})
 
 
 btnDel.$Confirm({
