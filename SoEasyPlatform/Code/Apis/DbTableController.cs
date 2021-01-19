@@ -16,7 +16,7 @@ namespace SoEasyPlatform.Code.Apis
         [HttpPost]
         [ExceptionFilter]
         [Route("GetTableList")]
-        public ActionResult<ApiResult<TableModel<DbTableViewModel>>> GetTableList(int? dbId)
+        public ActionResult<ApiResult<TableModel<DbTableViewModel>>> GetTableList(int? dbId,string typeId,string name)
         {
            var result =new  ApiResult<TableModel<DbTableViewModel>>();
             result.Data = new TableModel<DbTableViewModel>();
