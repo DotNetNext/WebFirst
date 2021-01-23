@@ -18,13 +18,24 @@ namespace SoEasyPlatform
 
         public static SqlSugarClient GetInstance()
         {
-            return new SqlSugarClient(new ConnectionConfig()
+            SqlSugarClient db;
+            var callValue=CallContext.GetData("db");
+            if (callValue == null)
             {
-                DbType = SqlSugar.DbType.Sqlite,
-                InitKeyType = InitKeyType.Attribute,
-                IsAutoCloseConnection = true,
-                ConnectionString ="DataSource="+ AppContext.BaseDirectory + @"\database\sqlite.db"
-            });
+                db = new SqlSugarClient(new ConnectionConfig()
+                {
+                    DbType = SqlSugar.DbType.Sqlite,
+                    InitKeyType = InitKeyType.Attribute,
+                    IsAutoCloseConnection = true,
+                    ConnectionString = "DataSource=" + AppContext.BaseDirectory + @"\database\sqlite.db"
+                });
+                CallContext.SetData("db", db);
+            }
+            else 
+            {
+                db = callValue as SqlSugarClient;
+            }
+            return db;
         }
         public static SqlSugarClient GetInstance(DbType type,string connection)
         {

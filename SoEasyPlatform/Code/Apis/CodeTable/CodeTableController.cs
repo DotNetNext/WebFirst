@@ -103,7 +103,9 @@ namespace SoEasyPlatform.Code.Apis
             ApiResult<bool> result = new ApiResult<bool>();
             var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<DbTableGridViewModel>>(model);
             var db = base.GetTryDb(dbid);
+            var type = CodeTypeDb.GetList();
             var entityList = CodeTableDb.GetList(it => it.DbId == dbid);
+       
             List<CodeTable> Inserts = new List<CodeTable>();
             foreach (var item in list)
             {
@@ -115,6 +117,7 @@ namespace SoEasyPlatform.Code.Apis
                     Description = item.Description,
                     ColumnInfoList = new List<CodeColumnsViewModel>()
                 };
+                var entity = entityList.FirstOrDefault(it => it.TableName.Equals(item.Name, StringComparison.OrdinalIgnoreCase));
                 foreach (var columnInfo in db.DbMaintenance.GetColumnInfosByTableName(item.Name))
                 {
                     CodeColumnsViewModel column = new CodeColumnsViewModel()
@@ -124,7 +127,8 @@ namespace SoEasyPlatform.Code.Apis
                         Description = columnInfo.ColumnDescription,
                         IsIdentity = columnInfo.IsIdentity,
                         IsPrimaryKey = columnInfo.IsPrimarykey,
-                        Required = columnInfo.IsNullable == false
+                        Required = columnInfo.IsNullable == false,
+                        CodeTableId=(entity?.Id).Value
                     };
                     code.ColumnInfoList.Add(column);
                 }
