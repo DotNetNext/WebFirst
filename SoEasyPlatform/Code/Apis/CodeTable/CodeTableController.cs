@@ -37,7 +37,7 @@ namespace SoEasyPlatform.Code.Apis
                      )
                 )
                 .Where(it => it.IsDeleted == false)
-                .Where(it=>it.DbId==model.DbId)
+                .Where(it => it.DbId == model.DbId)
                 .WhereIF(!string.IsNullOrEmpty(model.ClassName), it => it.ClassName.Contains(model.ClassName) || it.TableName.Contains(model.ClassName))
                 .OrderBy(it => it.Id)
                 .Select((it, db) => new CodeTableGridViewModel()
@@ -61,11 +61,11 @@ namespace SoEasyPlatform.Code.Apis
         /// <returns></returns>
         [HttpPost]
         [Route("GetCodeTableInfo")]
-        public ActionResult<ApiResult<CodeTableViewModel>> GetCodeTableInfo([FromForm]string id)
+        public ActionResult<ApiResult<CodeTableViewModel>> GetCodeTableInfo([FromForm] string id)
         {
             var result = new ApiResult<CodeTableViewModel>();
-            result.Data= mapper.Map< CodeTableViewModel >(base.CodeTableDb.GetById(id));
-            result.Data.ColumnInfoList = mapper.Map<List<CodeColumnsViewModel>>(base.CodeColumnsDb.GetList(it=>it.CodeTableId==Convert.ToInt32(id)));
+            result.Data = mapper.Map<CodeTableViewModel>(base.CodeTableDb.GetById(id));
+            result.Data.ColumnInfoList = mapper.Map<List<CodeColumnsViewModel>>(base.CodeColumnsDb.GetList(it => it.CodeTableId == Convert.ToInt32(id)));
             result.IsSuccess = true;
             return result;
         }
@@ -79,7 +79,7 @@ namespace SoEasyPlatform.Code.Apis
         [FormValidateFilter]
         [ExceptionFilter]
         [Route("SaveCodeTable")]
-        public ActionResult<ApiResult<bool>> SaveCodeTable([FromForm]  string model)
+        public ActionResult<ApiResult<bool>> SaveCodeTable([FromForm] string model)
         {
             var result = new ApiResult<bool>();
             CodeTableViewModel viewModel = Newtonsoft.Json.JsonConvert.DeserializeObject<CodeTableViewModel>(model);
@@ -98,19 +98,42 @@ namespace SoEasyPlatform.Code.Apis
         [FormValidateFilter]
         [ExceptionFilter]
         [Route("savecodetableimport")]
-        public ActionResult<ApiResult<bool>> SaveCodetableImport(int dbid,[FromForm] string model)
+        public ActionResult<ApiResult<bool>> SaveCodetableImport(int dbid, [FromForm] string model)
         {
+            ApiResult<bool> result = new ApiResult<bool>();
             var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<DbTableGridViewModel>>(model);
             var db = base.GetTryDb(dbid);
             var entityList = CodeTableDb.GetList(it => it.DbId == dbid);
             List<CodeTable> Inserts = new List<CodeTable>();
             foreach (var item in list)
             {
-                CodeTableViewModel code = new CodeTableViewModel();
-            }
-            return null;
+                CodeTableViewModel code = new CodeTableViewModel()
+                {
+                    ClassName = item.Name,
+                    TableName = item.Name,
+                    DbId = dbid,
+                    Description = item.Description,
+                    ColumnInfoList = new List<CodeColumnsViewModel>()
+                };
+                foreach (var columnInfo in db.DbMaintenance.GetColumnInfosByTableName(item.Name))
+                {
+                    CodeColumnsViewModel column = new CodeColumnsViewModel()
+                    {
+                        ClassProperName = columnInfo.DbColumnName,
+                        DbColumnName = columnInfo.DbColumnName,
+                        Description = columnInfo.ColumnDescription,
+                        IsIdentity = columnInfo.IsIdentity,
+                        IsPrimaryKey = columnInfo.IsPrimarykey,
+                        Required = columnInfo.IsNullable == false
+                    };
+                    code.ColumnInfoList.Add(column);
+                }
+                SaveCodeTableToDb(code);
+            };
+            result.IsSuccess = true;
+            return result;
         }
-        
+
 
         /// <summary>
         /// 删除虚拟类
@@ -178,7 +201,7 @@ namespace SoEasyPlatform.Code.Apis
         [FormValidateFilter]
         [Route("SaveCodeType")]
         public ActionResult<ApiResult<string>> SaveCodeType([FromForm] CodeTypeViewModel model)
-        {   
+        {
             var result = new ApiResult<string>();
             JsonResult errorResult = base.ValidateModel(model.Id);
             if (errorResult != null) return errorResult;
@@ -193,10 +216,10 @@ namespace SoEasyPlatform.Code.Apis
             {
                 codetype.DbType = Newtonsoft.Json.JsonConvert.DeserializeObject<DbTypeInfo[]>(model.DbType);
             }
-            catch 
+            catch
             {
                 result.IsSuccess = false;
-                result.Data=model.DbType + "格式不正确";
+                result.Data = model.DbType + "格式不正确";
                 return result;
             }
 
