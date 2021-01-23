@@ -102,39 +102,49 @@ namespace SoEasyPlatform.Code.Apis
         {
             ApiResult<bool> result = new ApiResult<bool>();
             var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<DbTableGridViewModel>>(model);
-            var db = base.GetTryDb(dbid);
+            var tableDb = base.GetTryDb(dbid);
+            var systemDb = Db;
             var type = CodeTypeDb.GetList();
             var entityList = CodeTableDb.GetList(it => it.DbId == dbid);
-       
-            List<CodeTable> Inserts = new List<CodeTable>();
-            foreach (var item in list)
+            systemDb.BeginTran();
+            try
             {
-                CodeTableViewModel code = new CodeTableViewModel()
+                List<CodeTable> Inserts = new List<CodeTable>();
+                foreach (var item in list)
                 {
-                    ClassName = item.Name,
-                    TableName = item.Name,
-                    DbId = dbid,
-                    Description = item.Description,
-                    ColumnInfoList = new List<CodeColumnsViewModel>()
-                };
-                var entity = entityList.FirstOrDefault(it => it.TableName.Equals(item.Name, StringComparison.OrdinalIgnoreCase));
-                foreach (var columnInfo in db.DbMaintenance.GetColumnInfosByTableName(item.Name))
-                {
-                    CodeColumnsViewModel column = new CodeColumnsViewModel()
+                    CodeTableViewModel code = new CodeTableViewModel()
                     {
-                        ClassProperName = columnInfo.DbColumnName,
-                        DbColumnName = columnInfo.DbColumnName,
-                        Description = columnInfo.ColumnDescription,
-                        IsIdentity = columnInfo.IsIdentity,
-                        IsPrimaryKey = columnInfo.IsPrimarykey,
-                        Required = columnInfo.IsNullable == false,
-                        CodeTableId=(entity?.Id).Value
+                        ClassName = item.Name,
+                        TableName = item.Name,
+                        DbId = dbid,
+                        Description = item.Description,
+                        ColumnInfoList = new List<CodeColumnsViewModel>()
                     };
-                    code.ColumnInfoList.Add(column);
-                }
-                SaveCodeTableToDb(code);
-            };
-            result.IsSuccess = true;
+                    var entity = entityList.FirstOrDefault(it => it.TableName.Equals(item.Name, StringComparison.OrdinalIgnoreCase));
+                    foreach (var columnInfo in tableDb.DbMaintenance.GetColumnInfosByTableName(item.Name))
+                    {
+                        CodeColumnsViewModel column = new CodeColumnsViewModel()
+                        {
+                            ClassProperName = columnInfo.DbColumnName,
+                            DbColumnName = columnInfo.DbColumnName,
+                            Description = columnInfo.ColumnDescription,
+                            IsIdentity = columnInfo.IsIdentity,
+                            IsPrimaryKey = columnInfo.IsPrimarykey,
+                            Required = columnInfo.IsNullable == false,
+                            CodeTableId = (entity?.Id).Value
+                        };
+                        code.ColumnInfoList.Add(column);
+                    }
+                    SaveCodeTableToDb(code);
+                };
+                systemDb.CommitTran();
+                result.IsSuccess = true;
+            }
+            catch (Exception ex)
+            {
+                systemDb.RollbackTran();
+                throw ex;
+            }
             return result;
         }
 
