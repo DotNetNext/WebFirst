@@ -13,7 +13,7 @@ namespace SoEasyPlatform.Code.Apis
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
-    public class CodeTableController : BaseController
+    public partial class CodeTableController : BaseController
     {
         public CodeTableController(IMapper mapper) : base(mapper)
         {
@@ -83,50 +83,7 @@ namespace SoEasyPlatform.Code.Apis
         {
             var result = new ApiResult<bool>();
             CodeTableViewModel viewModel = Newtonsoft.Json.JsonConvert.DeserializeObject<CodeTableViewModel>(model);
-            base.Check(string.IsNullOrEmpty(viewModel.TableName) || string.IsNullOrEmpty(viewModel.ClassName), "表名或者实体类名必须填一个");
-            viewModel.ColumnInfoList = viewModel.ColumnInfoList
-                .Where(it => !string.IsNullOrEmpty(it.ClassProperName) || !string.IsNullOrEmpty(it.DbColumnName)).ToList();
-            base.Check(viewModel.ColumnInfoList.Count == 0, "请配置实体属性");
-            var dbTable = mapper.Map<CodeTable>(viewModel);
-            CodeTableWaste.AutoFillTable(dbTable);
-            var dbColumns = mapper.Map<List<CodeColumns>>(viewModel.ColumnInfoList);
-            CodeTableWaste.AutoFillColumns(dbColumns);
-            if (viewModel.Id ==null||viewModel.Id == 0)
-            {
-                CodeTableWaste.CheckAddName(viewModel, CodeTableDb);
-                var id=CodeTableDb.InsertReturnIdentity(dbTable);
-                foreach (var item in dbColumns)
-                {
-                    item.CodeTableId = id;
-                }
-                CodeColumnsDb.InsertRange(dbColumns);
-            }
-            else 
-            {
-                CodeTableWaste.CheckUpdateName(viewModel, CodeTableDb);
-                CodeTableDb.Update(dbTable);
-                foreach (var item in dbColumns)
-                {
-                    item.CodeTableId = dbTable.Id;
-                }
-
-                var oldIds = CodeColumnsDb.GetList(it => it.CodeTableId == dbTable.Id).Select(it => it.Id).ToList();
-                var delIds = oldIds.Where(it => !dbColumns.Select(y => y.Id).Contains(it)).ToList();
-                CodeColumnsDb.DeleteByIds(delIds.Select(it => (object)it).ToArray());
-
-                var updateColumns = dbColumns.Where(it => it.Id > 0).ToList();
-                if (updateColumns.Count > 0)
-                {
-                    CodeColumnsDb.UpdateRange(updateColumns);
-                }
-
-                var insertColumns = dbColumns.Where(it => it.Id == 0).ToList();
-                if (insertColumns.Count > 0)
-                {
-                    CodeColumnsDb.InsertRange(insertColumns);
-                }
-              
-            }
+            SaveCodeTableToDb(viewModel);
             result.IsSuccess = true;
             return result;
         }
@@ -143,8 +100,14 @@ namespace SoEasyPlatform.Code.Apis
         [Route("savecodetableimport")]
         public ActionResult<ApiResult<bool>> SaveCodetableImport(int dbid,[FromForm] string model)
         {
-            var viewModel = Newtonsoft.Json.JsonConvert.DeserializeObject<List<DbTableGridViewModel>>(model);
+            var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<DbTableGridViewModel>>(model);
             var db = base.GetTryDb(dbid);
+            var entityList = CodeTableDb.GetList(it => it.DbId == dbid);
+            List<CodeTable> Inserts = new List<CodeTable>();
+            foreach (var item in list)
+            {
+                CodeTableViewModel code = new CodeTableViewModel();
+            }
             return null;
         }
         
