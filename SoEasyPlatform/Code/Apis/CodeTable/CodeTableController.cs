@@ -98,7 +98,7 @@ namespace SoEasyPlatform.Code.Apis
         [FormValidateFilter]
         [ExceptionFilter]
         [Route("savecodetableimport")]
-        public ActionResult<ApiResult<bool>> SaveCodetableImport(int dbid, [FromForm] string model)
+        public ActionResult<ApiResult<bool>> SaveCodetableImport([FromForm]  int dbid, [FromForm] string model)
         {
             ApiResult<bool> result = new ApiResult<bool>();
             var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<DbTableGridViewModel>>(model);

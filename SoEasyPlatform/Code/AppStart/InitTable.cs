@@ -51,18 +51,46 @@ namespace SoEasyPlatform
                                 }
                     },
                     new CodeType{
+                                  Name="string36",
+                                  CSharepType=CSharpDataType.@string.ToString(),
+                                  DbType=new DbTypeInfo[]{
+                                                           new DbTypeInfo(){  Name="varchar",Length=36} 
+                                }
+                    },
+                    new CodeType{
+                                  Name="string100",
+                                  CSharepType=CSharpDataType.@string.ToString(),
+                                  DbType=new DbTypeInfo[]{
+                                                           new DbTypeInfo(){  Name="varchar",Length=100} 
+                                }
+                    },
+                    new CodeType{
+                                  Name="string200",
+                                  CSharepType=CSharpDataType.@string.ToString(),
+                                  DbType=new DbTypeInfo[]{
+                                                           new DbTypeInfo(){  Name="varchar",Length=100} 
+                                }
+                    },
+                    new CodeType{
+                                  Name="string500",
+                                  CSharepType=CSharpDataType.@string.ToString(),
+                                  DbType=new DbTypeInfo[]{
+                                                           new DbTypeInfo(){  Name="varchar",Length=500} 
+                                }
+                    },
+                    new CodeType{
+                                  Name="string2000",
+                                  CSharepType=CSharpDataType.@string.ToString(),
+                                  DbType=new DbTypeInfo[]{
+                                                           new DbTypeInfo(){  Name="varchar",Length=2000} 
+                                }
+                    },
+                    new CodeType{
                                   Name="nString10",
                                   CSharepType=CSharpDataType.@string.ToString(),
                                   DbType=new DbTypeInfo[]{
                                                            new DbTypeInfo(){  Name="nvarchar",Length=10},
                                                            new DbTypeInfo(){  Name="varchar",Length=10}
-                                }
-                    },
-                    new CodeType{
-                                  Name="string36",
-                                  CSharepType=CSharpDataType.@string.ToString(),
-                                  DbType=new DbTypeInfo[]{
-                                                           new DbTypeInfo(){  Name="varchar",Length=36} 
                                 }
                     },
                     new CodeType{
@@ -74,25 +102,11 @@ namespace SoEasyPlatform
                                 }
                     },
                     new CodeType{
-                                  Name="string100",
-                                  CSharepType=CSharpDataType.@string.ToString(),
-                                  DbType=new DbTypeInfo[]{
-                                                           new DbTypeInfo(){  Name="varchar",Length=100} 
-                                }
-                    },
-                    new CodeType{
                                   Name="nString100",
                                   CSharepType=CSharpDataType.@string.ToString(),
                                   DbType=new DbTypeInfo[]{
                                                            new DbTypeInfo(){  Name="nvarchar",Length=100},
                                                            new DbTypeInfo(){  Name="varchar",Length=100}
-                                }
-                    },
-                    new CodeType{
-                                  Name="string200",
-                                  CSharepType=CSharpDataType.@string.ToString(),
-                                  DbType=new DbTypeInfo[]{
-                                                           new DbTypeInfo(){  Name="varchar",Length=100} 
                                 }
                     },
                     new CodeType{
@@ -104,25 +118,11 @@ namespace SoEasyPlatform
                                 }
                     },
                     new CodeType{
-                                  Name="string500",
-                                  CSharepType=CSharpDataType.@string.ToString(),
-                                  DbType=new DbTypeInfo[]{
-                                                           new DbTypeInfo(){  Name="varchar",Length=500} 
-                                }
-                    },
-                    new CodeType{
                                   Name="nString500",
                                   CSharepType=CSharpDataType.@string.ToString(),
                                   DbType=new DbTypeInfo[]{
                                                            new DbTypeInfo(){  Name="nvarchar",Length=500},
                                                            new DbTypeInfo(){  Name="varchar",Length=500}
-                                }
-                    },
-                    new CodeType{
-                                  Name="string2000",
-                                  CSharepType=CSharpDataType.@string.ToString(),
-                                  DbType=new DbTypeInfo[]{
-                                                           new DbTypeInfo(){  Name="varchar",Length=2000} 
                                 }
                     },
                     new CodeType{
