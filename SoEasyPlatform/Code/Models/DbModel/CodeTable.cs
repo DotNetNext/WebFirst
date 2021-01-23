@@ -12,6 +12,7 @@ namespace SoEasyPlatform
         public int DbId { get; set; }
         public string ClassName { get; set; }
         public string TableName { get; set; }
+        [SugarColumn(IsNullable = true)]
         public string Description { get; set; }
         public DateTime CreateTime { get; set; }
         public DateTime PreUpdateTime { get; set; }
@@ -28,6 +29,7 @@ namespace SoEasyPlatform
         public bool Required { get; set; }
         public bool IsIdentity { get; set; }
         public bool IsPrimaryKey { get; set; }
+        [SugarColumn(IsNullable =true)]
         public string Description { get; set; }
         public string CodeType { get; set; }
         public int CodeTableId { get; set; }
