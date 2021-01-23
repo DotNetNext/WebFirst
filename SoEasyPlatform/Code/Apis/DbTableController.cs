@@ -20,7 +20,7 @@ namespace SoEasyPlatform.Code.Apis
         {
            var result =new  ApiResult<TableModel<DbTableGridViewModel>>();
             result.Data = new TableModel<DbTableGridViewModel>();
-            var db = GetTryDb(databaseDb.GetById(dbId.Value));
+            var db = GetTryDb(dbId.Value);
             result.Data.Rows=mapper.Map<List<DbTableGridViewModel>> (db.DbMaintenance.GetTableInfoList());
             var codetable = CodeTableDb.GetList(it => it.DbId == dbId.Value);
             foreach (var item in result.Data.Rows)
