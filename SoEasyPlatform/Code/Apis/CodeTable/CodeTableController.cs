@@ -133,6 +133,23 @@ namespace SoEasyPlatform.Code.Apis
 
 
         /// <summary>
+        /// 保存虚拟类
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [FormValidateFilter]
+        [ExceptionFilter]
+        [Route("savecodetableimport")]
+        public ActionResult<ApiResult<bool>> SaveCodetableImport(int dbid,[FromForm] string model)
+        {
+            var viewModel = Newtonsoft.Json.JsonConvert.DeserializeObject<List<DbTableGridViewModel>>(model);
+            var db = base.GetTryDb(dbid);
+            return null;
+        }
+        
+
+        /// <summary>
         /// 删除虚拟类
         /// </summary>
         /// <returns></returns>

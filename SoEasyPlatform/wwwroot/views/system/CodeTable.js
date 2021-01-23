@@ -5,6 +5,7 @@
         GetDatabase: _root + "system/getdatabase",
         Info: "/CodeTableInfo",
         Save: _root + "codetable/savecodetable",
+        SaveImport: _root + "codetable/savecodetableimport",
         Import: "/CodeTableImport"
     },
     text:
@@ -144,6 +145,22 @@ btnDbFirstAdd.$Open("#divOpen", {
     url: configs.url.Import,
     format: function (msg) {
         msg.url = configs.url.Import + "?dbId=" + txtDbId.value ;
+    },
+    yes: function () {
+        var data = document.getElementsByTagName("iframe")[0].contentWindow.GetData();
+        configs.url.SaveImport.$Ajax({
+            callback: function (msg) {
+                if (msg.IsSuccess) {
+                    "添加成功".$Alert();
+                    $sugar.$CloseAll(divOpen.getAttribute("dataindex"));
+                    btnSearch.click();
+                }
+                else {
+                    msg.Data.$Alert();
+                }
+            },
+            data: { "dbid": txtDbId.value,"model": JSON.stringify(data) }
+        })
     },
     btn: ['导入', '关闭']
 })

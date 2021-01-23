@@ -22,3 +22,9 @@ divFrom.$Form({
         divGrid.$Grid(msg.Data);
     }
 })
+
+function GetData()
+{
+    var gridInfo = divGrid.$GridInfo();
+    return gridInfo;
+}

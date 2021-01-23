@@ -84,6 +84,12 @@ namespace SoEasyPlatform
             }
         }
 
+        protected SqlSugarClient GetTryDb(int dbId)
+        {
+           var database= databaseDb.GetById(dbId);
+            return GetTryDb(database);
+        }
+
         protected bool IsConnectionDb(Database db)
         {
             try
