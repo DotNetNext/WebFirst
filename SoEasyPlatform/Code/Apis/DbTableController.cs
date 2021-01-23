@@ -16,16 +16,28 @@ namespace SoEasyPlatform.Code.Apis
         [HttpPost]
         [ExceptionFilter]
         [Route("GetTableList")]
-        public ActionResult<ApiResult<TableModel<DbTableViewModel>>> GetTableList(int? dbId,string typeId,string name)
+        public ActionResult<ApiResult<TableModel<DbTableGridViewModel>>> GetTableList(int? dbId, [FromForm] DbTableViewModel model)
         {
-           var result =new  ApiResult<TableModel<DbTableViewModel>>();
-            result.Data = new TableModel<DbTableViewModel>();
+           var result =new  ApiResult<TableModel<DbTableGridViewModel>>();
+            result.Data = new TableModel<DbTableGridViewModel>();
             var db = GetTryDb(databaseDb.GetById(dbId.Value));
-            result.Data.Rows=mapper.Map<List<DbTableViewModel>> (db.DbMaintenance.GetTableInfoList());
+            result.Data.Rows=mapper.Map<List<DbTableGridViewModel>> (db.DbMaintenance.GetTableInfoList());
             var codetable = CodeTableDb.GetList(it => it.DbId == dbId.Value);
             foreach (var item in result.Data.Rows)
             {
-                item.IsImport = codetable.Any(it => it.TableName.Equals(item.Name, StringComparison.CurrentCultureIgnoreCase)) ? "已导入" : "未导入";
+                item.IsImport = codetable.Any(it => it.TableName.Equals(item.Name, StringComparison.CurrentCultureIgnoreCase)) ? "导入" : "";
+            }
+            if (!string.IsNullOrEmpty(model.name))
+            {
+                result.Data.Rows = result.Data.Rows.Where(it => it.Name.ToLower().Contains(model.name?.ToLower())).ToList();
+            }
+            if (model.typeId=="1")
+            {
+                result.Data.Rows = result.Data.Rows.Where(it => !string.IsNullOrEmpty(it.IsImport)).ToList();
+            }
+            if (model.typeId == "2")
+            {
+                result.Data.Rows = result.Data.Rows.Where(it => string.IsNullOrEmpty(it.IsImport)).ToList();
             }
             result.IsSuccess = true;
             result.Data.PageNumber = 1;

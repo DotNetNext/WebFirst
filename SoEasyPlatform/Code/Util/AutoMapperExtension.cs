@@ -28,8 +28,8 @@ namespace SoEasyPlatform
                     }
                 }
             }
-            CreateMap(typeof(DbTableViewModel), typeof(SqlSugar.DbTableInfo));
-            CreateMap(typeof(SqlSugar.DbTableInfo), typeof(DbTableViewModel));
+            CreateMap(typeof(DbTableGridViewModel), typeof(SqlSugar.DbTableInfo));
+            CreateMap(typeof(SqlSugar.DbTableInfo), typeof(DbTableGridViewModel));
         }
     }
 }

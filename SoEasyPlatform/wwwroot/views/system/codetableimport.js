@@ -3,8 +3,18 @@
         Get: _root + "DbTable/GetTableList?dbid=" + "dbId".$QueryString(),
     }
 };
-
-configs.url.Get.$Ajax({
+btnSearch.$Button({
+    url: configs.url.Get,
+    callback: function (msg) {
+        msg.Data.Dblfunc = function () {
+            btnEdit.click();
+        };
+        divGrid.$Grid(msg.Data);
+    }
+});
+ 
+divFrom.$Form({
+    url: configs.url.Get,
     callback: function (msg) {
         msg.Data.Dblfunc = function () {
             btnEdit.click();

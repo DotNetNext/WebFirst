@@ -5,7 +5,14 @@ using System.Threading.Tasks;
 
 namespace SoEasyPlatform 
 {
-    public class DbTableViewModel
+    public class DbTableViewModel:IView
+    {
+       public string name { get; set; }
+
+       public string typeId { get; set; }
+    }
+
+    public class DbTableGridViewModel
     {
         [DisplayName("表名")]
         public string Name
