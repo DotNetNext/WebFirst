@@ -1,9 +1,9 @@
 ﻿var configs = {
     url: {
-        Get: _root + "system/getdbconnection",
-        Del: _root + "system/deletedbconnection",
-        SaveSystem: _root + "system/savedbconnection",
-        GetDbType: _root+"system/getdbtype"
+        Get: _root + "Template/GetTemplateList",
+        Del: _root + "Template/DeleteTemplate",
+        SaveSystem: _root + "Template/SaveTemplate",
+        GetDbType: _root +"system/GetTemplateType"
     },
     text:
     {
@@ -11,8 +11,8 @@
         edit:"修改数据库连接"
     },
     w: {
-        w: 600,
-        h:300
+        w: 1200,
+        h:500
     }
 };
 divFrom.$Form({
