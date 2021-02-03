@@ -32,6 +32,10 @@ namespace SoEasyPlatform
         public string Title { get; set; }
         [DisplayName("类型名称")]
         public string TemplateTypeName { get; set; }
+        [DisplayName("类型")]
+        public int? TemplateTypeId { get; set; }
+        [DisplayName("内容")]
+        public string Content { get; set; }
         [DisplayName("更新时间")]
         public DateTime ChangeTime { get; set; }
     }

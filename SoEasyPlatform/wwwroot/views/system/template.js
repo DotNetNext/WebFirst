@@ -12,7 +12,7 @@
     },
     w: {
         w: 1200,
-        h:500
+        h:"100%"
     }
 };
 divFrom.$Form({
@@ -35,7 +35,7 @@ btnSearch.$Button({
 });
 
 
-saveDbTypeName.$SelectTree({
+saveTemplateTypeName.$SelectTree({
     isMultiple: false,
     url: configs.url.GetDbType,
     maxHeight: 180,
