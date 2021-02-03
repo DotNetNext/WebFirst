@@ -113,16 +113,16 @@ namespace SoEasyPlatform.Code.Apis
             }
         }
 
-        private int GetEntityType(List<CodeType> types, DbColumnInfo columnInfo, CodeTableController codeTableController)
+        private string GetEntityType(List<CodeType> types, DbColumnInfo columnInfo, CodeTableController codeTableController)
         {
             var typeInfo= types.FirstOrDefault(y => y.DbType.Any(it => it.Name.Equals(columnInfo.DataType,StringComparison.OrdinalIgnoreCase)));
             if (typeInfo == null)
             {
-                return 3;
+                return "string100";
             }
             else 
             {
-                return typeInfo.Id;
+                return typeInfo.Name;
             }
         }
     }

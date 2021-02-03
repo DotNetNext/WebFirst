@@ -135,7 +135,7 @@ namespace SoEasyPlatform.Code.Apis
                             IsPrimaryKey = columnInfo.IsPrimarykey,
                             Required = columnInfo.IsNullable == false,
                             CodeTableId = entity.Id,
-                            CodeType = GetEntityType(type, columnInfo, this).ToString()
+                            CodeType = GetEntityType(type, columnInfo, this)
                         };
                         code.ColumnInfoList.Add(column);
                     }
