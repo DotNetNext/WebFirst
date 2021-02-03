@@ -16,7 +16,7 @@ namespace SoEasyPlatform
             get
             {
                 List<TableColumn> columnList = new List<TableColumn>();
-                columnList.Add(new TableColumn() { Checkbox = true });
+                columnList.Add(new TableColumn() { Checkbox = true, Visible=true });
                 var properties = typeof(T).GetProperties();
                 foreach (var item in properties)
                 {
@@ -28,6 +28,15 @@ namespace SoEasyPlatform
                     if (attr != null)
                     {
                         column.Title = (attr as DisplayName).Name;
+                    }
+                    var attrNone = attrs.FirstOrDefault(it => it is DisplayNone);
+                    if (attrNone != null)
+                    {
+                        column.Visible = false;
+                    }
+                    else 
+                    {
+                        column.Visible = true;
                     }
                     columnList.Add(column);
                 }
@@ -56,6 +65,8 @@ namespace SoEasyPlatform
         public string Title { get; set; }
         [JsonProperty(PropertyName = "checkbox")]
         public bool Checkbox { get; set; }
+        [JsonProperty(PropertyName = "visible")]
+        public bool Visible { get; set; }
 
     }
 }

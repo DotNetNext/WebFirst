@@ -115,5 +115,13 @@ namespace SoEasyPlatform
         }
 
     }
+    [AttributeUsage(AttributeTargets.Property, Inherited = true)]
+    public class DisplayNone : Attribute
+    {
+        public DisplayNone()
+        {
+        }
+
+    }
 
 }

@@ -50,12 +50,21 @@ namespace SoEasyPlatform.Code.Apis
             JsonResult errorResult = base.ValidateModel(model.Id);
             if (errorResult != null) return errorResult;
             var saveObject = base.mapper.Map<Template>(model);
+            saveObject.ChangeTime = DateTime.Now;
             var result = new ApiResult<string>();
-            var x= Db.Storageable(new List<Template>() { saveObject })
-                .SplitInsert(it => it.Item.Id == 0)
-                .SplitUpdate(it => it.Item.Id > 0).ToStorage();
-            x.AsInsertable.ExecuteCommand();
-            x.AsUpdateable.ExecuteCommand();
+            if (saveObject.Id == 0)
+            {
+                Db.Insertable(saveObject).ExecuteCommand();
+            }
+            else 
+            {
+                var data = TemplateDb.GetById(saveObject.Id);
+                if (data.TemplateTypeId != model.TemplateTypeId) 
+                {
+                    throw new Exception("类型不能修改");
+                }
+                Db.Updateable(saveObject).UpdateColumns(it=>new { it.ChangeTime,it.Title,it.Content}).ExecuteCommand();
+            }
             result.IsSuccess = true;
             result.Data = Pubconst.MESSAGEADDSUCCESS;
             return result;

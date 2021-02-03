@@ -100,6 +100,7 @@ var SugarContext = {
     ,
     Grid: function (element, data) {
 
+        
         $(element).bootstrapTable('destroy');
         data.onDblClickRow = function (row, ele) {
             var column = data.columns[1];
