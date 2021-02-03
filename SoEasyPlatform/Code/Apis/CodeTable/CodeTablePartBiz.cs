@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using SqlSugar;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,19 +12,6 @@ namespace SoEasyPlatform.Code.Apis
  
     public partial class CodeTableController : BaseController
     {
-     
-        private  void AutoFillTable(CodeTable dbTable)
-        {
-            if (string.IsNullOrEmpty(dbTable.TableName))
-            {
-                dbTable.TableName = dbTable.ClassName;
-            }
-            if (string.IsNullOrEmpty(dbTable.ClassName))
-            {
-                dbTable.ClassName = dbTable.TableName;
-            }
-        }
-
         private void SaveCodeTableToDb(CodeTableViewModel viewModel)
         {
             base.Check(string.IsNullOrEmpty(viewModel.TableName) || string.IsNullOrEmpty(viewModel.ClassName), "表名或者实体类名必须填一个");
@@ -71,8 +59,18 @@ namespace SoEasyPlatform.Code.Apis
 
             }
         }
-
-
+     
+        private  void AutoFillTable(CodeTable dbTable)
+        {
+            if (string.IsNullOrEmpty(dbTable.TableName))
+            {
+                dbTable.TableName = dbTable.ClassName;
+            }
+            if (string.IsNullOrEmpty(dbTable.ClassName))
+            {
+                dbTable.ClassName = dbTable.TableName;
+            }
+        }
         private void AutoFillColumns(List<CodeColumns> dbColumns)
         {
             foreach (var item in dbColumns)
@@ -115,5 +113,17 @@ namespace SoEasyPlatform.Code.Apis
             }
         }
 
+        private int GetEntityType(List<CodeType> types, DbColumnInfo columnInfo, CodeTableController codeTableController)
+        {
+            var typeInfo= types.FirstOrDefault(y => y.DbType.Any(it => it.Name.Equals(columnInfo.DataType,StringComparison.OrdinalIgnoreCase)));
+            if (typeInfo == null)
+            {
+                return 3;
+            }
+            else 
+            {
+                return typeInfo.Id;
+            }
+        }
     }
 }

@@ -36,7 +36,6 @@ namespace SoEasyPlatform.Code.Apis
                        JoinType.Left, it.DbId == db.Id
                      )
                 )
-                .Where(it => it.IsDeleted == false)
                 .Where(it => it.DbId == model.DbId)
                 .WhereIF(!string.IsNullOrEmpty(model.ClassName), it => it.ClassName.Contains(model.ClassName) || it.TableName.Contains(model.ClassName))
                 .OrderBy(it => it.Id)
@@ -121,6 +120,10 @@ namespace SoEasyPlatform.Code.Apis
                         ColumnInfoList = new List<CodeColumnsViewModel>()
                     };
                     var entity = entityList.FirstOrDefault(it => it.TableName.Equals(item.Name, StringComparison.OrdinalIgnoreCase));
+                    if (entity == null) 
+                    {
+                        entity = new CodeTable();
+                    }
                     foreach (var columnInfo in tableDb.DbMaintenance.GetColumnInfosByTableName(item.Name))
                     {
                         CodeColumnsViewModel column = new CodeColumnsViewModel()
@@ -131,7 +134,8 @@ namespace SoEasyPlatform.Code.Apis
                             IsIdentity = columnInfo.IsIdentity,
                             IsPrimaryKey = columnInfo.IsPrimarykey,
                             Required = columnInfo.IsNullable == false,
-                            CodeTableId = (entity?.Id).Value,
+                            CodeTableId = entity.Id,
+                            CodeType = GetEntityType(type, columnInfo, this).ToString()
                         };
                         code.ColumnInfoList.Add(column);
                     }
@@ -147,7 +151,6 @@ namespace SoEasyPlatform.Code.Apis
             }
             return result;
         }
-
 
         /// <summary>
         /// 删除虚拟类

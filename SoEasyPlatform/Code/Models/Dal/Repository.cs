@@ -29,6 +29,8 @@ namespace SoEasyPlatform
                     IsAutoCloseConnection = true,
                     ConnectionString = "DataSource=" + AppContext.BaseDirectory + @"\database\sqlite.db"
                 });
+                db.QueryFilter.Add(new TableFilterItem<CodeTable>(it => it.IsDeleted==false));
+                db.QueryFilter.Add(new TableFilterItem<Nuget>(it => it.IsDeleted == false));
                 CallContext.SetData("db", db);
             }
             else 
