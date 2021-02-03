@@ -21,6 +21,7 @@ namespace SoEasyPlatform
         public int Sort { get; set; }
 
         public DateTime ChangeTime { get; set; }
+        public bool IsDeleted { get; set; }
     }
  
     public class TemplateHistory

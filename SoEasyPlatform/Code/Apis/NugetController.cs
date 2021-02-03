@@ -33,7 +33,6 @@ namespace SoEasyPlatform.Code.Apis
                        JoinType.Left,it.NetVersion==nvs.Id
                      )
                 )
-                .Where(it => it.IsDeleted == false)
                 .WhereIF(!string.IsNullOrEmpty(model.Name), it => it.Name.Contains(model.Name))
                 .WhereIF(model.NetVersion>0, it => it.NetVersion==model.NetVersion.Value)
                 .OrderBy(it=>new { it.Name,it.Version})

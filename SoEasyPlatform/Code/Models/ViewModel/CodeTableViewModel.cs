@@ -41,12 +41,12 @@ namespace SoEasyPlatform
     {
         [DisplayName("编号")]
         public int? Id { get; set; }
-        [DisplayName("数据库")]
-        public string DbName { get; set; }
         [DisplayName("类名")]
         public string ClassName { get; set; }
         [DisplayName("表名")]
         public string TableName { get; set; }
+        [DisplayName("数据库")]
+        public string DbName { get; set; }
         [DisplayName("备注")]
         public string Description { get; set; }
         [DisplayName("锁表")]
