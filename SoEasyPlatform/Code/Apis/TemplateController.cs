@@ -52,21 +52,14 @@ namespace SoEasyPlatform.Code.Apis
             var saveObject = base.mapper.Map<Template>(model);
             saveObject.ChangeTime = DateTime.Now;
             var result = new ApiResult<string>();
-            if (saveObject.Id == 0)
-            {
-                Db.Insertable(saveObject).ExecuteCommand();
-            }
-            else 
-            {
-                var data = TemplateDb.GetById(saveObject.Id);
-                if (data.TemplateTypeId != model.TemplateTypeId) 
-                {
-                    throw new Exception("类型不能修改");
-                }
-                Db.Updateable(saveObject).UpdateColumns(it=>new { it.ChangeTime,it.Title,it.Content}).ExecuteCommand();
-            }
-            result.IsSuccess = true;
-            result.Data = Pubconst.MESSAGEADDSUCCESS;
+            var s = Db.Storageable(saveObject)
+                    .SplitError(it => it.Any(y => y.Id == it.Item.Id && y.TemplateTypeId != it.Item.TemplateTypeId), "类型不能修改")
+                    .SplitInsert(it => it.Item.Id == 0)
+                    .SplitUpdate(it => it.Item.Id > 0).ToStorage();
+            s.AsUpdateable.UpdateColumns(it => new { it.ChangeTime, it.Title, it.Content }).ExecuteCommand();
+            s.AsInsertable.ExecuteCommand();
+            result.IsSuccess = s.ErrorList.Count == 0;
+            result.Data = result.IsSuccess ? "保存成功" : s.ErrorList.First().StorageMessage;
             return result;
         }
 
