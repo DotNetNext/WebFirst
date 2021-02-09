@@ -12,7 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-
+using SqlSugar.IOC;
 namespace SoEasyPlatform
 {
     public class Startup
@@ -28,6 +28,11 @@ namespace SoEasyPlatform
         public void ConfigureServices(IServiceCollection services)
         {
             Services.AddServices(services);
+            services.AddSqlSugar(new SqlSugar.IOC.IocConfig() {
+                DbType =IocDbType.Sqlite,
+                IsAutoCloseConnection = true,
+                ConnectionString = "DataSource=" + AppContext.BaseDirectory + @"\database\sqlite.db"
+            } );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

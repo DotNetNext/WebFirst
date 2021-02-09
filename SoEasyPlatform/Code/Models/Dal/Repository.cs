@@ -18,30 +18,14 @@ namespace SoEasyPlatform
 
         public static SqlSugarClient GetInstance()
         {
-            SqlSugarClient db;
-            var callValue=CallContext.GetData("db");
-            if (callValue == null)
+            var db = SqlSugar.IOC.DbScoped.Sugar;
+            db.QueryFilter.Add(new TableFilterItem<CodeTable>(it => it.IsDeleted == false));
+            db.QueryFilter.Add(new TableFilterItem<Nuget>(it => it.IsDeleted == false));
+            db.QueryFilter.Add(new TableFilterItem<Template>(it => it.IsDeleted == false));
+            db.Aop.OnError = exp =>
             {
-                db = new SqlSugarClient(new ConnectionConfig()
-                {
-                    DbType = SqlSugar.DbType.Sqlite,
-                    InitKeyType = InitKeyType.Attribute,
-                    IsAutoCloseConnection = true,
-                    ConnectionString = "DataSource=" + AppContext.BaseDirectory + @"\database\sqlite.db"
-                });
-                db.QueryFilter.Add(new TableFilterItem<CodeTable>(it => it.IsDeleted==false));
-                db.QueryFilter.Add(new TableFilterItem<Nuget>(it => it.IsDeleted == false));
-                db.QueryFilter.Add(new TableFilterItem<Template>(it => it.IsDeleted == false));
-                db.Aop.OnError = exp =>
-                {
-                    
-                };
-                CallContext.SetData("db", db);
-            }
-            else 
-            {
-                db = callValue as SqlSugarClient;
-            }
+
+            };
             return db;
         }
         public static SqlSugarClient GetInstance(DbType type,string connection)
