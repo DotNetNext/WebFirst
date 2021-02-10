@@ -257,19 +257,19 @@ namespace SoEasyPlatform
                 db.Insertable(new List<Nuget>() {
                      new Nuget(){
                         NetVersion=3,
-                        Version="5.0.1.5",
+                        Version="5.0.2.6",
                         Name="sqlSugar"
                      } }).ExecuteCommand();
                 db.Insertable(new List<Nuget>() {
                      new Nuget(){
                         NetVersion=21,
-                        Version="5.0.1.5",
+                        Version="5.0.2.6",
                         Name="sqlSugarCore"
                      } }).ExecuteCommand();
                 db.Insertable(new List<Nuget>() {
                      new Nuget(){
                         NetVersion=31,
-                        Version="5.0.1.5",
+                        Version="5.0.2.6",
                         Name="sqlSugarCore"
                      } }).ExecuteCommand();
             }

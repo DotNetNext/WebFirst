@@ -6,7 +6,11 @@
         Info: "/CodeTableInfo",
         Save: _root + "codetable/savecodetable",
         SaveImport: _root + "codetable/savecodetableimport",
-        Import: "/CodeTableImport"
+        Import: "/CodeTableImport",
+        GetNetVersion: _root + "system/getnetversion",
+        GetTemp: _root + "system/getTemplate?type=1",
+        GetNuget: _root + "system/getnuget",
+        CreateFile: _root + "codetable/createfile",
     },
     text:
     {
@@ -52,6 +56,27 @@ txtDbIdName.onchange = function () {
 }
 
 btnReset.$Reset();
+
+saveTemplateName1.$SelectTree({
+    isMultiple: false,
+    url: configs.url.GetTemp,
+    maxHeight: 180,
+    rootIsSelect: false
+})
+
+saveNetVersionName.$SelectTree({
+    isMultiple: false,
+    url: configs.url.GetNetVersion,
+    maxHeight: 180,
+    rootIsSelect: false
+})
+
+saveNugetName.$SelectTree({
+    isMultiple: false,
+    url: configs.url.GetNuget,
+    maxHeight: 180,
+    rootIsSelect: false
+})
 
 btnAdd.$Open("#divOpen", {
     title: configs.text.add,
@@ -187,5 +212,45 @@ btnDel.$Confirm({
         }
     }
 })
+
+btnPath.$Open("#divPath", {
+    title: configs.text.add,
+    w: 600,
+    h:420,
+    validate: function () {
+
+        if (txtDbId.value == null || txtDbId.value == "" || txtDbId.value == "0") {
+            "请选择数据库".$Alert();
+            return false;
+        }
+        else {
+            return true;
+        }
+    },
+    yes: function () {
+      
+    },
+    btn: ['保存', '关闭']
+});
+
+btnProject.$Open("#divProject", {
+    title: configs.text.add,
+    w: configs.w.w,
+    h: configs.w.h,
+    validate: function () {
+
+        if (txtDbId.value == null || txtDbId.value == "" || txtDbId.value == "0") {
+            "请选择数据库".$Alert();
+            return false;
+        }
+        else {
+            return true;
+        }
+    },
+    yes: function () {
+        
+    },
+    btn: ['保存', '关闭']
+});
 
 
