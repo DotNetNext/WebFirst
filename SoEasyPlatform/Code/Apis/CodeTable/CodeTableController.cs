@@ -47,7 +47,7 @@ namespace SoEasyPlatform.Code.Apis
                 .ToPageList(model.PageIndex, model.PageSize, ref count);
             result.Data.Rows = list;
             result.Data.Total = count;
-            result.Data.PageSize = model.PageSize;
+            result.Data.PageSize = 100;
             result.Data.PageNumber = model.PageIndex;
             result.IsSuccess = true;
             return result;
@@ -247,5 +247,21 @@ namespace SoEasyPlatform.Code.Apis
         }
         #endregion
 
+        #region Create File
+        /// <summary>
+        /// 生成实体
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        [FormValidateFilter]
+        [ExceptionFilter]
+        [Route("createfile")]
+        public ActionResult<ApiResult<bool>> CreateFile([FromForm] ProjectViewModel model)
+        {
+            var result = new ApiResult<bool>();
+            result.IsSuccess = true;
+            return result;
+        }
+        #endregion
     }
 }

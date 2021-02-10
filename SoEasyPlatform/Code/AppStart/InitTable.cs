@@ -24,6 +24,13 @@ namespace SoEasyPlatform
             InitNuget(db);
 
             InitCodeTable(db);
+
+            InitProject(db);
+        }
+
+        private static void InitProject(SqlSugarClient db)
+        {
+            db.CodeFirst.InitTables<Project>();
         }
 
         private static void InitCodeTable(SqlSugarClient db)
