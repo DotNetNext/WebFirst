@@ -259,7 +259,14 @@ namespace SoEasyPlatform.Code.Apis
         public ActionResult<ApiResult<bool>> CreateFile([FromForm] ProjectViewModel model)
         {
             var result = new ApiResult<bool>();
-            result.IsSuccess = true;
+            var s=base.Db.Storageable(mapper.Map<Project>(model))
+                .SplitInsert(it=>!string.IsNullOrEmpty(it.Item.ProjentName))
+                .SplitError(it=>string.IsNullOrEmpty(model.Tables),"请选择表")
+                .SplitInsert(it => it.Item.Id> 0).ToStorage();
+            s.AsInsertable.ExecuteCommand();
+            s.AsUpdateable.ExecuteCommand();
+            result.IsSuccess = s.ErrorList.Count==0;
+            result.Message = result.IsSuccess ? "生成成功" : s.ErrorList.First().StorageMessage;
             return result;
         }
         #endregion
