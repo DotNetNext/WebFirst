@@ -73,20 +73,22 @@
                         <input id="saveNetVersion" type="hidden" value="0" name="NetVersion" />
                     </div>
                 </div>
-                <div class="field item form-group">
-                    <label class="col-form-label col-md-2 col-sm-2  label-align">类库名<span class="required">*</span></label>
-                    <div class="col-md-10 col-sm-9">
-                        <input id="saveLibraryName" name="LibraryName" value="默认取命名空间" type="text" class="form-control" />
+                <div id="divLib">
+                    <div class="field item form-group lib">
+                        <label class="col-form-label col-md-2 col-sm-2  label-align">类库名<span class="required">*</span></label>
+                        <div class="col-md-10 col-sm-9">
+                            <input id="saveLibraryName" name="LibraryName" value="默认取命名空间" type="text" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="field item form-group lib">
+                        <label class="col-form-label col-md-2 col-sm-2  label-align">Nuget引用<span class="required">*</span></label>
+                        <div class="col-md-10 col-sm-9">
+                            <input type="text" id="saveNugetName" name="NugetName" placeholder="Select" autocomplete="off" />
+                            <input id="saveNuget" type="hidden" value="0" name="Nuget" />
+                        </div>
                     </div>
                 </div>
-                <div class="field item form-group">
-                    <label class="col-form-label col-md-2 col-sm-2  label-align">Nuget引用<span class="required">*</span></label>
-                    <div class="col-md-10 col-sm-9">
-                        <input type="text" id="saveNugetName" name="NugetName" placeholder="Select" autocomplete="off" />
-                        <input id="saveNuget" type="hidden" value="0" name="Nuget" />
-                    </div>
-                </div>
-                <div class="field item form-group">
+                <div class="field item form-group lib">
                     <label class="col-form-label col-md-2 col-sm-2  label-align">保存方案</label>
                     <div class="col-md-10 col-sm-9">
                         <input id="saveProjentName" name="ProjentName" type="text" class="form-control" placeholder="填写方案名称可以保当前操作，方便下次使用" />

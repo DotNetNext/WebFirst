@@ -19,7 +19,9 @@
             SelectTree: object.SelectTree,
             Loading: object.Loading,
             CloseLoading: object.CloseLoading,
-            QueryString: object.QueryString
+            QueryString: object.QueryString,
+            AddClass: object.AddClass,
+            RemoveClass: object.RemoveClass
         };
         HTMLElement.prototype.$Fill = function (value) {
             var element = this;
@@ -126,6 +128,20 @@
                 }
                 sugarParameters.Confirm(value);
             });
+        }
+        HTMLElement.prototype.$AddClass = function (className) {
+            var element = this;
+            if (sugarParameters.AddClass == null) {
+                alert("请配置sugar.AddClass"); return;
+            }
+            sugarParameters.AddClass(element, className);
+        }
+        HTMLElement.prototype.$RemoveClass = function (className) {
+            var element = this;
+            if (sugarParameters.RemoveClass == null) {
+                alert("请配置sugar.RemoveClass"); return;
+            }
+            sugarParameters.RemoveClass(element, className);
         }
         String.prototype.$Alert = function () {
             if (sugarParameters.Alert == null) {

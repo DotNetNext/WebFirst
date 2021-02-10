@@ -71,6 +71,17 @@ saveNetVersionName.$SelectTree({
     rootIsSelect: false
 })
 
+saveNetVersionName.onchange = function () {
+    if (saveNetVersion.value <= 1)
+    {
+        divLib.$AddClass("none")
+    }
+    else
+    {
+        divLib.$RemoveClass("none")
+    }
+}
+
 saveNugetName.$SelectTree({
     isMultiple: false,
     url: configs.url.GetNuget,

@@ -91,13 +91,11 @@ var SugarContext = {
                 control.val(json[p]);
             }
         }
-    }
-    ,
+    },
     ClearControls: function (element) {
         $(element).find(":input").val("");
         $(element).find(":hidden").val("");
-    }
-    ,
+    },
     Grid: function (element, data) {
 
         
@@ -267,6 +265,14 @@ var SugarContext = {
             if (pair[0] == variable) { return pair[1]; }
         }
         return (false);
+    },
+    AddClass: function (element,className)
+    {
+        $(element).addClass(className);
+    },
+    RemoveClass: function (element, className)
+    {
+        $(element).removeClass(className);
     }
 };
 $sugar.init(SugarContext);
