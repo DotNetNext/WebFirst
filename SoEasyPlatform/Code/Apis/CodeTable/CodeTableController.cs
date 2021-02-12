@@ -267,7 +267,9 @@ namespace SoEasyPlatform.Code.Apis
             s.AsUpdateable.ExecuteCommand();
             if (model.Id > 0) 
             {
-                model= base.Db.Queryable
+                var tables = model.Tables;
+                model =mapper.Map<ProjectViewModel>(ProjectDb.GetSingle(it => it.Id == model.Id));
+                model.Tables = tables;
             }
             var template = "";
             List<EntitiesGen> genList = null;
