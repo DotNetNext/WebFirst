@@ -265,6 +265,19 @@ namespace SoEasyPlatform.Code.Apis
                 .SplitInsert(it => it.Item.Id> 0).ToStorage();
             s.AsInsertable.ExecuteCommand();
             s.AsUpdateable.ExecuteCommand();
+            if (model.Id > 0) 
+            {
+                model= base.Db.Queryable
+            }
+            var template = "";
+            List<EntitiesGen> genList = null;
+            string key = TemplateHelper.EntityKey + template.GetHashCode();
+            foreach (var item in genList)
+            {
+                var html = TemplateHelper.GetTemplateValue(key, template, item);
+                var fileName = FileSugar.MergeUrl(model.Path, item.ClassName + "." + model.FileSuffix.TrimStart('.'));
+                 FileSugar.CreateFile(html, fileName); 
+            }
             result.IsSuccess = s.ErrorList.Count==0;
             result.Message = result.IsSuccess ? "生成成功" : s.ErrorList.First().StorageMessage;
             return result;

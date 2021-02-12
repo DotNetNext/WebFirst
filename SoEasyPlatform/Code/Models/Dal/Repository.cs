@@ -36,10 +36,7 @@ namespace SoEasyPlatform
                 DbType = type,
                 InitKeyType = InitKeyType.Attribute,
                 IsAutoCloseConnection = true,
-                ConnectionString = connection,
-                ConfigureExternalServices=new ConfigureExternalServices() { 
-                 RazorService=new RazorService()
-                }
+                ConnectionString = connection 
             });
         }
     }
