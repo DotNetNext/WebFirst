@@ -72,12 +72,10 @@ saveNetVersionName.$SelectTree({
 })
 
 saveNetVersionName.onchange = function () {
-    if (saveNetVersion.value <= 1)
-    {
+    if (saveNetVersion.value <= 1) {
         divLib.$AddClass("none")
     }
-    else
-    {
+    else {
         divLib.$RemoveClass("none")
     }
 }
@@ -130,7 +128,7 @@ btnEdit.$Open("#divOpen", {
     h: configs.w.h,
     url: configs.url.Info,
     format: function (msg) {
-        msg.url = configs.url.Info+ "?id=" + divGrid.$GridInfo()[0].Id;
+        msg.url = configs.url.Info + "?id=" + divGrid.$GridInfo()[0].Id;
     },
     validate: function () {
         var gridInfo = divGrid.$GridInfo();
@@ -180,7 +178,7 @@ btnDbFirstAdd.$Open("#divOpen", {
     h: configs.w.h,
     url: configs.url.Import,
     format: function (msg) {
-        msg.url = configs.url.Import + "?dbId=" + txtDbId.value ;
+        msg.url = configs.url.Import + "?dbId=" + txtDbId.value;
     },
     yes: function () {
         var data = document.getElementsByTagName("iframe")[0].contentWindow.GetData();
@@ -195,7 +193,7 @@ btnDbFirstAdd.$Open("#divOpen", {
                     msg.Data.$Alert();
                 }
             },
-            data: { "dbid": txtDbId.value,"model": JSON.stringify(data) }
+            data: { "dbid": txtDbId.value, "model": JSON.stringify(data) }
         })
     },
     btn: ['导入', '关闭']
@@ -227,19 +225,36 @@ btnDel.$Confirm({
 btnPath.$Open("#divPath", {
     title: configs.text.add,
     w: 600,
-    h:420,
+    h: 420,
     validate: function () {
-
         if (txtDbId.value == null || txtDbId.value == "" || txtDbId.value == "0") {
             "请选择数据库".$Alert();
             return false;
-        }
-        else {
+        } else if (gridInfo.length == 0) {
+            "请选择记录".$Alert();
+            return false;
+        } else {
             return true;
         }
     },
     yes: function () {
-      
+        var gridInfo = divGrid.$GridInfo();
+        if (gridInfo.length > 0) {
+            SaveTable1.value = JSON.stringify(gridInfo);
+            configs.url.CreateFile.$Ajax({
+                callback: function (msg) {
+                    if (msg.IsSuccess) {
+                        "删除成功".$Alert();
+                        btnSearch.click();
+                    }
+                    else {
+                        msg.Data.$Alert();
+                    }
+                }
+            })
+        } else {
+            "请选择一条数据".$Alert();
+        }
     },
     btn: ['保存', '关闭']
 });
@@ -259,7 +274,7 @@ btnProject.$Open("#divProject", {
         }
     },
     yes: function () {
-        
+
     },
     btn: ['保存', '关闭']
 });
