@@ -125,5 +125,10 @@ namespace SoEasyPlatform.Code.Apis
                 return typeInfo.Name;
             }
         }
+
+        private List<EntitiesGen> GetGenList(List<CodeTable> tableList)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
