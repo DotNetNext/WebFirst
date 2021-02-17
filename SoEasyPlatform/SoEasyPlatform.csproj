@@ -76,8 +76,4 @@
     </Content>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Code\Generation\" />
-  </ItemGroup>
-
 </Project>
