@@ -271,8 +271,8 @@ namespace SoEasyPlatform.Code.Apis
                 model =mapper.Map<ProjectViewModel>(ProjectDb.GetSingle(it => it.Id == model.Id));
                 model.Tables = tables;
             }
-            var template = TemplateDb.GetById(model.Id).Content;
-            var tableids = Newtonsoft.Json.JsonConvert.DeserializeObject<int[]>(model.Tables);
+            var template = TemplateDb.GetById(model.TemplateId1).Content;
+            var tableids = Newtonsoft.Json.JsonConvert.DeserializeObject<List<CodeTypeGridViewModel>>(model.Tables).Select(it=>it.Id).ToList();
             var tableList=CodeTableDb.GetList(it => tableids.Contains(it.Id));
             List<EntitiesGen> genList = GetGenList(tableList);
             string key = TemplateHelper.EntityKey + template.GetHashCode();

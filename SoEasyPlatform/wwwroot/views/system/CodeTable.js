@@ -225,8 +225,9 @@ btnDel.$Confirm({
 btnPath.$Open("#divPath", {
     title: configs.text.add,
     w: 600,
-    h: 420,
+    h: 480,
     validate: function () {
+        var gridInfo = divGrid.$GridInfo();
         if (txtDbId.value == null || txtDbId.value == "" || txtDbId.value == "0") {
             "请选择数据库".$Alert();
             return false;
@@ -241,17 +242,17 @@ btnPath.$Open("#divPath", {
         var gridInfo = divGrid.$GridInfo();
         if (gridInfo.length > 0) {
             SaveTable1.value = JSON.stringify(gridInfo);
-            configs.url.CreateFile.$Ajax({
+            frmPathSave.$Form({
+                url: configs.url.CreateFile,
                 callback: function (msg) {
-                    if (msg.IsSuccess) {
-                        "删除成功".$Alert();
-                        btnSearch.click();
-                    }
-                    else {
-                        msg.Data.$Alert();
+                    if (msg.IsKeyValuePair) {
+                        $sugar.$Validate(msg.Data, "save");
+                    } else {
+                        $sugar.$Validate("clear");
+                        msg.Message.$Alert();
                     }
                 }
-            })
+            });
         } else {
             "请选择一条数据".$Alert();
         }

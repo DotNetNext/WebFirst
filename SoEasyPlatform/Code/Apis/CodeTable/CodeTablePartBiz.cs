@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SoEasyPlatform.Code.Apis
 {
- 
+
     public partial class CodeTableController : BaseController
     {
         private void SaveCodeTableToDb(CodeTableViewModel viewModel)
@@ -59,8 +59,8 @@ namespace SoEasyPlatform.Code.Apis
 
             }
         }
-     
-        private  void AutoFillTable(CodeTable dbTable)
+
+        private void AutoFillTable(CodeTable dbTable)
         {
             if (string.IsNullOrEmpty(dbTable.TableName))
             {
@@ -90,7 +90,7 @@ namespace SoEasyPlatform.Code.Apis
         {
             CheckClassName(viewModel);
             var isAny = codeTableDb.IsAny(it => it.TableName == viewModel.TableName && it.IsDeleted == false);
-            if (isAny) 
+            if (isAny)
             {
                 throw new Exception(viewModel.TableName + "表名已存在");
             }
@@ -98,13 +98,13 @@ namespace SoEasyPlatform.Code.Apis
         private void CheckUpdateName(CodeTableViewModel viewModel, Repository<CodeTable> codeTableDb)
         {
             CheckClassName(viewModel);
-            var isAny = codeTableDb.IsAny(it => it.TableName == viewModel.TableName && it.IsDeleted == false&&it.Id!=viewModel.Id);
+            var isAny = codeTableDb.IsAny(it => it.TableName == viewModel.TableName && it.IsDeleted == false && it.Id != viewModel.Id);
             if (isAny)
             {
                 throw new Exception(viewModel.TableName + "表名已存在");
             }
         }
-        private  void CheckClassName(CodeTableViewModel viewModel)
+        private void CheckClassName(CodeTableViewModel viewModel)
         {
             var First = viewModel.ClassName.First().ToString();
             if (Regex.IsMatch(First, @"\d"))
@@ -115,12 +115,12 @@ namespace SoEasyPlatform.Code.Apis
 
         private string GetEntityType(List<CodeType> types, DbColumnInfo columnInfo, CodeTableController codeTableController)
         {
-            var typeInfo= types.FirstOrDefault(y => y.DbType.Any(it => it.Name.Equals(columnInfo.DataType,StringComparison.OrdinalIgnoreCase)));
+            var typeInfo = types.FirstOrDefault(y => y.DbType.Any(it => it.Name.Equals(columnInfo.DataType, StringComparison.OrdinalIgnoreCase)));
             if (typeInfo == null)
             {
                 return "string100";
             }
-            else 
+            else
             {
                 return typeInfo.Name;
             }
@@ -128,7 +128,31 @@ namespace SoEasyPlatform.Code.Apis
 
         private List<EntitiesGen> GetGenList(List<CodeTable> tableList)
         {
-            throw new NotImplementedException();
+            List<EntitiesGen> result = new List<EntitiesGen>();
+            foreach (var item in tableList)
+            {
+                EntitiesGen gen = new EntitiesGen()
+                {
+                    ClassName = item.ClassName,
+                    Description = item.Description,
+                    TableName = item.TableName,
+                    PropertyGens = new List<PropertyGen>()
+                };
+                foreach (var column in base.CodeColumnsDb.GetList(it => it.CodeTableId == item.Id))
+                {
+                    PropertyGen proGen = new PropertyGen()
+                    {
+                        DbColumnName = column.DbColumnName,
+                        Description = column.Description,
+                        IsIdentity = column.IsIdentity,
+                        IsPrimaryKey = column.IsPrimaryKey,
+                        PropertyName = column.ClassProperName
+                    };
+                    gen.PropertyGens.Add(proGen);
+                }
+                result.Add(gen);
+            }
+            return result;
         }
     }
 }
