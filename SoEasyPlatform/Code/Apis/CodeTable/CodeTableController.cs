@@ -274,13 +274,13 @@ namespace SoEasyPlatform.Code.Apis
             var template = TemplateDb.GetById(model.TemplateId1).Content;
             var tableids = Newtonsoft.Json.JsonConvert.DeserializeObject<List<CodeTypeGridViewModel>>(model.Tables).Select(it=>it.Id).ToList();
             var tableList=CodeTableDb.GetList(it => tableids.Contains(it.Id));
-            List<EntitiesGen> genList = GetGenList(tableList);
+            List<EntitiesGen> genList = GetGenList(tableList,CodeTypeDb.GetList());
             string key = TemplateHelper.EntityKey + template.GetHashCode();
             foreach (var item in genList)
             {
                 var html = TemplateHelper.GetTemplateValue(key, template, item);
                 var fileName = FileSugar.MergeUrl(model.Path, item.ClassName + "." + model.FileSuffix.TrimStart('.'));
-                 FileSugar.CreateFile(html, fileName); 
+                 FileSugar.CreateFile(fileName, html); 
             }
             result.IsSuccess = s.ErrorList.Count==0;
             result.Message = result.IsSuccess ? "生成成功" : s.ErrorList.First().StorageMessage;

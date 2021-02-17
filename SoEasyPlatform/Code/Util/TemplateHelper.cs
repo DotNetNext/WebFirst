@@ -13,7 +13,7 @@ namespace SoEasyPlatform
         public const string EntityKey = "SoEasyPlatform.Entity";
         public static string  GetTemplateValue<T>(string key,string template,T model) 
         {
-            var result = Engine.Razor.RunCompile(key, template, model.GetType(), model);
+            var result = Engine.Razor.RunCompile(template, key, model.GetType(), model);
             return result;
         }
     }

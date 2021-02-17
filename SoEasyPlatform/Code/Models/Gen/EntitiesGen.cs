@@ -55,5 +55,9 @@ namespace SoEasyPlatform
         /// 备注 
         /// </summary>
         public string Description { get; set; }
+        /// <summary>
+        /// 属性类型
+        /// </summary>
+        public string Type { get; set; }
     }
 }

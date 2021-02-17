@@ -126,7 +126,7 @@ namespace SoEasyPlatform.Code.Apis
             }
         }
 
-        private List<EntitiesGen> GetGenList(List<CodeTable> tableList)
+        private List<EntitiesGen> GetGenList(List<CodeTable> tableList,List<CodeType> types)
         {
             List<EntitiesGen> result = new List<EntitiesGen>();
             foreach (var item in tableList)
@@ -146,7 +146,8 @@ namespace SoEasyPlatform.Code.Apis
                         Description = column.Description,
                         IsIdentity = column.IsIdentity,
                         IsPrimaryKey = column.IsPrimaryKey,
-                        PropertyName = column.ClassProperName
+                        PropertyName = column.ClassProperName,
+                        Type= types.First(it=>it.Name==column.CodeType).CSharepType
                     };
                     gen.PropertyGens.Add(proGen);
                 }

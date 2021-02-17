@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using SqlSugar;
@@ -318,6 +319,7 @@ namespace SoEasyPlatform
 
         private static void InitTemplate(SqlSugarClient db)
         {
+            db.DbMaintenance.DropTable("Template");
             db.CodeFirst.InitTables<Template, TemplateType>();
             if (db.Queryable<Template>().Count() == 0)
             {
@@ -331,10 +333,12 @@ namespace SoEasyPlatform
             }
             if (db.Queryable<Template>().Count() == 0)
             {
+                var temp = @"wwwroot\template\Entity01.txt";
+                var directory = Directory.GetCurrentDirectory();
                 db.Insertable(new Template()
                 {
                     ChangeTime = DateTime.Now,
-                    Content = RazorFirst.DefaultRazorClassTemplate,
+                    Content = FileSugar.FileToString(FileSugar.MergeUrl(directory, temp)),
                     TemplateTypeName = "实体",
                     Sort = 0,
                     TemplateTypeId = 1,
