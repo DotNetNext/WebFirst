@@ -319,7 +319,7 @@ namespace SoEasyPlatform
 
         private static void InitTemplate(SqlSugarClient db)
         {
-            db.DbMaintenance.DropTable("Template");
+            //db.DbMaintenance.DropTable("Template");
             db.CodeFirst.InitTables<Template, TemplateType>();
             if (db.Queryable<Template>().Count() == 0)
             {
