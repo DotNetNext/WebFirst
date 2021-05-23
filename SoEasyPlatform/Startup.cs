@@ -29,6 +29,7 @@ namespace SoEasyPlatform
         {
             Services.AddServices(services);
             services.AddSqlSugar(new SqlSugar.IOC.IocConfig() {
+                ConfigId="master1",
                 DbType =IocDbType.Sqlite,
                 IsAutoCloseConnection = true,
                 ConnectionString = "DataSource=" + AppContext.BaseDirectory + @"\database\sqlite.db"
