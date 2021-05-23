@@ -47,7 +47,7 @@ namespace SoEasyPlatform.Code.Apis
                 .ToPageList(model.PageIndex, model.PageSize, ref count);
             result.Data.Rows = list;
             result.Data.Total = count;
-            result.Data.PageSize = 100;
+            result.Data.PageSize = 10;
             result.Data.PageNumber = model.PageIndex;
             result.IsSuccess = true;
             return result;
