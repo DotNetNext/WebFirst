@@ -389,7 +389,7 @@ namespace SoEasyPlatform
 
 
                 })
-                .AddSubList(it => it.Child.First().ParentId).ExecuteReturnPrimaryKey();
+                .AddSubList(it => it.Child.First().ParentId).ExecuteCommand();
         }
     }
 }
