@@ -53,8 +53,8 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.10" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.10" />
     <PackageReference Include="RazorEngine.NetCore" Version="3.1.0" />
-    <PackageReference Include="SqlSugar.IOC" Version="1.1.0" />
-    <PackageReference Include="SqlSugarCore" Version="5.0.2.6" />
+    <PackageReference Include="SqlSugar.IOC" Version="1.5.0" />
+    <PackageReference Include="SqlSugarCore" Version="5.0.3" />
   </ItemGroup>
 
   <ItemGroup>
