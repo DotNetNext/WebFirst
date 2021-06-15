@@ -260,24 +260,5 @@ btnPath.$Open("#divPath", {
     btn: ['保存', '关闭']
 });
 
-btnProject.$Open("#divProject", {
-    title: configs.text.add,
-    w: configs.w.w,
-    h: configs.w.h,
-    validate: function () {
-
-        if (txtDbId.value == null || txtDbId.value == "" || txtDbId.value == "0") {
-            "请选择数据库".$Alert();
-            return false;
-        }
-        else {
-            return true;
-        }
-    },
-    yes: function () {
-
-    },
-    btn: ['保存', '关闭']
-});
-
+ 
 
