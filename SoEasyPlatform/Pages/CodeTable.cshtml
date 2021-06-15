@@ -1,15 +1,15 @@
 ﻿@page
 @{
-    ViewData["Title"] = "虚拟类配置";
     Layout = "~/Pages/Shared/_Layout.cshtml";
     var isDbFirst = Request.Query["id"] == "1";
+    ViewData["Title"] = isDbFirst? "DbFirst":"CodeFirst";
 }
 @section js{
     <script src="~/views/system/codetable.js"></script>
 }
 <div class="x_panel search_box">
     <div class="x_title">
-        <h2><i class="fa fa-newspaper-o"></i> 虚拟类配置</h2>
+        <h2><i class="fa fa-newspaper-o"></i> @ViewData["Title"] </h2>
         <div class="clearfix"></div>
     </div>
 
