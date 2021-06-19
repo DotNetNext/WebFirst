@@ -21,5 +21,6 @@ namespace SoEasyPlatform
         public string ProjentName { get; set; }
         public int Sort { get; set; }
         public bool? IsDeleted { get; set; }
+        public int ModelId { get; set; }
     }
 }
