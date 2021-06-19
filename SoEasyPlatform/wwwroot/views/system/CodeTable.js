@@ -57,12 +57,12 @@ txtDbIdName.onchange = function () {
 
 btnReset.$Reset();
 
-saveTemplateName1.$SelectTree({
-    isMultiple: false,
-    url: configs.url.GetTemp,
-    maxHeight: 180,
-    rootIsSelect: false
-})
+//saveTemplateName1.$SelectTree({
+//    isMultiple: false,
+//    url: configs.url.GetTemp,
+//    maxHeight: 180,
+//    rootIsSelect: false
+//})
 
 saveNetVersionName.$SelectTree({
     isMultiple: false,
