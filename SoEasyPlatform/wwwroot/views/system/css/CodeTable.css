@@ -1,2 +1,7 @@
-﻿body {
+﻿.table td, .table th {
+    padding: 2px 5px
+}
+.table-bordered td, .table-bordered th {
+    border-right: 0px solid #dee2e6;
+    border-left: 0px solid #dee2e6;
 }
