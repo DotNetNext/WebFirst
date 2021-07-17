@@ -1,11 +1,12 @@
 ﻿@page
 @{
     Layout = "~/Pages/Shared/_Layout.cshtml";
-    var isDbFirst =false;
-    ViewData["Title"] = isDbFirst? "DbFirst":"CodeFirst";
+    var isDbFirst = false;
+    ViewData["Title"] = isDbFirst ? "DbFirst" : "CodeFirst";
 }
 @section js{
     <script src="~/views/system/codetable.js"></script>
+    <link href="~/views/system/css/CodeTable.css" rel="stylesheet" />
 }
 <div class="x_panel search_box">
     <div class="x_title">
@@ -34,28 +35,13 @@
         </form>
     </div>
     <div class="x_content">
-        @if (isDbFirst)
-        {
-            <button id="btnAdd" type="button" class="btn btn-blue hide"><i class="fa fa-plus"></i> 添加</button>
-            <button id="btnDbFirstAdd" type="button" class="btn btn-blue "><i class="fa fa-cloud-upload"></i> 添加</button>
-            <button id="btnEdit" type="button" class="btn btn-blue"><i class="fa fa-edit"></i> 编辑</button>
-            <button id="btnDel" type="button" class="btn btn-blue"><i class="fa fa-close"></i> 删除</button>
-            <button id="btnTable" onclick="alert('未实现')" type="button" class="btn btn-blue hide"><i class="fa fa-toggle-right"></i> 同步表</button>
-            <button id="btnTable" onclick="alert('未实现')" type="button" class="btn btn-blue dbfirst"><i class="fa fa-toggle-right"></i>同步实体</button>
-            <button id="btnPath" type="button" class="btn btn-blue"><i class="fa fa-cogs"></i> 生成实体</button>
- 
-        }
-        else
-        {
-            <button id="btnAdd" type="button" class="btn btn-blue "><i class="fa fa-plus"></i> 添加</button>
-            <button id="btnDbFirstAdd" type="button" class="btn btn-blue hide"><i class="fa fa-cloud-upload"></i> 数据库导入</button>
-            <button id="btnEdit" type="button" class="btn btn-blue"><i class="fa fa-edit"></i> 编辑</button>
-            <button id="btnDel" type="button" class="btn btn-blue"><i class="fa fa-close"></i> 删除</button>
-            <button id="btnTable" onclick="alert('未实现')" type="button" class="btn btn-blue "><i class="fa fa-toggle-right"></i> 同步表</button>
-            <button id="btnTable" onclick="alert('未实现')" type="button" class="btn btn-blue hide"><i class="fa fa-toggle-right"></i> 同步实体</button>
-            <button id="btnPath" type="button" class="btn btn-blue"><i class="fa fa-cogs"></i> 生成实体</button>
-      
-        }
+        <button id="btnAdd" type="button" class="btn btn-dark "><i class="fa fa-plus"></i> 添加</button>
+        <button id="btnDbFirstAdd" type="button" class="btn btn-dark hide"><i class="fa fa-cloud-upload"></i> 数据库导入</button>
+        <button id="btnEdit" type="button" class="btn btn-dark"><i class="fa fa-edit"></i> 编辑</button>
+        <button id="btnDel" type="button" class="btn btn-dark"><i class="fa fa-close"></i> 删除</button>
+        <button id="btnTable" onclick="alert('未实现')" type="button" class="btn btn-dark "><i class="fa fa-toggle-right"></i> 同步表</button>
+        <button id="btnTable" onclick="alert('未实现')" type="button" class="btn btn-dark hide"><i class="fa fa-toggle-right"></i> 同步实体</button>
+        <button id="btnPath" type="button" class="btn btn-dark"><i class="fa fa-cogs"></i> 生成实体</button>
     </div>
     <div class="x_content">
         <table id="divGrid"></table>
