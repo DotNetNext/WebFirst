@@ -2,7 +2,7 @@
 @{
     Layout = "~/Pages/Shared/_Layout.cshtml";
     var isDbFirst = false;
-    ViewData["Title"] = isDbFirst ? "DbFirst" : "CodeFirst";
+    ViewData["Title"] =  "CodeFirst  建表建类";
 }
 @section js{
     <script src="~/views/system/codetable.js"></script>
@@ -39,7 +39,7 @@
         <button id="btnDbFirstAdd" type="button" class="btn btn-dark hide"><i class="fa fa-cloud-upload"></i> 数据库导入</button>
         <button id="btnEdit" type="button" class="btn btn-dark"><i class="fa fa-edit"></i> 编辑</button>
         <button id="btnDel" type="button" class="btn btn-dark"><i class="fa fa-close"></i> 删除</button>
-        <button id="btnTable" onclick="alert('未实现')" type="button" class="btn btn-dark "><i class="fa fa-toggle-right"></i> 同步表</button>
+        <button id="btnTable" onclick="alert('未实现')" type="button" class="btn btn-dark "><i class="fa fa-toggle-right"></i> 实体更新表</button>
         <button id="btnTable" onclick="alert('未实现')" type="button" class="btn btn-dark hide"><i class="fa fa-toggle-right"></i> 同步实体</button>
         <button id="btnPath" type="button" class="btn btn-dark"><i class="fa fa-cogs"></i> 生成实体</button>
     </div>
