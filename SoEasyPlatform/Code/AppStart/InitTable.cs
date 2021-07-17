@@ -387,7 +387,18 @@ namespace SoEasyPlatform
 
                         }
                      }
+                         ,
+                     new Menu()
+                     {
+                        MenuName="工作流",
+                        Icon="fa fa-bar-chart-o",
+                        Child=new List<Menu>()
+                        {
+                             new Menu{ MenuName="待定1" },
+                             new Menu{ MenuName="待定2" },
 
+                        }
+                     }
 
                 })
                 .AddSubList(it => it.Child.First().ParentId).ExecuteCommand();
