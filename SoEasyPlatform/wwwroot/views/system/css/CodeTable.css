@@ -5,7 +5,4 @@
     border-right: 0px solid #dee2e6;
     border-left: 0px solid #dee2e6;
 }
-.fixed-table-body {
-    height: 200px !important;
-    overflow-y: scroll !important;
-}
+ 

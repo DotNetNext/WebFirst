@@ -44,10 +44,10 @@ namespace SoEasyPlatform.Code.Apis
                     Id = SqlFunc.GetSelfAndAutoFill(it.Id),
                     DbName = db.Desc
                 })
-                .ToPageList(model.PageIndex, model.PageSize, ref count);
+                .ToPageList(model.PageIndex,30, ref count);
             result.Data.Rows = list;
             result.Data.Total = count;
-            result.Data.PageSize = 10;
+            result.Data.PageSize = 30;
             result.Data.PageNumber = model.PageIndex;
             result.IsSuccess = true;
             return result;

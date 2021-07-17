@@ -117,7 +117,7 @@ var SugarContext = {
         $(element).bootstrapTable(data);
         $(element).bootstrapTable("refresh");
 
-        $(element).bootstrapTable('resetView', { height: 600 });
+        $(element).bootstrapTable('resetView', { height: $(window).height()-420 });
 
         var totalpage = (data.total + data.pageSize - 1) / data.pageSize;
         if (data.total == 0 || data.total < data.pageSize) {
