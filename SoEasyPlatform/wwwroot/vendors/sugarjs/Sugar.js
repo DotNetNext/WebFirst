@@ -21,6 +21,7 @@
             CloseLoading: object.CloseLoading,
             QueryString: object.QueryString,
             AddClass: object.AddClass,
+            AddCss: object.AddCss,
             RemoveClass: object.RemoveClass
         };
         HTMLElement.prototype.$Fill = function (value) {
@@ -135,6 +136,13 @@
                 alert("请配置sugar.AddClass"); return;
             }
             sugarParameters.AddClass(element, className);
+        }
+        HTMLElement.prototype.$AddCss = function (css) {
+            var element = this;
+            if (sugarParameters.AddCss == null) {
+                alert("请配置sugar.AddCss"); return;
+            }
+            sugarParameters.AddCss(element, css);
         }
         HTMLElement.prototype.$RemoveClass = function (className) {
             var element = this;

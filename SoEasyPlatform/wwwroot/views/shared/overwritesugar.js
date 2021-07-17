@@ -273,6 +273,10 @@ var SugarContext = {
     RemoveClass: function (element, className)
     {
         $(element).removeClass(className);
+    },
+    AddCss: function (element, obj)
+    {
+        $(element).css(obj)
     }
 };
 $sugar.init(SugarContext);
