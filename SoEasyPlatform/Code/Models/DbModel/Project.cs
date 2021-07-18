@@ -20,7 +20,7 @@ namespace SoEasyPlatform
         [SugarColumn(IsNullable = true)]
         public string ProjentName { get; set; }
         public int Sort { get; set; }
-        public bool? IsDeleted { get; set; }
+        public bool IsDeleted { get; set; }
         public ModelType ModelId { get; set; }
     }
 
