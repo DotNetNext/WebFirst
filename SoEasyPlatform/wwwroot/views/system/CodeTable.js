@@ -9,6 +9,7 @@
         Import: "/CodeTableImport",
         GetNetVersion: _root + "system/getnetversion",
         GetTemp: _root + "system/getTemplate?type=1",
+        GetProjet: _root +"system/GetProject?typeId=0",
         GetNuget: _root + "system/getnuget",
         CreateFile: _root + "codetable/createfile",
     },
@@ -71,6 +72,13 @@ saveNetVersionName.$SelectTree({
     isMultiple: false,
     url: configs.url.GetNetVersion,
     maxHeight: 180,
+    rootIsSelect: false
+})
+
+saveProjectName.$SelectTree({
+    isMultiple: false,
+    url: configs.url.GetProjet,
+    maxHeight: 100,
     rootIsSelect: false
 })
 
@@ -260,7 +268,45 @@ btnPath.$Open("#divPath", {
             "请选择一条数据".$Alert();
         }
     },
-    btn: ['保存', '关闭']
+    btn: ['生成实体', '关闭']
+});
+
+btnProject.$Open("#divProject", {
+    title: configs.text.add,
+    w: 600,
+    h: 300,
+    validate: function () {
+        var gridInfo = divGrid.$GridInfo();
+        if (txtDbId.value == null || txtDbId.value == "" || txtDbId.value == "0") {
+            "请选择数据库".$Alert();
+            return false;
+        } else if (gridInfo.length == 0) {
+            "请选择记录".$Alert();
+            return false;
+        } else {
+            return true;
+        }
+    },
+    yes: function () {
+        var gridInfo = divGrid.$GridInfo();
+        if (gridInfo.length > 0) {
+            SaveTable1.value = JSON.stringify(gridInfo);
+            frmPathSave.$Form({
+                url: configs.url.CreateFile,
+                callback: function (msg) {
+                    if (msg.IsKeyValuePair) {
+                        $sugar.$Validate(msg.Data, "save");
+                    } else {
+                        $sugar.$Validate("clear");
+                        msg.Message.$Alert();
+                    }
+                }
+            });
+        } else {
+            "请选择一条数据".$Alert();
+        }
+    },
+    btn: ['生成实体', '关闭']
 });
 
  

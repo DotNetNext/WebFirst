@@ -21,6 +21,11 @@ namespace SoEasyPlatform
         public string ProjentName { get; set; }
         public int Sort { get; set; }
         public bool? IsDeleted { get; set; }
-        public int ModelId { get; set; }
+        public ModelType ModelId { get; set; }
+    }
+
+    public enum ModelType {
+         实体=0,
+         业务=1
     }
 }
