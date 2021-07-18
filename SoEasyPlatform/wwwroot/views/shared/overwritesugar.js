@@ -122,7 +122,7 @@ var SugarContext = {
         }
         else
         {
-            $(element).bootstrapTable('resetView', { height: $(window).height() - 420 });
+            $(element).bootstrapTable('resetView', { height: $(window).height() - 200 });
         }
         var totalpage = (data.total + data.pageSize - 1) / data.pageSize;
         if (data.total == 0 || data.total < data.pageSize) {
