@@ -41,7 +41,8 @@
         <button id="btnDel" type="button" class="btn btn-dark"><i class="fa fa-close"></i> 删除</button>
         <button id="btnTable" onclick="alert('未实现')" type="button" class="btn btn-dark "><i class="fa fa-toggle-right"></i> 实体更新表</button>
         <button id="btnTable" onclick="alert('未实现')" type="button" class="btn btn-dark hide"><i class="fa fa-toggle-right"></i> 同步实体</button>
-        <button id="btnPath" type="button" class="btn btn-dark"><i class="fa fa-cogs"></i> 生成实体</button>
+        <button id="btnPath" type="button" class="btn btn-dark"><i class="fa fa-cogs"></i> 手动生成</button>
+        <button id="btnProject" type="button" class="btn btn-dark"><i class="fa fa-cogs"></i> 方案生成</button>
     </div>
     <div class="x_content">
         <table id="divGrid"></table>
@@ -53,13 +54,6 @@
     <div id="divPath" style="display:none">
         <form id="frmPathSave" class="" action="" method="post" novalidate="">
             <div class="x_content" style="margin-top:20px">
-                <div class="field item form-group">
-                    <label class="col-form-label col-md-2 col-sm-2  label-align">方案<span class="required">*</span></label>
-                    <div class="col-md-10 col-sm-9">
-                        <input type="text" id="saveProjectName" name="ProjectName" placeholder="Select" autocomplete="off" />
-                        <input id="saveProjectId" type="hidden" value="0" name="ProjectId" />
-                    </div>
-                </div>
                 <div class="field item form-group">
                     <label class="col-form-label col-md-2 col-sm-2  label-align">模版<span class="required">*</span></label>
                     <div class="col-md-10 col-sm-9">
@@ -108,6 +102,19 @@
                         <input id="saveProjentName" name="ProjentName" type="text" class="form-control" placeholder="填写方案名称可以保当前操作，方便下次使用" />
                     </div>
                     <input id="SaveTable1" type="hidden" name="Tables" value="" />
+                </div>
+            </div>
+        </form>
+    </div>
+    <div id="divProject" style="display:none">
+        <form id="frmProjectSave" class="" action="" method="post" novalidate="">
+            <div class="x_content" style="margin-top:20px">
+                <div class="field item form-group">
+                    <label class="col-form-label col-md-2 col-sm-2  label-align">方案<span class="required">*</span></label>
+                    <div class="col-md-10 col-sm-9">
+                        <input type="text" id="saveProjectName" name="ProjectName" placeholder="Select" autocomplete="off" />
+                        <input id="saveProjectId" type="hidden" value="0" name="ProjectId" />
+                    </div>
                 </div>
             </div>
         </form>
