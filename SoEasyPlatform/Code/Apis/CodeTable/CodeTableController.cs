@@ -259,17 +259,25 @@ namespace SoEasyPlatform.Code.Apis
         public ActionResult<ApiResult<bool>> CreateFile([FromForm] ProjectViewModel model)
         {
             var result = new ApiResult<bool>();
-            var s=base.Db.Storageable(mapper.Map<Project>(model))
-                .SplitInsert(it=>!string.IsNullOrEmpty(it.Item.ProjentName))
-                .SplitError(it=>string.IsNullOrEmpty(model.Tables),"请选择表")
-                .SplitInsert(it => it.Item.Id> 0).ToStorage();
-            s.AsInsertable.ExecuteCommand();
-            s.AsUpdateable.ExecuteCommand();
-            if (model.Id > 0) 
+            if (model.ProjectId > 0) 
             {
                 var tables = model.Tables;
                 model =mapper.Map<ProjectViewModel>(ProjectDb.GetSingle(it => it.Id == model.Id));
                 model.Tables = tables;
+            }
+            else
+            {
+                var s = base.Db.Storageable(mapper.Map<Project>(model))
+                    .SplitInsert(it => !string.IsNullOrEmpty(it.Item.ProjentName))
+                    .SplitError(it => string.IsNullOrEmpty(model.Tables), "请选择表")
+                    .SplitError(it =>it.Any(y=>y.ProjentName==it.Item.ProjentName&&y.ModelId==ModelType.实体), "方前方案已存在请换个名字")
+                    .SplitInsert(it => it.Item.Id > 0).ToStorage();
+                s.AsInsertable.ExecuteCommand();
+                s.AsUpdateable.ExecuteCommand();
+                if (s.ErrorList.Any()) 
+                {
+                    throw new Exception(s.ErrorList.First().StorageMessage);
+                }
             }
             var template = TemplateDb.GetById(model.TemplateId1).Content;
             var tableids = Newtonsoft.Json.JsonConvert.DeserializeObject<List<CodeTypeGridViewModel>>(model.Tables).Select(it=>it.Id).ToList();
@@ -282,8 +290,8 @@ namespace SoEasyPlatform.Code.Apis
                 var fileName = FileSugar.MergeUrl(model.Path, item.ClassName + "." + model.FileSuffix.TrimStart('.'));
                  FileSugar.CreateFile(fileName, html); 
             }
-            result.IsSuccess = s.ErrorList.Count==0;
-            result.Message = result.IsSuccess ? "生成成功" : s.ErrorList.First().StorageMessage;
+            result.IsSuccess = true;
+            result.Message = "生成生功";
             return result;
         }
         #endregion

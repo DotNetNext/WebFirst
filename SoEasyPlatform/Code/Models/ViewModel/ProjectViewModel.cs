@@ -24,5 +24,6 @@ namespace SoEasyPlatform
         public int? Sort { get; set; }
         public bool? IsDeleted { get; set; }
         public string Tables { get; set; }
+        public int? ProjectId { get; set; }
     }
 }
