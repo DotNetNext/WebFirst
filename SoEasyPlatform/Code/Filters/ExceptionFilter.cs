@@ -23,6 +23,7 @@ namespace SoEasyPlatform
             context.Result = new JsonResult(new ApiResult<string>()
             {
                 Data = context.Exception.Message,
+                Message=context.Exception.Message,
                 IsSuccess = false 
             });
         }
