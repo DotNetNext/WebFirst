@@ -3,7 +3,7 @@
         Get: _root + "Project/getProjectlist",
         Del: _root + "Project/deleteProject",
         SaveSystem: _root + "Project/saveProject",
-        getNetVersion: _root + "system/getgoodnetversion"
+        GetType: _root + "system/GetTemplateType"
     },
     text:
     {
@@ -35,16 +35,16 @@ btnSearch.$Button({
 });
 
 
-saveNetVersionName.$SelectTree({
+saveModelIdName.$SelectTree({
     isMultiple: false,
-    url: configs.url.getNetVersion,
+    url: configs.url.GetType,
     maxHeight: 180,
     rootIsSelect: false
 })
 
-txtNetVersionName.$SelectTree({
+txtModelIdName.$SelectTree({
     isMultiple: false,
-    url: configs.url.getNetVersion,
+    url: configs.url.GetType,
     maxHeight: 180,
     width: 400,
     rootIsSelect: true
