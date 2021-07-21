@@ -16,6 +16,8 @@
     text:
     {
         add: "创建虚拟类",
+        addPath: "生成配置",
+        addProject: "方案生成",
         addDbFirst: "导入虚拟类",
         edit: "修改虚拟类"
     },
@@ -234,7 +236,7 @@ btnDel.$Confirm({
 })
 
 btnPath.$Open("#divPath", {
-    title: configs.text.add,
+    title: configs.text.addPath,
     w: 600,
     h: 480,
     validate: function () {
@@ -272,7 +274,7 @@ btnPath.$Open("#divPath", {
 });
 
 btnProject.$Open("#divProject", {
-    title: configs.text.add,
+    title: configs.text.addProject,
     w: 600,
     h: 300,
     validate: function () {
