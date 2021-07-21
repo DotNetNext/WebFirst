@@ -272,7 +272,7 @@ namespace SoEasyPlatform.Code.Apis
                 var s = base.Db.Storageable(mapper.Map<Project>(model))
                     .SplitInsert(it => !string.IsNullOrEmpty(it.Item.ProjentName))
                     .SplitError(it => string.IsNullOrEmpty(model.Tables), "请选择表")
-                    .SplitError(it =>Db.Queryable<Project>().Any(s=>s.ProjentName==model.ProjentName&&s.ModelId==ModelType.实体), "方前方案已存在请换个名字")
+                    .SplitError(it =>Db.Queryable<Project>().Any(s=>s.ProjentName==model.ProjentName&&s.TemplateId1==model.TemplateId1), "方前方案已存在请换个名字")
                     .SplitInsert(it => it.Item.Id > 0).ToStorage();
                 s.AsInsertable.ExecuteCommand();
                 s.AsUpdateable.ExecuteCommand();
