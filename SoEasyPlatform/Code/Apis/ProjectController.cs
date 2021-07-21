@@ -30,7 +30,7 @@ namespace SoEasyPlatform.Code.Apis
             int count = 0;
             var list = ProjectDb.AsSugarClient().Queryable<Project>()
                 .WhereIF(!string.IsNullOrEmpty(model.ProjentName), it => it.ProjentName.Contains(model.ProjentName))
-                .WhereIF(model.ModelId !=null, it => it.ModelId == model.ModelId)
+                .WhereIF(model.ModelId >0, it => it.ModelId == model.ModelId)
                 .OrderBy(it => new { it.ProjentName })
                 .ToPageList(model.PageIndex, model.PageSize, ref count);
             result.Data.Rows = list.Select(it => new ProjectGridViewModel() { }).ToList();

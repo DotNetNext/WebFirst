@@ -267,6 +267,8 @@ namespace SoEasyPlatform.Code.Apis
             }
             else
             {
+                var tempInfo=TemplateDb.GetById(model.TemplateId1);
+                model.ModelId = tempInfo.TemplateTypeId;
                 var s = base.Db.Storageable(mapper.Map<Project>(model))
                     .SplitInsert(it => !string.IsNullOrEmpty(it.Item.ProjentName))
                     .SplitError(it => string.IsNullOrEmpty(model.Tables), "请选择表")
