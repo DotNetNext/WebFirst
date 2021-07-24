@@ -25,7 +25,7 @@ namespace SoEasyPlatform
         public bool? IsDeleted { get; set; }
         public string Tables { get; set; }
         public int? ProjectId { get; set; }
-        public int ModelId { get;  set; }
+        public int? ModelId { get;  set; }
     }
     public class ProjectGridViewModel  
     {

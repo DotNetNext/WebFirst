@@ -32,8 +32,20 @@ namespace SoEasyPlatform.Code.Apis
                 .WhereIF(!string.IsNullOrEmpty(model.ProjentName), it => it.ProjentName.Contains(model.ProjentName))
                 .WhereIF(model.ModelId >0, it => it.ModelId == model.ModelId)
                 .OrderBy(it => new { it.ProjentName })
+                .Select(it=> new ProjectGridViewModel
+                {
+                  FileSuffix=it.FileSuffix,
+                  Id=it.Id,
+                  LibraryName=it.LibraryName,
+                  ModelId=it.ModelId.GetConfigValue<TemplateType>(),
+                  NetVersion=it.NetVersion,
+                  Nuget=it.Nuget,
+                  Path=it.Path,
+                  ProjentName=it.ProjentName,
+                  TemplateId1=it.TemplateId1.GetConfigValue<Template>(),
+                })
                 .ToPageList(model.PageIndex, model.PageSize, ref count);
-            result.Data.Rows = list.Select(it => new ProjectGridViewModel() { }).ToList();
+            result.Data.Rows = list;
             result.Data.Total = count;
             result.Data.PageSize = model.PageSize;
             result.Data.PageNumber = model.PageIndex;

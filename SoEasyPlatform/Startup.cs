@@ -34,6 +34,14 @@ namespace SoEasyPlatform
                 IsAutoCloseConnection = true,
                 ConnectionString = "DataSource=" + AppContext.BaseDirectory + @"\database\sqlite.db"
             } );
+            services.ConfigurationSugar(db =>
+            {
+                if (!db.ConfigQuery.Any()) 
+                {
+                    db.ConfigQuery.SetTable<Template>(it => it.Id, it => it.Title);
+                    db.ConfigQuery.SetTable<TemplateType>(it => it.Id, it => it.Name);
+                }
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
