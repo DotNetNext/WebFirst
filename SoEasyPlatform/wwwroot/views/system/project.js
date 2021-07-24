@@ -12,7 +12,7 @@
     },
     w: {
         w: 600,
-        h: 330
+        h:450
     }
 };
 divFrom.$Form({
@@ -34,13 +34,7 @@ btnSearch.$Button({
     }
 });
 
-
-saveModelIdName.$SelectTree({
-    isMultiple: false,
-    url: configs.url.GetType,
-    maxHeight: 180,
-    rootIsSelect: false
-})
+ 
 
 txtModelIdName.$SelectTree({
     isMultiple: false,

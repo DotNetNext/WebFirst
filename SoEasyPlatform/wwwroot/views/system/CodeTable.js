@@ -16,7 +16,7 @@
     text:
     {
         add: "创建虚拟类",
-        addPath: "生成配置",
+        addPath: "手动生成",
         addProject: "方案生成",
         addDbFirst: "导入虚拟类",
         edit: "修改虚拟类"
