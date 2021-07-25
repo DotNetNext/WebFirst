@@ -285,3 +285,14 @@ var SugarContext = {
     }
 };
 $sugar.init(SugarContext);
+$(function () {
+    $.ajax({
+        beforeSend: function () {
+            SugarContext.Loading(document.getElementsByTagName("body")[0])
+        },
+        complete: function () {
+            SugarContext.CloseLoading(document.getElementsByTagName("body")[0])
+        }
+        // ...
+    });
+})
