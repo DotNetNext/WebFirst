@@ -36,10 +36,8 @@ namespace SoEasyPlatform.Code.Apis
                 {
                   FileSuffix=it.FileSuffix,
                   Id=it.Id,
-                  LibraryName=it.LibraryName,
+                  FileInfo=it.FileInfo,
                   ModelId=it.ModelId.GetConfigValue<TemplateType>(),
-                  NetVersion=it.NetVersion,
-                  Nuget=it.Nuget,
                   Path=it.Path,
                   ProjentName=it.ProjentName,
                   TemplateId1=it.TemplateId1.GetConfigValue<Template>(),

@@ -18,6 +18,7 @@ namespace SoEasyPlatform
         public bool IsDeleted { get; set; }
         public int ModelId { get; set; }
         public string FileSuffix { get;  set; }
+        public string ProjentName { get;  set; }
     }
 
  

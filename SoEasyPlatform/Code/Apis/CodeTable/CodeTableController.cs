@@ -300,9 +300,9 @@ namespace SoEasyPlatform.Code.Apis
         {
             var result = new ApiResult<bool>();
             var tables = model.Tables;
-            model = mapper.Map<ProjectViewModel2>(ProjectDb.GetSingle(it => it.Id == model.ProjectId));
+            var project = ProjectDb.GetSingle(it => it.Id == model.ProjectId);
             model.Tables = tables;
-            var template = TemplateDb.GetById(model.TemplateId1).Content;
+            var template = TemplateDb.GetById(project.TemplateId1).Content;
             var tableids = Newtonsoft.Json.JsonConvert.DeserializeObject<List<CodeTypeGridViewModel>>(model.Tables).Select(it => it.Id).ToList();
             var tableList = CodeTableDb.GetList(it => tableids.Contains(it.Id));
             List<EntitiesGen> genList = GetGenList(tableList, CodeTypeDb.GetList());
@@ -310,7 +310,7 @@ namespace SoEasyPlatform.Code.Apis
             foreach (var item in genList)
             {
                 var html = TemplateHelper.GetTemplateValue(key, template, item);
-                var fileName = FileSugar.MergeUrl(model.Path, item.ClassName + "." + model.FileSuffix.TrimStart('.'));
+                var fileName = FileSugar.MergeUrl(project.Path, item.ClassName + "." + project.FileSuffix.TrimStart('.'));
                 FileSugar.CreateFile(fileName, html);
             }
             result.IsSuccess = true;
