@@ -11,7 +11,8 @@
         GetProjet: _root + "system/GetProject?typeId=1", 
         GetFileInfo: _root + "system/getFileInfo",
         CreateFile: _root + "codetable/createfile",
-        CreateFile2: _root + "codetable/CreateFileByProjectId"
+        CreateFile2: _root + "codetable/CreateFileByProjectId",
+        GetRazorModel: _root +"FileInfo/GetRazorModel"
     },
     text:
     {
@@ -89,7 +90,26 @@ saveFileInfoName.$SelectTree({
 })
 
 saveFileInfoName.onchange = function () {
-    alert(this.value);
+    var value = this.value;
+    if (value != null && value != "") {
+        var ajaxParam = {
+            data: { id: value },
+            callback: function (msg) {
+                if (msg.IsSuccess)
+                {
+                    saveFileModel.value = msg.Data;
+                }
+                else {
+                    msg.Data.$Alert();
+                }
+            }
+        };
+        configs.url.GetRazorModel.$Ajax(ajaxParam);
+    }
+    else
+    {
+        saveFileModel.value = "";
+    }
  } 
  
 

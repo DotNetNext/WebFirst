@@ -88,6 +88,28 @@ namespace SoEasyPlatform.Code.Apis
             return result;
         }
 
+        
+
+        /// <summary>
+        /// 获取填充模版
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("GetRazorModel")]
+        public ActionResult<ApiResult<string>> GetRazorModel([FromForm]string Id)
+        {
+            var result = new ApiResult<string>();
+            result.Data += "[";
+            if (!string.IsNullOrEmpty(Id))
+            {
+                var ids = Id.Split(',').ToArray();
+                var jsons= FileInfoDb.AsQueryable().Where(it => ids.Contains(it.Name)).Select(it=>it.Json).ToList();
+                result.Data += string.Join(",", jsons);
+            }
+            result.IsSuccess = true;
+            result.Data += "]";
+            return result;
+        }
 
         /// <summary>
         /// 验证参数
