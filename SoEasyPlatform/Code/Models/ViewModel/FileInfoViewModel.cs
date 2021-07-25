@@ -10,6 +10,7 @@ namespace SoEasyPlatform
         [PropertyName("编号")]
         public int? Id { get; set; }
         [ValidateReduired()]
+        [ValidateUnique("FileInfo","name","id")]
         [PropertyName("名称")]
         public string Name { get; set; }
         [ValidateReduired()]

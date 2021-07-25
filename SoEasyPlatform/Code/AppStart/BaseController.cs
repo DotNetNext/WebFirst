@@ -41,7 +41,7 @@ namespace SoEasyPlatform
             if (validateItem != null && validateItem.Value.Value is ValidateUnique)
             {
                 var unItem = (validateItem.Value.Value as ValidateUnique);
-                var queryable = MenuDb.AsQueryable().AS(unItem.TableName).Where(new List<IConditionalModel>() {
+                var queryable = Db.Queryable<object>().AS(unItem.TableName).Where(new List<IConditionalModel>() {
                     new ConditionalModel(){ FieldName=unItem.DbColumnName,FieldValue=unItem.Value +""}
                 });
                 if (unItem.PrimaryKey != null && primaryValue != null && primaryValue.ToString() != "0")

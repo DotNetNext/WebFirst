@@ -58,13 +58,7 @@ namespace SoEasyPlatform.Code.Apis
             model.Name = model.Name.Trim();
             ValidateFileInfo(saveObject);
             saveObject.IsDeleted = false;
-            var x=Db.Storageable(saveObject)
-                .SplitError(i=>FileInfoDb.IsAny(it=>it.Name.Trim()==model.Name.Trim()),"名称已存在")//插入验证
-                .SplitError(i => FileInfoDb.IsAny(it => it.Name.Trim() == model.Name.Trim()&&it.Id==i.Item.Id), "名称已存在")//编辑验证
-                .Saveable()//存在更新，不存在插入
-                .ToStorage();
-            if (x.ErrorList.Any())
-                throw new Exception(x.ErrorList.First().StorageMessage);
+            var x=Db.Storageable(saveObject).ToStorage();
             x.AsUpdateable.ExecuteCommand();
             x.AsInsertable.ExecuteCommand();
             result.Data =x.InsertList.Any()? Pubconst.MESSAGEADDSUCCESS:Pubconst.MESSAGESAVESUCCESS;
