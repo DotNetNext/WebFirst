@@ -15,6 +15,7 @@ namespace SoEasyPlatform
         [ValidateReduired()]
         [PropertyName("文件模版")]
         public string Content { get; set; }
+        [ValidateReduired()]
         [PropertyName("填充模版")]
         public string Json { get; set; }
         [ValidateReduired()]
