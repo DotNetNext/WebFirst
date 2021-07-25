@@ -5049,5 +5049,20 @@ input.sugar-tip {
     left: 5px;
 }
 .none {
-    display:none
-} 
+    display:none !important
+}
+::-webkit-input-placeholder { /* WebKit browsers */
+    color: #ccc !important;
+}
+
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #ccc !important;
+}
+
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #ccc !important;
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color: #ccc !important;
+}

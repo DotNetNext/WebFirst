@@ -85,7 +85,7 @@ saveFileInfoName.$SelectTree({
     isMultiple: false,
     url: configs.url.GetFileInfo,
     maxHeight: 180,
-    rootIsSelect: false
+    rootIsSelect: true
 })
 
 btnAdd.$Open("#divOpen", {
