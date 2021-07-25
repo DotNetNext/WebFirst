@@ -42,6 +42,14 @@ namespace SoEasyPlatform.Code.Apis
                   ProjentName=it.ProjentName,
                   TemplateId1=it.TemplateId1.GetConfigValue<Template>(),
                 })
+                .Mapper(it=> {
+                    if(!string.IsNullOrEmpty(it.FileInfo))
+                    {
+                        var ids = it.FileInfo.Split(',');
+                        var name = Db.Queryable<FileInfo>().In(ids).Select(it => it.Name).ToList();
+                        it.FileInfo = string.Join(",", name);
+                    }
+                })
                 .ToPageList(model.PageIndex, model.PageSize, ref count);
             result.Data.Rows = list;
             result.Data.Total = count;

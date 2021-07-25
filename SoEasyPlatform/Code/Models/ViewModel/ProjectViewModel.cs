@@ -37,7 +37,7 @@ namespace SoEasyPlatform
         public int? Id { get; set; }
         [DisplayName("方案名")]
         public string ProjentName { get; set; }
-        [DisplayName("文件")]
+        [DisplayName("追加文件")]
         public string FileInfo { get; set; }
         [DisplayName("分类")]
         public string ModelId { get; set; }
