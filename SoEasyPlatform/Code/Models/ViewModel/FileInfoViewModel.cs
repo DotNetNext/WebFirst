@@ -29,6 +29,8 @@ namespace SoEasyPlatform
         [DisplayName("名称")]
 
         public string Name { get; set; }
+        [DisplayNone]
+        public string Content { get; set; }
         [DisplayName("填充模版")]
         public string Json { get; set; }
         [DisplayName("文件后缀")]
