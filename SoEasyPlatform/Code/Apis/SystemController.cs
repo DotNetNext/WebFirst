@@ -97,7 +97,7 @@ namespace SoEasyPlatform.Code.Apis
 
         [HttpPost]
         [AuthorizeFilter]
-        [Route("getnuget")]
+        [Route("GetFileInfo")]
         public ActionResult<ApiResult<List<TreeModel>>> GetFileInfo()
         {
             List<TreeModel> trees = new List<TreeModel>();
