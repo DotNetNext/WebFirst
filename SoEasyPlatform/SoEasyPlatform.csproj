@@ -20,16 +20,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="wwwroot\template\Entity01.txt" />
-    <None Remove="wwwroot\template\NET4.txt" />
-    <None Remove="wwwroot\template\NET45.txt" />
-    <None Remove="wwwroot\template\NET5.txt" />
-    <None Remove="wwwroot\template\NETCORE31.txt" />
     <None Remove="WebFirst.exe" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="wwwroot\template\Entity01.txt" />
     <Content Include="WebFirst.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -61,18 +55,6 @@
     <Content Update="wwwroot\favicon.ico">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Update="wwwroot\template\NET4.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Update="wwwroot\template\NET45.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Update="wwwroot\template\NET5.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Update="wwwroot\template\NETCORE31.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 

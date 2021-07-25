@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>@Model.name</RootNamespace>
+    <AssemblyName>@Model.name</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+   @foreach(var item in  Model.Nuget)
+    {
+         <PackageReference Include="@item.name" Version="@item.version" />
+    }
+  </ItemGroup>
+</Project>
