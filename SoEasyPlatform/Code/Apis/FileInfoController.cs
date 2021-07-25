@@ -51,6 +51,7 @@ namespace SoEasyPlatform.Code.Apis
         [Route("saveFileInfo")]
         public ActionResult<ApiResult<string>> SaveFileInfo([FromForm] FileInfoViewModel model)
         {
+            CheckInitData(model.Id);
             JsonResult errorResult = base.ValidateModel(model.Id);
             if (errorResult != null) return errorResult;
             var saveObject = base.mapper.Map<FileInfo>(model);
@@ -80,6 +81,7 @@ namespace SoEasyPlatform.Code.Apis
                 var exp = Expressionable.Create<FileInfo>();
                 foreach (var item in list)
                 {
+                    CheckInitData(item.Id);
                     exp.Or(it => it.Id == item.Id);
                 }
                 FileInfoDb.Update(it => new FileInfo() { IsDeleted = true }, exp.ToExpression());
@@ -88,7 +90,6 @@ namespace SoEasyPlatform.Code.Apis
             return result;
         }
 
-        
 
         /// <summary>
         /// 获取填充模版
@@ -110,6 +111,16 @@ namespace SoEasyPlatform.Code.Apis
             result.Data += "]";
             return result;
         }
+
+
+        private void CheckInitData(int? id)
+        {
+            if (id == 1)
+            {
+                throw new Exception("初始化数据无法修改");
+            }
+        }
+
 
         /// <summary>
         /// 验证参数
