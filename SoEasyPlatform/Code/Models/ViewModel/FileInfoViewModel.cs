@@ -22,12 +22,13 @@ namespace SoEasyPlatform
     public class FileInfoGridViewModel
     {
         [DisplayName("编号")]
-        public int? Id { get; set; }
+        public int Id { get; set; }
         [DisplayName("名称")]
+
         public string Name { get; set; }
-        [DisplayName("版本")]
-        public string Version { get; set; }
-        [DisplayName(".NET版本")]
-        public string NetVersionName { get; set; }
+        [DisplayName("填充模版")]
+        public string Json { get; set; }
+        [DisplayName("文件后缀")]
+        public string Suffix { get; set; }
     }
 }
