@@ -15,6 +15,7 @@ namespace SoEasyPlatform
         [PropertyName("路径")]
         public string Path { get; set; }
         public string FileInfo { get; set; }
+        public string FileModel { get; set; }
         [ValidateReduired()]
         [PropertyName("文件后缀")]
         public string FileSuffix{get;set;}
