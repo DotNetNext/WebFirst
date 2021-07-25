@@ -14,10 +14,7 @@ namespace SoEasyPlatform
         [ValidateReduired()]
         [PropertyName("路径")]
         public string Path { get; set; }
-        public string NetVersion { get; set; }
-        public string LibraryName { get; set; }
-        public string Nuget { get; set; }
-        public string ProjentName { get; set; }
+        public string FileInfo { get; set; }
         [ValidateReduired()]
         [PropertyName("文件后缀")]
         public string FileSuffix{get;set;}
@@ -36,10 +33,7 @@ namespace SoEasyPlatform
  
         [PropertyName("路径")]
         public string Path { get; set; }
-        public string NetVersion { get; set; }
-        public string LibraryName { get; set; }
-        public string Nuget { get; set; }
-        public string ProjentName { get; set; }
+        public string FileInfo { get; set; }
     
         [PropertyName("文件后缀")]
         public string FileSuffix { get; set; }
@@ -55,18 +49,14 @@ namespace SoEasyPlatform
         public int? Id { get; set; }
         [DisplayName("方案名")]
         public string ProjentName { get; set; }
+        [DisplayName("文件")]
+        public string FileInfo { get; set; }
         [DisplayName("分类")]
         public string ModelId { get; set; }
         [DisplayName("模版")]
         public string TemplateId1 { get; set; }
         [DisplayName("路径")]
         public string Path { get; set; }
-        [DisplayName("路径")]
-        public string NetVersion { get; set; }
-        [DisplayName("类库")]
-        public string LibraryName { get; set; }
-        [DisplayName("Nuget")]
-        public string Nuget { get; set; }
         [DisplayName("文件后缀")]
         public string FileSuffix { get; set; }
     }

@@ -7,10 +7,9 @@
         Save: _root + "codetable/savecodetable",
         SaveImport: _root + "codetable/savecodetableimport",
         Import: "/CodeTableImport",
-        GetNetVersion: _root + "system/getnetversion",
         GetTemp: _root + "system/getTemplate?type=1",
         GetProjet: _root + "system/GetProject?typeId=1", 
-        GetNuget: _root + "system/getnuget",
+        GetFileInfo: _root + "system/getFileInfo",
         CreateFile: _root + "codetable/createfile",
         CreateFile2: _root + "codetable/CreateFileByProjectId"
     },
@@ -71,12 +70,7 @@ saveTemplateName1.$SelectTree({
     rootIsSelect: false
 })
 
-saveNetVersionName.$SelectTree({
-    isMultiple: false,
-    url: configs.url.GetNetVersion,
-    maxHeight: 180,
-    rootIsSelect: false
-})
+ 
 
 saveProjectName.$SelectTree({
     isMultiple: false,
@@ -85,18 +79,11 @@ saveProjectName.$SelectTree({
     rootIsSelect: false
 })
 
-saveNetVersionName.onchange = function () {
-    if (saveNetVersion.value <= 1) {
-        divLib.$AddClass("none")
-    }
-    else {
-        divLib.$RemoveClass("none")
-    }
-}
+ 
 
-saveNugetName.$SelectTree({
+saveFileInfoName.$SelectTree({
     isMultiple: false,
-    url: configs.url.GetNuget,
+    url: configs.url.GetFileInfo,
     maxHeight: 180,
     rootIsSelect: false
 })

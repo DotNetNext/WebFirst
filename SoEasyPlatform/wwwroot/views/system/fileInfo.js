@@ -1,14 +1,14 @@
 ﻿var configs = {
     url: {
-        Get: _root + "nuget/getnugetlist",
-        Del: _root + "nuget/deletenuget",
-        SaveSystem: _root + "nuget/savenuget",
+        Get: _root + "fileinfo/getfileinfolist",
+        Del: _root + "fileinfo/deletefileinfo",
+        SaveSystem: _root + "fileinfo/savefileinfo",
         getNetVersion: _root +"system/getgoodnetversion"
     },
     text:
     {
-        add: "添加Nuget",
-        edit:"修改Nuget"
+        add: "添加文件",
+        edit:"修改文件"
     },
     w: {
         w: 600,

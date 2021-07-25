@@ -1,10 +1,10 @@
 ﻿@page
 @{
-    ViewData["Title"] = "Nuget管理";
+    ViewData["Title"] = "文件管理";
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 @section js{
-    <script src="~/views/system/nuget.js"></script>
+    <script src="~/views/system/fileInfo.js"></script>
 }
 <div class="x_panel search_box">
     <div class="x_title">
@@ -17,11 +17,6 @@
             <div class="form-group">
                 <label for="ex3" class="col-form-label">名称：</label>
                 <input type="text" id="Name" name="Name" class="form-control input" placeholder=" ">
-            </div>
-            <div class="form-group" style="width:500px !important">
-                <label for="ex3" class="col-form-label">.Net版本：</label>
-                <input type="text" id="txtNetVersionName" name="NetVersionName" placeholder="Select" autocomplete="off" />
-                <input id="txtNetVersion" type="hidden" value="0" name="NetVersion" />
             </div>
             <button id="btnSearch" type="button" class="btn btn-search"><i class="fa fa-search"></i>搜索</button>
             <button id="btnReset" type="button" class="btn btn-green"><i class="fa fa-refresh"></i>重置</button>
