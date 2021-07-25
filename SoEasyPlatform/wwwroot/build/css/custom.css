@@ -5066,3 +5066,6 @@ input.sugar-tip {
 :-ms-input-placeholder { /* Internet Explorer 10+ */
     color: #ccc !important;
 }
+.required {
+    color:red
+}
