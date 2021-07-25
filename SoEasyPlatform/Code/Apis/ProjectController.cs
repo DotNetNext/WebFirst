@@ -64,20 +64,11 @@ namespace SoEasyPlatform.Code.Apis
             if (errorResult != null) return errorResult;
             var saveObject = base.mapper.Map<Project>(model);
             var result = new ApiResult<string>();
-            if (saveObject.Id == 0)
-            {
-                saveObject.IsDeleted = false;
-                ProjectDb.Insert(saveObject);
-                result.IsSuccess = true;
-                result.Data = Pubconst.MESSAGEADDSUCCESS;
-            }
-            else
-            {
-                saveObject.IsDeleted = false;
-                ProjectDb.Update(saveObject);
-                result.IsSuccess = true;
-                result.Data = Pubconst.MESSAGEADDSUCCESS;
-            }
+            saveObject.IsDeleted = false;
+            var x = Db.Storageable(saveObject).ToStorage();
+            x.AsUpdateable.ExecuteCommand();
+            x.AsInsertable.ExecuteCommand();
+            result.Data = x.InsertList.Any() ? Pubconst.MESSAGEADDSUCCESS : Pubconst.MESSAGESAVESUCCESS;
             return result;
         }
 

@@ -88,6 +88,11 @@ saveFileInfoName.$SelectTree({
     rootIsSelect: false
 })
 
+saveFileInfoName.onchange = function () {
+    alert(this.value);
+ } 
+ 
+
 btnAdd.$Open("#divOpen", {
     title: configs.text.add,
     w: configs.w.w,
