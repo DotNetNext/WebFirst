@@ -316,7 +316,7 @@ namespace SoEasyPlatform
                              new Menu{ MenuName="配置Web ×" ,Url="/Web"},
                              new Menu{ MenuName="模版管理 √" , Url="/Template"} ,
                              new Menu{ MenuName="方案管理 √" , Url="/Project"} ,
-                             new Menu{ MenuName="Nuget管理 √" , Url="/Nuget"} ,
+                             new Menu{ MenuName="文件管理 √" , Url="/FileInfo"} ,
                              new Menu{ MenuName="解决方案 ×" , Url="/Solution"},
                              new Menu{ MenuName="数据类型 √" , Url="/CodeType"},
                         }
