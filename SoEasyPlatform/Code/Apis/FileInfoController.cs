@@ -10,6 +10,7 @@ using SqlSugar;
 namespace SoEasyPlatform.Code.Apis
 {
     [Route("api/[controller]")]
+    [ExceptionFilter]
     [ApiController]
     public class FileInfoController : BaseController
     {
@@ -54,20 +55,12 @@ namespace SoEasyPlatform.Code.Apis
             if (errorResult != null) return errorResult;
             var saveObject = base.mapper.Map<FileInfo>(model);
             var result = new ApiResult<string>();
-            if (saveObject.Id == 0)
-            {
-                saveObject.IsDeleted = false;
-                FileInfoDb.Insert(saveObject);
-                result.IsSuccess = true;
-                result.Data = Pubconst.MESSAGEADDSUCCESS;
-            }
-            else
-            {
-                saveObject.IsDeleted = false;
-                FileInfoDb.Update(saveObject);
-                result.IsSuccess = true;
-                result.Data = Pubconst.MESSAGEADDSUCCESS;
-            }
+            ValidateFileInfo(saveObject);
+            saveObject.IsDeleted = false;
+            var x=Db.Storageable(saveObject).ToStorage();
+            x.AsUpdateable.ExecuteCommand();
+            x.AsInsertable.ExecuteCommand();
+            result.Data =x.InsertList.Any()? Pubconst.MESSAGEADDSUCCESS:Pubconst.MESSAGESAVESUCCESS;
             return result;
         }
 
@@ -92,6 +85,24 @@ namespace SoEasyPlatform.Code.Apis
             }
             result.IsSuccess = true;
             return result;
+        }
+
+
+        /// <summary>
+        /// 验证参数
+        /// </summary>
+        /// <param name="saveObject"></param>
+        private void ValidateFileInfo(FileInfo saveObject)
+        {
+            try
+            {
+               var data= Newtonsoft.Json.JsonConvert.DeserializeObject<dynamic>(saveObject.Json).name;
+            }
+            catch (Exception)
+            {
+
+                throw  new Exception("格式错误,在下面正确格式上添加节点： <br>  { name:\"文件名\" }");
+            }
         }
     }
 }
