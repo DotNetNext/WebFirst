@@ -82,10 +82,10 @@ saveProjectName.$SelectTree({
  
 
 saveFileInfoName.$SelectTree({
-    isMultiple: false,
+    isMultiple: true,
     url: configs.url.GetFileInfo,
     maxHeight: 180,
-    rootIsSelect: true
+    rootIsSelect: false
 })
 
 btnAdd.$Open("#divOpen", {
