@@ -11,9 +11,9 @@ namespace SoEasyPlatform.Code.Apis
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class NugetController : BaseController
+    public class FileInfoController : BaseController
     {
-        public NugetController(IMapper mapper) : base(mapper)
+        public FileInfoController(IMapper mapper) : base(mapper)
         {
 
         }
@@ -22,24 +22,16 @@ namespace SoEasyPlatform.Code.Apis
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        [Route("getnugetlist")]
-        public ActionResult<ApiResult<TableModel<NugetGridViewModel>>> GetNugetList([FromForm] NugetViewModel model)
+        [Route("getFileInfolist")]
+        public ActionResult<ApiResult<TableModel<FileInfoGridViewModel>>> GetFileInfoList([FromForm] FileInfoViewModel model)
         {
-            var result = new ApiResult<TableModel<NugetGridViewModel>>();
-            result.Data = new TableModel<NugetGridViewModel>();
+            var result = new ApiResult<TableModel<FileInfoGridViewModel>>();
+            result.Data = new TableModel<FileInfoGridViewModel>();
             int count = 0;
-            var list = NugetDb.AsSugarClient().Queryable<Nuget, NetVersion>(
-                 (it, nvs) => new  JoinQueryInfos(
-                       JoinType.Left,it.NetVersion==nvs.Id
-                     )
-                )
+            var list = Db.Queryable<FileInfo>()
                 .WhereIF(!string.IsNullOrEmpty(model.Name), it => it.Name.Contains(model.Name))
-                .WhereIF(model.NetVersion>0, it => it.NetVersion==model.NetVersion.Value)
-                .OrderBy(it=>new { it.Name,it.Version})
-                .Select((it,nvs)=>new NugetGridViewModel() { 
-                     Id= it.Id.SelectAll(),
-                     NetVersionName=nvs.Name
-                 })
+                .OrderBy(it=>new { it.Name})
+                .Select<FileInfoGridViewModel>()
                 .ToPageList(model.PageIndex, model.PageSize, ref count);
             result.Data.Rows = list;
             result.Data.Total = count;
@@ -55,24 +47,24 @@ namespace SoEasyPlatform.Code.Apis
         /// <returns></returns>
         [HttpPost]
         [FormValidateFilter]
-        [Route("savenuget")]
-        public ActionResult<ApiResult<string>> SaveNuget([FromForm] NugetViewModel model)
+        [Route("saveFileInfo")]
+        public ActionResult<ApiResult<string>> SaveFileInfo([FromForm] FileInfoViewModel model)
         {
             JsonResult errorResult = base.ValidateModel(model.Id);
             if (errorResult != null) return errorResult;
-            var saveObject = base.mapper.Map<Nuget>(model);
+            var saveObject = base.mapper.Map<FileInfo>(model);
             var result = new ApiResult<string>();
             if (saveObject.Id == 0)
             {
                 saveObject.IsDeleted = false;
-                NugetDb.Insert(saveObject);
+                FileInfoDb.Insert(saveObject);
                 result.IsSuccess = true;
                 result.Data = Pubconst.MESSAGEADDSUCCESS;
             }
             else
             {
                 saveObject.IsDeleted = false;
-                NugetDb.Update(saveObject);
+                FileInfoDb.Update(saveObject);
                 result.IsSuccess = true;
                 result.Data = Pubconst.MESSAGEADDSUCCESS;
             }
@@ -84,19 +76,19 @@ namespace SoEasyPlatform.Code.Apis
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        [Route("deletenuget")]
-        public ActionResult<ApiResult<bool>> DeleteNuget([FromForm] string model)
+        [Route("deleteFileInfo")]
+        public ActionResult<ApiResult<bool>> DeleteFileInfo([FromForm] string model)
         {
             var result = new ApiResult<bool>();
             if (!string.IsNullOrEmpty(model))
             {
                 var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<DatabaseViewModel>>(model);
-                var exp = Expressionable.Create<Nuget>();
+                var exp = Expressionable.Create<FileInfo>();
                 foreach (var item in list)
                 {
                     exp.Or(it => it.Id == item.Id);
                 }
-                NugetDb.Update(it => new Nuget() { IsDeleted = true }, exp.ToExpression());
+                FileInfoDb.Update(it => new FileInfo() { IsDeleted = true }, exp.ToExpression());
             }
             result.IsSuccess = true;
             return result;

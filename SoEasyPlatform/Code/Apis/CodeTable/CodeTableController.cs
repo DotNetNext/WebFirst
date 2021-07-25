@@ -31,7 +31,7 @@ namespace SoEasyPlatform.Code.Apis
             var result = new ApiResult<TableModel<CodeTableGridViewModel>>();
             result.Data = new TableModel<CodeTableGridViewModel>();
             int count = 0;
-            var list = NugetDb.AsSugarClient().Queryable<CodeTable, Database>(
+            var list =Db.Queryable<CodeTable, Database>(
                  (it, db) => new JoinQueryInfos(
                        JoinType.Left, it.DbId == db.Id
                      )

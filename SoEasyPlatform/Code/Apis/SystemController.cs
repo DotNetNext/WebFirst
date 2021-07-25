@@ -90,33 +90,7 @@ namespace SoEasyPlatform.Code.Apis
         }
 
         /// <summary>
-        /// 获取.net版本
-        /// </summary>
-        /// <returns></returns>
-        [HttpPost]
-        [AuthorizeFilter]
-        [Route("getnetversion")]
-        public ActionResult<ApiResult<List<TreeModel>>> GetNetVersion()
-        {
-            List<TreeModel> trees = new List<TreeModel>();
-            var databses = NetVersionDb.GetList();
-            foreach (var db in databses)
-            {
-                trees.Add(new TreeModel()
-                {
-                    Id = db.Id.ToString(),
-                    Title = db.Name,
-                    IsSelectable = true
-                });
-            }
-            ApiResult<List<TreeModel>> result = new ApiResult<List<TreeModel>>();
-            result.Data = trees;
-            result.IsSuccess = true;
-            return result;
-        }
-
-        /// <summary>
-        /// 获取nuget
+        /// 获取文件
         /// </summary>
         /// <param name="netVersion"></param>
         /// <returns></returns>
@@ -124,14 +98,10 @@ namespace SoEasyPlatform.Code.Apis
         [HttpPost]
         [AuthorizeFilter]
         [Route("getnuget")]
-        public ActionResult<ApiResult<List<TreeModel>>> GetNuget(int? netVersion)
+        public ActionResult<ApiResult<List<TreeModel>>> GetFileInfo()
         {
             List<TreeModel> trees = new List<TreeModel>();
-            var databases = NugetDb.GetList(it=>it.IsDeleted == false);
-            if (netVersion > 0) 
-            {
-                databases = databases.Where(it => it.NetVersion == netVersion.Value).ToList();
-            }
+            var databases = FileInfoDb.GetList(it=>it.IsDeleted == false);
             foreach (var db in databases)
             {
                 trees.Add(new TreeModel()
@@ -146,32 +116,7 @@ namespace SoEasyPlatform.Code.Apis
             result.IsSuccess = true;
             return result;
         }
-
-        /// <summary>
-        /// 获取.NET版本，不包含1
-        /// </summary>
-        /// <returns></returns>
-        [HttpPost]
-        [AuthorizeFilter]
-        [Route("getgoodnetversion")]
-        public ActionResult<ApiResult<List<TreeModel>>> GetGoodNetVersion()
-        {
-            List<TreeModel> trees = new List<TreeModel>();
-            var databses = NetVersionDb.GetList(it=>it.Id!=1);
-            foreach (var db in databses)
-            {
-                trees.Add(new TreeModel()
-                {
-                    Id = db.Id.ToString(),
-                    Title = db.Name,
-                    IsSelectable = true
-                });
-            }
-            ApiResult<List<TreeModel>> result = new ApiResult<List<TreeModel>>();
-            result.Data = trees;
-            result.IsSuccess = true;
-            return result;
-        }
+ 
 
 
         /// <summary>

@@ -22,7 +22,7 @@ namespace SoEasyPlatform
         public int Sort { get; set; }
         public bool IsDeleted { get; set; }
         public int ModelId { get; set; }
-        public string FileSuffix { get; internal set; }
+        public string FileSuffix { get;  set; }
     }
 
  

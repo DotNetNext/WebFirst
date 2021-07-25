@@ -20,7 +20,7 @@ namespace SoEasyPlatform
         {
             var db =DbScoped.Sugar;
             db.QueryFilter.Add(new TableFilterItem<CodeTable>(it => it.IsDeleted == false));
-            db.QueryFilter.Add(new TableFilterItem<Nuget>(it => it.IsDeleted == false));
+            db.QueryFilter.Add(new TableFilterItem<FileInfo>(it => it.IsDeleted == false));
             db.QueryFilter.Add(new TableFilterItem<Template>(it => it.IsDeleted == false));
             db.QueryFilter.Add(new TableFilterItem<Project>(it => it.IsDeleted == false));
             db.Aop.OnError = exp =>

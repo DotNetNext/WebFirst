@@ -277,7 +277,7 @@ namespace SoEasyPlatform
                     //如果文件的目录不存在，则创建目录
                     CreateDirectory(directoryPath);
                     //创建一个FileInfo对象
-                    FileInfo file = new FileInfo(filePath);
+                    System.IO.FileInfo file = new System.IO.FileInfo(filePath);
                     //创建文件
                     using (FileStream fs = file.Create())
                     {
@@ -322,7 +322,7 @@ namespace SoEasyPlatform
                     //如果文件的目录不存在，则创建目录
                     CreateDirectory(directoryPath);
                     //创建文件
-                    FileInfo file = new FileInfo(filePath);
+                    System.IO.FileInfo file = new System.IO.FileInfo(filePath);
                     using (FileStream stream = file.Create())
                     {
                         using (StreamWriter writer = new StreamWriter(stream, encoding))
@@ -349,7 +349,7 @@ namespace SoEasyPlatform
         public static string GetDirectoryFromFilePath(string filePath)
         {
             //实例化文件
-            FileInfo file = new FileInfo(filePath);
+            System.IO.FileInfo file = new System.IO.FileInfo(filePath);
             //获取目录信息
             DirectoryInfo directory = file.Directory;
             //返回目录路径
@@ -393,7 +393,7 @@ namespace SoEasyPlatform
         public static int GetFileSize(string filePath)
         {
             //创建一个文件对象
-            FileInfo fi = new FileInfo(filePath);
+            System.IO.FileInfo fi = new System.IO.FileInfo(filePath);
             //获取文件的大小
             return (int)fi.Length;
         }
@@ -404,7 +404,7 @@ namespace SoEasyPlatform
         public static double GetFileSizeByKB(string filePath)
         {
             //创建一个文件对象
-            FileInfo fi = new FileInfo(filePath);
+            System.IO.FileInfo fi = new System.IO.FileInfo(filePath);
             //获取文件的大小
             return Convert.ToDouble(Convert.ToDouble(fi.Length) / 1024);
         }
@@ -415,7 +415,7 @@ namespace SoEasyPlatform
         public static double GetFileSizeByMB(string filePath)
         {
             //创建一个文件对象
-            FileInfo fi = new FileInfo(filePath);
+            System.IO.FileInfo fi = new System.IO.FileInfo(filePath);
             //获取文件的大小
             return Convert.ToDouble(Convert.ToDouble(fi.Length) / 1024 / 1024);
         }
@@ -574,7 +574,7 @@ namespace SoEasyPlatform
                 string destDirectoryPath = GetDirectoryFromFilePath(destFilePath);
                 CreateDirectory(destDirectoryPath);
                 //复制文件
-                FileInfo file = new FileInfo(sourceFilePath);
+                System.IO.FileInfo file = new System.IO.FileInfo(sourceFilePath);
                 file.CopyTo(destFilePath, true);
             }
             catch
@@ -690,7 +690,7 @@ namespace SoEasyPlatform
             //创建一个临时缓冲区
             byte[] buffer = new byte[fileSize];
             //创建一个文件
-            FileInfo file = new FileInfo(filePath);
+            System.IO.FileInfo file = new System.IO.FileInfo(filePath);
             //创建一个文件流
             using (FileStream fs = file.Open(FileMode.Open))
             {
@@ -742,7 +742,7 @@ namespace SoEasyPlatform
         public static string GetFileName(string filePath)
         {
             //获取文件的名称
-            FileInfo fi = new FileInfo(filePath);
+            System.IO.FileInfo fi = new System.IO.FileInfo(filePath);
             return fi.Name;
         }
         #endregion
@@ -754,7 +754,7 @@ namespace SoEasyPlatform
         public static string GetFileNameNoExtension(string filePath)
         {
             //获取文件的名称
-            FileInfo fi = new FileInfo(filePath);
+            System.IO.FileInfo fi = new System.IO.FileInfo(filePath);
             return fi.Name.Split('.')[0];
         }
         #endregion
@@ -766,7 +766,7 @@ namespace SoEasyPlatform
         public static string GetExtension(string filePath)
         {
             //获取文件的名称
-            FileInfo fi = new FileInfo(filePath);
+            System.IO.FileInfo fi = new System.IO.FileInfo(filePath);
             return fi.Extension;
         }
         #endregion
@@ -841,7 +841,7 @@ namespace SoEasyPlatform
         /// <param name="strValue"></param>
         public static void WriteFile(string strFilePath, string strValue)
         {
-            System.IO.FileInfo oFile = new FileInfo(strFilePath);
+            System.IO.FileInfo oFile = new System.IO.FileInfo(strFilePath);
             if (!oFile.Directory.Exists)
                 oFile.Directory.Create();
             if (!oFile.Exists)
@@ -859,7 +859,7 @@ namespace SoEasyPlatform
         /// <param name="charset"></param>
         public static void WriteFile(string strFilePath, string strValue, string charset)
         {
-            System.IO.FileInfo oFile = new FileInfo(strFilePath);
+            System.IO.FileInfo oFile = new System.IO.FileInfo(strFilePath);
             if (!oFile.Directory.Exists)
                 oFile.Directory.Create();
             if (!oFile.Exists)
@@ -879,7 +879,7 @@ namespace SoEasyPlatform
         public static byte[] GetFileSream(string Path)
         {
             byte[] buffer = null;
-            using (FileStream stream = new FileInfo(Path).OpenRead())
+            using (FileStream stream = new System.IO.FileInfo(Path).OpenRead())
             {
                 buffer = new byte[stream.Length];
                 stream.Read(buffer, 0, Convert.ToInt32(stream.Length));

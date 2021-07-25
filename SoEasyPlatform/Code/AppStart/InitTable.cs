@@ -20,9 +20,7 @@ namespace SoEasyPlatform
 
             InitTemplate(db);
 
-            InitNetVersion(db);
-
-            InitNuget(db);
+            InitFileInfo(db);
 
             InitCodeTable(db);
 
@@ -254,71 +252,16 @@ namespace SoEasyPlatform
             db.CodeFirst.InitTables<Database>();
         }
 
-        private static void InitNuget(SqlSugarClient db)
+        private static void InitFileInfo(SqlSugarClient db)
         {
-            db.CodeFirst.InitTables<Nuget>();
-            if (db.Queryable<Nuget>().Count() == 0)
+            db.CodeFirst.InitTables<FileInfo>();
+            if (db.Queryable<FileInfo>().Count() == 0)
             {
-                db.Insertable(new List<Nuget>() {
-                     new Nuget(){
-                        NetVersion=2,
-                        Version="4.9.9.11",
-                        Name="sqlSugar"
-                     } }).ExecuteCommand();
-                db.Insertable(new List<Nuget>() {
-                     new Nuget(){
-                        NetVersion=3,
-                        Version="5.0.2.6",
-                        Name="sqlSugar"
-                     } }).ExecuteCommand();
-                db.Insertable(new List<Nuget>() {
-                     new Nuget(){
-                        NetVersion=21,
-                        Version="5.0.2.6",
-                        Name="sqlSugarCore"
-                     } }).ExecuteCommand();
-                db.Insertable(new List<Nuget>() {
-                     new Nuget(){
-                        NetVersion=31,
-                        Version="5.0.2.6",
-                        Name="sqlSugarCore"
-                     } }).ExecuteCommand();
+                 
             }
         }
 
-        private static void InitNetVersion(SqlSugarClient db)
-        {
-            db.CodeFirst.InitTables<NetVersion>();
-            if (db.Queryable<NetVersion>().Count() == 0)
-            {
-                db.Insertable(new List<NetVersion>() {
-                     new NetVersion(){
-                        Id=1,
-                        Name="不生成类库，不更新类库"
-                     },
-                     new NetVersion(){
-                        Id=2,
-                        Name=".NET Freamework 4.0 生成类库 ，更新类库"
-                     },
-                     new NetVersion(){
-                        Id=3,
-                        Name=".NET Freamework 4.5 生成类库 ，更新类库"
-                     },
-
-                    new NetVersion(){
-                        Id=21,
-                        Name=".NET Core 3.1 生成类库 ，更新类库"
-                     },
-
-                    new NetVersion(){
-                        Id=31,
-                        Name=".NET 5 生成类库 ，更新类库"
-                     }
-
-                }).ExecuteCommand();
-
-            }
-        }
+  
 
         private static void InitTemplate(SqlSugarClient db)
         {
