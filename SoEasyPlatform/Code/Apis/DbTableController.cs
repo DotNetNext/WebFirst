@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 using SqlSugar;
 namespace SoEasyPlatform.Code.Apis
 {
+    /// <summary>
+    /// 数据库表操作
+    /// </summary>
     public class DbTableController : BaseController
     {
         public DbTableController(IMapper mapper) : base(mapper)

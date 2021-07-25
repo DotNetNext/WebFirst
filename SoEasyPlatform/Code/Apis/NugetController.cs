@@ -37,7 +37,7 @@ namespace SoEasyPlatform.Code.Apis
                 .WhereIF(model.NetVersion>0, it => it.NetVersion==model.NetVersion.Value)
                 .OrderBy(it=>new { it.Name,it.Version})
                 .Select((it,nvs)=>new NugetGridViewModel() { 
-                     Id=SqlFunc.GetSelfAndAutoFill(it.Id),
+                     Id= it.Id.SelectAll(),
                      NetVersionName=nvs.Name
                  })
                 .ToPageList(model.PageIndex, model.PageSize, ref count);
