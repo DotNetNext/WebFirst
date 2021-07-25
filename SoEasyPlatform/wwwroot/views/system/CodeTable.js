@@ -226,7 +226,7 @@ btnDel.$Confirm({
 btnPath.$Open("#divPath", {
     title: configs.text.addPath,
     w: 600,
-    h: 480,
+    h: 560,
     validate: function () {
         var gridInfo = divGrid.$GridInfo();
         if (txtDbId.value == null || txtDbId.value == "" || txtDbId.value == "0") {

@@ -14,6 +14,8 @@ namespace SoEasyPlatform
         [SugarColumn(IsNullable = true)]
 
         public string FileInfo { get; set; }
+        [SugarColumn(IsNullable =true)]
+        public string FileModel { get; set; }
         public int Sort { get; set; }
         public bool IsDeleted { get; set; }
         public int ModelId { get; set; }
