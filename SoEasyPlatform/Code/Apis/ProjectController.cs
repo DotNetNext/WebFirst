@@ -41,6 +41,7 @@ namespace SoEasyPlatform.Code.Apis
                   Path=it.Path,
                   ProjentName=it.ProjentName,
                   TemplateId1=it.TemplateId1.GetConfigValue<Template>(),
+                  FileModel=it.FileModel
                 })
                 .Mapper(it=> {
                     if(!string.IsNullOrEmpty(it.FileInfo))
