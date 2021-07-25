@@ -39,6 +39,8 @@ namespace SoEasyPlatform
         public string ProjentName { get; set; }
         [DisplayName("追加文件")]
         public string FileInfo { get; set; }
+        [DisplayName("填充文件")]
+        public string FileModel { get; set; }
         [DisplayName("分类")]
         public string ModelId { get; set; }
         [DisplayName("模版")]
