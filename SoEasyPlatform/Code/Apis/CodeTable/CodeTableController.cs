@@ -41,10 +41,10 @@ namespace SoEasyPlatform.Code.Apis
                 .OrderBy(it => it.Id)
                 .Select((it, db) => new CodeTableGridViewModel()
                 {
-                    Id = SqlFunc.GetSelfAndAutoFill(it.Id),
+                    Id = it.Id.SelectAll(),
                     DbName = db.Desc
                 })
-                .ToPageList(model.PageIndex,30, ref count);
+                .ToPageList(model.PageIndex, 30, ref count);
             result.Data.Rows = list;
             result.Data.Total = count;
             result.Data.PageSize = 30;
@@ -97,7 +97,7 @@ namespace SoEasyPlatform.Code.Apis
         [FormValidateFilter]
         [ExceptionFilter]
         [Route("savecodetableimport")]
-        public ActionResult<ApiResult<bool>> SaveCodetableImport([FromForm]  int dbid, [FromForm] string model)
+        public ActionResult<ApiResult<bool>> SaveCodetableImport([FromForm] int dbid, [FromForm] string model)
         {
             ApiResult<bool> result = new ApiResult<bool>();
             var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<DbTableGridViewModel>>(model);
@@ -120,7 +120,7 @@ namespace SoEasyPlatform.Code.Apis
                         ColumnInfoList = new List<CodeColumnsViewModel>()
                     };
                     var entity = entityList.FirstOrDefault(it => it.TableName.Equals(item.Name, StringComparison.OrdinalIgnoreCase));
-                    if (entity == null) 
+                    if (entity == null)
                     {
                         entity = new CodeTable();
                     }
@@ -259,38 +259,59 @@ namespace SoEasyPlatform.Code.Apis
         public ActionResult<ApiResult<bool>> CreateFile([FromForm] ProjectViewModel model)
         {
             var result = new ApiResult<bool>();
-            if (model.ProjectId > 0) 
+            var tempInfo = TemplateDb.GetById(model.TemplateId1);
+            model.ModelId = tempInfo.TemplateTypeId;
+            var s = base.Db.Storageable(mapper.Map<Project>(model))
+                .SplitInsert(it => !string.IsNullOrEmpty(it.Item.ProjentName))
+                .SplitError(it => string.IsNullOrEmpty(model.Tables), "请选择表")
+                .SplitError(it => Db.Queryable<Project>().Any(s => s.ProjentName == model.ProjentName && s.TemplateId1 == model.TemplateId1), "方前方案已存在请换个名字")
+                .SplitInsert(it => it.Item.Id > 0).ToStorage();
+            s.AsInsertable.ExecuteCommand();
+            s.AsUpdateable.ExecuteCommand();
+            if (s.ErrorList.Any())
             {
-                var tables = model.Tables;
-                model =mapper.Map<ProjectViewModel>(ProjectDb.GetSingle(it => it.Id == model.Id));
-                model.Tables = tables;
-            }
-            else
-            {
-                var tempInfo=TemplateDb.GetById(model.TemplateId1);
-                model.ModelId = tempInfo.TemplateTypeId;
-                var s = base.Db.Storageable(mapper.Map<Project>(model))
-                    .SplitInsert(it => !string.IsNullOrEmpty(it.Item.ProjentName))
-                    .SplitError(it => string.IsNullOrEmpty(model.Tables), "请选择表")
-                    .SplitError(it =>Db.Queryable<Project>().Any(s=>s.ProjentName==model.ProjentName&&s.TemplateId1==model.TemplateId1), "方前方案已存在请换个名字")
-                    .SplitInsert(it => it.Item.Id > 0).ToStorage();
-                s.AsInsertable.ExecuteCommand();
-                s.AsUpdateable.ExecuteCommand();
-                if (s.ErrorList.Any()) 
-                {
-                    throw new Exception(s.ErrorList.First().StorageMessage);
-                }
+                throw new Exception(s.ErrorList.First().StorageMessage);
             }
             var template = TemplateDb.GetById(model.TemplateId1).Content;
-            var tableids = Newtonsoft.Json.JsonConvert.DeserializeObject<List<CodeTypeGridViewModel>>(model.Tables).Select(it=>it.Id).ToList();
-            var tableList=CodeTableDb.GetList(it => tableids.Contains(it.Id));
-            List<EntitiesGen> genList = GetGenList(tableList,CodeTypeDb.GetList());
+            var tableids = Newtonsoft.Json.JsonConvert.DeserializeObject<List<CodeTypeGridViewModel>>(model.Tables).Select(it => it.Id).ToList();
+            var tableList = CodeTableDb.GetList(it => tableids.Contains(it.Id));
+            List<EntitiesGen> genList = GetGenList(tableList, CodeTypeDb.GetList());
             string key = TemplateHelper.EntityKey + template.GetHashCode();
             foreach (var item in genList)
             {
                 var html = TemplateHelper.GetTemplateValue(key, template, item);
                 var fileName = FileSugar.MergeUrl(model.Path, item.ClassName + "." + model.FileSuffix.TrimStart('.'));
-                 FileSugar.CreateFile(fileName, html); 
+                FileSugar.CreateFile(fileName, html);
+            }
+            result.IsSuccess = true;
+            result.Message = "生成生功";
+            return result;
+        }
+
+        /// <summary>
+        /// 生成实体
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        [FormValidateFilter]
+        [ExceptionFilter]
+        [Route("CreateFileByProjectId")]
+        public ActionResult<ApiResult<bool>> CreateFileByProjectId([FromForm] ProjectViewModel2 model)
+        {
+            var result = new ApiResult<bool>();
+            var tables = model.Tables;
+            model = mapper.Map<ProjectViewModel2>(ProjectDb.GetSingle(it => it.Id == model.ProjectId));
+            model.Tables = tables;
+            var template = TemplateDb.GetById(model.TemplateId1).Content;
+            var tableids = Newtonsoft.Json.JsonConvert.DeserializeObject<List<CodeTypeGridViewModel>>(model.Tables).Select(it => it.Id).ToList();
+            var tableList = CodeTableDb.GetList(it => tableids.Contains(it.Id));
+            List<EntitiesGen> genList = GetGenList(tableList, CodeTypeDb.GetList());
+            string key = TemplateHelper.EntityKey + template.GetHashCode();
+            foreach (var item in genList)
+            {
+                var html = TemplateHelper.GetTemplateValue(key, template, item);
+                var fileName = FileSugar.MergeUrl(model.Path, item.ClassName + "." + model.FileSuffix.TrimStart('.'));
+                FileSugar.CreateFile(fileName, html);
             }
             result.IsSuccess = true;
             result.Message = "生成生功";

@@ -27,6 +27,28 @@ namespace SoEasyPlatform
         public int? ProjectId { get; set; }
         public int? ModelId { get;  set; }
     }
+    public class ProjectViewModel2 : PageViewModel, IView
+    {
+        public int? Id { get; set; }
+ 
+        [PropertyName("模版")]
+        public string TemplateId1 { get; set; }
+ 
+        [PropertyName("路径")]
+        public string Path { get; set; }
+        public string NetVersion { get; set; }
+        public string LibraryName { get; set; }
+        public string Nuget { get; set; }
+        public string ProjentName { get; set; }
+    
+        [PropertyName("文件后缀")]
+        public string FileSuffix { get; set; }
+        public int? Sort { get; set; }
+        public bool? IsDeleted { get; set; }
+        public string Tables { get; set; }
+        public int? ProjectId { get; set; }
+        public int? ModelId { get; set; }
+    }
     public class ProjectGridViewModel  
     {
         [DisplayName("编号")]

@@ -9,9 +9,10 @@
         Import: "/CodeTableImport",
         GetNetVersion: _root + "system/getnetversion",
         GetTemp: _root + "system/getTemplate?type=1",
-        GetProjet: _root +"system/GetProject?typeId=1",
+        GetProjet: _root + "system/GetProject?typeId=1", 
         GetNuget: _root + "system/getnuget",
         CreateFile: _root + "codetable/createfile",
+        CreateFile2: _root + "codetable/CreateFileByProjectId"
     },
     text:
     {
@@ -292,9 +293,9 @@ btnProject.$Open("#divProject", {
     yes: function () {
         var gridInfo = divGrid.$GridInfo();
         if (gridInfo.length > 0) {
-            SaveTable1.value = JSON.stringify(gridInfo);
-            frmPathSave.$Form({
-                url: configs.url.CreateFile,
+            SaveTable2.value = JSON.stringify(gridInfo);
+            frmProjectSave.$Form({
+                url: configs.url.CreateFile2,
                 callback: function (msg) {
                     if (msg.IsKeyValuePair) {
                         $sugar.$Validate(msg.Data, "save");
