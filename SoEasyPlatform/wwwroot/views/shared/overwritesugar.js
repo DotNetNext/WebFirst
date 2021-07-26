@@ -56,8 +56,16 @@ var SugarContext = {
                         treeParent.find("ul").show();
                     }, 150);
                 });
-            
-
+                if (value.isMultiple == true) {
+                    $(element).change(function () {
+                        var cbs = treeParent.closest(".comboTreeDropDownContainer").find(":checked");
+                        var ids = [];
+                        $(cbs).each(function (i, v) {
+                            ids.push($(this).parent().data("id"));
+                        });
+                        $(element).closest(".comboTreeWrapper").next().val(ids.join(','));
+                    })
+                }
             },
             error: function (msg) {
                 layer.msg("服务器请求失败.");

@@ -29,9 +29,9 @@ namespace SoEasyPlatform
                 {
                     for (int i = 0; i < idsArray.Count(); i++)
                     {
-                        ExpandoObject jsonItem = GetJsonItem(obj[0]);
+                        ExpandoObject jsonItem = GetJsonItem(obj[i]);
                         var fileId = ids[i].ToString();
-                        var fileInfo = DbScoped.Sugar.Queryable<FileInfo>().InSingle(fileId);
+                        var fileInfo = DbScoped.Sugar.Queryable<FileInfo>().InSingle(idsArray[i]);
                         var context = fileInfo.Content;
 
                         var html = TemplateHelper.GetTemplateValue(context, context, jsonItem);
