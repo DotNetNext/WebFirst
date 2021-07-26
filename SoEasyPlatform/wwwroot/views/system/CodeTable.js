@@ -188,7 +188,7 @@ btnEdit.$Open("#divOpen", {
     },
     btn: ['保存', '关闭']
 });
-
+//打开导入
 btnDbFirstAdd.$Open("#divOpen", {
     validate: function () {
         if (txtDbId.value == null || txtDbId.value == "" || txtDbId.value == "0") {
@@ -196,8 +196,10 @@ btnDbFirstAdd.$Open("#divOpen", {
             return false;
         }
         else {
+            btnDbFirstAdd.$Loading();
             return true;
         }
+      
     },
     title: configs.text.addDbFirst,
     w: configs.w.w,
@@ -210,6 +212,7 @@ btnDbFirstAdd.$Open("#divOpen", {
         var data = document.getElementsByTagName("iframe")[0].contentWindow.GetData();
         configs.url.SaveImport.$Ajax({
             callback: function (msg) {
+                btnDbFirstAdd.$CloseLoading();
                 if (msg.IsSuccess) {
                     "添加成功".$Alert();
                     $sugar.$CloseAll(divOpen.getAttribute("dataindex"));
