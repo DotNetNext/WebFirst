@@ -271,9 +271,11 @@ btnPath.$Open("#divPath", {
         var gridInfo = divGrid.$GridInfo();
         if (gridInfo.length > 0) {
             SaveTable1.value = JSON.stringify(gridInfo);
+            btnPath.$Loading();
             frmPathSave.$Form({
                 url: configs.url.CreateFile,
                 callback: function (msg) {
+                    btnPath.$CloseLoading();
                     if (msg.IsKeyValuePair) {
                         $sugar.$Validate(msg.Data, "save");
                     } else {
@@ -309,9 +311,11 @@ btnProject.$Open("#divProject", {
         var gridInfo = divGrid.$GridInfo();
         if (gridInfo.length > 0) {
             SaveTable2.value = JSON.stringify(gridInfo);
+            btnProject.$Loading();
             frmProjectSave.$Form({
                 url: configs.url.CreateFile2,
                 callback: function (msg) {
+                    btnProject.$CloseLoading();
                     if (msg.IsKeyValuePair) {
                         $sugar.$Validate(msg.Data, "save");
                     } else {

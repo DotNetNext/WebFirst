@@ -241,6 +241,7 @@ var SugarContext = {
         //loading层
         var index = $(divElement).data("loadingIndex");
         layer.close(index);
+        $(".layui-layer-shade").remove();
         return index;
     },
     Validate: function (json, IdPrev) {
