@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 using SqlSugar.IOC;
 using SqlSugar;
 using Newtonsoft.Json.Linq;
+using System.Dynamic;
 
-namespace SoEasyPlatform 
+namespace SoEasyPlatform
 {
     public class ProjectController_Biz
     {
@@ -28,16 +29,56 @@ namespace SoEasyPlatform
                 {
                     for (int i = 0; i < idsArray.Count(); i++)
                     {
-                        var jsonItem = obj[0];
+                        ExpandoObject jsonItem = GetJsonItem(obj[0]);
                         var fileId = ids[i].ToString();
-                        var context = DbScoped.Sugar.Queryable<FileInfo>().InSingle(fileId).Content;
+                        var fileInfo = DbScoped.Sugar.Queryable<FileInfo>().InSingle(fileId);
+                        var context = fileInfo.Content;
+
+                        var html = TemplateHelper.GetTemplateValue(context, context, jsonItem);
+                        var name = (jsonItem as IDictionary<string,object>)["name"];
+                        var fileName = FileSugar.MergeUrl(project.Path, name + "." + fileInfo.Suffix.TrimStart('.'));
+                        FileSugar.CreateFile(fileName, html);
                     }
                 }
-                else 
+                else
                 {
                     throw new Exception("文件填充格式错误");
                 }
             }
+        }
+        private static List<ExpandoObject> GetJsonItems(dynamic obj)
+        {
+            List<ExpandoObject> result = new List<ExpandoObject>();
+            foreach (var item in (obj as JArray))
+            {
+                if (item is JObject)
+                {
+                    result.Add( GetJsonItem(item));
+                }
+            }
+            return result;
+        }
+        private static ExpandoObject GetJsonItem(dynamic obj)
+        {
+            Dictionary<string, object> old = JObject.FromObject(obj).ToObject<Dictionary<string, object>>();
+            ExpandoObject resultExp = new ExpandoObject();
+            var result = ((IDictionary<string, object>)resultExp);
+            foreach (var item in old)
+            {
+                if (item.Value is JObject)
+                {
+                    result.Add(item.Key,GetJsonItem(item.Value));
+                }
+                else if (item.Value is JArray)
+                {
+                    result.Add(item.Key,GetJsonItems(item.Value));
+                }
+                else 
+                {
+                    result.Add(item.Key, item.Value);
+                }
+            }
+            return resultExp;
         }
     }
 }
