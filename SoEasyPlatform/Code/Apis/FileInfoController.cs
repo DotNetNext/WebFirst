@@ -63,6 +63,7 @@ namespace SoEasyPlatform.Code.Apis
             x.AsUpdateable.ExecuteCommand();
             x.AsInsertable.ExecuteCommand();
             result.Data =x.InsertList.Any()? Pubconst.MESSAGEADDSUCCESS:Pubconst.MESSAGESAVESUCCESS;
+            result.IsSuccess = true;
             return result;
         }
 
