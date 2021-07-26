@@ -48,6 +48,14 @@ var SugarContext = {
                     $(element).parent().css("width", value.width);
                 }
                 //selectTree.setSource(SampleJSONData2);
+                var treeParent = $(element).parent().parent().find(".ComboTreeItemParent ");
+                treeParent.click(function () {
+                    treeParent.closest(".comboTreeDropDownContainer").hide();
+                    setTimeout(function () {
+                        treeParent.find("ul").show();
+                    }, 150);
+                });
+            
 
             },
             error: function (msg) {
