@@ -258,6 +258,7 @@ namespace SoEasyPlatform
             if (db.Queryable<FileInfo>().Count() == 0)
             {
                 AddFile1(db);
+                AddFile2(db);
             }
         }
 
