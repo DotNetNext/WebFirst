@@ -257,26 +257,49 @@ namespace SoEasyPlatform
             db.CodeFirst.InitTables<FileInfo>();
             if (db.Queryable<FileInfo>().Count() == 0)
             {
-                var temp = @"wwwroot\template\Lib1.txt";
-                var temp2 = @"wwwroot\template\Lib1_1.txt";
-                var directory = Directory.GetCurrentDirectory();
-                var d1 = new FileInfo()
-                {
-                    ChangeTime = DateTime.Now,
-                    Content = FileSugar.FileToString(FileSugar.MergeUrl(directory, temp)),
-                    Json = FileSugar.FileToString(FileSugar.MergeUrl(directory, temp2)),
-                    Name = ".net 标准类库",
-                    Sort = 0,
-                    Id = 1,
-                    IsDeleted = false,
-                    Suffix = "csproj"
-
-                };
-                db.Insertable(d1).ExecuteCommand();
+                AddFile1(db);
             }
         }
 
-  
+        private static void AddFile1(SqlSugarClient db)
+        {
+            var temp = @"wwwroot\template\Lib1.txt";
+            var temp2 = @"wwwroot\template\Lib1_1.txt";
+            var directory = Directory.GetCurrentDirectory();
+            var d1 = new FileInfo()
+            {
+                ChangeTime = DateTime.Now,
+                Content = FileSugar.FileToString(FileSugar.MergeUrl(directory, temp)),
+                Json = FileSugar.FileToString(FileSugar.MergeUrl(directory, temp2)),
+                Name = ".net 标准类库",
+                Sort = 0,
+                Id = 1,
+                IsDeleted = false,
+                Suffix = "csproj"
+
+            };
+            db.Insertable(d1).ExecuteCommand();
+        }
+        private static void AddFile2(SqlSugarClient db)
+        {
+            var temp = @"wwwroot\template\Lib2.txt";
+            var temp2 = @"wwwroot\template\Lib1_1.txt";
+            var directory = Directory.GetCurrentDirectory();
+            var d1 = new FileInfo()
+            {
+                ChangeTime = DateTime.Now,
+                Content = FileSugar.FileToString(FileSugar.MergeUrl(directory, temp)),
+                Json = FileSugar.FileToString(FileSugar.MergeUrl(directory, temp2)),
+                Name = ".net5",
+                Sort = 0,
+                Id = 1,
+                IsDeleted = false,
+                Suffix = "csproj"
+
+            };
+            db.Insertable(d1).ExecuteCommand();
+        }
+
 
         private static void InitTemplate(SqlSugarClient db)
         {
