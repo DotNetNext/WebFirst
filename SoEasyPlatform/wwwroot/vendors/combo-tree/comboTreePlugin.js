@@ -377,6 +377,8 @@
 
     // recursive search for item in arr
     ComboTree.prototype.isItemInArray = function (item, arr) {
+        if (arr == null)
+            return true;
         for (var i=0; i<arr.length; i++) {
             if (item.id == arr[i].id && item.title == arr[i].title)
                 return i + "";
