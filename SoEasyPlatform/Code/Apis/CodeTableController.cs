@@ -261,13 +261,14 @@ namespace SoEasyPlatform.Code.Apis
             var result = new ApiResult<bool>();
             var tempInfo = TemplateDb.GetById(model.TemplateId1);
             model.ModelId = tempInfo.TemplateTypeId;
-            var s = base.Db.Storageable(mapper.Map<Project>(model))
+            var dbModel = mapper.Map<Project>(model);
+            var s = base.Db.Storageable(dbModel)
                 .SplitInsert(it => !string.IsNullOrEmpty(it.Item.ProjentName))
                 .SplitError(it => string.IsNullOrEmpty(model.Tables), "请选择表")
                 .SplitError(it => Db.Queryable<Project>().Any(s => s.ProjentName == model.ProjentName && s.TemplateId1 == model.TemplateId1), "方前方案已存在请换个名字或者使用方案生成")
                 .SplitInsert(it => it.Item.Id > 0).ToStorage();
-            s.AsInsertable.ExecuteCommand();
-            s.AsUpdateable.ExecuteCommand();
+             var id=s.AsInsertable.ExecuteReturnIdentity();
+             s.AsUpdateable.ExecuteCommand();
             if (s.ErrorList.Any())
             {
                 throw new Exception(s.ErrorList.First().StorageMessage);
@@ -283,6 +284,7 @@ namespace SoEasyPlatform.Code.Apis
                 var fileName = FileSugar.MergeUrl(model.Path, item.ClassName + "." + model.FileSuffix.TrimStart('.'));
                 FileSugar.CreateFile(fileName, html);
             }
+            ProjectController_Biz.CreateProject(dbModel);
             result.IsSuccess = true;
             result.Message = "生成生功";
             return result;
@@ -313,6 +315,7 @@ namespace SoEasyPlatform.Code.Apis
                 var fileName = FileSugar.MergeUrl(project.Path, item.ClassName + "." + project.FileSuffix.TrimStart('.'));
                 FileSugar.CreateFile(fileName, html);
             }
+            ProjectController_Biz.CreateProject(project.Id);
             result.IsSuccess = true;
             result.Message = "生成生功";
             return result;

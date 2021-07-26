@@ -5,7 +5,7 @@
     <AssemblyName>@Model.name</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
-   @foreach(var item in  Model.Nuget)
+   @foreach(var item in  Model.nuget)
     {
          <PackageReference Include="@item.name" Version="@item.version" />
     }
