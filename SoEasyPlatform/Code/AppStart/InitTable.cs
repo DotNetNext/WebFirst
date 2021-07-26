@@ -259,6 +259,7 @@ namespace SoEasyPlatform
             {
                 AddFile1(db);
                 AddFile2(db);
+                AddFile3(db);
             }
         }
 
@@ -291,7 +292,7 @@ namespace SoEasyPlatform
                 ChangeTime = DateTime.Now,
                 Content = FileSugar.FileToString(FileSugar.MergeUrl(directory, temp)),
                 Json = FileSugar.FileToString(FileSugar.MergeUrl(directory, temp2)),
-                Name = ".net5",
+                Name = ".net core 5.0 类库",
                 IsInit = true,
                 Id = 1,
                 IsDeleted = false,
@@ -300,7 +301,25 @@ namespace SoEasyPlatform
             };
             db.Insertable(d1).ExecuteCommand();
         }
+        private static void AddFile3(SqlSugarClient db)
+        {
+            var temp = @"wwwroot\template\Lib2.txt";
+            var temp2 = @"wwwroot\template\Lib1_1.txt";
+            var directory = Directory.GetCurrentDirectory();
+            var d1 = new FileInfo()
+            {
+                ChangeTime = DateTime.Now,
+                Content = FileSugar.FileToString(FileSugar.MergeUrl(directory, temp)).Replace("net5.0", "netcoreapp3.1"),
+                Json = FileSugar.FileToString(FileSugar.MergeUrl(directory, temp2)),
+                Name = ".net core 3.1 类库",
+                IsInit = true,
+                Id = 1,
+                IsDeleted = false,
+                Suffix = "csproj"
 
+            };
+            db.Insertable(d1).ExecuteCommand();
+        }
 
         private static void InitTemplate(SqlSugarClient db)
         {
