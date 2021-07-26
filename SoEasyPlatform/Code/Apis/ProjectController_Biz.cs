@@ -35,9 +35,10 @@ namespace SoEasyPlatform
                         var context = fileInfo.Content;
 
                         var html = TemplateHelper.GetTemplateValue(context, context, jsonItem);
-                        var name = (jsonItem as IDictionary<string,object>)["name"];
+                        var name = (jsonItem as IDictionary<string, object>)["name"];
                         var fileName = FileSugar.MergeUrl(project.Path, name + "." + fileInfo.Suffix.TrimStart('.'));
-                        FileSugar.CreateFile(fileName, html);
+                        if (!FileSugar.IsExistFile(fileName))
+                            FileSugar.CreateFile(fileName, html);
                     }
                 }
                 else
@@ -53,7 +54,7 @@ namespace SoEasyPlatform
             {
                 if (item is JObject)
                 {
-                    result.Add( GetJsonItem(item));
+                    result.Add(GetJsonItem(item));
                 }
             }
             return result;
@@ -67,13 +68,13 @@ namespace SoEasyPlatform
             {
                 if (item.Value is JObject)
                 {
-                    result.Add(item.Key,GetJsonItem(item.Value));
+                    result.Add(item.Key, GetJsonItem(item.Value));
                 }
                 else if (item.Value is JArray)
                 {
-                    result.Add(item.Key,GetJsonItems(item.Value));
+                    result.Add(item.Key, GetJsonItems(item.Value));
                 }
-                else 
+                else
                 {
                     result.Add(item.Key, item.Value);
                 }
