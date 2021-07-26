@@ -208,6 +208,7 @@ btnDbFirstAdd.$Open("#divOpen", {
         msg.url = configs.url.Import + "?dbId=" + txtDbId.value;
     },
     yes: function () {
+        btnDbFirstAdd.$Loading();
         var data = document.getElementsByTagName("iframe")[0].contentWindow.GetData();
         configs.url.SaveImport.$Ajax({
             callback: function (msg) {
