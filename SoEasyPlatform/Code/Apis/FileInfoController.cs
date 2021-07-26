@@ -104,7 +104,7 @@ namespace SoEasyPlatform.Code.Apis
             result.Data += "[";
             if (!string.IsNullOrEmpty(Id))
             {
-                var ids = Id.Split(',').ToArray();
+                var ids = Id.Split(',').Select(it=>it.Trim()).ToArray();
                 var jsons= FileInfoDb.AsQueryable().Where(it => ids.Contains(it.Name)).Select(it=>it.Json).ToList();
                 result.Data += string.Join(",", jsons);
             }
