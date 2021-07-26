@@ -273,8 +273,8 @@ namespace SoEasyPlatform
                 Content = FileSugar.FileToString(FileSugar.MergeUrl(directory, temp)),
                 Json = FileSugar.FileToString(FileSugar.MergeUrl(directory, temp2)),
                 Name = ".net 标准类库",
-                Sort = 0,
                 Id = 1,
+                IsInit = true,
                 IsDeleted = false,
                 Suffix = "csproj"
 
@@ -292,7 +292,7 @@ namespace SoEasyPlatform
                 Content = FileSugar.FileToString(FileSugar.MergeUrl(directory, temp)),
                 Json = FileSugar.FileToString(FileSugar.MergeUrl(directory, temp2)),
                 Name = ".net5",
-                Sort = 0,
+                IsInit = true,
                 Id = 1,
                 IsDeleted = false,
                 Suffix = "csproj"

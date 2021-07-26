@@ -116,7 +116,9 @@ namespace SoEasyPlatform.Code.Apis
 
         private void CheckInitData(int? id)
         {
-            if (id == 1)
+            if (id == null)
+                return;
+            if (FileInfoDb.GetById(id.Value).IsInit)
             {
                 throw new Exception("初始化数据无法修改");
             }
