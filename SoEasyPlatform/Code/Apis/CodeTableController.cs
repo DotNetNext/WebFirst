@@ -314,7 +314,7 @@ namespace SoEasyPlatform.Code.Apis
             {
                 var html = TemplateHelper.GetTemplateValue(key, template, item);
                 var fileName = FileSugar.MergeUrl(project.Path, item.ClassName + "." + project.FileSuffix.TrimStart('.'));
-                FileSugar.CreateFile(fileName, html);
+                FileSugar.CreateFileReplace(fileName, html, Encoding.UTF8);
             }
             ProjectController_Biz.CreateProject(project.Id);
             result.IsSuccess = true;
