@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
@@ -282,7 +283,7 @@ namespace SoEasyPlatform.Code.Apis
             {
                 var html = TemplateHelper.GetTemplateValue(key, template, item);
                 var fileName = FileSugar.MergeUrl(model.Path, item.ClassName + "." + model.FileSuffix.TrimStart('.'));
-                FileSugar.CreateFileReplace(fileName, html);
+                FileSugar.CreateFileReplace(fileName, html, Encoding.UTF8);
             }
             ProjectController_Biz.CreateProject(dbModel);
             result.IsSuccess = true;
