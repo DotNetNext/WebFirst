@@ -229,10 +229,12 @@ var SugarContext = {
     Loading: function (divElement) {
         //loading层
 
-        var index = layer.load(1000, {
+        var index = layer.load(1, {
             shade: [0.1, '#fff'] //0.1透明度的白色背景
         });
         $(divElement).data("loadingIndex", index);
+        $(".layui-layer-loading").css("z-index", 999999999999999);
+        $(".layui-layer-shade").css("z-index", 999999999999998);
         return index;
     },
     CloseLoading: function (divElement) {
