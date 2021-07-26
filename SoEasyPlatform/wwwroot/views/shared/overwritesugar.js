@@ -39,6 +39,7 @@ var SugarContext = {
                     cascadeSelect: value.cascadeSelect,
                     collapse: value.collapse
                 });
+                $(element).data("treeobj", selectTree);
                 if (value.maxHeight != null) {
                     $(element).parent().next().css("max-height", value.maxHeight);
                     $(element).parent().next().find(".comboTreeItemTitle ").first().next().css("height", value.maxHeight + 20);
@@ -57,6 +58,19 @@ var SugarContext = {
                 });
             
 
+            },
+            error: function (msg) {
+                layer.msg("服务器请求失败.");
+            }
+        })
+    },
+    RestSelectTree: function (element, value)
+    {
+        $.ajax({
+            url: value.url,
+            type: "post",
+            success: function (msg) {
+                $(saveProjectName).data("treeobj").setSource(msg.Data);
             },
             error: function (msg) {
                 layer.msg("服务器请求失败.");

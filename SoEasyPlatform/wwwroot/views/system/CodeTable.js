@@ -279,6 +279,7 @@ btnPath.$Open("#divPath", {
                     if (msg.IsKeyValuePair) {
                         $sugar.$Validate(msg.Data, "save");
                     } else {
+                        saveProjectName.$RestSelectTree({ url: configs.url.GetProjet })
                         $sugar.$Validate("clear");
                         msg.Message.$Alert();
                     }

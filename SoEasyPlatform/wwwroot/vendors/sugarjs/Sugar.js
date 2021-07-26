@@ -17,6 +17,7 @@
             FillControls: object.FillControls,
             ClearControls: object.ClearControls,
             SelectTree: object.SelectTree,
+            RestSelectTree: object.RestSelectTree,
             Loading: object.Loading,
             CloseLoading: object.CloseLoading,
             QueryString: object.QueryString,
@@ -65,6 +66,13 @@
                 alert("请配置sugar.SelectTree"); return;
             }
             sugarParameters.SelectTree(element, value);
+        }
+        HTMLElement.prototype.$RestSelectTree = function (value) {
+            var element = this;
+            if (sugarParameters.RestSelectTree == null) {
+                alert("请配置sugar.RestSelectTree"); return;
+            }
+            sugarParameters.RestSelectTree(element, value);
         }
         HTMLElement.prototype.$GridInfo = function (value) {
             var element = this;
