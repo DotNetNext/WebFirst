@@ -339,6 +339,38 @@ namespace SoEasyPlatform
             {
             }
         }
+        /// <summary>
+        /// 创建一个文件,并将字符串写入文件。
+        /// </summary>
+        /// <param name="filePath">文件的绝对路径</param>
+        /// <param name="text">字符串数据</param>
+        /// <param name="encoding">字符编码</param>
+        public static void CreateFileReplace(string filePath, string text, Encoding encoding)
+        {
+            try
+            {
+                //如果文件不存在则创建该文件
+                //获取文件目录路径
+                string directoryPath = GetDirectoryFromFilePath(filePath);
+                //如果文件的目录不存在，则创建目录
+                CreateDirectory(directoryPath);
+                //创建文件
+                System.IO.FileInfo file = new System.IO.FileInfo(filePath);
+                using (FileStream stream = file.Create())
+                {
+                    using (StreamWriter writer = new StreamWriter(stream, encoding))
+                    {
+                        //写入字符串     
+                        writer.Write(text);
+                        //输出
+                        writer.Flush();
+                    }
+                }
+            }
+            catch
+            {
+            }
+        }
         #endregion
         #endregion
         #region 从文件绝对路径中获取目录路径

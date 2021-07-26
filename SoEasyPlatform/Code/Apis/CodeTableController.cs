@@ -282,7 +282,7 @@ namespace SoEasyPlatform.Code.Apis
             {
                 var html = TemplateHelper.GetTemplateValue(key, template, item);
                 var fileName = FileSugar.MergeUrl(model.Path, item.ClassName + "." + model.FileSuffix.TrimStart('.'));
-                FileSugar.CreateFile(fileName, html);
+                FileSugar.CreateFileReplace(fileName, html);
             }
             ProjectController_Biz.CreateProject(dbModel);
             result.IsSuccess = true;
