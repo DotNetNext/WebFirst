@@ -90,7 +90,7 @@ saveFileInfoName.$SelectTree({
 })
 
 saveFileInfoName.onchange = function () {
-    var value = this.value;
+    var value = saveFileInfo.value;
     if (value != null && value != "") {
         var ajaxParam = {
             data: { id: value },
