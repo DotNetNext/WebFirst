@@ -196,7 +196,6 @@ btnDbFirstAdd.$Open("#divOpen", {
             return false;
         }
         else {
-            btnDbFirstAdd.$Loading();
             return true;
         }
       
