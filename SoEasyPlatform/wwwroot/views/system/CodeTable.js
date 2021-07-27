@@ -7,7 +7,7 @@
         Save: _root + "codetable/savecodetable",
         SaveImport: _root + "codetable/savecodetableimport",
         Import: "/CodeTableImport",
-        GetTemp: _root + "system/getTemplate?type=1",
+        GetTemp: _root + "system/getTemplate?type=" + hidType.value,
         GetProjet: _root + "system/GetProject?typeId=1", 
         GetFileInfo: _root + "system/getFileInfo",
         CreateFile: _root + "codetable/createfile",

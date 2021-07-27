@@ -368,7 +368,7 @@ namespace SoEasyPlatform
                         Child=new List<Menu>()
                         {
                              new Menu{ MenuName="配置数据库" , Url="/"},
-                             new Menu{ MenuName="CodeFirst" , Url="/CodeFirst"},
+                             new Menu{ MenuName="CodeFirst ×" , Url="/CodeFirst"},
                              new Menu{ MenuName="DbFirst" , Url="/DbFirst"},
                              new Menu{ MenuName="配置业务",Url="/BIZ" },
                              new Menu{ MenuName="配置Web" ,Url="/Web"},
