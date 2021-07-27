@@ -114,7 +114,7 @@ namespace SoEasyPlatform.Code.Apis
                 {
                     CodeTableViewModel code = new CodeTableViewModel()
                     {
-                        ClassName = item.Name,
+                        ClassName =PubMehtod.GetCsharpName(item.Name),
                         TableName = item.Name,
                         DbId = dbid,
                         Description = item.Description,
@@ -129,7 +129,7 @@ namespace SoEasyPlatform.Code.Apis
                     {
                         CodeColumnsViewModel column = new CodeColumnsViewModel()
                         {
-                            ClassProperName = columnInfo.DbColumnName,
+                            ClassProperName = PubMehtod.GetCsharpName(columnInfo.DbColumnName),
                             DbColumnName = columnInfo.DbColumnName,
                             Description = columnInfo.ColumnDescription,
                             IsIdentity = columnInfo.IsIdentity,
@@ -152,6 +152,8 @@ namespace SoEasyPlatform.Code.Apis
             }
             return result;
         }
+
+   
 
         /// <summary>
         /// 删除虚拟类
