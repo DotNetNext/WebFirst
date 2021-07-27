@@ -134,4 +134,30 @@ btnDel.$Confirm({
 })
 
 
- 
+saveDbTypeName.change = function () {
+
+    if (saveDbTypeName.value == "SqlServer")
+    {
+        saveConnection.value = "server=.;uid=sa;pwd=sasa;database=SQLSUGAR4XTEST";
+    }
+    if (saveDbTypeName.value == "MySql")
+    {
+        saveConnection.value = "server=localhost;Database=SqlSugar4xTest;Uid=root;Pwd=haosql";
+    }
+    if (saveDbTypeName.value == "Sqlite")
+    {
+        saveConnection.value = "DataSource=C:\DataBase\SqlSugar4xTest.sqlite";
+    }
+    if (saveDbTypeName.value == "Oracle") {
+        saveConnection.value = "Data Source=localhost/orcl;User ID=system;Password=haha;";
+    }
+    if (saveDbTypeName.value == "PostgreSQL") {
+        saveConnection.value = "PORT=5432;DATABASE=SqlSugar4xTest;HOST=localhost;PASSWORD=haosql;USER ID=postgres";
+    }
+    if (saveDbTypeName.value == "Dm") {
+        saveConnection.value = " Server=localhost; User Id=SYSDBA; PWD=SYSDBA;DATABASE=新DB";
+    }
+    if (saveDbTypeName.value == "Kdbndp") {
+        saveConnection.value = " Server=127.0.0.1;Port=54321;UID=SYSTEM;PWD=system;database=SQLSUGAR4XTEST1";
+    }
+}
