@@ -367,16 +367,16 @@ namespace SoEasyPlatform
                       Icon="fa fa-edit",
                         Child=new List<Menu>()
                         {
-                             new Menu{ MenuName="配置数据库 √" , Url="/"},
-                             new Menu{ MenuName="CodeFirst √" , Url="/CodeFirst"},
-                             new Menu{ MenuName="DbFirst √" , Url="/DbFirst"},
-                             new Menu{ MenuName="配置业务 ×",Url="/BIZ" },
-                             new Menu{ MenuName="配置Web ×" ,Url="/Web"},
-                             new Menu{ MenuName="模版管理 √" , Url="/Template"} ,
-                             new Menu{ MenuName="方案管理 √" , Url="/Project"} ,
-                             new Menu{ MenuName="文件管理 √" , Url="/FileInfo"} ,
+                             new Menu{ MenuName="配置数据库" , Url="/"},
+                             new Menu{ MenuName="CodeFirst" , Url="/CodeFirst"},
+                             new Menu{ MenuName="DbFirst" , Url="/DbFirst"},
+                             new Menu{ MenuName="配置业务",Url="/BIZ" },
+                             new Menu{ MenuName="配置Web" ,Url="/Web"},
+                             new Menu{ MenuName="模版管理" , Url="/Template"} ,
+                             new Menu{ MenuName="方案管理" , Url="/Project"} ,
+                             new Menu{ MenuName="文件管理" , Url="/FileInfo"} ,
                              new Menu{ MenuName="解决方案 ×" , Url="/Solution"},
-                             new Menu{ MenuName="数据类型 √" , Url="/CodeType"},
+                             new Menu{ MenuName="数据类型" , Url="/CodeType"},
                         }
                      }
                     ,
