@@ -146,7 +146,7 @@ saveDbTypeName.change = function () {
     }
     if (saveDbTypeName.value == "Sqlite")
     {
-        saveConnection.value = "DataSource=C:\DataBase\SqlSugar4xTest.sqlite";
+        saveConnection.value = "DataSource=C:\\Demo\\SqlSugar4xTest.sqlite";
     }
     if (saveDbTypeName.value == "Oracle") {
         saveConnection.value = "Data Source=localhost/orcl;User ID=system;Password=haha;";
