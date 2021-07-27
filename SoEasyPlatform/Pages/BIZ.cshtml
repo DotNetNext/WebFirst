@@ -8,47 +8,5 @@
     <link href="~/views/system/css/CodeTable.css" rel="stylesheet" />
 }
 <div class="x_panel search_box">
-    <div class="x_title">
-        <h2 style="color: #17a2b8"><i class="fa fa-newspaper-o"></i> @ViewData["Title"] </h2>
-        <div class="clearfix"></div>
-    </div>
-
-    <div class="x_content">
-        <form id="divFrom" class="form-inline">
-
-            <div class="form-group m-3">
-                <label for="ex3" class="col-form-label">数据库：</label>
-                <input type="text" id="txtDbIdName" name="DbIdName" placeholder="Select" autocomplete="off" />
-                <input id="txtDbId" type="hidden" value="0" name="DbId" />
-            </div>
-
-            <div class="form-group m-3">
-                <label for="ex3" class="col-form-label">名称：</label>
-                <input type="text" id="ClassName" name="ClassName" class="form-control input" placeholder=" 类名或者表名 ">
-            </div>
-
-            <button id="btnSearch" type="button" class="btn btn-search"><i class="fa fa-search"></i>搜索</button>
-            <button id="btnReset" type="button" class="btn btn-green"><i class="fa fa-refresh"></i>重置</button>
-
-            @Html.Partial("Page")
-        </form>
-    </div>
-    <div class="x_content">
-        <button id="btnAdd" type="button" class="btn btn-dark hide"><i class="fa fa-plus"></i> 添加实体</button>
-        <button id="btnDbFirstAdd" type="button" class="btn btn-dark "><i class="fa fa-plus"></i> 添加实体</button>
-        <button id="btnEdit" type="button" class="btn btn-dark"><i class="fa fa-edit"></i> 编辑实体</button>
-        <button id="btnDel" type="button" class="btn btn-dark"><i class="fa fa-close"></i> 删除实体</button>
-        <button id="btnTable" onclick="alert('未实现')" type="button" class="btn btn-dark hide"><i class="fa fa-toggle-right"></i> 同步表</button>
-        <button id="btnTable" onclick="alert('未实现')" type="button" class="btn btn-dark dbfirst"><i class="fa fa-toggle-right"></i> 表更新实体</button>
-        <button id="btnPath" type="button" class="btn btn-dark"><i class="fa fa-cogs"></i> 手动生成</button>
-        <button id="btnProject" type="button" class="btn btn-dark"><i class="fa fa-cogs"></i> 方案生成</button>
-    </div>
-    <div class="x_content">
-        <table id="divGrid"></table>
-        <div id="divGridPage" class="pagination"></div>
-    </div>
-    <div id="divOpen" style="display:none">
-
-    </div>
     @Html.Partial("_CodeTable.cshtml")
 </div>

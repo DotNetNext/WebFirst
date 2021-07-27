@@ -54,5 +54,65 @@
     <div id="divOpen" style="display:none">
 
     </div>
-    @Html.Partial("_CodeTable.cshtml")
+    <div id="divPath" style="display:none">
+        <form id="frmPathSave" class="" action="" method="post" novalidate="">
+            <div class="x_content" style="margin-top:20px">
+                <div class="field item form-group">
+                    <label class="col-form-label col-md-2 col-sm-2  label-align">模版<span class="required">*</span></label>
+                    <div class="col-md-10 col-sm-9">
+                        <input type="text" id="saveTemplateName1" name="TemplateName1" placeholder="Select" autocomplete="off" />
+                        <input id="saveTemplateId1" type="hidden" value="0" name="TemplateId1" />
+                    </div>
+                </div>
+                <div class="field item form-group">
+                    <label class="col-form-label col-md-2 col-sm-2  label-align">生成路径<span class="required">*</span></label>
+                    <div class="col-md-10 col-sm-9">
+                        <input id="savePath" name="Path" type="text" value="C:\suagrdemo\database" class="form-control" />
+
+                    </div>
+                </div>
+                <div class="field item form-group">
+                    <label class="col-form-label col-md-2 col-sm-2  label-align">文件后缀<span class="required">*</span></label>
+                    <div class="col-md-10 col-sm-9">
+                        <input id="savePath" name="FileSuffix" type="text" value=".cs" class="form-control" />
+                    </div>
+                </div>
+                <div class="field item form-group">
+                    <label class="col-form-label col-md-2 col-sm-2  label-align">附加文件</label>
+                    <div class="col-md-10 col-sm-9">
+                        <input type="text" id="saveFileInfoName" name="FileInfoName" placeholder="Select" autocomplete="off" />
+                        <input id="saveFileInfo" type="hidden" value="0" name="FileInfo" />
+                    </div>
+                </div>
+                <div class="field item form-group">
+                    <label class="col-form-label col-md-2 col-sm-2  label-align">文件填充</label>
+                    <div class="col-md-10 col-sm-9">
+                        <span>请修改参数：</span>
+                        <textarea style="height:170px" class="form-control" id="saveFileModel" name="FileModel" placeholder="查看选中文件的razor格式，填写相应的json" autocomplete="off"></textarea>
+                    </div>
+                </div>
+                <div class="field item form-group lib">
+                    <label class="col-form-label col-md-2 col-sm-2  label-align">保存方案</label>
+                    <div class="col-md-10 col-sm-9">
+                        <input id="saveProjentName" name="ProjentName" type="text" class="form-control" placeholder="填写名称可以保存到方案" />
+                    </div>
+                    <input id="SaveTable1" type="hidden" name="Tables" value="" />
+                </div>
+            </div>
+        </form>
+    </div>
+    <div id="divProject" style="display:none">
+        <form id="frmProjectSave" class="" action="" method="post" novalidate="">
+            <div class="x_content" style="margin-top:20px">
+                <div class="field item form-group">
+                    <label class="col-form-label col-md-2 col-sm-2  label-align">方案<span class="required">*</span></label>
+                    <div class="col-md-10 col-sm-9">
+                        <input type="text" id="saveProjectName" name="ProjectName" placeholder="Select" autocomplete="off" />
+                        <input id="saveProjectId" type="hidden" value="0" name="ProjectId" />
+                        <input id="SaveTable2" type="hidden" name="Tables" value="" />
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
