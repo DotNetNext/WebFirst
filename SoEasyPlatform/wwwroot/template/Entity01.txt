@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using SqlSugar;
-namespace SugarTest
+namespace @Model.name_space
 {
     /// <summary>
     /// @(Model.Description)

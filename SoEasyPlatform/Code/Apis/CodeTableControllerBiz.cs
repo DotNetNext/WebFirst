@@ -176,6 +176,26 @@ namespace SoEasyPlatform.Code.Apis
             }
             return FileSugar.MergeUrl(project.Path, item.ClassName + p + project.FileSuffix);
         }
+        private string GetNameSpace(string fileModel,string defaultvalue)
+        {
+            if (!string.IsNullOrEmpty(fileModel))
+            {
+                dynamic obj = Newtonsoft.Json.JsonConvert.DeserializeObject(fileModel);
+                try
+                {
+                    return obj[0].name;
+                }
+                catch  
+                {
+                    return defaultvalue;
+                }
+            }
+            else 
+            {
+                return defaultvalue;
+            }
+        }
+
 
     }
 }

@@ -283,6 +283,7 @@ namespace SoEasyPlatform.Code.Apis
             string key = TemplateHelper.EntityKey + template.GetHashCode();
             foreach (var item in genList)
             {
+                item.name_space = GetNameSpace(model.FileModel,item.name_space);
                 var html = TemplateHelper.GetTemplateValue(key, template, item);
                 var fileName = GetFileName(model, item);
                 FileSugar.CreateFileReplace(fileName, html, Encoding.UTF8);

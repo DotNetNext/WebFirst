@@ -10,6 +10,11 @@ namespace SoEasyPlatform
     /// </summary>
     public class EntitiesGen
     {
+        public EntitiesGen() 
+        {
+            name_space = "DefaultModels";
+        }
+        public string name_space { get; set; }
         /// <summary>
         /// 类名
         /// </summary>
