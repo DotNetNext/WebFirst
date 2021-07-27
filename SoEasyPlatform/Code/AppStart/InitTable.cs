@@ -369,6 +369,19 @@ namespace SoEasyPlatform
                     Title = "SqlSugar默认实体模版"
 
                 }).ExecuteCommand();
+
+
+                var temp2 = @"wwwroot\template\biz.txt";
+                db.Insertable(new Template()
+                {
+                    ChangeTime = DateTime.Now,
+                    Content = FileSugar.FileToString(FileSugar.MergeUrl(directory, temp2)),
+                    TemplateTypeName = "业务",
+                    Sort = 0,
+                    TemplateTypeId = 2,
+                    Title = "默认业务模版"
+
+                }).ExecuteCommand();
             }
         }
 
