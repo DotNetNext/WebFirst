@@ -284,7 +284,7 @@ namespace SoEasyPlatform.Code.Apis
             foreach (var item in genList)
             {
                 var html = TemplateHelper.GetTemplateValue(key, template, item);
-                var fileName = FileSugar.MergeUrl(model.Path, item.ClassName + "." + model.FileSuffix.TrimStart('.'));
+                var fileName = GetFileName(model, item);
                 FileSugar.CreateFileReplace(fileName, html, Encoding.UTF8);
             }
             ProjectController_Biz.CreateProject(dbModel);
@@ -315,7 +315,7 @@ namespace SoEasyPlatform.Code.Apis
             foreach (var item in genList)
             {
                 var html = TemplateHelper.GetTemplateValue(key, template, item);
-                var fileName = FileSugar.MergeUrl(project.Path, item.ClassName + "." + project.FileSuffix.TrimStart('.'));
+                var fileName = GetFileName(project, item);
                 FileSugar.CreateFileReplace(fileName, html, Encoding.UTF8);
             }
             ProjectController_Biz.CreateProject(project.Id);

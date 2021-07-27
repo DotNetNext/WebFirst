@@ -125,7 +125,6 @@ namespace SoEasyPlatform.Code.Apis
                 return typeInfo.Name;
             }
         }
-
         private List<EntitiesGen> GetGenList(List<CodeTable> tableList,List<CodeType> types)
         {
             List<EntitiesGen> result = new List<EntitiesGen>();
@@ -155,5 +154,28 @@ namespace SoEasyPlatform.Code.Apis
             }
             return result;
         }
+
+        private  string GetFileName(ProjectViewModel project, EntitiesGen item)
+        {
+            var p = ".";
+            project.FileSuffix = project.FileSuffix.TrimStart('.');
+            if (project.FileSuffix.Contains(".")) 
+            {
+                p = null;
+            }
+            return FileSugar.MergeUrl(project.Path, item.ClassName + p + project.FileSuffix );
+        }
+
+        private  string GetFileName(Project project, EntitiesGen item)
+        {
+            var p = ".";
+            project.FileSuffix = project.FileSuffix.TrimStart('.');
+            if (project.FileSuffix.Contains("."))
+            {
+                p = null;
+            }
+            return FileSugar.MergeUrl(project.Path, item.ClassName + p + project.FileSuffix);
+        }
+
     }
 }
