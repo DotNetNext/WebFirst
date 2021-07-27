@@ -156,7 +156,7 @@ namespace SoEasyPlatform.Code.Apis
         public ActionResult<ApiResult<List<TreeModel>>> GetTemplate(int type)
         {
             List<TreeModel> trees = new List<TreeModel>();
-            var databses = TemplateDb.GetList();
+            var databses = TemplateDb.GetList(it=>it.TemplateTypeId==type||type==0);
             foreach (var db in databses)
             {
                 trees.Add(new TreeModel()
