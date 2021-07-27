@@ -260,6 +260,7 @@ namespace SoEasyPlatform
                 AddFile1(db);
                 AddFile2(db);
                 AddFile3(db);
+                AddFile4(db);
             }
         }
 
@@ -316,6 +317,25 @@ namespace SoEasyPlatform
                 Id = 1,
                 IsDeleted = false,
                 Suffix = "csproj"
+
+            };
+            db.Insertable(d1).ExecuteCommand();
+        }
+        private static void AddFile4(SqlSugarClient db)
+        {
+            var temp = @"wwwroot\template\DbContext.txt";
+            var temp2 = @"wwwroot\template\DbContext_1.txt";
+            var directory = Directory.GetCurrentDirectory();
+            var d1 = new FileInfo()
+            {
+                ChangeTime = DateTime.Now,
+                Content = FileSugar.FileToString(FileSugar.MergeUrl(directory, temp)).Replace("net5.0", "netcoreapp3.1"),
+                Json = FileSugar.FileToString(FileSugar.MergeUrl(directory, temp2)),
+                Name = "DbContext.cs",
+                IsInit = true,
+                Id = 1,
+                IsDeleted = false,
+                Suffix = "cs"
 
             };
             db.Insertable(d1).ExecuteCommand();
