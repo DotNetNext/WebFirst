@@ -12,7 +12,8 @@
         GetFileInfo: _root + "system/getFileInfo",
         CreateFile: _root + "codetable/createfile",
         CreateFile2: _root + "codetable/CreateFileByProjectId",
-        GetRazorModel: _root +"FileInfo/GetRazorModel"
+        GetRazorModel: _root + "FileInfo/GetRazorModel",
+        UpdateEntity: _root + "codetable/UpdateEntity"
     },
     text:
     {
@@ -250,6 +251,27 @@ btnDel.$Confirm({
         }
     }
 })
+
+btnTableToEntity.onclick = function () {
+
+    var gridInfo = divGrid.$GridInfo();
+    if (gridInfo.length > 0) {
+        configs.url.UpdateEntity.$Ajax({
+            callback: function (msg) {
+                if (msg.IsSuccess) {
+                    "更新成功".$Alert();
+                    btnSearch.click();
+                }
+                else {
+                    msg.Data.$Alert();
+                }
+            },
+            data: { "model": JSON.stringify(gridInfo), dbid: txtDbId.value}
+        })
+    } else {
+        "请选择一条数据".$Alert();
+    }
+} 
 
 btnPath.$Open("#divPath", {
     title: configs.text.addPath,

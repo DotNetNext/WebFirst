@@ -178,6 +178,45 @@ namespace SoEasyPlatform.Code.Apis
             return result;
         }
 
+        /// <summary>
+        ////根据数据库更新虚拟类
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("UpdateEntity")]
+        public ActionResult<ApiResult<bool>> UpdateEntity([FromForm] string model, [FromForm] int dbid)
+        {
+            var tableDb = base.GetTryDb(dbid);
+            var result = new ApiResult<bool>();
+            if (!string.IsNullOrEmpty(model))
+            {
+                var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<CodeTableViewModel>>(model);
+                var ids = list.Select(it => it.Id).ToList();
+                var tableNames = list.Select(it => it.TableName.ToLower()).ToList();
+                try
+                {
+                    Db.BeginTran();
+                    CodeTableDb.DeleteByIds(ids.Select(it=>(object)it).ToArray());
+                    var dbTableGridList= tableDb.DbMaintenance.GetTableInfoList(false).Where(it=> tableNames.Contains(it.Name.ToLower())).Select(it=>new DbTableGridViewModel() { 
+                      Description=it.Description,
+                      Name=it.Name
+                    });
+                    if (dbTableGridList.Any())
+                    {
+                        SaveCodetableImport(dbid, Newtonsoft.Json.JsonConvert.SerializeObject(dbTableGridList));
+                    }
+                    Db.CommitTran();
+                }
+                catch (Exception ex)
+                {
+                    Db.RollbackTran();
+                    throw ex;
+                }
+            }
+            result.IsSuccess = true;
+            return result;
+        }
+        
         #endregion
 
         #region Code Type
