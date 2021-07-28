@@ -147,7 +147,7 @@ namespace SoEasyPlatform.Code.Apis
                         IsPrimaryKey = column.IsPrimaryKey,
                         PropertyName = column.ClassProperName,
                         Type= types.First(it=>it.Name==column.CodeType).CSharepType,
-                        IsNullable=column.Required=false
+                        IsNullable=column.Required==false
                     };
                     gen.PropertyGens.Add(proGen);
                 }
