@@ -14,11 +14,12 @@ namespace @Model.name_space
 {
     var isPrimaryKey = item.IsPrimaryKey ? ",IsPrimaryKey = true" : "";
     var isIdentity = item.IsIdentity ? ",IsIdentity = true" : "";
+    var isNull=(item.IsNullable&&item.Type!="string")?"?":"";
         @:/// <summary>
         @:/// @(item.Description)
         @:///</summary>
         @: [SugarColumn(ColumnName="@item.DbColumnName" @(isPrimaryKey) @(isIdentity))]
-        @: public @item.Type @item.PropertyName { get; set; }
+        @: public @item.Type@isNull @item.PropertyName { get; set; }
     }
     }
 }
