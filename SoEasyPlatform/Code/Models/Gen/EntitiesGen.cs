@@ -64,5 +64,9 @@ namespace SoEasyPlatform
         /// 属性类型
         /// </summary>
         public string Type { get; set; }
+        /// <summary>
+        /// 是否是为NULL
+        /// </summary>
+        public bool IsNullable { get;  set; }
     }
 }
