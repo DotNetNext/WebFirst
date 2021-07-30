@@ -85,6 +85,7 @@ btnEdit.$Open("#divOpen", {
         } else {
             gridInfo = gridInfo[0];
             frmSave.$FillControls(gridInfo);
+            saveDbTypeName.value = saveDbType.value;
             return true;
         }
     },
