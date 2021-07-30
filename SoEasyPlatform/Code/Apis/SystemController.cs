@@ -51,7 +51,7 @@ namespace SoEasyPlatform.Code.Apis
             {
                 trees.Add(new TreeModel()
                 {
-                    Id = ((int)type).ToString(),
+                    Id = type.ToString(),
                     Title = type.ToString(),
                     IsSelectable = true
                 });
