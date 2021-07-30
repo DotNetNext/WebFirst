@@ -6,6 +6,9 @@ var _root = "/api/";
 var SugarContext = {
     Form: function (element, value) {
         $(function () {
+            if (value.before != null) {
+                value.before();
+            }
             var url = value.url;
             var callback = value.callback;
             var ajaxFormOption = {
@@ -185,6 +188,10 @@ var SugarContext = {
         return rows;
     },
     Button: function (formElement, value) {
+        if (value.before != null)
+        {
+            value.before();
+        }
         var context = this;
         SugarContext.Form($(formElement).closest("form")[0], value);
     },

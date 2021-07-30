@@ -16,21 +16,29 @@
     }
 };
 divFrom.$Form({
+    before: function () {
+        btnSearch.$Loading();
+    },
     url: configs.url.Get,
     callback: function (msg) {
         msg.Data.Dblfunc = function () {
             btnEdit.click();
         };
         divGrid.$Grid(msg.Data);
+        btnSearch.$CloseLoading();
     }
 })
 btnSearch.$Button({
+    before: function () {
+        btnSearch.$Loading();
+    },
     url: configs.url.Get,
     callback: function (msg) {
         msg.Data.Dblfunc = function () {
             btnEdit.click();
         };
         divGrid.$Grid(msg.Data);
+        btnSearch.$CloseLoading();
     }
 });
 
