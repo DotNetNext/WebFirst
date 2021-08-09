@@ -5,8 +5,8 @@
     ViewBag.DetaultName = "SugarBiz";
 }
 @section js{
-    <script src="~/views/system/codetable.js"></script>
-    <link href="~/views/system/css/CodeTable.css" rel="stylesheet" />
+    <script src="~/views/system/codetable.js@(ViewBag.version)"></script>
+    <link href="~/views/system/css/CodeTable.css@(ViewBag.version)" rel="stylesheet" />
     <script>
         saveFileSuffix.value="Manager.cs"
     </script>

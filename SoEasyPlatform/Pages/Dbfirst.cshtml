@@ -6,8 +6,8 @@
     ViewBag.DetaultName = "SugarModels";
 }
 @section js{
-    <script src="~/views/system/codetable.js"></script>
-    <link href="~/views/system/css/CodeTable.css" rel="stylesheet" />
+    <script src="~/views/system/codetable.js@(ViewBag.version)"></script>
+    <link href="~/views/system/css/CodeTable.css@(ViewBag.version)" rel="stylesheet" />
 }
 <input id="hidType" type="hidden"  value="1"/>
 <div class="x_panel search_box">
