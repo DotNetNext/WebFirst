@@ -125,7 +125,7 @@ namespace SoEasyPlatform.Code.Apis
                     {
                         entity = new CodeTable();
                     }
-                    foreach (var columnInfo in tableDb.DbMaintenance.GetColumnInfosByTableName(item.Name))
+                    foreach (var columnInfo in tableDb.DbMaintenance.GetColumnInfosByTableName(item.Name,false))
                     {
                         CodeColumnsViewModel column = new CodeColumnsViewModel()
                         {

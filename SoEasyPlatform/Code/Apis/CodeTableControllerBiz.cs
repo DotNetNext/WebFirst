@@ -89,7 +89,7 @@ namespace SoEasyPlatform.Code.Apis
         private void CheckAddName(CodeTableViewModel viewModel, Repository<CodeTable> codeTableDb)
         {
             CheckClassName(viewModel);
-            var isAny = codeTableDb.IsAny(it => it.TableName == viewModel.TableName && it.IsDeleted == false);
+            var isAny = codeTableDb.IsAny(it => it.TableName == viewModel.TableName && it.IsDeleted == false&&(viewModel.DbId.Value==0||viewModel.DbId==it.DbId));
             if (isAny)
             {
                 throw new Exception(viewModel.TableName + "表名已存在");
