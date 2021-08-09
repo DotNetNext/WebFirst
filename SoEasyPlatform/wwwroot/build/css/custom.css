@@ -988,7 +988,7 @@
 
 .nav_menu {
     float: left;
-    background: #272929;
+    background: #3c8dbc;
     border-bottom: 1px solid #D9DEE4;
     margin-bottom: 10px;
     width: 100%;
@@ -1032,12 +1032,13 @@ body .container.body .right_col {
   margin-left: 230px; }
 
 .nav_title {
-  width: 230px;
-  float: left;
-  background: #272929;
-  border-radius: 0;
-  height: 57px;
-  padding: 0px; }
+    width: 230px;
+    float: left;
+    background: #3c8dbc;
+    border-radius: 0;
+    height: 57px;
+    padding: 0px;
+}
 
 @media (max-width: 991px) {
   .nav-md .container.body .right_col, .nav-md .container.body .top_nav {
@@ -1163,7 +1164,9 @@ body {
 
 .main_container .top_nav {
   display: block;
-  margin-left: 230px; }
+  margin-left: 230px; 
+  color:#fff
+}
 
 .no-padding {
   padding: 0 !important; }
@@ -1469,7 +1472,7 @@ a:hover, a:focus {
   width: 70px; }
 
 .toggle a {
-  padding: 15px 15px 0;
+  padding: 18px 15px 0;
   margin: 0;
   cursor: pointer; }
 
@@ -2334,7 +2337,7 @@ span.right {
   padding: 0; }
 
 a.user-profile {
-  color: #5E6974 !important; }
+  color: #fff !important; }
 
 .user-profile img {
   width: 29px;
@@ -5006,7 +5009,7 @@ ul.notifications {
 }
 .site_title span, .site_title i {
     position: relative !important;
-    top: -6px !important;
+    top: -4px !important;
     border:none !important
 }
 .x_title {
