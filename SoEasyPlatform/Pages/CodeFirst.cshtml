@@ -11,7 +11,7 @@
 <input id="hidType" type="hidden" value="1" />
 <div class="x_panel search_box">
     <div class="x_title">
-        <h2 style="color: #0fa0e1;"><i class="fa fa-home"></i> @ViewData["Title"] </h2>
+        <h2 ><i class="fa fa-home"></i> 首页 / @ViewData["Title"] </h2>
         <div class="clearfix"></div>
     </div>
 
@@ -25,25 +25,25 @@
             </div>
 
             <div class="form-group ">
-                <label for="ex3" class="col-form-label">名称：</label>
+                <label for="ex3" class="col-form-label m-l-15"> 名称：</label>
                 <input type="text" id="ClassName" name="ClassName" class="form-control input" placeholder=" 类名或者表名 ">
             </div>
 
-            <button id="btnSearch" type="button" class="btn btn-search"><i class="fa fa-search"></i>搜索</button>
-            <button id="btnReset" type="button" class="btn btn-green"><i class="fa fa-refresh"></i>重置</button>
+            <button id="btnSearch" type="button" class="btn btn-blue"><i class="fa fa-search"></i>搜索</button>
+            <button id="btnReset" type="button" class="btn btn-info"><i class="fa fa-refresh"></i>重置</button>
 
             @Html.Partial("Page")
         </form>
     </div>
     <div class="x_content">
-        <button id="btnAdd" type="button" class="btn btn-dark "><i class="fa fa-plus"></i> 添加实体</button>
+        <button id="btnAdd" type="button" class="btn btn-green "><i class="fa fa-plus"></i> 添加实体</button>
         <button id="btnDbFirstAdd" type="button" class="btn btn-dark hide"><i class="fa fa-cloud-upload"></i> 数据库导入</button>
-        <button id="btnEdit" type="button" class="btn btn-dark"><i class="fa fa-edit"></i> 编辑实体</button>
-        <button id="btnDel" type="button" class="btn btn-dark"><i class="fa fa-close"></i> 删除实体</button>
-        <button id="btnTable" onclick="alert('未实现')" type="button" class="btn btn-dark "><i class="fa fa-toggle-right"></i> 实体更新表</button>
+        <button id="btnEdit" type="button" class="btn btn-primary"><i class="fa fa-edit"></i> 编辑实体</button>
+        <button id="btnDel" type="button" class="btn btn-search"><i class="fa fa-close"></i> 删除实体</button>
+        <button id="btnTable" onclick="alert('未实现')" type="button" class="btn btn-warning "><i class="fa fa-toggle-right"></i> 实体更新表</button>
         <button id="btnTableToEntity"  type="button" class="btn btn-dark hide"><i class="fa fa-toggle-right"></i> 同步实体</button>
-        <button id="btnPath" type="button" class="btn btn-dark"><i class="fa fa-cogs"></i> 手动生成</button>
-        <button id="btnProject" type="button" class="btn btn-dark"><i class="fa fa-cogs"></i> 方案生成</button>
+        <button id="btnPath" type="button" class="btn btn-secondary"><i class="fa fa-cogs"></i> 手动生成</button>
+        <button id="btnProject" type="button" class="btn btn-success"><i class="fa fa-cogs"></i> 方案生成</button>
     </div>
     <div class="x_content">
         <table id="divGrid"></table>
