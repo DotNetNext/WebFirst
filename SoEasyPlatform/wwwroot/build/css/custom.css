@@ -5083,12 +5083,12 @@ input.sugar-tip {
 .table th {
    background:#fff !important
 }
-#divFrom {
+.main-box #divFrom {
     float: right;
     position: absolute;
     right: 0;
     z-index: 1;
-    text-align:right;
-    top:10px !important;
-    font-size:14px;
+    text-align: right;
+    top: 10px !important;
+    font-size: 14px;
 }
