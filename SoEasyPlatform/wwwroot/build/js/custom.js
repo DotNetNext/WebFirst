@@ -117,29 +117,27 @@ function init_sidebar() {
         $('.dataTable').each(function () { $(this).dataTable().fnDraw(); });
     });
 
-    var setInt = setInterval(function () {
-        if ($(".active .child_menu:visible").size() == 0)
-        {
-            MenuInit();
-        }
-        else
-        {
-            clearInterval(setInt);
-        }
-    }, 100);
+    setTimeout(function () {
+        MenuInit();
+    }, 300);
 
     function MenuInit() {
-        CURRENT_URL = CURRENT_URL.replace(window.location.origin, "");
+        CURRENT_URL = "/Database";
         // check active menu
         $SIDEBAR_MENU.find('a[href="' + CURRENT_URL + '"]').parent('li').addClass('current-page');
-
+        $(".current-page").parent().prev().click();
+        $SIDEBAR_MENU.find("a").click(function () {
+            iframeBody.src = $(this).attr("href");
+            $(".active").removeClass("active");
+            $(".current-page").removeClass("current-page");
+        });
         $SIDEBAR_MENU.find('a').filter(function () {
             return this.href == CURRENT_URL;
         }).parent('li').addClass('current-page').parents('ul').slideDown(function () {
             setContentHeight();
         }).parent().addClass('active');
 
-        $(".current-page").parent().prev().click();
+    
         // recompute content when resizing
         $(window).smartresize(function () {
             setContentHeight();

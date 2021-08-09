@@ -1,62 +1,68 @@
 ﻿@page
-@{
-    ViewData["Title"] = "数据库连接管理";
-    Layout = "~/Pages/Shared/_Layout.cshtml";
-}
-@section js{
-    <script src="~/views/system/index.js"></script>
-}
-<div class="x_panel search_box">
-    <div class="x_title">
-        <h2><i class="fa fa-newspaper-o"></i> 数据库管理</h2>
-        <div class="clearfix"></div>
-    </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>  @ViewData["Title"] </title>
+    @Html.Partial("UiCss")
+</head>
+<body id="sugarbody" class="nav-md footer_fixed">
+    <div class="container body">
+        <div class="main_container">
+            <div class="col-md-3 left_col">
+                <div class="left_col scroll-view">
+                    <div id="divTitle" class="navbar nav_title" style="border: 0;">
+                        <a href="index.html" class="site_title"><i class="fa fa-smile-o">  </i> <span>Web First </span> <span v-cloak></span></a>
+                    </div>
+                    <div class="clearfix"></div>
+                    <!-- menu profile quick info -->
+                    <div class="profile clearfix">
+                        <div class="profile_pic">
+                            <img src="~/build/images/img.jpg" alt="..." class="img-circle profile_img">
+                        </div>
+                        <div class="profile_info">
+                            <span>欢迎您小可爱 </span>
+                            <h2>无敌管理员</h2>
+                        </div>
+                    </div>
+                    <!-- /menu profile quick info -->
+                    <br />
+                    <!-- sidebar menu -->
+                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                        @Html.Partial("Menu")
+                    </div>
 
-    <div class="x_content">
-        <form id="divFrom" class="form-inline">
-            <div class="form-group">
-                <label for="ex3" class="col-form-label">备注：</label>
-                <input type="text" id="Desc" name="Desc" class="form-control input" placeholder=" ">
-            </div>
-            <button id="btnSearch" type="button" class="btn btn-search"><i class="fa fa-search"></i>搜索</button>
-            <button id="btnReset" type="button" class="btn btn-green"><i class="fa fa-refresh"></i>重置</button>
-            @Html.Partial("Page")
-        </form>
-    </div>
-    <div class="x_content">
-        <button id="btnAdd" type="button" class="btn btn-blue"><i class="fa fa-plus"></i>添加</button>
-        <button id="btnEdit" type="button" class="btn btn-blue"><i class="fa fa-edit"></i>修改</button>
-        <button id="btnDel" type="button" class="btn btn-blue"><i class="fa fa-close"></i>删除</button>
-    </div>
-    <div class="x_content">
-        <table id="divGrid"></table>
-        <div id="divGridPage" class="pagination"></div>
-    </div>
-    <div id="divOpen" style="display:none">
-        <form id="frmSave" class="" action="" method="post" novalidate="">
-            <div class="x_content" style="margin-top:20px">
-                <div class="field item form-group">
-                    <label class="col-form-label col-md-2 col-sm-2  label-align">数据库类型<span class="required">*</span></label>
-                    <div class="col-md-10 col-sm-9">
-                        <input type="text" id="saveDbTypeName" name="DbTypeName" placeholder="Select" autocomplete="off" />
-                        <input id="saveDbType" type="hidden" value="0" name="DbType" />
-                    </div>
-                </div>
-                <div class="field item form-group">
-                    <label class="col-form-label col-md-2 col-sm-2  label-align">描述<span class="required">*</span></label>
-                    <div class="col-md-10 col-sm-9">
-                        <input id="saveDesc" name="Desc" class="form-control" type="text" />
-                        <input id="saveId" type="hidden" name="Id" value="" />
-
-                    </div>
-                </div>
-                <div class="field item form-group">
-                    <label class="col-form-label col-md-2 col-sm-2  label-align">连接字符串<span class="required">*</span></label>
-                    <div class="col-md-10 col-sm-9">
-                         <textarea style="height:70px" id="saveConnection" name="Connection" class="form-control" ></textarea>
-                    </div>
                 </div>
             </div>
-        </form>
+
+            <!-- top navigation -->
+            @Html.Partial("Top")
+            <!-- /top navigation -->
+            <!-- page content -->
+            <div class="right_col" role="main">
+                <div class="">
+                    <iframe id="iframeBody"   width="100%"  name="iframeLeft" frameborder="0" src="/Database"></iframe>
+                </div>
+            </div>
+            <!-- /page content -->
+            <!-- footer content -->
+            <footer>
+                <div class="pull-right">
+                    Gentelella - Bootstrap Admin Template by  Colorlib
+                </div>
+                <div class="clearfix"></div>
+            </footer>
+            <!-- /footer content -->
+        </div>
     </div>
-</div>
+    @Html.Partial("UiJs")
+
+    <script src="~/vendors/sugarjs/sugar.js"></script>
+    <script src="~/views/shared/overwritesugar.js"></script>
+    <script src="~/views/shared/layout.js"></script>
+</body>
+</html>
+

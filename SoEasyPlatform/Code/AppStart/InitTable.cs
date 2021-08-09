@@ -400,7 +400,7 @@ namespace SoEasyPlatform
                       Icon="fa fa-edit",
                         Child=new List<Menu>()
                         {
-                             new Menu{ MenuName="配置数据库" , Url="/"},
+                             new Menu{ MenuName="配置数据库" , Url="/Database"},
                              new Menu{ MenuName="CodeFirst" , Url="/CodeFirst"},
                              new Menu{ MenuName="DbFirst" , Url="/DbFirst"},
                              new Menu{ MenuName="配置业务",Url="/BIZ" },

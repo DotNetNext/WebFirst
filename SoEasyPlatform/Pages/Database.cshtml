@@ -1,0 +1,62 @@
+﻿@page
+@{
+    ViewData["Title"] = "数据库连接管理";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+@section js{
+    <script src="~/views/system/index.js"></script>
+}
+<div class="x_panel search_box">
+    <div class="x_title">
+        <h2><i class="fa fa-newspaper-o"></i> 数据库管理</h2>
+        <div class="clearfix"></div>
+    </div>
+
+    <div class="x_content">
+        <form id="divFrom" class="form-inline">
+            <div class="form-group">
+                <label for="ex3" class="col-form-label">备注：</label>
+                <input type="text" id="Desc" name="Desc" class="form-control input" placeholder=" ">
+            </div>
+            <button id="btnSearch" type="button" class="btn btn-search"><i class="fa fa-search"></i>搜索</button>
+            <button id="btnReset" type="button" class="btn btn-green"><i class="fa fa-refresh"></i>重置</button>
+            @Html.Partial("Page")
+        </form>
+    </div>
+    <div class="x_content">
+        <button id="btnAdd" type="button" class="btn btn-blue"><i class="fa fa-plus"></i>添加</button>
+        <button id="btnEdit" type="button" class="btn btn-blue"><i class="fa fa-edit"></i>修改</button>
+        <button id="btnDel" type="button" class="btn btn-blue"><i class="fa fa-close"></i>删除</button>
+    </div>
+    <div class="x_content">
+        <table id="divGrid"></table>
+        <div id="divGridPage" class="pagination"></div>
+    </div>
+    <div id="divOpen" style="display:none">
+        <form id="frmSave" class="" action="" method="post" novalidate="">
+            <div class="x_content" style="margin-top:20px">
+                <div class="field item form-group">
+                    <label class="col-form-label col-md-2 col-sm-2  label-align">数据库类型<span class="required">*</span></label>
+                    <div class="col-md-10 col-sm-9">
+                        <input type="text" id="saveDbTypeName" name="DbTypeName" placeholder="Select" autocomplete="off" />
+                        <input id="saveDbType" type="hidden" value="0" name="DbType" />
+                    </div>
+                </div>
+                <div class="field item form-group">
+                    <label class="col-form-label col-md-2 col-sm-2  label-align">描述<span class="required">*</span></label>
+                    <div class="col-md-10 col-sm-9">
+                        <input id="saveDesc" name="Desc" class="form-control" type="text" />
+                        <input id="saveId" type="hidden" name="Id" value="" />
+
+                    </div>
+                </div>
+                <div class="field item form-group">
+                    <label class="col-form-label col-md-2 col-sm-2  label-align">连接字符串<span class="required">*</span></label>
+                    <div class="col-md-10 col-sm-9">
+                         <textarea style="height:70px" id="saveConnection" name="Connection" class="form-control" ></textarea>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
