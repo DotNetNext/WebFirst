@@ -23,15 +23,15 @@
                 <input type="text" id="txtModelIdName" name="ModelIdName" placeholder="Select" autocomplete="off" />
                 <input id="txtModelId" type="hidden" value="0" name="ModelId" />
             </div>
-            <button id="btnSearch" type="button" class="btn btn-search"><i class="fa fa-search"></i>搜索</button>
-            <button id="btnReset" type="button" class="btn btn-green"><i class="fa fa-refresh"></i>重置</button>
+            <button id="btnSearch" type="button" class="btn btn-blue m-l-15"><i class="fa fa-search"></i>搜索</button>
+            <button id="btnReset" type="button" class="btn btn-info"><i class="fa fa-refresh"></i>重置</button>
             @Html.Partial("Page")
         </form>
     </div>
     <div class="x_content">
         <button id="btnAdd" style="display:none" type="button" class="btn btn-blue"><i class="fa fa-plus"></i>添加</button>
         <button id="btnEdit" style="display:none"  type="button" class="btn btn-blue"><i class="fa fa-edit"></i>修改</button>
-        <button id="btnDel" type="button" class="btn btn-blue"><i class="fa fa-close"></i>删除</button>
+        <button id="btnDel" type="button" class="btn btn-search"><i class="fa fa-close"></i>删除</button>
     </div>
     <div class="x_content">
         <table id="divGrid"></table>
