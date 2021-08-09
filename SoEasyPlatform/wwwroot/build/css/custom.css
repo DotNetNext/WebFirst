@@ -1401,11 +1401,7 @@ a:hover, a:focus {
   color: #fff; }
 
 .nav.side-menu > li.active > a {
-  text-shadow: rgba(0, 0, 0, 0.25) 0 -1px 0;
-  background: -webkit-gradient(linear, left top, left bottom, from(#334556), to(#2C4257)), #272929;
-  background: linear-gradient(#334556, #2C4257), #272929;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.25) 0 1px 0, inset rgba(255, 255, 255, 0.16) 0 1px 0;
-  box-shadow: rgba(0, 0, 0, 0.25) 0 1px 0, inset rgba(255, 255, 255, 0.16) 0 1px 0; }
+}
 
 .navbar-brand, .navbar-nav > li > a {
   font-weight: 500;
@@ -5005,7 +5001,7 @@ ul.notifications {
     top: 3px;
 }
 .active a.name {
-    background: #515a6e !important;
+ 
 }
 .site_title span, .site_title i {
     position: relative !important;

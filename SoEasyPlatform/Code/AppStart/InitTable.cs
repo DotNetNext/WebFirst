@@ -396,7 +396,7 @@ namespace SoEasyPlatform
                 {
                     new Menu()
                      {
-                      MenuName="WebFirst",
+                      MenuName="代码管理",
                       Icon="fa fa-edit",
                         Child=new List<Menu>()
                         {
