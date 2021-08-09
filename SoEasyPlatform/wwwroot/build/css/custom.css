@@ -5068,6 +5068,9 @@ input.sugar-tip {
 .w-150 {
     width: 150px !important;
 }
+.w-70 {
+    width: 90px !important;
+}
 #iframeBody {
     width: 100%;
     position: relative;
