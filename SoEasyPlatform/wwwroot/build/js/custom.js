@@ -117,8 +117,11 @@ function init_sidebar() {
         $('.dataTable').each(function () { $(this).dataTable().fnDraw(); });
     });
 
-    setTimeout(function () {
-        MenuInit();
+    var timerMenu = setInterval(function () {
+        if ($("#divMenu>ul").size() > 1) {
+            MenuInit();
+            clearInterval(timerMenu);
+        } 
     }, 300);
 
     function MenuInit() {
