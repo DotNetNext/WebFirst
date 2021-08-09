@@ -1,4 +1,7 @@
 ﻿<!DOCTYPE html>
+@{ 
+    ViewBag.version = "?v=100";
+}
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -13,8 +16,8 @@
     @RenderBody()
     @Html.Partial("UiJs")
 
-    <script src="~/vendors/sugarjs/sugar.js"></script>
-    <script src="~/views/shared/overwritesugar.js"></script>
+    <script src="~/vendors/sugarjs/sugar.js@(ViewBag.version)"></script>
+    <script src="~/views/shared/overwritesugar.js@(ViewBag.version)"></script>
 
      
     @RenderSection("js", false)
