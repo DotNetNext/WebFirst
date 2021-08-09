@@ -857,7 +857,7 @@
 .nav-sm .nav.side-menu li a {
   text-align: center !important;
   font-weight: 400;
-  font-size: 10px;
+  font-size: 14px !important;
   padding: 10px 5px; }
 
 .nav-sm .nav.child_menu li.active,
@@ -1485,8 +1485,8 @@ a:hover, a:focus {
 
 .nav.child_menu > li > a {
   color: rgba(255, 255, 255, 0.75);
-  font-size: 12px;
-  padding: 9px; }
+  font-size: 14px;
+  padding: 10px; }
 
 .panel_toolbox {
   float: right;
@@ -5078,4 +5078,7 @@ input.sugar-tip {
 }
 .right_col {
     padding:0!important
+}
+#divMenu .name {
+    font-size: 14px;
 }
