@@ -1036,7 +1036,7 @@ body .container.body .right_col {
     float: left;
     background: #3c8dbc;
     border-radius: 0;
-    height: 57px;
+    height: 54px;
     padding: 0px;
 }
 
@@ -1660,7 +1660,7 @@ h2 {
   padding: 10px 17px;
   display: inline-block;
   background: #fff;
-  border: 1px solid #E6E9ED;
+  border: 0px solid #E6E9ED;
   -webkit-column-break-inside: avoid;
   -moz-column-break-inside: avoid;
   column-break-inside: avoid;
@@ -1668,28 +1668,6 @@ h2 {
   -webkit-transition: all .2s ease;
   transition: all .2s ease; }
 
-.x_title {
-  border-bottom: 2px solid #E6E9ED;
-  padding: 1px 5px 6px;
-  margin-bottom: 10px; }
-
-.x_title .filter {
-  width: 40%;
-  float: right; }
-
-.x_title h2 {
-  margin: 5px 0 6px;
-  float: left;
-  display: block;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap; }
-
-.x_title h2 small {
-  margin-left: 10px; }
-
-.x_title span {
-  color: #BDBDBD; }
 
 .x_content {
   padding: 0 3px 6px;
