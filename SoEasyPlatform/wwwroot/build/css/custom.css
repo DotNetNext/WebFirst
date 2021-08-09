@@ -5069,3 +5069,10 @@ input.sugar-tip {
 .required {
     color:red
 }
+.search_box {
+   padding-top: 0!important;
+   padding-bottom:0 !important;
+}
+.right_col {
+    padding:0!important
+}
