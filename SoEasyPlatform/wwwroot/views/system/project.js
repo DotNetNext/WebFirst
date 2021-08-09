@@ -40,7 +40,7 @@ txtModelIdName.$SelectTree({
     isMultiple: false,
     url: configs.url.GetType,
     maxHeight: 180,
-    width: 400,
+    width: 200,
     rootIsSelect: true
 })
 
