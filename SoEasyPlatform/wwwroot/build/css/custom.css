@@ -5062,9 +5062,29 @@ input.sugar-tip {
 .m-l-15 {
    margin-left:15px;
 }
-
+.w-400 {
+    width:400px !important;
+}
+.w-150 {
+    width: 150px !important;
+}
 #iframeBody {
     width: 100%;
     position: relative;
     top: -10px
+}
+.table .th-inner {
+    color: #212529;
+    font-size: 14px;
+}
+.table th {
+   background:#fff !important
+}
+#divFrom {
+    float: right;
+    position: absolute;
+    right: 0;
+    z-index: 1;
+    text-align:right;
+    top:10px !important;
 }
