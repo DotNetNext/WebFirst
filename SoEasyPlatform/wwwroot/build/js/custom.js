@@ -117,13 +117,14 @@ function init_sidebar() {
         $('.dataTable').each(function () { $(this).dataTable().fnDraw(); });
     });
 
-    var timerMenu = setInterval(function () {
-        if ($("#divMenu>ul").size() > 1) {
-            MenuInit();
-            clearInterval(timerMenu);
-        } 
-    }, 300);
-
+    if ($("#divMenu").size() > 0) {
+        var timerMenu = setInterval(function () {
+            if ($("#divMenu>ul").size() > 1) {
+                MenuInit();
+                clearInterval(timerMenu);
+            }
+        }, 300);
+    }
     function MenuInit() {
         CURRENT_URL = "/Database";
         // check active menu
