@@ -415,7 +415,7 @@ namespace SoEasyPlatform
                     ,
                      new Menu()
                      {
-                        MenuName="敬请期待",
+                        MenuName="数据库管理",
                         Icon="fa fa-bar-chart-o",
                         Child=new List<Menu>()
                         {
@@ -427,12 +427,12 @@ namespace SoEasyPlatform
                          ,
                      new Menu()
                      {
-                        MenuName="工作流",
+                        MenuName="全部教程",
                         Icon="fa fa-bar-chart-o",
                         Child=new List<Menu>()
                         {
-                             new Menu{ MenuName="待定1" },
-                             new Menu{ MenuName="待定2" },
+                             new Menu{ MenuName="WebFirst",Url="https://www.donet5.com/Doc/11" },
+                             new Menu{ MenuName="SqlSugar ORM" ,Url="https://www.donet5.com/Home/Doc" },
 
                         }
                      }
