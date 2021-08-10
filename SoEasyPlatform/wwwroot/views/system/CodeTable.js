@@ -272,6 +272,7 @@ btnTableToEntity.onclick = function () {
         })
     } else {
         "请选择一条数据".$Alert();
+        btnTableToEntity.$CloseLoading();
     }
 } 
 
