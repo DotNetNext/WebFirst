@@ -9,6 +9,9 @@ using System.Dynamic;
 
 namespace SoEasyPlatform
 {
+    /// <summary>
+    /// 项目公用逻辑
+    /// </summary>
     public class ProjectController_Common
     {
         public static void CreateProject(int id)
