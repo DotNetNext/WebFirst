@@ -254,10 +254,12 @@ btnDel.$Confirm({
 
 btnTableToEntity.onclick = function () {
 
+    btnTableToEntity.$Loading();
     var gridInfo = divGrid.$GridInfo();
     if (gridInfo.length > 0) {
         configs.url.UpdateEntity.$Ajax({
             callback: function (msg) {
+                btnTableToEntity.$CloseLoading();
                 if (msg.IsSuccess) {
                     "更新成功".$Alert();
                     btnSearch.click();
