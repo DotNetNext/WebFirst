@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SqlSugar;
 
-namespace SoEasyPlatform.Code.Apis
+namespace SoEasyPlatform.Apis
 {
     /// <summary>
     /// 系统常用接口

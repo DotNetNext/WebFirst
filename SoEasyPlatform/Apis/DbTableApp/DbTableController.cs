@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using SqlSugar;
-namespace SoEasyPlatform.Code.Apis
+namespace SoEasyPlatform.Apis
 {
     /// <summary>
     /// 数据库表操作

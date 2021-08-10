@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SoEasyPlatform.Code.Apis
+namespace SoEasyPlatform.Apis
 {
     [Route("api/[controller]")]
     [ApiController]

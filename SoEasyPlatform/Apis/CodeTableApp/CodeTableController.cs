@@ -7,7 +7,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using SqlSugar;
 
-namespace SoEasyPlatform.Code.Apis
+namespace SoEasyPlatform.Apis
 {
     /// <summary>
     /// 虚拟类配置
@@ -90,7 +90,7 @@ namespace SoEasyPlatform.Code.Apis
 
 
         /// <summary>
-        /// 保存虚拟类
+        /// 从数据库导入虚拟类
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>

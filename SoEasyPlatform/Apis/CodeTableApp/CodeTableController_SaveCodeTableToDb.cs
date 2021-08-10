@@ -7,9 +7,11 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace SoEasyPlatform.Code.Apis
+namespace SoEasyPlatform.Apis
 {
-
+    /// <summary>
+    /// 保存虚拟类到数据库相关逻辑
+    /// </summary>
     public partial class CodeTableController : BaseController
     {
         private void SaveCodeTableToDb(CodeTableViewModel viewModel)
@@ -113,89 +115,10 @@ namespace SoEasyPlatform.Code.Apis
             }
         }
 
-        private string GetEntityType(List<CodeType> types, DbColumnInfo columnInfo, CodeTableController codeTableController)
-        {
-            var typeInfo = types.FirstOrDefault(y => y.DbType.Any(it => it.Name.Equals(columnInfo.DataType, StringComparison.OrdinalIgnoreCase)));
-            if (typeInfo == null)
-            {
-                return "string100";
-            }
-            else
-            {
-                return typeInfo.Name;
-            }
-        }
-        private List<EntitiesGen> GetGenList(List<CodeTable> tableList,List<CodeType> types)
-        {
-            List<EntitiesGen> result = new List<EntitiesGen>();
-            foreach (var item in tableList)
-            {
-                EntitiesGen gen = new EntitiesGen()
-                {
-                    ClassName = item.ClassName,
-                    Description = item.Description,
-                    TableName = item.TableName,
-                    PropertyGens = new List<PropertyGen>()
-                };
-                foreach (var column in base.CodeColumnsDb.GetList(it => it.CodeTableId == item.Id))
-                {
-                    PropertyGen proGen = new PropertyGen()
-                    {
-                        DbColumnName = column.DbColumnName,
-                        Description = column.Description,
-                        IsIdentity = column.IsIdentity,
-                        IsPrimaryKey = column.IsPrimaryKey,
-                        PropertyName = column.ClassProperName,
-                        Type= types.First(it=>it.Name==column.CodeType).CSharepType,
-                        IsNullable=column.Required==false
-                    };
-                    gen.PropertyGens.Add(proGen);
-                }
-                result.Add(gen);
-            }
-            return result;
-        }
 
-        private  string GetFileName(ProjectViewModel project, EntitiesGen item)
-        {
-            var p = ".";
-            project.FileSuffix = project.FileSuffix.TrimStart('.');
-            if (project.FileSuffix.Contains(".")) 
-            {
-                p = null;
-            }
-            return FileSugar.MergeUrl(project.Path, item.ClassName + p + project.FileSuffix );
-        }
 
-        private  string GetFileName(Project project, EntitiesGen item)
-        {
-            var p = ".";
-            project.FileSuffix = project.FileSuffix.TrimStart('.');
-            if (project.FileSuffix.Contains("."))
-            {
-                p = null;
-            }
-            return FileSugar.MergeUrl(project.Path, item.ClassName + p + project.FileSuffix);
-        }
-        private string GetNameSpace(string fileModel,string defaultvalue)
-        {
-            if (!string.IsNullOrEmpty(fileModel))
-            {
-                dynamic obj = Newtonsoft.Json.JsonConvert.DeserializeObject(fileModel);
-                try
-                {
-                    return obj[0].name;
-                }
-                catch  
-                {
-                    return defaultvalue;
-                }
-            }
-            else 
-            {
-                return defaultvalue;
-            }
-        }
+
+      
 
 
     }

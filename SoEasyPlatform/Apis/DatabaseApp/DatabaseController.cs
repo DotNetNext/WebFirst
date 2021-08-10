@@ -6,7 +6,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using SqlSugar;
 
-namespace SoEasyPlatform.Code.Apis
+namespace SoEasyPlatform.Apis
 {
     /// <summary>
     /// 数据库管理
