@@ -25,7 +25,7 @@ namespace SoEasyPlatform.Code.Apis
             result.Data = new TableModel<DbTableGridViewModel>();
             var db = GetTryDb(dbId.Value);
             result.Data.Rows=mapper.Map<List<DbTableGridViewModel>> (db.DbMaintenance.GetTableInfoList());
-            var codetable = CodeTableDb.GetList(it => it.DbId == dbId.Value);
+            var codetable = CodeTableDb.AsQueryable().Where(it => it.DbId == dbId.Value).OrderBy(it=>it.TableName).ToList();
             foreach (var item in result.Data.Rows)
             {
                 item.IsImport = codetable.Any(it => it.TableName.Equals(item.Name, StringComparison.CurrentCultureIgnoreCase)) ? "导入" : "";
