@@ -1,7 +1,7 @@
 ﻿/// <reference path="../../vendors/jquery/dist/jquery.js" />
 /// <reference path="../../vendors/jquery-forms/jquery.forms.js" />
 /// <reference path="../../vendors/sugarjs/sugar.js" />
-
+//重写sugar.js接口实现
 var _root = hidRoot.value;
 var SugarContext = {
     Form: function (element, value) {
@@ -326,17 +326,22 @@ var SugarContext = {
     WindowHeight: function ()
     {
         return $(window).height();
+    },
+    AjaxAopLoadingInit: function () {
+        //AJAX AOP处理Loading
+        $(function () {
+            $.ajax({
+                beforeSend: function () {
+                    SugarContext.Loading(document.getElementsByTagName("body")[0])
+                },
+                complete: function () {
+                    SugarContext.CloseLoading(document.getElementsByTagName("body")[0])
+                }
+                // ...
+            });
+        })
     }
 };
 $sugar.init(SugarContext);
-$(function () {
-    $.ajax({
-        beforeSend: function () {
-            SugarContext.Loading(document.getElementsByTagName("body")[0])
-        },
-        complete: function () {
-            SugarContext.CloseLoading(document.getElementsByTagName("body")[0])
-        }
-        // ...
-    });
-})
+SugarContext.AjaxAopLoadingInit();
+
