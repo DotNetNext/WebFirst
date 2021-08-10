@@ -431,8 +431,8 @@ namespace SoEasyPlatform
                         Icon="fa fa-bar-chart-o",
                         Child=new List<Menu>()
                         {
-                             new Menu{ MenuName="WebFirst",Url="https://www.donet5.com/Doc/11" },
-                             new Menu{ MenuName="SqlSugar ORM" ,Url="https://www.donet5.com/Home/Doc" },
+                             new Menu{ MenuName="WebFirst",Url="https://www.donet5.com/Doc/11?src=webfirst" },
+                             new Menu{ MenuName="SqlSugar ORM" ,Url="https://www.donet5.com/Home/Doc?src=webfirst" },
 
                         }
                      }
