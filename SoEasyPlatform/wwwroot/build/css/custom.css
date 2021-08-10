@@ -5043,6 +5043,9 @@ input.sugar-tip {
 :-ms-input-placeholder { /* Internet Explorer 10+ */
     color: #ccc !important;
 }
+
+
+/* 自这义扩展样式 */
 .required {
     color:red
 }
