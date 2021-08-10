@@ -109,7 +109,7 @@ saveFileInfoName.onchange = function () {
     }
     else
     {
-        saveFileModel.value = "";
+        saveFileModel.value = "[{ \"name\":\"命名空间\"}]";
     }
  } 
  
