@@ -214,7 +214,7 @@ namespace SoEasyPlatform.Apis
                     List<CodeColumns> UpdateColumns = new List<CodeColumns>();
                     foreach (var item in oldColumns.GroupBy(it=>new { it.TableId,it.TableName}).ToList())
                     {
-                        var tableId = CodeTableDb.AsQueryable().Where(it => it.TableName == item.Key.TableName).First()?.Id;
+                        var tableId = CodeTableDb.AsQueryable().Where(it => it.TableName == item.Key.TableName&&it.DbId==dbid).First()?.Id;
                         if (tableId != null) {
                             var columns = CodeColumnsDb.AsQueryable().Where(it => it.CodeTableId ==tableId ).ToList();
                             foreach (var col in columns)
