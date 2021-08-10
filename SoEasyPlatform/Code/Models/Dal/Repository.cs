@@ -30,6 +30,10 @@ namespace SoEasyPlatform
                 FileSugar.AppendText(logPath, exp.Sql);
                 FileSugar.AppendText("", exp.Sql);
             };
+            db.Aop.OnLogExecuting = (sql,p) =>
+            {
+
+            };
             return db;
         }
         public static SqlSugarClient GetInstance(DbType type,string connection)
