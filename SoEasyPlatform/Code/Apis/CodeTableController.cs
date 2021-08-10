@@ -191,6 +191,7 @@ namespace SoEasyPlatform.Code.Apis
             if (!string.IsNullOrEmpty(model))
             {
                 var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<CodeTableViewModel>>(model);
+                var oldList = CodeTableDb.AsQueryable().In(list.Select(it => it.Id).ToList()).ToList();
                 var ids = list.Select(it => it.Id).ToList();
                 var tableNames = list.Select(it => it.TableName.ToLower()).ToList();
                 try
@@ -205,6 +206,7 @@ namespace SoEasyPlatform.Code.Apis
                     {
                         SaveCodetableImport(dbid, Newtonsoft.Json.JsonConvert.SerializeObject(dbTableGridList));
                     }
+                    CodeTableDb.AsUpdateable(oldList).UpdateColumns(it=>it.ClassName).WhereColumns(it=>it.TableName).ExecuteCommand();
                     Db.CommitTran();
                 }
                 catch (Exception ex)
