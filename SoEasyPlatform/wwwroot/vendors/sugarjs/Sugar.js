@@ -202,7 +202,7 @@ var $sugar = {
             if (sugarParameters.WindowHeight == null) {
                 alert("请配置sugar.WindowHeight"); return;
             }
-            sugarParameters.WindowHeight();
+            return sugarParameters.WindowHeight();
         }
     }
 };

@@ -325,7 +325,8 @@ var SugarContext = {
     },
     WindowHeight: function ()
     {
-        return $(window).height();
+        var result = $(window).height();
+        return result;
     },
     AjaxAopLoadingInit: function () {
         //AJAX AOP处理Loading
