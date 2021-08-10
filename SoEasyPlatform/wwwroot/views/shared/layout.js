@@ -1,2 +1,4 @@
 ﻿divMenu.$Fill({ SugarUrl: _root + "System/getmenu" })
-$("iframe").css("height", $(window).height()-75)
+iframeBody.$AddCss({ "height": $sugar.$WindowHeight() - 75 })
+
+alert($sugar.$WindowHeight)

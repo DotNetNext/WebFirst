@@ -1,6 +1,6 @@
 ﻿<!DOCTYPE html>
 @{ 
-    ViewBag.version = "?v=105";
+    ViewBag.version = "?v="+ SoEasyPlatform.Startup.Version;
 }
 <html lang="en">
 <head>
@@ -13,13 +13,14 @@
     @RenderSection("css", false)
 </head>
 <body id="sugarbody" class="nav-md footer_fixed">
+    <input id="hidRoot" type="hidden" value="@SoEasyPlatform.Startup.RootUrl" />
     @RenderBody()
     @Html.Partial("UiJs")
 
     <script src="~/vendors/sugarjs/sugar.js@(ViewBag.version)"></script>
     <script src="~/views/shared/overwritesugar.js@(ViewBag.version)"></script>
 
-     
+
     @RenderSection("js", false)
 </body>
 </html>

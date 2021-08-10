@@ -1,4 +1,5 @@
-﻿var $sugar = {
+﻿//JS接口标准，方便以后代码更换插件
+var $sugar = {
     init: function (object) {
         var sugarParameters = {
             Button: object.Button,
@@ -23,7 +24,8 @@
             QueryString: object.QueryString,
             AddClass: object.AddClass,
             AddCss: object.AddCss,
-            RemoveClass: object.RemoveClass
+            RemoveClass: object.RemoveClass,
+            WindowHeight: object.WindowHeight
         };
         HTMLElement.prototype.$Fill = function (value) {
             var element = this;
@@ -181,7 +183,7 @@
             if (sugarParameters.CloseAll == null) {
                 alert("请配置sugar.CloseAll"); return;
             }
-            sugarParameters.CloseAll(index);
+         arameters.   sugarPCloseAll(index);
         }
         $sugar.$Validate = function (json, idPrev) {
             if (sugarParameters.CloseAll == null) {
@@ -194,6 +196,13 @@
             var r = window.location.search.substr(1).match(reg);
             if (r != null) return unescape(r[2]); return null;
 
+        }
+        $sugar.$WindowHeight = function ()
+        {
+            if (sugarParameters.WindowHeight == null) {
+                alert("请配置sugar.WindowHeight"); return;
+            }
+            sugarParameters.WindowHeight();
         }
     }
 };

@@ -2,7 +2,7 @@
 /// <reference path="../../vendors/jquery-forms/jquery.forms.js" />
 /// <reference path="../../vendors/sugarjs/sugar.js" />
 
-var _root = "/api/";
+var _root = hidRoot.value;
 var SugarContext = {
     Form: function (element, value) {
         $(function () {
@@ -322,6 +322,10 @@ var SugarContext = {
     AddCss: function (element, obj)
     {
         $(element).css(obj)
+    },
+    WindowHeight: function ()
+    {
+        return $(window).height();
     }
 };
 $sugar.init(SugarContext);
