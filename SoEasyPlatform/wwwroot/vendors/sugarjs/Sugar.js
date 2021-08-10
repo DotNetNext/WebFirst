@@ -183,10 +183,10 @@ var $sugar = {
             if (sugarParameters.CloseAll == null) {
                 alert("请配置sugar.CloseAll"); return;
             }
-         sugarParameters.sugarPCloseAll(index);
+            sugarParameters.CloseAll(index);
         }
         $sugar.$Validate = function (json, idPrev) {
-            if (sugarParameters.CloseAll == null) {
+            if (sugarParameters.Validate == null) {
                 alert("请配置sugar.Validate"); return;
             }
             sugarParameters.Validate(json, idPrev);
