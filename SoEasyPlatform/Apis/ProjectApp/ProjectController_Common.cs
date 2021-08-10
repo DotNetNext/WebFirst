@@ -9,7 +9,7 @@ using System.Dynamic;
 
 namespace SoEasyPlatform
 {
-    public class ProjectController_Biz
+    public class ProjectController_Common
     {
         public static void CreateProject(int id)
         {

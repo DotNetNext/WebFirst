@@ -347,7 +347,7 @@ namespace SoEasyPlatform.Apis
                 var fileName = GetFileName(model, item);
                 FileSugar.CreateFileReplace(fileName, html, Encoding.UTF8);
             }
-            ProjectController_Biz.CreateProject(dbModel);
+            ProjectController_Common.CreateProject(dbModel);
             result.IsSuccess = true;
             result.Message = "生成生功";
             return result;
@@ -378,7 +378,7 @@ namespace SoEasyPlatform.Apis
                 var fileName = GetFileName(project, item);
                 FileSugar.CreateFileReplace(fileName, html, Encoding.UTF8);
             }
-            ProjectController_Biz.CreateProject(project.Id);
+            ProjectController_Common.CreateProject(project.Id);
             result.IsSuccess = true;
             result.Message = "生成生功";
             return result;
