@@ -433,7 +433,8 @@ namespace SoEasyPlatform
                         {
                              new Menu{ MenuName="WebFirst",Url="https://www.donet5.com/Doc/11?src=webfirst" },
                              new Menu{ MenuName="SqlSugar ORM" ,Url="https://www.donet5.com/Home/Doc?src=webfirst" },
-
+                             new Menu{ MenuName="Sugar.IOC" ,Url="https://www.donet5.com/Doc/10/2250" },
+                             new Menu{ MenuName="打赏" ,Url="https://www.donet5.com/Home/Reward" },
                         }
                      }
 
