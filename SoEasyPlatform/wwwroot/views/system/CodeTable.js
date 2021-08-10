@@ -176,7 +176,7 @@ btnEdit.$Open("#divOpen", {
         configs.url.Save.$Ajax({
             callback: function (msg) {
                 if (msg.IsSuccess) {
-                    "添加成功".$Alert();
+                    "保存成功".$Alert();
                     $sugar.$CloseAll(divOpen.getAttribute("dataindex"));
                     btnSearch.click();
                 }

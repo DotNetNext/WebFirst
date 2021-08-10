@@ -192,6 +192,7 @@ namespace SoEasyPlatform.Code.Apis
             {
                 var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<CodeTableViewModel>>(model);
                 var oldList = CodeTableDb.AsQueryable().In(list.Select(it => it.Id).ToList()).ToList();
+                var oldColumns = Db.Queryable<CodeColumns, CodeTable>((c, t) => c.CodeTableId == t.Id).Where((c,t)=>oldList.Select(it=>it.Id).Contains(t.Id)) .Select((c, t) => new { TableId=t.Id,TableName = t.TableName, Columns = c }).ToList();
                 var ids = list.Select(it => it.Id).ToList();
                 var tableNames = list.Select(it => it.TableName.ToLower()).ToList();
                 try
@@ -207,6 +208,23 @@ namespace SoEasyPlatform.Code.Apis
                         SaveCodetableImport(dbid, Newtonsoft.Json.JsonConvert.SerializeObject(dbTableGridList));
                     }
                     CodeTableDb.AsUpdateable(oldList).UpdateColumns(it=>it.ClassName).WhereColumns(it=>it.TableName).ExecuteCommand();
+                    List<CodeColumns> UpdateColumns = new List<CodeColumns>();
+                    foreach (var item in oldColumns.GroupBy(it=>new { it.TableId,it.TableName}).ToList())
+                    {
+                        var tableId = CodeTableDb.AsQueryable().Where(it => it.TableName == item.Key.TableName).First()?.Id;
+                        if (tableId != null) {
+                            var columns = CodeColumnsDb.AsQueryable().Where(it => it.CodeTableId ==tableId ).ToList();
+                            foreach (var col in columns)
+                            {
+                                var addColumn = item.FirstOrDefault(it => it.Columns.DbColumnName == col.DbColumnName);
+                                if (addColumn != null)
+                                {
+                                    col.ClassProperName=addColumn.Columns.ClassProperName;
+                                    UpdateColumns.Add(col);
+                                }
+                            } }
+                    }
+                    CodeColumnsDb.AsUpdateable(UpdateColumns).UpdateColumns(it => it.ClassProperName).ExecuteCommand();
                     Db.CommitTran();
                 }
                 catch (Exception ex)
