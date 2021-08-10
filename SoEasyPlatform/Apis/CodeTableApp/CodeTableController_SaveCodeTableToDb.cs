@@ -100,7 +100,7 @@ namespace SoEasyPlatform.Apis
         private void CheckUpdateName(CodeTableViewModel viewModel, Repository<CodeTable> codeTableDb)
         {
             CheckClassName(viewModel);
-            var isAny = codeTableDb.IsAny(it => it.TableName == viewModel.TableName && it.IsDeleted == false && it.Id != viewModel.Id);
+            var isAny = codeTableDb.IsAny(it => it.TableName == viewModel.TableName && it.IsDeleted == false && it.Id != viewModel.Id&&(viewModel.DbId==it.DbId||viewModel.DbId.Value==0));
             if (isAny)
             {
                 throw new Exception(viewModel.TableName + "表名已存在");
