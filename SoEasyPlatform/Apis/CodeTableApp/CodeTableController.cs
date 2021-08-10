@@ -207,7 +207,10 @@ namespace SoEasyPlatform.Apis
                     {
                         SaveCodetableImport(dbid, Newtonsoft.Json.JsonConvert.SerializeObject(dbTableGridList));
                     }
-                    CodeTableDb.AsUpdateable(oldList).UpdateColumns(it=>it.ClassName).WhereColumns(it=>it.TableName).ExecuteCommand();
+                    foreach (var item in oldList)
+                    {
+                        CodeTableDb.AsUpdateable(item).UpdateColumns(it => it.ClassName).WhereColumns(it => it.TableName).ExecuteCommand();
+                    }
                     List<CodeColumns> UpdateColumns = new List<CodeColumns>();
                     foreach (var item in oldColumns.GroupBy(it=>new { it.TableId,it.TableName}).ToList())
                     {
