@@ -39,7 +39,7 @@ namespace SoEasyPlatform.Code.Apis
                 )
                 .Where(it => it.DbId == model.DbId)
                 .WhereIF(!string.IsNullOrEmpty(model.ClassName), it => it.ClassName.Contains(model.ClassName) || it.TableName.Contains(model.ClassName))
-                .OrderBy(it => it.Id)
+                .OrderBy(it => it.TableName)
                 .Select((it, db) => new CodeTableGridViewModel()
                 {
                     Id = it.Id.SelectAll(),
