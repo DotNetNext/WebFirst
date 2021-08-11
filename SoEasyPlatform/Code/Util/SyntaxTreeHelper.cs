@@ -63,11 +63,25 @@ namespace SoEasyPlatform
                     ms.Seek(0, SeekOrigin.Begin);
 
                     Assembly assembly = AssemblyLoadContext.Default.LoadFromStream(ms);
-                    var type = assembly.GetType("RoslynCompileSample." + typeName);
+                    var type = assembly.GetType("RoslynCompileSampleDemo." + typeName);
                     //Console.WriteLine(type.Name);
                     return type;
                 }
             }
         }
+
+        internal static string TemplateString = @"namespace  RoslynCompileSampleDemo
+{
+
+    public class @(Model.ClassName)
+    {
+@foreach (var item in Model.PropertyGens)
+{
+
+    @: public @item.Typec @item.PropertyName { get; set; }
+}
+    }
+}
+";
     }
 }
