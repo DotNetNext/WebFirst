@@ -24,7 +24,7 @@ namespace SoEasyPlatform.Apis
            var result =new  ApiResult<TableModel<DbTableGridViewModel>>();
             result.Data = new TableModel<DbTableGridViewModel>();
             var db = GetTryDb(dbId.Value);
-            result.Data.Rows=mapper.Map<List<DbTableGridViewModel>> (db.DbMaintenance.GetTableInfoList());
+            result.Data.Rows=mapper.Map<List<DbTableGridViewModel>> (db.DbMaintenance.GetTableInfoList(false));
             var codetable = CodeTableDb.AsQueryable().Where(it => it.DbId == dbId.Value).OrderBy(it=>it.TableName).ToList();
             foreach (var item in result.Data.Rows)
             {

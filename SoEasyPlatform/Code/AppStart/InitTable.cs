@@ -236,7 +236,16 @@ namespace SoEasyPlatform
                                                            new DbTypeInfo(){  Name="binary"}
 
                                 }
+                    },
+                    new CodeType{
+                                  Name="datetimeoffset",
+                                  CSharepType=CSharpDataType.DateTimeOffset.ToString(),
+                                  DbType=new DbTypeInfo[]{
+                                                           new DbTypeInfo(){  Name="datetimeoffset"}
+
+                                }
                     }
+
 
                 };
                 foreach (var item in list)
