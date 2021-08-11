@@ -419,6 +419,15 @@ namespace SoEasyPlatform.Apis
                                 info.DbTableName = item.TableName;
                                 info.TableDescription = item.Description;
                             }
+                        },
+                        EntityService=(type, info) => 
+                        {
+                            if (info.EntityName == item.ClassName) 
+                            {
+                                var column = item.PropertyGens.FirstOrDefault(it => it.PropertyName == info.PropertyName);
+                                info.DbColumnName = column.DbColumnName;
+                                info.ColumnDescription = column.Description;
+                            }
                         }
                     };
                     tableDb.CodeFirst.InitTables(type);
