@@ -13,7 +13,7 @@ namespace SoEasyPlatform
 {
     public class SyntaxTreeHelper
     {
-        private static Type GetModelTypeByClass(string classString, string typeName)
+        public static Type GetModelTypeByClass(string classString, string typeName)
         {
             //Write("Parsing the code into the SyntaxTree");
             SyntaxTree syntaxTree = CSharpSyntaxTree.ParseText(classString);
@@ -78,7 +78,7 @@ namespace SoEasyPlatform
 @foreach (var item in Model.PropertyGens)
 {
 
-    @: public @item.Typec @item.PropertyName { get; set; }
+    @: public @item.Type @item.PropertyName { get; set; }
 }
     }
 }

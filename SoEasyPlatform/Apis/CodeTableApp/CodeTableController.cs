@@ -408,7 +408,20 @@ namespace SoEasyPlatform.Apis
                 string key = TemplateHelper.EntityKey + SyntaxTreeHelper.TemplateString.GetHashCode();
                 foreach (var item in genList)
                 {
-                    var html = TemplateHelper.GetTemplateValue(key, SyntaxTreeHelper.TemplateString, item);
+                    var classString = TemplateHelper.GetTemplateValue(key, SyntaxTreeHelper.TemplateString, item);
+                    var type = SyntaxTreeHelper.GetModelTypeByClass(classString, item.ClassName);
+                    tableDb.CurrentConnectionConfig.ConfigureExternalServices=new ConfigureExternalServices() {
+                        EntityNameService = (type, info) => 
+                        {
+                            if (info.EntityName == item.ClassName||(info.EntityName==null && info.DbTableName==item.ClassName)) 
+                            {
+                                info.EntityName = item.ClassName;
+                                info.DbTableName = item.TableName;
+                                info.TableDescription = item.Description;
+                            }
+                        }
+                    };
+                    tableDb.CodeFirst.InitTables(type);
                 }
 
             }

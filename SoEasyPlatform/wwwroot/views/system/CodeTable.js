@@ -13,7 +13,8 @@
         CreateFile: _root + "codetable/createfile",
         CreateFile2: _root + "codetable/CreateFileByProjectId",
         GetRazorModel: _root + "FileInfo/GetRazorModel",
-        UpdateEntity: _root + "codetable/UpdateEntity"
+        UpdateEntity: _root + "codetable/UpdateEntity",
+        CreateTable: _root +"codetable/CreateTables"
     },
     text:
     {
@@ -275,6 +276,32 @@ btnTableToEntity.onclick = function () {
         btnTableToEntity.$CloseLoading();
     }
 } 
+
+btnTable.onclick = function () {
+
+
+    btnTable.$Loading();
+    var gridInfo = divGrid.$GridInfo();
+    if (gridInfo.length > 0) {
+        configs.url.CreateTable.$Ajax({
+            callback: function (msg) {
+                btnTable.$CloseLoading();
+                if (msg.IsSuccess) {
+                    "更新成功".$Alert();
+                    btnSearch.click();
+                }
+                else {
+                    msg.Data.$Alert();
+                }
+            },
+            data: { "model": JSON.stringify(gridInfo), dbid: txtDbId.value }
+        })
+    } else {
+        "请选择一条数据".$Alert();
+        btnTable.$CloseLoading();
+    }
+
+}
 
 btnPath.$Open("#divPath", {
     title: configs.text.addPath,
