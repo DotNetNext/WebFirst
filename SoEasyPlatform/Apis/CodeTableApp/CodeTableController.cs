@@ -388,5 +388,33 @@ namespace SoEasyPlatform.Apis
             return result;
         }
         #endregion
+
+        #region CreateTable
+        /// <summary>
+        ////生成表
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("CreateTables")]
+        public ActionResult<ApiResult<bool>> CreateTables([FromForm] string model, [FromForm] int dbid)
+        {
+            var tableDb = base.GetTryDb(dbid);
+            var result = new ApiResult<bool>();
+            if (!string.IsNullOrEmpty(model))
+            {
+                var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<CodeTableViewModel>>(model);
+                var oldList = CodeTableDb.AsQueryable().In(list.Select(it => it.Id).ToList()).ToList();
+                List<EntitiesGen> genList = GetGenList(oldList, CodeTypeDb.GetList());
+                string key = TemplateHelper.EntityKey + SyntaxTreeHelper.TemplateString.GetHashCode();
+                foreach (var item in genList)
+                {
+                    var html = TemplateHelper.GetTemplateValue(key, SyntaxTreeHelper.TemplateString, item);
+                }
+
+            }
+            result.IsSuccess = true;
+            return result;
+        }
+        #endregion
     }
 }
