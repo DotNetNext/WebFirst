@@ -77,7 +77,7 @@ namespace SoEasyPlatform
                                   Name="string200",
                                   CSharepType=CSharpDataType.@string.ToString(),
                                   DbType=new DbTypeInfo[]{
-                                                           new DbTypeInfo(){  Name="varchar",Length=100} 
+                                                           new DbTypeInfo(){  Name="varchar",Length=200} 
                                 }
                     },
                     new CodeType{
