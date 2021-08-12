@@ -70,7 +70,8 @@ namespace SoEasyPlatform
             }
         }
 
-        internal static string TemplateString = @"namespace  RoslynCompileSampleDemo
+        internal static string TemplateString = @"using System;
+namespace  RoslynCompileSampleDemo
 {
 
     public class @(Model.ClassName)
