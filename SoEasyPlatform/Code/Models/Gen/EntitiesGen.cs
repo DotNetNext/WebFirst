@@ -68,5 +68,17 @@ namespace SoEasyPlatform
         /// 是否是为NULL
         /// </summary>
         public bool IsNullable { get;  set; }
+        /// <summary>
+        /// 精度
+        /// </summary>
+        public int? DecimalDigits { get;  set; }
+        /// <summary>
+        /// 长度
+        /// </summary>
+        public int? Length { get;  set; }
+        /// <summary>
+        /// 数据库类型
+        /// </summary>
+        public string DbType { get;  set; }
     }
 }

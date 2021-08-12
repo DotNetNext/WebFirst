@@ -28,6 +28,8 @@ namespace SoEasyPlatform.Apis
                 };
                 foreach (var column in base.CodeColumnsDb.GetList(it => it.CodeTableId == item.Id))
                 {
+                    var codeType = types.First(it => it.Name == column.CodeType);
+                    var dbType = codeType.DbType[0];
                     PropertyGen proGen = new PropertyGen()
                     {
                         DbColumnName = column.DbColumnName,
@@ -35,8 +37,11 @@ namespace SoEasyPlatform.Apis
                         IsIdentity = column.IsIdentity,
                         IsPrimaryKey = column.IsPrimaryKey,
                         PropertyName = column.ClassProperName,
-                        Type = types.First(it => it.Name == column.CodeType).CSharepType,
-                        IsNullable = column.Required == false
+                        Type = codeType.CSharepType,
+                        IsNullable = column.Required == false,
+                        DbType= dbType.Name,
+                        Length=dbType.Length,
+                        DecimalDigits = dbType.DecimalDigits
                     };
                     gen.PropertyGens.Add(proGen);
                 }

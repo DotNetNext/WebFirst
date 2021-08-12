@@ -430,6 +430,11 @@ namespace SoEasyPlatform.Apis
                                 var column = item.PropertyGens.FirstOrDefault(it => it.PropertyName == info.PropertyName);
                                 info.DbColumnName = column.DbColumnName;
                                 info.ColumnDescription = column.Description;
+                                info.IsNullable = column.IsNullable;
+                                info.Length = Convert.ToInt32(column.Length);
+                                info.DecimalDigits = Convert.ToInt32(column.DecimalDigits);
+                                info.IsPrimarykey = column.IsPrimaryKey;
+                                info.IsIdentity = column.IsIdentity;
                             }
                         }
                     };
