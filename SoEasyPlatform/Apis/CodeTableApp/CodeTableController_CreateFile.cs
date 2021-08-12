@@ -14,7 +14,7 @@ namespace SoEasyPlatform.Apis
     /// </summary>
     public partial class CodeTableController : BaseController
     {
-        private List<EntitiesGen> GetGenList(List<CodeTable> tableList, List<CodeType> types)
+        private List<EntitiesGen> GetGenList(List<CodeTable> tableList, List<CodeType> types,SqlSugar.DbType databasedbType)
         {
             List<EntitiesGen> result = new List<EntitiesGen>();
             foreach (var item in tableList)
@@ -29,7 +29,7 @@ namespace SoEasyPlatform.Apis
                 foreach (var column in base.CodeColumnsDb.GetList(it => it.CodeTableId == item.Id))
                 {
                     var codeType = types.First(it => it.Name == column.CodeType);
-                    var dbType = codeType.DbType[0];
+                    var dbType = GetTypeInfoByDatabaseType(codeType.DbType, databasedbType);
                     PropertyGen proGen = new PropertyGen()
                     {
                         DbColumnName = column.DbColumnName,
@@ -49,6 +49,45 @@ namespace SoEasyPlatform.Apis
             }
             return result;
         }
+
+        private DbTypeInfo GetTypeInfoByDatabaseType(DbTypeInfo[] dbType, DbType databasedbType)
+        {
+            DbTypeInfo result = dbType.First();
+            List<string> mstypes = new List<string>();
+            switch (databasedbType)
+            {
+                case DbType.MySql:
+                    mstypes = SqlSugar.MySqlDbBind.MappingTypesConst.Select(it => it.Key.ToLower()).ToList();
+                    break;
+                case DbType.SqlServer:
+                    mstypes= SqlSugar.SqlServerDbBind.MappingTypesConst.Select(it => it.Key.ToLower()).ToList();
+                    break;
+                case DbType.Sqlite:
+                    mstypes = SqlSugar.SqliteDbBind.MappingTypesConst.Select(it => it.Key.ToLower()).ToList();
+                    break;
+                case DbType.Oracle:
+                    mstypes = SqlSugar.OracleDbBind.MappingTypesConst.Select(it => it.Key.ToLower()).ToList();
+                    break;
+                case DbType.PostgreSQL:
+                    mstypes = SqlSugar.PostgreSQLDbBind.MappingTypesConst.Select(it => it.Key.ToLower()).ToList();
+                    break;
+                case DbType.Dm:
+                    mstypes = SqlSugar.DmDbBind.MappingTypesConst.Select(it => it.Key.ToLower()).ToList();
+                    break;
+                case DbType.Kdbndp:
+                    mstypes = SqlSugar.KdbndpDbBind.MappingTypesConst.Select(it => it.Key.ToLower()).ToList();
+                    break;
+                default:
+                    break;
+            }
+            result = dbType.FirstOrDefault(it => mstypes.Contains(it.Name.ToLower()));
+            if (result == null) 
+            {
+                throw new Exception("WebFirst暂时不支持类型" + string.Join(",",dbType.Select(it => it.Name)));
+            }
+            return result;
+        }
+
         private string GetFileName(ProjectViewModel project, EntitiesGen item)
         {
             var p = ".";

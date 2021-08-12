@@ -344,7 +344,9 @@ namespace SoEasyPlatform.Apis
             var template = TemplateDb.GetById(model.TemplateId1).Content;
             var tableids = Newtonsoft.Json.JsonConvert.DeserializeObject<List<CodeTypeGridViewModel>>(model.Tables).Select(it => it.Id).ToList();
             var tableList = CodeTableDb.GetList(it => tableids.Contains(it.Id));
-            List<EntitiesGen> genList = GetGenList(tableList, CodeTypeDb.GetList());
+            int dbId = tableList.First().DbId;
+            var connection = base.GetTryDb(dbId);
+            List<EntitiesGen> genList = GetGenList(tableList, CodeTypeDb.GetList(), connection.CurrentConnectionConfig.DbType);
             string key = TemplateHelper.EntityKey + template.GetHashCode();
             foreach (var item in genList)
             {
@@ -376,7 +378,9 @@ namespace SoEasyPlatform.Apis
             var template = TemplateDb.GetById(project.TemplateId1).Content;
             var tableids = Newtonsoft.Json.JsonConvert.DeserializeObject<List<CodeTypeGridViewModel>>(model.Tables).Select(it => it.Id).ToList();
             var tableList = CodeTableDb.GetList(it => tableids.Contains(it.Id));
-            List<EntitiesGen> genList = GetGenList(tableList, CodeTypeDb.GetList());
+            int dbId = tableList.First().DbId;
+            var connection = base.GetTryDb(dbId);
+            List<EntitiesGen> genList = GetGenList(tableList, CodeTypeDb.GetList(),connection.CurrentConnectionConfig.DbType);
             string key = TemplateHelper.EntityKey + template.GetHashCode();
             foreach (var item in genList)
             {
@@ -407,7 +411,7 @@ namespace SoEasyPlatform.Apis
             {
                 var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<CodeTableViewModel>>(model);
                 var oldList = CodeTableDb.AsQueryable().In(list.Select(it => it.Id).ToList()).ToList();
-                List<EntitiesGen> genList = GetGenList(oldList, CodeTypeDb.GetList());
+                List<EntitiesGen> genList = GetGenList(oldList, CodeTypeDb.GetList(), tableDb.CurrentConnectionConfig.DbType);
                 string key = TemplateHelper.EntityKey + SyntaxTreeHelper.TemplateString.GetHashCode();
                 foreach (var item in genList)
                 {
