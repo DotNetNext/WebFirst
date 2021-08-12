@@ -127,6 +127,7 @@ namespace SoEasyPlatform.Apis
                     }
                     foreach (var columnInfo in tableDb.DbMaintenance.GetColumnInfosByTableName(item.Name,false))
                     {
+                        var typeInfo = GetEntityType(type, columnInfo, this, tableDb.CurrentConnectionConfig.DbType);
                         CodeColumnsViewModel column = new CodeColumnsViewModel()
                         {
                             ClassProperName = PubMehtod.GetCsharpName(columnInfo.DbColumnName),
@@ -136,7 +137,9 @@ namespace SoEasyPlatform.Apis
                             IsPrimaryKey = columnInfo.IsPrimarykey,
                             Required = columnInfo.IsNullable == false,
                             CodeTableId = entity.Id,
-                            CodeType = GetEntityType(type, columnInfo, this)
+                            CodeType = typeInfo.CodeType.Name,
+                            Length=typeInfo.DbTypeInfo.Length,
+                            DecimalDigits = typeInfo.DbTypeInfo.DecimalDigits
                         };
                         code.ColumnInfoList.Add(column);
                     }
