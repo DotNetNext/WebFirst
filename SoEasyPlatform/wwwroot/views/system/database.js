@@ -58,13 +58,15 @@ btnAdd.$Open("#divOpen", {
     w: configs.w.w,
     h: configs.w.h,
     validate: function () {
-        frmSave.$ClearControls();
+        btnAdd.$Loading();
         return true;
     },
     yes: function () {
+        frmSave.$ClearControls();
         frmSave.$Form({
             url: configs.url.SaveSystem,
             callback: function (msg) {
+                btnAdd.$CloseLoading();
                 if (msg.IsKeyValuePair) {
                     $sugar.$Validate(msg.Data, "save");
                 } else {
@@ -96,11 +98,14 @@ btnEdit.$Open("#divOpen", {
             saveDbTypeName.value = saveDbType.value;
             return true;
         }
+
     },
     yes: function () {
+        btnEdit.$Loading();
         frmSave.$Form({
             url: configs.url.SaveSystem,
             callback: function (msg) {
+                btnEdit.$CloseLoading();
                 if (msg.IsKeyValuePair) {
                     $sugar.$Validate(msg.Data, "save");
                 } else {
