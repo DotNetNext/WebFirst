@@ -85,22 +85,9 @@ namespace SoEasyPlatform
         }
         protected void CreateDatebase(int dbid)
         {
-            try
-            {
-                var database = databaseDb.GetById(dbid);
-                using (var Db = Repository<object>.GetInstance(database.DbType, database.Connection))
-                {
-                    if (Db.CurrentConnectionConfig.DbType != SqlSugar.DbType.Oracle)
-                    {
-                        Db.DbMaintenance.CreateDatabase();
-                    }
-                }
-            }
-            catch
-            {
-
+            var database = databaseDb.GetById(dbid);
+            IsConnectionDb(database);
               
-            }
         }
         protected SqlSugarClient GetTryDb(int dbId)
         {
@@ -112,9 +99,13 @@ namespace SoEasyPlatform
         {
             try
             {
+                if (!db.Connection.ToLower().Contains("connection timeout=2")) 
+                {
+                    db.Connection = db.Connection.TrimEnd(';') + ";connection timeout=2";
+                }
                 using (var Db = Repository<object>.GetInstance(db.DbType, db.Connection))
                 {
-                    Db.Ado.CommandTimeOut = 1;
+                    Db.Ado.CommandTimeOut = 2;
                     Db.Open();
                     Db.DbMaintenance.CreateDatabase();
                     return true;
