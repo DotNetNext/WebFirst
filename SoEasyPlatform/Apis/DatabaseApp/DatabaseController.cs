@@ -74,11 +74,12 @@ namespace SoEasyPlatform.Apis
             if (errorResult != null) return errorResult;
             var saveObject = base.mapper.Map<Database>(model);
             var result = new ApiResult<string>();
+            int dbid = 0;
             if (saveObject.Id == 0)
             {
                 saveObject.ChangeTime = DateTime.Now;
                 saveObject.IsDeleted = false;
-                databaseDb.Insert(saveObject);
+                dbid= databaseDb.InsertReturnIdentity(saveObject);
                 result.IsSuccess = true;
                 result.Data = Pubconst.MESSAGEADDSUCCESS;
             }
@@ -87,9 +88,11 @@ namespace SoEasyPlatform.Apis
                 saveObject.ChangeTime = DateTime.Now;
                 saveObject.IsDeleted = false;
                 databaseDb.Update(saveObject);
+                dbid = saveObject.Id;
                 result.IsSuccess = true;
                 result.Data = Pubconst.MESSAGEADDSUCCESS;
             }
+            base.CreateDatebase(dbid);
             return result;
         }
 

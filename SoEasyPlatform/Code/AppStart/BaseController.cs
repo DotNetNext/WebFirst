@@ -83,7 +83,25 @@ namespace SoEasyPlatform
                 throw new Exception(db.Connection+" "+db.DbType+"无法连接到数据库，请认真检查DbType和连接字符串");
             }
         }
+        protected void CreateDatebase(int dbid)
+        {
+            try
+            {
+                var database = databaseDb.GetById(dbid);
+                using (var Db = Repository<object>.GetInstance(database.DbType, database.Connection))
+                {
+                    if (Db.CurrentConnectionConfig.DbType != SqlSugar.DbType.Oracle)
+                    {
+                        Db.DbMaintenance.CreateDatabase();
+                    }
+                }
+            }
+            catch
+            {
 
+              
+            }
+        }
         protected SqlSugarClient GetTryDb(int dbId)
         {
            var database= databaseDb.GetById(dbId);
