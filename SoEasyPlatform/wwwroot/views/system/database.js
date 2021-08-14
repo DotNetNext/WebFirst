@@ -58,11 +58,11 @@ btnAdd.$Open("#divOpen", {
     w: configs.w.w,
     h: configs.w.h,
     validate: function () {
-        btnAdd.$Loading();
+        frmSave.$ClearControls();
         return true;
     },
     yes: function () {
-        frmSave.$ClearControls();
+        btnAdd.$Loading();
         frmSave.$Form({
             url: configs.url.SaveSystem,
             callback: function (msg) {
