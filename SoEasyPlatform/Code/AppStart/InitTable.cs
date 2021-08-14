@@ -60,6 +60,13 @@ namespace SoEasyPlatform
                                 }
                     },
                     new CodeType{
+                                  Name="ignore",
+                                  CSharepType="实体属性名格式 PropertyName[TypeName] 可以自定义类型",
+                                  DbType=new DbTypeInfo[]{
+                                                  
+                                }
+                    },
+                    new CodeType{
                                   Name="string36",
                                   CSharepType=CSharpDataType.@string.ToString(),
                                   DbType=new DbTypeInfo[]{
