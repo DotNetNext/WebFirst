@@ -374,10 +374,7 @@ namespace SoEasyPlatform.Apis
             var result = new ApiResult<bool>();
             var tables = model.Tables;
             var project = ProjectDb.GetSingle(it => it.Id == model.ProjectId);
-            if (project == null) 
-            {
-                throw new Exception("请选择方案，没有方案可以在手动生成里面创建");
-            }
+            base.Check(project == null,"请选择方案，没有方案可以在手动生成里面创建");
             model.Tables = tables;
             var template = TemplateDb.GetById(project.TemplateId1).Content;
             var tableids = Newtonsoft.Json.JsonConvert.DeserializeObject<List<CodeTypeGridViewModel>>(model.Tables).Select(it => it.Id).ToList();
