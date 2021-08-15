@@ -175,6 +175,14 @@ namespace SoEasyPlatform
                                                           
                                 }
                     },
+                    new CodeType{ 
+                                 Name="timestamp",
+                                 CSharepType=CSharpDataType.byteArray.ToString(),
+                                 DbType=new DbTypeInfo[]{
+                                                           new DbTypeInfo(){  Name="timestamp"} 
+
+                                }
+                    },
                     new CodeType{
                                   Name="decimal_18_8",
                                   CSharepType=CSharpDataType.@decimal.ToString(),
