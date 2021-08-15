@@ -274,8 +274,9 @@ namespace SoEasyPlatform
                                   Name="json_default",
                                   CSharepType=CSharpDataType.DateTimeOffset.ToString(),
                                   DbType=new DbTypeInfo[]{
-                                                           new DbTypeInfo(){  Name="varchar", Length=4000},
-                                                           new DbTypeInfo(){  Name="json"}
+                                                           new DbTypeInfo(){  Name="json"},
+                                                           new DbTypeInfo(){  Name="varchar", Length=4000}
+                                                           
 
                                 }
                     }
