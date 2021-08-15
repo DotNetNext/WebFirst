@@ -19,7 +19,7 @@ namespace @Model.name_space
         @:/// @(item.Description)
         @:///</summary>
         @: [SugarColumn(ColumnName="@item.DbColumnName" @(isPrimaryKey) @(isIdentity))]
-        @: public @item.Type@isNull @item.PropertyName { get; set; }
+        @: public @Raw(item.Type)@isNull @item.PropertyName { get; set; }
     }
     }
 }

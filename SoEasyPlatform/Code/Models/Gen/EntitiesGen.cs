@@ -80,5 +80,9 @@ namespace SoEasyPlatform
         /// 数据库类型
         /// </summary>
         public string DbType { get;  set; }
+        /// <summary>
+        /// 是否忽略
+        /// </summary>
+        public bool IsIgnore { get;  set; }
     }
 }

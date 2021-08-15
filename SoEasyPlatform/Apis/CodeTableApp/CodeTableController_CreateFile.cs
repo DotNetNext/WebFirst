@@ -29,21 +29,47 @@ namespace SoEasyPlatform.Apis
                 foreach (var column in base.CodeColumnsDb.GetList(it => it.CodeTableId == item.Id))
                 {
                     var codeType = types.First(it => it.Name == column.CodeType);
-                    var dbType = GetTypeInfoByDatabaseType(codeType.DbType, databasedbType);
-                    PropertyGen proGen = new PropertyGen()
+                    if (codeType.Id == 3)
                     {
-                        DbColumnName = column.DbColumnName,
-                        Description = column.Description,
-                        IsIdentity = column.IsIdentity,
-                        IsPrimaryKey = column.IsPrimaryKey,
-                        PropertyName = column.ClassProperName,
-                        Type = codeType.CSharepType,
-                        IsNullable = column.Required == false,
-                        DbType= dbType.Name,
-                        Length=dbType.Length,
-                        DecimalDigits = dbType.DecimalDigits
-                    };
-                    gen.PropertyGens.Add(proGen);
+                        string type = "string";
+                        if (Regex.IsMatch(column.ClassProperName,@"\[.+\]")) 
+                        {
+                            type = Regex.Match(column.ClassProperName, @"\[(.+)\]").Groups[1].Value;
+                        }
+                        PropertyGen proGen = new PropertyGen()
+                        {
+                            DbColumnName = column.DbColumnName,
+                            Description = column.Description,
+                            IsIdentity = column.IsIdentity,
+                            IsPrimaryKey = column.IsPrimaryKey,
+                            PropertyName = Regex.Replace(column.ClassProperName, @"\[(.+)\]", ""),
+                            Type = type,
+                            IsNullable = column.Required == false,
+                            DbType = type,
+                            Length = 0,
+                            DecimalDigits = 0,
+                            IsIgnore=true
+                        };
+                        gen.PropertyGens.Add(proGen);
+                    }
+                    else
+                    {
+                        var dbType = GetTypeInfoByDatabaseType(codeType.DbType, databasedbType);
+                        PropertyGen proGen = new PropertyGen()
+                        {
+                            DbColumnName = column.DbColumnName,
+                            Description = column.Description,
+                            IsIdentity = column.IsIdentity,
+                            IsPrimaryKey = column.IsPrimaryKey,
+                            PropertyName = column.ClassProperName,
+                            Type = codeType.CSharepType,
+                            IsNullable = column.Required == false,
+                            DbType = dbType.Name,
+                            Length = dbType.Length,
+                            DecimalDigits = dbType.DecimalDigits
+                        };
+                        gen.PropertyGens.Add(proGen);
+                    }
                 }
                 result.Add(gen);
             }
