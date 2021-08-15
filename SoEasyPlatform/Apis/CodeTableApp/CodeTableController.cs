@@ -413,6 +413,10 @@ namespace SoEasyPlatform.Apis
                 var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<CodeTableViewModel>>(model);
                 var oldList = CodeTableDb.AsQueryable().In(list.Select(it => it.Id).ToList()).ToList();
                 List<EntitiesGen> genList = GetGenList(oldList, CodeTypeDb.GetList(), tableDb.CurrentConnectionConfig.DbType);
+                foreach (var item in genList)
+                {
+                    item.PropertyGens = item.PropertyGens.Where(it => it.IsIgnore == false).ToList();
+                }
                 string key = TemplateHelper.EntityKey + SyntaxTreeHelper.TemplateString.GetHashCode();
                 foreach (var item in genList)
                 {

@@ -279,10 +279,9 @@ btnTableToEntity.onclick = function () {
 
 btnTable.onclick = function () {
 
-
-    btnTable.$Loading();
     var gridInfo = divGrid.$GridInfo();
     if (gridInfo.length > 0) {
+        btnTable.$Loading();
         configs.url.CreateTable.$Ajax({
             callback: function (msg) {
                 btnTable.$CloseLoading();
