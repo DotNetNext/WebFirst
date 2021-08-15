@@ -419,7 +419,7 @@ namespace SoEasyPlatform.Apis
                 var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<CodeTableViewModel>>(model);
                 var oldList = CodeTableDb.AsQueryable().In(list.Select(it => it.Id).ToList()).ToList();
                 var oldColumns = Db.Queryable<CodeColumns, CodeTable>((c, t) => c.CodeTableId == t.Id).Where((c, t) => oldList.Select(it => it.Id).Contains(t.Id)).Select((c, t) => new { TableId = t.Id, TableName = t.TableName, Columns = c }).ToList();
-                var alltables = Db.DbMaintenance.GetTableInfoList(false).Select(it=>it.Name.ToLower()).ToList();
+                var alltables = tableDb.DbMaintenance.GetTableInfoList(false).Select(it=>it.Name.ToLower()).ToList();
                 var ids = list.Select(it => it.Id).ToList();
                 var tableNames = list.Select(it => it.TableName.ToLower()).ToList();
                 var errorTables = list.Where(it => !alltables.Contains(it.TableName.ToLower()) && !alltables.Contains(it.ClassName.ToLower())).ToList();
