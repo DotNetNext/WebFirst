@@ -430,7 +430,7 @@ btnCopy.$Open("#divProject", {
 btnCopyHide.$Open("#divCopy", {
     title: configs.text.copy,
     w: 1000,
-    h: 450,
+    h: 600,
     validate: function () {
         var gridInfo = divGrid.$GridInfo();
         if (txtDbId.value == null || txtDbId.value == "" || txtDbId.value == "0") {
