@@ -457,5 +457,39 @@ namespace SoEasyPlatform.Apis
             return result;
         }
         #endregion
+
+        #region Copy
+        /// <summary>
+        /// 复制
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        [FormValidateFilter]
+        [ExceptionFilter]
+        [Route("Copy")]
+        public ActionResult<ApiResult<string>> Copy([FromForm] ProjectViewModel2 model)
+        {
+            var result = new ApiResult<string>();
+            var tables = model.Tables;
+            var project = ProjectDb.GetSingle(it => it.Id == model.ProjectId);
+            base.Check(project == null, "请选择方案，没有方案可以在手动生成里面创建");
+            model.Tables = tables;
+            var template = TemplateDb.GetById(project.TemplateId1).Content;
+            var tableids = Newtonsoft.Json.JsonConvert.DeserializeObject<List<CodeTypeGridViewModel>>(model.Tables).Select(it => it.Id).ToList();
+            var tableList = CodeTableDb.GetList(it => tableids.Contains(it.Id));
+            int dbId = tableList.First().DbId;
+            var connection = base.GetTryDb(dbId);
+            List<EntitiesGen> genList = GetGenList(tableList, CodeTypeDb.GetList(), connection.CurrentConnectionConfig.DbType);
+            string key = TemplateHelper.EntityKey + template.GetHashCode();
+            foreach (var item in genList.Take(1))
+            {
+                item.name_space = GetNameSpace(project.FileModel, item.name_space);
+                result.Data= TemplateHelper.GetTemplateValue(key, template, item);
+            }
+            ProjectController_Common.CreateProject(project.Id);
+            result.IsSuccess = true;
+            return result;
+        }
+        #endregion
     }
 }
