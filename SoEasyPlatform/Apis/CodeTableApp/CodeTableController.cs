@@ -456,6 +456,17 @@ namespace SoEasyPlatform.Apis
                                     col.ClassProperName = addColumn.Columns.ClassProperName;
                                     UpdateColumns.Add(col);
                                 }
+                                else 
+                                {
+
+                                }
+                            }
+                            foreach (var oldItem in item.ToList())
+                            {
+                                if (oldItem.Columns.CodeType == "Ignore") 
+                                {
+                                    UpdateColumns.Add(oldItem.Columns);
+                                }
                             }
                         }
                     }
