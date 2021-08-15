@@ -411,7 +411,14 @@ btnCopy.$Open("#divProject", {
                 url: configs.url.Copy,
                 callback: function (msg) {
                     btnProject.$CloseLoading();
-                    btnCopyHide.click();
+                    if (msg.IsSuccess) {
+                        $sugar.$CloseAll(divProject.getAttribute("dataindex"));
+                        btnCopyHide.click();
+                    }
+                    else
+                    {
+                        msg.Data.$Alert();
+                    }
                 }
             });
         } else {
