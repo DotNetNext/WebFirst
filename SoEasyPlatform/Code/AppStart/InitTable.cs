@@ -275,7 +275,7 @@ namespace SoEasyPlatform
                                   CSharepType=CSharpDataType.DateTimeOffset.ToString(),
                                   DbType=new DbTypeInfo[]{
                                                            new DbTypeInfo(){  Name="json"},
-                                                           new DbTypeInfo(){  Name="varchar", Length=4000}
+                                                           new DbTypeInfo(){  Name="varchar", Length=3999}
                                                            
 
                                 }
