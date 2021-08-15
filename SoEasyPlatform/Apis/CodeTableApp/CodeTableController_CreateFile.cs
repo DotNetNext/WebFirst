@@ -62,7 +62,8 @@ namespace SoEasyPlatform.Apis
                             DbType = dbType.Name,
                             Length = dbType.Length,
                             DecimalDigits = dbType.DecimalDigits,
-                            IsSpecialType= IsSpecialType(column)
+                            IsSpecialType= IsSpecialType(column),
+                            CodeType= column.CodeType
                         };
                         gen.PropertyGens.Add(proGen);
                     }

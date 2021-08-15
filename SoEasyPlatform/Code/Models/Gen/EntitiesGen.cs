@@ -88,5 +88,9 @@ namespace SoEasyPlatform
         /// 特殊类型
         /// </summary>
         public bool IsSpecialType { get; set; }
+        /// <summary>
+        /// 配置的类型名称 (比如 string100)
+        /// </summary>
+        public string CodeType { get;  set; }
     }
 }
