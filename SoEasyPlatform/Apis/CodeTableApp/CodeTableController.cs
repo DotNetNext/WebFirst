@@ -463,7 +463,7 @@ namespace SoEasyPlatform.Apis
                             }
                             foreach (var oldItem in item.ToList())
                             {
-                                if (oldItem.Columns.CodeType == "ignore") 
+                                if (oldItem.Columns.CodeType.Equals("ignore",StringComparison.CurrentCultureIgnoreCase)) 
                                 {
                                     UpdateColumns.Add(oldItem.Columns);
                                 }
