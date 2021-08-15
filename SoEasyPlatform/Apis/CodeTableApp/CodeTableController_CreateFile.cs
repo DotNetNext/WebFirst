@@ -57,7 +57,7 @@ namespace SoEasyPlatform.Apis
                             IsIdentity = column.IsIdentity,
                             IsPrimaryKey = column.IsPrimaryKey,
                             PropertyName = GetPropertyName(column.ClassProperName),
-                            Type = GetType(column),
+                            Type = Regex.IsMatch(column.ClassProperName, @"\[.+\]")? GetType(column): codeType.CSharepType,
                             IsNullable = column.Required == false,
                             DbType = dbType.Name,
                             Length = dbType.Length,
