@@ -440,6 +440,7 @@ namespace SoEasyPlatform.Apis
                                 info.DecimalDigits = Convert.ToInt32(column.DecimalDigits);
                                 info.IsPrimarykey = column.IsPrimaryKey;
                                 info.IsIdentity = column.IsIdentity;
+                                info.IsIgnore = column.IsIgnore;
                             }
                         }
                     };
