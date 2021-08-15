@@ -57,11 +57,12 @@ namespace SoEasyPlatform.Apis
                             IsIdentity = column.IsIdentity,
                             IsPrimaryKey = column.IsPrimaryKey,
                             PropertyName = GetPropertyName(column.ClassProperName),
-                            Type = Regex.IsMatch(column.ClassProperName, @"\[.+\]")? GetType(column): codeType.CSharepType,
+                            Type = IsSpecialType(column) ? GetType(column) : codeType.CSharepType,
                             IsNullable = column.Required == false,
                             DbType = dbType.Name,
                             Length = dbType.Length,
-                            DecimalDigits = dbType.DecimalDigits
+                            DecimalDigits = dbType.DecimalDigits,
+                            IsSpecialType= IsSpecialType(column)
                         };
                         gen.PropertyGens.Add(proGen);
                     }
@@ -71,10 +72,15 @@ namespace SoEasyPlatform.Apis
             return result;
         }
 
+        private static bool IsSpecialType(CodeColumns column)
+        {
+            return Regex.IsMatch(column.ClassProperName, @"\[.+\]");
+        }
+
         private static string GetType(CodeColumns column)
         {
             string type = "string";
-            if (Regex.IsMatch(column.ClassProperName, @"\[.+\]"))
+            if (IsSpecialType(column))
             {
                 type = Regex.Match(column.ClassProperName, @"\[(.+)\]").Groups[1].Value;
             }

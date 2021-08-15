@@ -84,5 +84,9 @@ namespace SoEasyPlatform
         /// 是否忽略
         /// </summary>
         public bool IsIgnore { get;  set; }
+        /// <summary>
+        /// 特殊类型
+        /// </summary>
+        public bool IsSpecialType { get; set; }
     }
 }
