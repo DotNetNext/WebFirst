@@ -43,7 +43,8 @@ namespace SoEasyPlatform.Apis
                             DbType ="",
                             Length = 0,
                             DecimalDigits = 0,
-                            IsIgnore = true
+                            IsIgnore = true,
+                            CodeType=column.CodeType
                         };
                         gen.PropertyGens.Add(proGen);
                     }
