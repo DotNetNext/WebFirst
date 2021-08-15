@@ -408,6 +408,7 @@ namespace SoEasyPlatform.Apis
         /// </summary>
         /// <returns></returns>
         [HttpPost]
+        [ExceptionFilter]
         [Route("UpdateEntity")]
         public ActionResult<ApiResult<bool>> UpdateEntity([FromForm] string model, [FromForm] int dbid)
         {
