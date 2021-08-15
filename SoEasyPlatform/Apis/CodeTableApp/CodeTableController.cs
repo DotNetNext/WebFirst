@@ -20,7 +20,7 @@ namespace SoEasyPlatform.Apis
         {
         }
 
-        #region Code Table
+        #region CodeTable CRUD
         /// <summary>
         /// 获取虚拟类
         /// </summary>
@@ -245,7 +245,7 @@ namespace SoEasyPlatform.Apis
         
         #endregion
 
-        #region Code Type
+        #region Code Type CRUD
 
         /// <summary>
         /// 获取类型
