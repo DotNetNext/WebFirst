@@ -421,7 +421,7 @@ namespace SoEasyPlatform.Apis
                 var oldColumns = Db.Queryable<CodeColumns, CodeTable>((c, t) => c.CodeTableId == t.Id).Where((c, t) => oldList.Select(it => it.Id).Contains(t.Id)).Select((c, t) => new { TableId = t.Id, TableName = t.TableName, Columns = c }).ToList();
                 var alltables = Db.DbMaintenance.GetTableInfoList(false).Select(it=>it.Name.ToLower()).ToList();
                 var ids = list.Select(it => it.Id).ToList();
-                var tableNames = list.Select(it => it.TableName.ToLower()).ToList();
+                var tableNames = list.Select(it => it.TableName).ToList();
                 var errorTables = list.Where(it => !alltables.Contains(it.TableName.ToLower()) && !alltables.Contains(it.ClassName.ToLower())).ToList();
                 base.Check(errorTables.Any(),string.Join(",", errorTables.Select(y=>y.TableName??y.ClassName))+"未创建表不能同步");
                 try
