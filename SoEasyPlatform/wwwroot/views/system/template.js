@@ -72,7 +72,11 @@ btnAdd.$Open("#divOpen", {
     },
     btn: ['添加', '关闭']
 });
-
+btnParameter.$Open("#divRemark", {
+    title:"参数说明",
+    w: 550,
+    h: configs.w.h,
+})
 btnEdit.$Open("#divOpen", {
     title: configs.text.edit,
     w: configs.w.w,

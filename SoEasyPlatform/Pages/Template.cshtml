@@ -66,3 +66,69 @@
         </form>
     </div>
 </div>
+<div id="divRemark" style="display:none">
+    <style>        
+        #divRemark p {
+            margin:0;padding:3px;
+        }
+    </style>
+    <br />
+    <p>
+        &nbsp; &nbsp; 命名空间 @@Model.name_space
+    </p>
+
+    <p>
+        &nbsp; &nbsp; 类名&nbsp; &nbsp; &nbsp;@@Model.ClassName
+    </p>
+    <p>
+        &nbsp; &nbsp; 表名&nbsp; &nbsp; &nbsp;@@Model.TableName
+    </p>
+    <p>
+        &nbsp; &nbsp; 表描述&nbsp; &nbsp;@@Model. Description
+    </p>
+    <p>
+        &nbsp; &nbsp; 列集合&nbsp; &nbsp;@@Model.PropertyGens （建议循环使用）
+    </p>
+    <p>
+        <br />
+    </p>
+    <p>
+        &nbsp; &nbsp; 类中属性名&nbsp; &nbsp;@@Model.PropertyGens[i].PropertyName
+    </p>
+    <p>
+        &nbsp; &nbsp; 类中属性类型 @@Model.PropertyGens[i].Type
+    </p>
+    <p>
+        &nbsp; &nbsp; 类中备注&nbsp; &nbsp; &nbsp;@@Model.PropertyGens[i].Description
+    </p>
+    <p>
+        &nbsp; &nbsp; 表中字段名&nbsp; &nbsp;@@Model.PropertyGens[i].DbColumnName
+    </p>
+    <p>
+        &nbsp; &nbsp; 是否是主键&nbsp; &nbsp;@@Model.PropertyGens[i].IsPrimaryKey
+    </p>
+    <p>
+        &nbsp; &nbsp; 是否是自增&nbsp; &nbsp;@@Model.PropertyGens[i].IsIdentity
+    </p>
+    <p>
+        &nbsp; &nbsp; 是否空可&nbsp; &nbsp; &nbsp;@@Model.PropertyGens[i].IsNullable
+    </p>
+    <p>
+        &nbsp; &nbsp; 字段精度&nbsp; &nbsp; &nbsp;@@Model.PropertyGens[i].DecimalDigits
+    </p>
+    <p>
+        &nbsp; &nbsp; 字段长度&nbsp; &nbsp; &nbsp;@@Model.PropertyGens[i].Length
+    </p>
+    <p>
+        &nbsp; &nbsp; 数据库类型&nbsp; &nbsp;@@Model.PropertyGens[i].DbType
+    </p>
+    <p>
+        &nbsp; &nbsp; 是否忽略&nbsp; &nbsp; &nbsp;@@Model.PropertyGens[i].IsIgnore
+    </p>
+    <p>
+        &nbsp; &nbsp; 是否是自定义类型 @@Model.PropertyGens[i].IsSpecialType
+    </p>
+    <p>
+        <br />
+    </p>
+</div>
