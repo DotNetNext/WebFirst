@@ -385,7 +385,6 @@ btnProject.$Open("#divProject", {
     btn: ['生成实体', '关闭']
 });
 
-
 btnCopy.$Open("#divProject", {
     title: configs.text.copy,
     w: 600,
@@ -427,7 +426,6 @@ btnCopy.$Open("#divProject", {
     },
     btn: ['复制', '关闭']
 });
- 
  
 btnCopyHide.$Open("#divCopy", {
     title: configs.text.copy,
