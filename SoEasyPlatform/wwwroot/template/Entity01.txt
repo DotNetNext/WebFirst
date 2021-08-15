@@ -14,7 +14,7 @@ namespace @Model.name_space
 {
     var isPrimaryKey = item.IsPrimaryKey ? ",IsPrimaryKey = true" : "";
     var isIdentity = item.IsIdentity ? ",IsIdentity = true" : "";
-    var isNull=(item.IsNullable&&item.Type!="string")?"?":"";
+    var isNull=(item.IsNullable&&item.Type!="string"&&item.IsSpecialType==false)?"?":"";
     var isIgnore=(item.IsIgnore?",IsIgnore = true":"");
     if(isIgnore!="")
     {
