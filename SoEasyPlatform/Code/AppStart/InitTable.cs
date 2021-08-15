@@ -188,7 +188,8 @@ namespace SoEasyPlatform
                                   CSharepType=CSharpDataType.@decimal.ToString(),
                                   DbType=new DbTypeInfo[]{
                                                            new DbTypeInfo(){  Name="decimal",Length=18, DecimalDigits=8},
-                                                           new DbTypeInfo(){  Name="number",Length=18, DecimalDigits=8}
+                                                           new DbTypeInfo(){  Name="number",Length=18, DecimalDigits=8},
+                                                           new DbTypeInfo(){  Name="numeric",Length=18, DecimalDigits=8}
                                 }
                     },
                     new CodeType{
