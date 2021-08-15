@@ -5,3 +5,7 @@
     border-right: 0px solid #dee2e6;
     border-left: 0px solid #dee2e6;
 }
+.btn-many button {
+    margin:-3px;
+    border-radius:0
+}
