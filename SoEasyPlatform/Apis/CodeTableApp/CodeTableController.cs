@@ -453,6 +453,7 @@ namespace SoEasyPlatform.Apis
                                 info.IsPrimarykey = column.IsPrimaryKey;
                                 info.IsIdentity = column.IsIdentity;
                                 info.IsIgnore = column.IsIgnore;
+                                info.DataType = column.DbType;
                             }
                         }
                     };
