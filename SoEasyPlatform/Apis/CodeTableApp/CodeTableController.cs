@@ -90,75 +90,6 @@ namespace SoEasyPlatform.Apis
 
 
         /// <summary>
-        /// 从数据库导入虚拟类
-        /// </summary>
-        /// <param name="model"></param>
-        /// <returns></returns>
-        [HttpPost]
-        [FormValidateFilter]
-        [ExceptionFilter]
-        [Route("savecodetableimport")]
-        public ActionResult<ApiResult<bool>> SaveCodetableImport([FromForm] int dbid, [FromForm] string model)
-        {
-            ApiResult<bool> result = new ApiResult<bool>();
-            var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<DbTableGridViewModel>>(model);
-            var tableDb = base.GetTryDb(dbid);
-            var systemDb = Db;
-            var type = CodeTypeDb.GetList();
-            var entityList = CodeTableDb.GetList(it => it.DbId == dbid);
-            systemDb.BeginTran();
-            try
-            {
-                List<CodeTable> Inserts = new List<CodeTable>();
-                foreach (var item in list)
-                {
-                    CodeTableViewModel code = new CodeTableViewModel()
-                    {
-                        ClassName =PubMehtod.GetCsharpName(item.Name),
-                        TableName = item.Name,
-                        DbId = dbid,
-                        Description = item.Description,
-                        ColumnInfoList = new List<CodeColumnsViewModel>()
-                    };
-                    var entity = entityList.FirstOrDefault(it => it.TableName.Equals(item.Name, StringComparison.OrdinalIgnoreCase));
-                    if (entity == null)
-                    {
-                        entity = new CodeTable();
-                    }
-                    foreach (var columnInfo in tableDb.DbMaintenance.GetColumnInfosByTableName(item.Name,false))
-                    {
-                        var typeInfo = GetEntityType(type, columnInfo, this, tableDb.CurrentConnectionConfig.DbType);
-                        CodeColumnsViewModel column = new CodeColumnsViewModel()
-                        {
-                            ClassProperName = PubMehtod.GetCsharpName(columnInfo.DbColumnName),
-                            DbColumnName = columnInfo.DbColumnName,
-                            Description = columnInfo.ColumnDescription,
-                            IsIdentity = columnInfo.IsIdentity,
-                            IsPrimaryKey = columnInfo.IsPrimarykey,
-                            Required = columnInfo.IsNullable == false,
-                            CodeTableId = entity.Id,
-                            CodeType = typeInfo.CodeType.Name,
-                            Length=typeInfo.DbTypeInfo.Length,
-                            DecimalDigits = typeInfo.DbTypeInfo.DecimalDigits
-                        };
-                        code.ColumnInfoList.Add(column);
-                    }
-                    SaveCodeTableToDb(code);
-                };
-                systemDb.CommitTran();
-                result.IsSuccess = true;
-            }
-            catch (Exception ex)
-            {
-                systemDb.RollbackTran();
-                throw ex;
-            }
-            return result;
-        }
-
-   
-
-        /// <summary>
         /// 删除虚拟类
         /// </summary>
         /// <returns></returns>
@@ -181,68 +112,6 @@ namespace SoEasyPlatform.Apis
             return result;
         }
 
-        /// <summary>
-        ////根据数据库更新虚拟类
-        /// </summary>
-        /// <returns></returns>
-        [HttpPost]
-        [Route("UpdateEntity")]
-        public ActionResult<ApiResult<bool>> UpdateEntity([FromForm] string model, [FromForm] int dbid)
-        {
-            var tableDb = base.GetTryDb(dbid);
-            var result = new ApiResult<bool>();
-            if (!string.IsNullOrEmpty(model))
-            {
-                var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<CodeTableViewModel>>(model);
-                var oldList = CodeTableDb.AsQueryable().In(list.Select(it => it.Id).ToList()).ToList();
-                var oldColumns = Db.Queryable<CodeColumns, CodeTable>((c, t) => c.CodeTableId == t.Id).Where((c,t)=>oldList.Select(it=>it.Id).Contains(t.Id)) .Select((c, t) => new { TableId=t.Id,TableName = t.TableName, Columns = c }).ToList();
-                var ids = list.Select(it => it.Id).ToList();
-                var tableNames = list.Select(it => it.TableName.ToLower()).ToList();
-                try
-                {
-                    Db.BeginTran();
-                    CodeTableDb.DeleteByIds(ids.Select(it=>(object)it).ToArray());
-                    var dbTableGridList= tableDb.DbMaintenance.GetTableInfoList(false).Where(it=> tableNames.Contains(it.Name.ToLower())).Select(it=>new DbTableGridViewModel() { 
-                      Description=it.Description,
-                      Name=it.Name
-                    });
-                    if (dbTableGridList.Any())
-                    {
-                        SaveCodetableImport(dbid, Newtonsoft.Json.JsonConvert.SerializeObject(dbTableGridList));
-                    }
-                    foreach (var item in oldList)
-                    {
-                        CodeTableDb.AsUpdateable(item).UpdateColumns(it => it.ClassName).WhereColumns(it => it.TableName).ExecuteCommand();
-                    }
-                    List<CodeColumns> UpdateColumns = new List<CodeColumns>();
-                    foreach (var item in oldColumns.GroupBy(it=>new { it.TableId,it.TableName}).ToList())
-                    {
-                        var tableId = CodeTableDb.AsQueryable().Where(it => it.TableName == item.Key.TableName&&it.DbId==dbid).First()?.Id;
-                        if (tableId != null) {
-                            var columns = CodeColumnsDb.AsQueryable().Where(it => it.CodeTableId ==tableId ).ToList();
-                            foreach (var col in columns)
-                            {
-                                var addColumn = item.FirstOrDefault(it => it.Columns.DbColumnName == col.DbColumnName);
-                                if (addColumn != null)
-                                {
-                                    col.ClassProperName=addColumn.Columns.ClassProperName;
-                                    UpdateColumns.Add(col);
-                                }
-                            } }
-                    }
-                    CodeColumnsDb.AsUpdateable(UpdateColumns).UpdateColumns(it => it.ClassProperName).ExecuteCommand();
-                    Db.CommitTran();
-                }
-                catch (Exception ex)
-                {
-                    Db.RollbackTran();
-                    throw ex;
-                }
-            }
-            result.IsSuccess = true;
-            return result;
-        }
-        
         #endregion
 
         #region Code Type CRUD
@@ -464,6 +333,142 @@ namespace SoEasyPlatform.Apis
             result.IsSuccess = true;
             return result;
         }
+        #endregion
+
+        #region  Update entity by db
+        /// <summary>
+        /// 从数据库导入虚拟类
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [FormValidateFilter]
+        [ExceptionFilter]
+        [Route("savecodetableimport")]
+        public ActionResult<ApiResult<bool>> SaveCodetableImport([FromForm] int dbid, [FromForm] string model)
+        {
+            ApiResult<bool> result = new ApiResult<bool>();
+            var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<DbTableGridViewModel>>(model);
+            var tableDb = base.GetTryDb(dbid);
+            var systemDb = Db;
+            var type = CodeTypeDb.GetList();
+            var entityList = CodeTableDb.GetList(it => it.DbId == dbid);
+            systemDb.BeginTran();
+            try
+            {
+                List<CodeTable> Inserts = new List<CodeTable>();
+                foreach (var item in list)
+                {
+                    CodeTableViewModel code = new CodeTableViewModel()
+                    {
+                        ClassName = PubMehtod.GetCsharpName(item.Name),
+                        TableName = item.Name,
+                        DbId = dbid,
+                        Description = item.Description,
+                        ColumnInfoList = new List<CodeColumnsViewModel>()
+                    };
+                    var entity = entityList.FirstOrDefault(it => it.TableName.Equals(item.Name, StringComparison.OrdinalIgnoreCase));
+                    if (entity == null)
+                    {
+                        entity = new CodeTable();
+                    }
+                    foreach (var columnInfo in tableDb.DbMaintenance.GetColumnInfosByTableName(item.Name, false))
+                    {
+                        var typeInfo = GetEntityType(type, columnInfo, this, tableDb.CurrentConnectionConfig.DbType);
+                        CodeColumnsViewModel column = new CodeColumnsViewModel()
+                        {
+                            ClassProperName = PubMehtod.GetCsharpName(columnInfo.DbColumnName),
+                            DbColumnName = columnInfo.DbColumnName,
+                            Description = columnInfo.ColumnDescription,
+                            IsIdentity = columnInfo.IsIdentity,
+                            IsPrimaryKey = columnInfo.IsPrimarykey,
+                            Required = columnInfo.IsNullable == false,
+                            CodeTableId = entity.Id,
+                            CodeType = typeInfo.CodeType.Name,
+                            Length = typeInfo.DbTypeInfo.Length,
+                            DecimalDigits = typeInfo.DbTypeInfo.DecimalDigits
+                        };
+                        code.ColumnInfoList.Add(column);
+                    }
+                    SaveCodeTableToDb(code);
+                };
+                systemDb.CommitTran();
+                result.IsSuccess = true;
+            }
+            catch (Exception ex)
+            {
+                systemDb.RollbackTran();
+                throw ex;
+            }
+            return result;
+        }
+
+        /// <summary>
+        ////根据数据库更新虚拟类
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("UpdateEntity")]
+        public ActionResult<ApiResult<bool>> UpdateEntity([FromForm] string model, [FromForm] int dbid)
+        {
+            var tableDb = base.GetTryDb(dbid);
+            var result = new ApiResult<bool>();
+            if (!string.IsNullOrEmpty(model))
+            {
+                var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<CodeTableViewModel>>(model);
+                var oldList = CodeTableDb.AsQueryable().In(list.Select(it => it.Id).ToList()).ToList();
+                var oldColumns = Db.Queryable<CodeColumns, CodeTable>((c, t) => c.CodeTableId == t.Id).Where((c, t) => oldList.Select(it => it.Id).Contains(t.Id)).Select((c, t) => new { TableId = t.Id, TableName = t.TableName, Columns = c }).ToList();
+                var ids = list.Select(it => it.Id).ToList();
+                var tableNames = list.Select(it => it.TableName.ToLower()).ToList();
+                try
+                {
+                    Db.BeginTran();
+                    CodeTableDb.DeleteByIds(ids.Select(it => (object)it).ToArray());
+                    var dbTableGridList = tableDb.DbMaintenance.GetTableInfoList(false).Where(it => tableNames.Contains(it.Name.ToLower())).Select(it => new DbTableGridViewModel()
+                    {
+                        Description = it.Description,
+                        Name = it.Name
+                    });
+                    if (dbTableGridList.Any())
+                    {
+                        SaveCodetableImport(dbid, Newtonsoft.Json.JsonConvert.SerializeObject(dbTableGridList));
+                    }
+                    foreach (var item in oldList)
+                    {
+                        CodeTableDb.AsUpdateable(item).UpdateColumns(it => it.ClassName).WhereColumns(it => it.TableName).ExecuteCommand();
+                    }
+                    List<CodeColumns> UpdateColumns = new List<CodeColumns>();
+                    foreach (var item in oldColumns.GroupBy(it => new { it.TableId, it.TableName }).ToList())
+                    {
+                        var tableId = CodeTableDb.AsQueryable().Where(it => it.TableName == item.Key.TableName && it.DbId == dbid).First()?.Id;
+                        if (tableId != null)
+                        {
+                            var columns = CodeColumnsDb.AsQueryable().Where(it => it.CodeTableId == tableId).ToList();
+                            foreach (var col in columns)
+                            {
+                                var addColumn = item.FirstOrDefault(it => it.Columns.DbColumnName == col.DbColumnName);
+                                if (addColumn != null)
+                                {
+                                    col.ClassProperName = addColumn.Columns.ClassProperName;
+                                    UpdateColumns.Add(col);
+                                }
+                            }
+                        }
+                    }
+                    CodeColumnsDb.AsUpdateable(UpdateColumns).UpdateColumns(it => it.ClassProperName).ExecuteCommand();
+                    Db.CommitTran();
+                }
+                catch (Exception ex)
+                {
+                    Db.RollbackTran();
+                    throw ex;
+                }
+            }
+            result.IsSuccess = true;
+            return result;
+        }
+
+
         #endregion
 
         #region Copy
