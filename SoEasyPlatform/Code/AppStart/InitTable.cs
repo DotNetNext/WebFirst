@@ -61,7 +61,7 @@ namespace SoEasyPlatform
                     },
                     new CodeType{
                                   Name="ignore",
-                                  CSharepType="实体属性名格式 PropertyName[TypeName] 可以自定义类型",
+                                  CSharepType="建表忽略该类型字段，生成实体中@Model.IsIgnore 值为 true ",
                                   DbType=new DbTypeInfo[]{
                                                   
                                 }
