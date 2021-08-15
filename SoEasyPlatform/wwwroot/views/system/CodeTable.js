@@ -14,7 +14,8 @@
         CreateFile2: _root + "codetable/CreateFileByProjectId",
         GetRazorModel: _root + "FileInfo/GetRazorModel",
         UpdateEntity: _root + "codetable/UpdateEntity",
-        CreateTable: _root +"codetable/CreateTables"
+        CreateTable: _root + "codetable/CreateTables",
+        Copy: _root + "codetable/Copy"
     },
     text:
     {
@@ -22,7 +23,8 @@
         addPath: "手动生成",
         addProject: "方案生成",
         addDbFirst: "导入虚拟类",
-        edit: "修改虚拟类"
+        edit: "修改虚拟类",
+        copy:"预览复制"
     },
     w: {
         w: "100%",
@@ -383,5 +385,36 @@ btnProject.$Open("#divProject", {
     btn: ['生成实体', '关闭']
 });
 
+btnCopy.$Open("#divCopy", {
+    title: configs.text.copy,
+    w: 1000,
+    h: 450,
+    validate: function () {
+        var gridInfo = divGrid.$GridInfo();
+        if (txtDbId.value == null || txtDbId.value == "" || txtDbId.value == "0") {
+            "请选择数据库".$Alert();
+            return false;
+        } else if (gridInfo.length == 0) {
+            "请选择记录".$Alert();
+            return false;
+        }
+        else
+        {
+            btnCopy.$Loading();
+            frmProjectSave.$Form({
+                url: configs.url.Copy,
+                callback: function (msg) {
+                    btnCopy.$CloseLoading();
+                    txtCopy.value = msg.Data;
+                }
+            });
+            return true;
+        }
+    },
+    yes: function () {
+        "请手动复制".$Alert();
+    },
+    btn: ['复制', '关闭']
+});
  
 
