@@ -176,11 +176,20 @@ namespace SoEasyPlatform
                                 }
                     },
                     new CodeType{
+                                  Name="decimal_18_8",
+                                  CSharepType=CSharpDataType.@decimal.ToString(),
+                                  DbType=new DbTypeInfo[]{
+                                                           new DbTypeInfo(){  Name="decimal",Length=18, DecimalDigits=8},
+                                                           new DbTypeInfo(){  Name="number",Length=18, DecimalDigits=8}
+                                }
+                    },
+                    new CodeType{
                                   Name="decimal_18_4",
                                   CSharepType=CSharpDataType.@decimal.ToString(),
                                   DbType=new DbTypeInfo[]{
                                                            new DbTypeInfo(){  Name="decimal",Length=18, DecimalDigits=4},
-                                                           new DbTypeInfo(){  Name="number",Length=18, DecimalDigits=4}
+                                                           new DbTypeInfo(){  Name="number",Length=18, DecimalDigits=4},
+                                                           new DbTypeInfo(){  Name="money",Length=0, DecimalDigits=0}
                                 }
                     },
                     new CodeType{
