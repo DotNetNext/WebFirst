@@ -417,6 +417,13 @@ namespace SoEasyPlatform.Apis
                 foreach (var item in genList)
                 {
                     item.PropertyGens = item.PropertyGens.Where(it => it.IsIgnore == false).ToList();
+                    foreach (var property in item.PropertyGens)
+                    {
+                        if (property.IsSpecialType) 
+                        {
+                            property.Type = "string";
+                        }
+                    }
                 }
                 string key = TemplateHelper.EntityKey + SyntaxTreeHelper.TemplateString.GetHashCode();
                 foreach (var item in genList)
