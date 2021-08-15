@@ -403,6 +403,7 @@ namespace SoEasyPlatform.Apis
         /// </summary>
         /// <returns></returns>
         [HttpPost]
+        [ExceptionFilter]
         [Route("CreateTables")]
         public ActionResult<ApiResult<bool>> CreateTables([FromForm] string model, [FromForm] int dbid)
         {
