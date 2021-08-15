@@ -16,8 +16,10 @@ namespace SoEasyPlatform.Apis
     [ApiController]
     public partial class CodeTableController : BaseController
     {
+        IMapper _mapper;
         public CodeTableController(IMapper mapper) : base(mapper)
         {
+            _mapper = mapper;
         }
 
         #region CodeTable CRUD
@@ -465,7 +467,9 @@ namespace SoEasyPlatform.Apis
                             {
                                 if (oldItem.Columns.CodeType.Equals("ignore",StringComparison.CurrentCultureIgnoreCase)) 
                                 {
-                                    CodeColumnsDb.AsInsertable(oldItem.Columns).ExecuteCommand();
+                                    var mapp = _mapper.Map<CodeColumns>(oldItem.Columns);
+                                    mapp.CodeTableId = columns[0].CodeTableId;
+                                    CodeColumnsDb.AsInsertable(mapp).ExecuteCommand();
                                 }
                             }
                         }
