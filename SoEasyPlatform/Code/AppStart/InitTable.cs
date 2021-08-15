@@ -177,7 +177,7 @@ namespace SoEasyPlatform
                     },
                     new CodeType{ 
                                  Name="timestamp",
-                                 CSharepType=CSharpDataType.byteArray.ToString(),
+                                 CSharepType="byte[]",
                                  DbType=new DbTypeInfo[]{
                                                            new DbTypeInfo(){  Name="timestamp"} 
 
@@ -253,7 +253,7 @@ namespace SoEasyPlatform
                     },
                     new CodeType{
                                   Name="byteArray",
-                                  CSharepType=CSharpDataType.byteArray.ToString(),
+                                  CSharepType="byte[]",
                                   DbType=new DbTypeInfo[]{
                                                            new DbTypeInfo(){  Name="clob"},
                                                            new DbTypeInfo(){  Name="bit"},
