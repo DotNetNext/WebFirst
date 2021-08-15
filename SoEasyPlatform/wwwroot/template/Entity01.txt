@@ -15,10 +15,15 @@ namespace @Model.name_space
     var isPrimaryKey = item.IsPrimaryKey ? ",IsPrimaryKey = true" : "";
     var isIdentity = item.IsIdentity ? ",IsIdentity = true" : "";
     var isNull=(item.IsNullable&&item.Type!="string")?"?":"";
+    var isIgnore=(item.IsIgnore?",IsIgnore = true":"");
+    if(isIgnore!="")
+    {
+       isPrimaryKey =isIdentity =isNull="";
+     }
         @:/// <summary>
         @:/// @(item.Description)
         @:///</summary>
-        @: [SugarColumn(ColumnName="@item.DbColumnName" @(isPrimaryKey) @(isIdentity))]
+        @: [SugarColumn(ColumnName="@item.DbColumnName" @(isPrimaryKey) @(isIdentity) @(isIgnore))]
         @: public @Raw(item.Type)@isNull @item.PropertyName { get; set; }
     }
     }
