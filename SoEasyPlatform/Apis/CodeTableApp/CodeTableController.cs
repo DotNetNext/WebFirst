@@ -465,7 +465,7 @@ namespace SoEasyPlatform.Apis
                             {
                                 if (oldItem.Columns.CodeType.Equals("ignore",StringComparison.CurrentCultureIgnoreCase)) 
                                 {
-                                    UpdateColumns.Add(oldItem.Columns);
+                                    CodeColumnsDb.AsInsertable(oldItem.Columns).ExecuteCommand();
                                 }
                             }
                         }
