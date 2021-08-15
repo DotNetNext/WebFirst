@@ -31,6 +31,7 @@ namespace SoEasyPlatform.Apis
                 foreach (var item in dbColumns)
                 {
                     item.CodeTableId = id;
+                    item.DbColumnName = GetColumnName(item.DbColumnName);
                 }
                 CodeColumnsDb.InsertRange(dbColumns);
             }
@@ -41,6 +42,7 @@ namespace SoEasyPlatform.Apis
                 foreach (var item in dbColumns)
                 {
                     item.CodeTableId = dbTable.Id;
+                    item.DbColumnName = GetColumnName(item.DbColumnName);
                 }
 
                 var oldIds = CodeColumnsDb.GetList(it => it.CodeTableId == dbTable.Id).Select(it => it.Id).ToList();
@@ -60,6 +62,17 @@ namespace SoEasyPlatform.Apis
                 }
 
             }
+        }
+
+        private string GetColumnName(string dbColumnName)
+        {
+            if (dbColumnName == null)
+                return null;
+            if (Regex.IsMatch(dbColumnName, @"\[.+\]")) 
+            {
+                return Regex.Replace(dbColumnName, @"\[.+\]","");
+            }
+            return dbColumnName;
         }
 
         private void AutoFillTable(CodeTable dbTable)
