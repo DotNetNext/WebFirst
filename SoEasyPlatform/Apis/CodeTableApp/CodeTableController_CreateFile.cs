@@ -31,24 +31,19 @@ namespace SoEasyPlatform.Apis
                     var codeType = types.First(it => it.Name == column.CodeType);
                     if (codeType.Id == 3)
                     {
-                        string type = "string";
-                        if (Regex.IsMatch(column.ClassProperName,@"\[.+\]")) 
-                        {
-                            type = Regex.Match(column.ClassProperName, @"\[(.+)\]").Groups[1].Value;
-                        }
                         PropertyGen proGen = new PropertyGen()
                         {
                             DbColumnName = column.DbColumnName,
                             Description = column.Description,
                             IsIdentity = column.IsIdentity,
                             IsPrimaryKey = column.IsPrimaryKey,
-                            PropertyName = Regex.Replace(column.ClassProperName, @"\[(.+)\]", ""),
-                            Type = type,
+                            PropertyName = GetPropertyName(column.ClassProperName),
+                            Type = GetType(column),
                             IsNullable = column.Required == false,
-                            DbType = type,
+                            DbType ="",
                             Length = 0,
                             DecimalDigits = 0,
-                            IsIgnore=true
+                            IsIgnore = true
                         };
                         gen.PropertyGens.Add(proGen);
                     }
@@ -61,8 +56,8 @@ namespace SoEasyPlatform.Apis
                             Description = column.Description,
                             IsIdentity = column.IsIdentity,
                             IsPrimaryKey = column.IsPrimaryKey,
-                            PropertyName = column.ClassProperName,
-                            Type = codeType.CSharepType,
+                            PropertyName = GetPropertyName(column.ClassProperName),
+                            Type = GetType(column),
                             IsNullable = column.Required == false,
                             DbType = dbType.Name,
                             Length = dbType.Length,
@@ -74,6 +69,22 @@ namespace SoEasyPlatform.Apis
                 result.Add(gen);
             }
             return result;
+        }
+
+        private static string GetType(CodeColumns column)
+        {
+            string type = "string";
+            if (Regex.IsMatch(column.ClassProperName, @"\[.+\]"))
+            {
+                type = Regex.Match(column.ClassProperName, @"\[(.+)\]").Groups[1].Value;
+            }
+
+            return type;
+        }
+
+        private static string GetPropertyName(string name)
+        {
+            return Regex.Replace(name, @"\[(.+)\]", "");
         }
 
         private DbTypeInfo GetTypeInfoByDatabaseType(DbTypeInfo[] dbType, DbType databasedbType)
