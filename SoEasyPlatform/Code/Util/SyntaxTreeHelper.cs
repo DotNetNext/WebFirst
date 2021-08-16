@@ -55,7 +55,7 @@ namespace SoEasyPlatform
                     {
                         Console.Error.WriteLine("\t{0}: {1}", diagnostic.Id, diagnostic.GetMessage());
                     }
-                    throw new Exception("解析出错");
+                    throw new Exception("解析实体类出错，请检查命名" + classString);
                 }
                 else
                 {

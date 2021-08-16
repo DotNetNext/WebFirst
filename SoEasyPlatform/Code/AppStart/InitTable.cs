@@ -49,7 +49,8 @@ namespace SoEasyPlatform
                                   DbType=new  DbTypeInfo[]{
                                                             new DbTypeInfo() { Name="int" },
                                                             new DbTypeInfo() { Name="int4" },
-                                                            new DbTypeInfo() { Name="number", Length=9, DecimalDigits=0 }
+                                                            new DbTypeInfo() { Name="number", Length=9, DecimalDigits=0 },
+                                                            new DbTypeInfo(){ Name="integer" }
                                     }
                     },
                     new CodeType{
