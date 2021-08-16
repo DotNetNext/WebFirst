@@ -325,6 +325,10 @@ namespace SoEasyPlatform.Apis
                                 info.IsIdentity = column.IsIdentity;
                                 info.IsIgnore = column.IsIgnore;
                                 info.DataType = column.DbType;
+                                if (tableDb.CurrentConnectionConfig.DbType == DbType.Sqlite&&info.IsIdentity) 
+                                {
+                                    info.DataType = "integer";
+                                }
                             }
                         }
                     };
