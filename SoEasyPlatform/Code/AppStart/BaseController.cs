@@ -106,7 +106,10 @@ namespace SoEasyPlatform
                 using (var Db = Repository<object>.GetInstance(db.DbType, db.Connection))
                 {
                     Db.Ado.CommandTimeOut = 2;
-                    Db.DbMaintenance.CreateDatabase();
+                    if (db.DbType != DbType.Oracle)
+                    {
+                        Db.DbMaintenance.CreateDatabase();
+                    }
                     Db.Open();
                     return true;
                 }
