@@ -51,7 +51,7 @@ namespace SoEasyPlatform.Apis
         private decimal GetSort(DbTypeInfo cstype, CodeType type, DbColumnInfo columnInfo, DbType dbtype)
         {
             decimal result = 0;
-            if (columnInfo.DataType == cstype.Name)
+            if (columnInfo.DataType.Equals(cstype.Name,StringComparison.OrdinalIgnoreCase))
             {
                 result = result + 10000;
             }
