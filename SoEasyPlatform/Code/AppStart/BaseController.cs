@@ -99,15 +99,15 @@ namespace SoEasyPlatform
         {
             try
             {
-                if (!db.Connection.ToLower().Contains("connection timeout=2")) 
+                if (!db.Connection.ToLower().Contains("connection timeout=2")&&db.DbType==DbType.SqlServer) 
                 {
                     db.Connection = db.Connection.TrimEnd(';') + ";connection timeout=2";
                 }
                 using (var Db = Repository<object>.GetInstance(db.DbType, db.Connection))
                 {
                     Db.Ado.CommandTimeOut = 2;
-                    Db.Open();
                     Db.DbMaintenance.CreateDatabase();
+                    Db.Open();
                     return true;
                 }
             }
