@@ -47,69 +47,6 @@ txtModelIdName.$SelectTree({
 btnReset.$Reset();
 
 
-btnAdd.$Open("#divOpen", {
-    title: configs.text.add,
-    w: configs.w.w,
-    h: configs.w.h,
-    validate: function () {
-        frmSave.$ClearControls();
-        return true;
-    },
-    yes: function () {
-        frmSave.$Form({
-            url: configs.url.SaveSystem,
-            callback: function (msg) {
-                if (msg.IsKeyValuePair) {
-                    $sugar.$Validate(msg.Data, "save");
-                } else {
-                    $sugar.$Validate("clear");
-                    msg.Data.$Alert();
-                    if (msg.IsSuccess) {
-                        btnSearch.click();
-                        $sugar.$CloseAll(divOpen.getAttribute("dataindex"));
-                    }
-                }
-            }
-        });
-    },
-    btn: ['添加', '关闭']
-});
-
-btnEdit.$Open("#divOpen", {
-    title: configs.text.edit,
-    w: configs.w.w,
-    h: configs.w.h,
-    validate: function () {
-        var gridInfo = divGrid.$GridInfo();
-        if (gridInfo.length == 0) {
-            "请选择记录".$Alert();
-            return false;
-        } else {
-            gridInfo = gridInfo[0];
-            frmSave.$FillControls(gridInfo);
-            return true;
-        }
-    },
-    yes: function () {
-        frmSave.$Form({
-            url: configs.url.SaveSystem,
-            callback: function (msg) {
-                if (msg.IsKeyValuePair) {
-                    $sugar.$Validate(msg.Data, "save");
-                } else {
-                    $sugar.$Validate("clear");
-                    msg.Data.$Alert();
-                    if (msg.IsSuccess) {
-                        btnSearch.click();
-                        $sugar.$CloseAll(divOpen.getAttribute("dataindex"));
-                    }
-                }
-            }
-        });
-    },
-    btn: ['保存', '关闭']
-});
-
 
 btnDel.$Confirm({
     title: "是否删除记录",
