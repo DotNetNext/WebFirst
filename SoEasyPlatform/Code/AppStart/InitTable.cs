@@ -221,7 +221,7 @@ namespace SoEasyPlatform
                     },
                     new CodeType{
                                   Name="byte",
-                                  CSharepType=CSharpDataType.Guid.ToString(),
+                                  CSharepType=CSharpDataType.@byte.ToString(),
                                   DbType=new DbTypeInfo[]{
                                                            new DbTypeInfo(){  Name="tinyint"},
                                                            new DbTypeInfo(){  Name="varbit"},
