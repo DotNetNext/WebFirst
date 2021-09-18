@@ -28,7 +28,7 @@ namespace SoEasyPlatform
                 endpoints.MapControllers();
             });
 
-            InitTable.Start();
+            new InitTable().Start();
         }
     }
 }

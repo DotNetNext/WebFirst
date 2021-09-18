@@ -8,7 +8,7 @@ namespace SoEasyPlatform
 {
     public class InitTable
     {
-        public static void Start()
+        public  void Start()
         {
             var db = Repository<Menu>.GetInstance();
 
