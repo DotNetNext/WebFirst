@@ -23,4 +23,11 @@
     border:0 !important;
     font-size:14px;
 }
- 
+.layui-layer-btn {
+     font-size:15px;
+     padding-top:0;
+}
+
+.layui-layer-btn  a{
+     font-size:15px;
+}
