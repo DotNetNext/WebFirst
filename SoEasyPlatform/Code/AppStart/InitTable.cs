@@ -51,8 +51,8 @@ namespace SoEasyPlatform
                 {
                     FileSuffix = ".cs",
                     TemplateId1 = _entitytempId + "",
-                    FileModel = _filenet5lib + "",
-                    FileInfo = "[{ \"name\":\"" + _defaultNamespace + ".Entites\" }]",
+                    FileModel = "[{ \"name\":\"" + _defaultNamespace + ".Entites\" }]",
+                    FileInfo = _filenet5lib + "",
                     ProjentName = "默认-实体生实",
                     Path = @"c:\\WebFirst\\Entites",
                     IsDeleted = false,
