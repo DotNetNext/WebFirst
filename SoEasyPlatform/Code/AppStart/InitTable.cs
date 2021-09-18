@@ -55,7 +55,7 @@ namespace SoEasyPlatform
                 {
                     FileSuffix = ".cs",
                     TemplateId1 = _entitytempId + "",
-                    FileModel = "[{ \"name\":\""+_defaultNamespace+"\",\"nuget\":[{ \"name\":\"SqlSugarCore\",\"version\":\"5.0.4\" }]}]",
+                    FileModel = "[{ \"name\":\""+_defaultNamespace+".Entities\",\"nuget\":[{ \"name\":\"SqlSugarCore\",\"version\":\"5.0.4\" }]}]",
                     FileInfo = _net5lib + "",
                     ProjentName = "默认-实体生实-SqlSugar",
                     Path = @"c:\\WebFirst\\Entites",
