@@ -22,12 +22,13 @@
     background: #f3adad !important;
     border:0 !important;
     font-size:14px;
+    padding:6px 8px !important
 }
 .layui-layer-btn {
      font-size:15px;
-     padding-top:0;
+     padding-top:0 !important;
 }
-
-.layui-layer-btn  a{
-     font-size:15px;
+ 
+.layui-layer-btn a {
+    font-size: 15px;
 }
