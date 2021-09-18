@@ -455,5 +455,5 @@ btnCopyHide.$Open("#divCopy", {
     yes: function () {
         "请手动复制".$Alert();
     },
-    btn: ['复制', '关闭']
+    btn: ['预览', '关闭']
 });
