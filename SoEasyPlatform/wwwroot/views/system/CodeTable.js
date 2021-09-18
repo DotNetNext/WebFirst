@@ -81,6 +81,7 @@ saveProjectName.$SelectTree({
     isMultiple: false,
     url: configs.url.GetProjet,
     maxHeight: 100,
+    width:250,
     rootIsSelect: false
 })
 
