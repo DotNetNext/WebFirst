@@ -14,6 +14,28 @@ namespace SoEasyPlatform.Apis
     /// </summary>
     public partial class CodeTableController : BaseController
     {
+        /// <summary>
+        /// 打开目录
+        /// </summary>
+        /// <param name="disOpen"></param>
+        /// <param name="project"></param>
+        private static void OpenPath(bool disOpen, Project project)
+        {
+            if (disOpen)
+            {
+                Task.Run(() =>
+                {
+                    try
+                    {
+                        System.Diagnostics.Process.Start("explorer.exe", project.Path);
+                    }
+                    catch
+                    {
+
+                    }
+                });
+            }
+        }
         private List<EntitiesGen> GetGenList(List<CodeTable> tableList, List<CodeType> types,SqlSugar.DbType databasedbType)
         {
             List<EntitiesGen> result = new List<EntitiesGen>();

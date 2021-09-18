@@ -245,14 +245,14 @@ namespace SoEasyPlatform.Apis
             var result = new ApiResult<bool>();
             var tables = model.Tables;
             var project = ProjectDb.GetSingle(it => it.Id == model.ProjectId);
-            base.Check(project == null,"请选择方案");
+            base.Check(project == null, "请选择方案");
             model.Tables = tables;
             var template = TemplateDb.GetById(project.TemplateId1).Content;
             var tableids = Newtonsoft.Json.JsonConvert.DeserializeObject<List<CodeTypeGridViewModel>>(model.Tables).Select(it => it.Id).ToList();
             var tableList = CodeTableDb.GetList(it => tableids.Contains(it.Id));
             int dbId = tableList.First().DbId;
             var connection = base.GetTryDb(dbId);
-            List<EntitiesGen> genList = GetGenList(tableList, CodeTypeDb.GetList(),connection.CurrentConnectionConfig.DbType);
+            List<EntitiesGen> genList = GetGenList(tableList, CodeTypeDb.GetList(), connection.CurrentConnectionConfig.DbType);
             string key = TemplateHelper.EntityKey + template.GetHashCode();
             foreach (var item in genList)
             {
@@ -261,20 +261,7 @@ namespace SoEasyPlatform.Apis
                 var fileName = GetFileName(project, item);
                 FileSugar.CreateFileReplace(fileName, html, Encoding.UTF8);
             }
-            if (disOpen)
-            {
-                Task.Run(() =>
-                {
-                    try
-                    {
-                        System.Diagnostics.Process.Start("explorer.exe", project.Path);
-                    }
-                    catch
-                    {
-
-                    }
-                });
-            }
+            OpenPath(disOpen, project);
             ProjectController_Common.CreateProject(project.Id);
             result.IsSuccess = true;
             result.Message = "生成生功";
