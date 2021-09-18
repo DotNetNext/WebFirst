@@ -30,12 +30,12 @@ namespace SoEasyPlatform
         }
 
  
-        private static void InitProject(SqlSugarClient db)
+        private  void InitProject(SqlSugarClient db)
         {
             db.CodeFirst.InitTables<Project>();
         }
 
-        private static void InitCodeTable(SqlSugarClient db)
+        private  void InitCodeTable(SqlSugarClient db)
         {
             db.CodeFirst.InitTables<CodeTable>();
             db.CodeFirst.InitTables<CodeType>();
@@ -292,12 +292,12 @@ namespace SoEasyPlatform
             }
         }
 
-        private static void InitConnection(SqlSugarClient db)
+        private  void InitConnection(SqlSugarClient db)
         {
             db.CodeFirst.InitTables<Database>();
         }
 
-        private static void InitFileInfo(SqlSugarClient db)
+        private  void InitFileInfo(SqlSugarClient db)
         {
             db.CodeFirst.InitTables<FileInfo>();
             if (db.Queryable<FileInfo>().Count() == 0)
@@ -309,7 +309,7 @@ namespace SoEasyPlatform
             }
         }
 
-        private static void AddFile1(SqlSugarClient db)
+        private  void AddFile1(SqlSugarClient db)
         {
             var temp = @"wwwroot\template\Lib1.txt";
             var temp2 = @"wwwroot\template\Lib1_1.txt";
@@ -328,7 +328,7 @@ namespace SoEasyPlatform
             };
             db.Insertable(d1).ExecuteCommand();
         }
-        private static void AddFile2(SqlSugarClient db)
+        private  void AddFile2(SqlSugarClient db)
         {
             var temp = @"wwwroot\template\Lib2.txt";
             var temp2 = @"wwwroot\template\Lib1_1.txt";
@@ -347,7 +347,7 @@ namespace SoEasyPlatform
             };
             db.Insertable(d1).ExecuteCommand();
         }
-        private static void AddFile3(SqlSugarClient db)
+        private  void AddFile3(SqlSugarClient db)
         {
             var temp = @"wwwroot\template\Lib2.txt";
             var temp2 = @"wwwroot\template\Lib1_1.txt";
@@ -366,7 +366,7 @@ namespace SoEasyPlatform
             };
             db.Insertable(d1).ExecuteCommand();
         }
-        private static void AddFile4(SqlSugarClient db)
+        private  void AddFile4(SqlSugarClient db)
         {
             var temp = @"wwwroot\template\DbContext.txt";
             var temp2 = @"wwwroot\template\DbContext_1.txt";
@@ -386,7 +386,7 @@ namespace SoEasyPlatform
             db.Insertable(d1).ExecuteCommand();
         }
 
-        private static void InitTemplate(SqlSugarClient db)
+        private  void InitTemplate(SqlSugarClient db)
         {
             //db.DbMaintenance.DropTable("Template");
             db.CodeFirst.InitTables<Template, TemplateType>();
@@ -432,7 +432,7 @@ namespace SoEasyPlatform
             }
         }
 
-        private static void InitMenu(SqlSugarClient db)
+        private  void InitMenu(SqlSugarClient db)
         {
             if (db.DbMaintenance.IsAnyTable("Menu"))
             {
