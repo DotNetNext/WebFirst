@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 namespace SoEasyPlatform.Apis
 {
     [Route("api/[controller]")]
+    [ExceptionFilter]
     [ApiController]
     public class ProjectController : BaseController
     {
