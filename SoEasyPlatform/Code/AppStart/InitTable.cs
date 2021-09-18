@@ -8,6 +8,14 @@ namespace SoEasyPlatform
 {
     public class InitTable
     {
+        /// <summary>
+        /// 默认实体ID
+        /// </summary>
+        private int _entitytempId=0;
+        /// <summary>
+        /// .NET5类库ID
+        /// </summary>
+        private int _filenet5lib = 0;
         public  void Start()
         {
             var db = Repository<Menu>.GetInstance();
@@ -383,7 +391,7 @@ namespace SoEasyPlatform
                 Suffix = "cs"
 
             };
-            db.Insertable(d1).ExecuteCommand();
+            _filenet5lib=db.Insertable(d1).ExecuteReturnIdentity();
         }
 
         private  void InitTemplate(SqlSugarClient db)
@@ -404,7 +412,7 @@ namespace SoEasyPlatform
             {
                 var temp = @"wwwroot\template\Entity01.txt";
                 var directory = Directory.GetCurrentDirectory();
-                db.Insertable(new Template()
+                _entitytempId= db.Insertable(new Template()
                 {
                     ChangeTime = DateTime.Now,
                     Content = FileSugar.FileToString(FileSugar.MergeUrl(directory, temp)),
@@ -414,7 +422,7 @@ namespace SoEasyPlatform
                     Title = "SqlSugar默认实体模版",
                     IsInit=true
 
-                }).ExecuteCommand();
+                }).ExecuteReturnIdentity();
 
 
                 var temp2 = @"wwwroot\template\biz.txt";
