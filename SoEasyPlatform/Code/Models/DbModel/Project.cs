@@ -12,7 +12,6 @@ namespace SoEasyPlatform
         public string TemplateId1 { get; set; }
         public string Path { get; set; }
         [SugarColumn(IsNullable = true)]
-
         public string FileInfo { get; set; }
         [SugarColumn(IsNullable =true)]
         public string FileModel { get; set; }
@@ -23,6 +22,8 @@ namespace SoEasyPlatform
         public string ProjentName { get;  set; }
         [SugarColumn(IsNullable =true,Length =50)]
         public string SolutionId { get; set; }
+        [SugarColumn(IsNullable = true)]
+        public bool? IsInit { get; set; }
     }
 
  
