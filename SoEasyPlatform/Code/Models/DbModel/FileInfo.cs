@@ -21,7 +21,7 @@ namespace SoEasyPlatform
         public bool IsDeleted { get; set; }
         public bool IsInit { get; set; }
         /// <summary>
-        /// 解决方案ID
+        /// 项目ID
         /// </summary>
         public Guid PojectId { get; set; }
     }

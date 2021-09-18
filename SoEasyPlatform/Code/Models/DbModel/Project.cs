@@ -21,6 +21,8 @@ namespace SoEasyPlatform
         public int ModelId { get; set; }
         public string FileSuffix { get;  set; }
         public string ProjentName { get;  set; }
+        [SugarColumn(IsNullable =true,Length =50)]
+        public string SolutionId { get; set; }
     }
 
  
