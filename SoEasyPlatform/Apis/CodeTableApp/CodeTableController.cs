@@ -47,10 +47,10 @@ namespace SoEasyPlatform.Apis
                     Id = it.Id.SelectAll(),
                     DbName = db.Desc
                 })
-                .ToPageList(model.PageIndex, 30, ref count);
+                .ToPageList(model.PageIndex, int.MaxValue, ref count);
             result.Data.Rows = list;
             result.Data.Total = count;
-            result.Data.PageSize = 30;
+            result.Data.PageSize = count;
             result.Data.PageNumber = model.PageIndex;
             result.IsSuccess = true;
             return result;
