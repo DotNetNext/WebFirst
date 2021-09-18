@@ -57,7 +57,7 @@ namespace SoEasyPlatform
                     TemplateId1 = _entitytempId + "",
                     FileModel = "[{ \"name\":\"" + _defaultNamespace + ".Entites\" }]",
                     FileInfo = _net5lib + "",
-                    ProjentName = "默认-实体生实",
+                    ProjentName = "默认-实体生实-SqlSugar",
                     Path = @"c:\\WebFirst\\Entites",
                     IsDeleted = false,
                     IsInit = true,
@@ -442,7 +442,7 @@ namespace SoEasyPlatform
                     TemplateTypeName = "实体",
                     Sort = 0,
                     TemplateTypeId = 1,
-                    Title = "默认-实体模版",
+                    Title = "默认-实体模版-SqlSugar",
                     IsInit=true
 
                 }).ExecuteReturnIdentity();
@@ -456,7 +456,7 @@ namespace SoEasyPlatform
                     TemplateTypeName = "业务",
                     Sort = 0,
                     TemplateTypeId = 2,
-                    Title = "默认业务模版",
+                    Title = "默认-业务模版-SqlSugar",
                     IsInit=true
 
                 }).ExecuteCommand();
