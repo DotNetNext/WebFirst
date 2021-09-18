@@ -342,7 +342,7 @@ btnPath.$Open("#divPath", {
             "请选择一条数据".$Alert();
         }
     },
-    btn: ['生成方案', '关闭']
+    btn: ['创建方案', '关闭']
 });
 
 btnProject.$Open("#divProject", {
