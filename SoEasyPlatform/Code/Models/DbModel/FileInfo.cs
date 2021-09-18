@@ -20,5 +20,9 @@ namespace SoEasyPlatform
         public DateTime ChangeTime { get; set; }
         public bool IsDeleted { get; set; }
         public bool IsInit { get; set; }
+        /// <summary>
+        /// 解决方案ID
+        /// </summary>
+        public Guid PojectId { get; set; }
     }
 }

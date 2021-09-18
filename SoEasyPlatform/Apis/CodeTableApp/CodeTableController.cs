@@ -240,7 +240,7 @@ namespace SoEasyPlatform.Apis
         [FormValidateFilter]
         [ExceptionFilter]
         [Route("CreateFileByProjectId")]
-        public ActionResult<ApiResult<bool>> CreateFileByProjectId([FromForm] ProjectViewModel2 model)
+        public ActionResult<ApiResult<bool>> CreateFileByProjectId([FromForm] ProjectViewModel2 model,bool disOpen=true)
         {
             var result = new ApiResult<bool>();
             var tables = model.Tables;
@@ -260,6 +260,17 @@ namespace SoEasyPlatform.Apis
                 var html = TemplateHelper.GetTemplateValue(key, template, item);
                 var fileName = GetFileName(project, item);
                 FileSugar.CreateFileReplace(fileName, html, Encoding.UTF8);
+            }
+            if (disOpen)
+            {
+                try
+                {
+                    System.Diagnostics.Process.Start("explorer.exe", project.Path);
+                }
+                catch 
+                {
+ 
+                }
             }
             ProjectController_Common.CreateProject(project.Id);
             result.IsSuccess = true;
