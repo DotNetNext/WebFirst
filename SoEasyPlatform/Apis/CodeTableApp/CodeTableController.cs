@@ -263,14 +263,17 @@ namespace SoEasyPlatform.Apis
             }
             if (disOpen)
             {
-                try
+                Task.Run(() =>
                 {
-                    System.Diagnostics.Process.Start("explorer.exe", project.Path);
-                }
-                catch 
-                {
- 
-                }
+                    try
+                    {
+                        System.Diagnostics.Process.Start("explorer.exe", project.Path);
+                    }
+                    catch
+                    {
+
+                    }
+                });
             }
             ProjectController_Common.CreateProject(project.Id);
             result.IsSuccess = true;
