@@ -10,6 +10,7 @@ using SqlSugar;
 namespace SoEasyPlatform.Apis
 {
     [Route("api/[controller]")]
+    [ExceptionFilter]
     [ApiController]
     public class TemplateController : BaseController
     {
