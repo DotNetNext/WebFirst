@@ -24,5 +24,10 @@ namespace SoEasyPlatform
         /// 项目ID
         /// </summary>
         public Guid PojectId { get; set; }
+        /// <summary>
+        /// 方案ID
+        /// </summary>
+        [SugarColumn(IsNullable = true, Length = 50)]
+        public string SolutionId { get; set; }
     }
 }
