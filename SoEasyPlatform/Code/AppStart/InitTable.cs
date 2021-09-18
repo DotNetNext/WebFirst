@@ -16,6 +16,10 @@ namespace SoEasyPlatform
         /// .NET5类库ID
         /// </summary>
         private int _filenet5lib = 0;
+        /// <summary>
+        /// 默认命名空间
+        /// </summary>
+        private string _defaultNamespace = "WebFirst";
         public  void Start()
         {
             var db = Repository<Menu>.GetInstance();
@@ -41,6 +45,15 @@ namespace SoEasyPlatform
         private  void InitProject(SqlSugarClient db)
         {
             db.CodeFirst.InitTables<Project>();
+            db.Insertable(new Project()
+            {
+                 FileSuffix= ".cs",
+                 TemplateId1=_entitytempId+"",
+                 FileModel=_filenet5lib+"",
+                 FileInfo= "[{ \"name\":\""+_defaultNamespace+".Entites\" }]",
+                 ProjentName= "默认-实体生实",
+                 Path= @"c:\\WebFirst\\Entites"
+            }).ExecuteReturnIdentity();
         }
 
         private  void InitCodeTable(SqlSugarClient db)
@@ -419,7 +432,7 @@ namespace SoEasyPlatform
                     TemplateTypeName = "实体",
                     Sort = 0,
                     TemplateTypeId = 1,
-                    Title = "SqlSugar默认实体模版",
+                    Title = "默认-实体模版",
                     IsInit=true
 
                 }).ExecuteReturnIdentity();
