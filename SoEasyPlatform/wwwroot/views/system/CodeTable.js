@@ -424,7 +424,7 @@ btnCopy.$Open("#divProject", {
             "请选择一条数据".$Alert();
         }
     },
-    btn: ['复制', '关闭']
+    btn: ['预览', '关闭']
 });
  
 btnCopyHide.$Open("#divCopy", {
