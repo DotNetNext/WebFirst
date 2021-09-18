@@ -13,9 +13,13 @@ namespace SoEasyPlatform
         /// </summary>
         private int _entitytempId=0;
         /// <summary>
-        /// .NET5类库ID
+        /// 默认文件dbcontext
         /// </summary>
-        private int _filenet5lib = 0;
+        private int _dbcontext = 0;
+        /// <summary>
+        /// 默认文件 net5 lib
+        /// </summary>
+        private int _net5lib = 0;
         /// <summary>
         /// 默认命名空间
         /// </summary>
@@ -52,7 +56,7 @@ namespace SoEasyPlatform
                     FileSuffix = ".cs",
                     TemplateId1 = _entitytempId + "",
                     FileModel = "[{ \"name\":\"" + _defaultNamespace + ".Entites\" }]",
-                    FileInfo = _filenet5lib + "",
+                    FileInfo = _net5lib + "",
                     ProjentName = "默认-实体生实",
                     Path = @"c:\\WebFirst\\Entites",
                     IsDeleted = false,
@@ -372,7 +376,7 @@ namespace SoEasyPlatform
                 Suffix = "csproj"
 
             };
-            db.Insertable(d1).ExecuteCommand();
+            _net5lib= db.Insertable(d1).ExecuteReturnIdentity();
         }
         private  void AddFile3(SqlSugarClient db)
         {
@@ -410,7 +414,7 @@ namespace SoEasyPlatform
                 Suffix = "cs"
 
             };
-            _filenet5lib=db.Insertable(d1).ExecuteReturnIdentity();
+            _dbcontext=db.Insertable(d1).ExecuteReturnIdentity();
         }
 
         private  void InitTemplate(SqlSugarClient db)
