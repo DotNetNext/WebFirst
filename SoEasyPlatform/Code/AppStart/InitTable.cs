@@ -45,15 +45,21 @@ namespace SoEasyPlatform
         private  void InitProject(SqlSugarClient db)
         {
             db.CodeFirst.InitTables<Project>();
-            db.Insertable(new Project()
+            if (db.Queryable<Project>().Count() == 0)
             {
-                 FileSuffix= ".cs",
-                 TemplateId1=_entitytempId+"",
-                 FileModel=_filenet5lib+"",
-                 FileInfo= "[{ \"name\":\""+_defaultNamespace+".Entites\" }]",
-                 ProjentName= "默认-实体生实",
-                 Path= @"c:\\WebFirst\\Entites"
-            }).ExecuteReturnIdentity();
+                db.Insertable(new Project()
+                {
+                    FileSuffix = ".cs",
+                    TemplateId1 = _entitytempId + "",
+                    FileModel = _filenet5lib + "",
+                    FileInfo = "[{ \"name\":\"" + _defaultNamespace + ".Entites\" }]",
+                    ProjentName = "默认-实体生实",
+                    Path = @"c:\\WebFirst\\Entites",
+                    IsDeleted = false,
+                    IsInit = true,
+                    ModelId = 1
+                }).ExecuteReturnIdentity();
+            }
         }
 
         private  void InitCodeTable(SqlSugarClient db)
