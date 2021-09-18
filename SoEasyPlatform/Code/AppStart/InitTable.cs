@@ -411,7 +411,8 @@ namespace SoEasyPlatform
                     TemplateTypeName = "实体",
                     Sort = 0,
                     TemplateTypeId = 1,
-                    Title = "SqlSugar默认实体模版"
+                    Title = "SqlSugar默认实体模版",
+                    IsInit=true
 
                 }).ExecuteCommand();
 
@@ -424,7 +425,8 @@ namespace SoEasyPlatform
                     TemplateTypeName = "业务",
                     Sort = 0,
                     TemplateTypeId = 2,
-                    Title = "默认业务模版"
+                    Title = "默认业务模版",
+                    IsInit=true
 
                 }).ExecuteCommand();
             }
