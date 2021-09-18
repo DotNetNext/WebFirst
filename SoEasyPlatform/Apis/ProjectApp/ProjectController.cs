@@ -93,7 +93,7 @@ namespace SoEasyPlatform.Apis
             if (!string.IsNullOrEmpty(model))
             {
                 var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<DatabaseViewModel>>(model);
-                var isInit = Db.Queryable<Project>().WhereClass(list).Any(it => it.IsInit == true);
+                var isInit = Db.Queryable<Project>().In(list.Select(it=>it.Id).ToList()).Any(it => it.IsInit == true);
                 base.Check(isInit, "无法删除初始化数据");
                 var exp = Expressionable.Create<Project>();
                 foreach (var item in list)
