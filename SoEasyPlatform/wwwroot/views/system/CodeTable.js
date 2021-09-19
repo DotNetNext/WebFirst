@@ -1,6 +1,7 @@
 ﻿var configs = {
     url: {
         Get: _root + "codetable/getcodetablelist",
+        getbyid: _root +"Project/GetProjectById",
         Del: _root + "codetable/deleteCodetable",
         GetDatabase: _root + "system/getdatabase",
         Info: "/CodeTableInfo",
@@ -370,6 +371,11 @@ btnPathEdit.$Open("#divPath", {
             "请选择方案".$Alert();
             return false;
         } else {
+            (configs.url.getbyid + "?id=" + saveProjectId.value).$Ajax({
+                callback: function (msg) {
+                     
+                } 
+            })
             return true;
         }
     },

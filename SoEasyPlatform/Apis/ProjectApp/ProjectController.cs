@@ -61,6 +61,21 @@ namespace SoEasyPlatform.Apis
             return result;
         }
 
+
+        /// <summary>
+        /// 获单条记录
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("GetProjectById")]
+        public ActionResult<ApiResult<Project>> GetProjectById(int id)
+        {
+            var result = new ApiResult<Project>();
+            result.Data = ProjectDb.GetById(id);
+            result.IsSuccess = true;
+            return result;
+        }
+
         /// <summary>
         /// 保存
         /// </summary>
