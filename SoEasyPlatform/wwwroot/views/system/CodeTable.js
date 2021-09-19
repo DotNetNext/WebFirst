@@ -331,11 +331,14 @@ btnPath.$Open("#divPath", {
                     btnPath.$CloseLoading();
                     if (msg.IsKeyValuePair) {
                         $sugar.$Validate(msg.Data, "save");
-                        $sugar.$CloseAll(divPath.getAttribute("dataindex"));
                     } else {
                         saveProjectName.$RestSelectTree({ url: configs.url.GetProjet })
                         $sugar.$Validate("clear");
                         msg.Message.$Alert();
+                        if (msg.IsSuccess)
+                        {
+                            $sugar.$CloseAll(divPath.getAttribute("dataindex"));
+                        }
                     }
                 }
             });
