@@ -13,6 +13,10 @@ namespace SoEasyPlatform
         /// </summary>
         private int _entitytempId=0;
         /// <summary>
+        /// 默认业务模版
+        /// </summary>
+        private int _biztempId = 0;
+        /// <summary>
         /// 默认文件dbcontext
         /// </summary>
         private int _dbcontext = 0;
@@ -59,6 +63,18 @@ namespace SoEasyPlatform
                     FileInfo = _net5lib + "",
                     ProjentName = "Def_方案_实体_Sugar",
                     Path = @"c:\"+ _defaultNamespace + @"\Entites",
+                    IsDeleted = false,
+                    IsInit = true,
+                    ModelId = 1
+                }).ExecuteReturnIdentity();
+                db.Insertable(new Project()
+                {
+                    FileSuffix = ".cs",
+                    TemplateId1 = _biztempId + "",
+                    FileModel = "[{ \"name\":\"" + _defaultNamespace + ".Entities\",\"nuget\":[{ \"name\":\"SqlSugarCore\",\"version\":\"5.0.4\" }]}]",
+                    FileInfo = _net5lib + ","+_dbcontext,
+                    ProjentName = "Def_方案_业务_Sugar",
+                    Path = @"c:\" + _defaultNamespace + @"\Entites",
                     IsDeleted = false,
                     IsInit = true,
                     ModelId = 1
@@ -449,7 +465,7 @@ namespace SoEasyPlatform
 
 
                 var temp2 = @"wwwroot\template\biz.txt";
-                db.Insertable(new Template()
+               _biztempId= db.Insertable(new Template()
                 {
                     ChangeTime = DateTime.Now,
                     Content = FileSugar.FileToString(FileSugar.MergeUrl(directory, temp2)),
@@ -459,7 +475,7 @@ namespace SoEasyPlatform
                     Title = "Def_模版_业务_Sugar",
                     IsInit=true
 
-                }).ExecuteCommand();
+                }).ExecuteReturnIdentity();
             }
         }
 
