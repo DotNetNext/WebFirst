@@ -57,7 +57,7 @@ namespace SoEasyPlatform
                     TemplateId1 = _entitytempId + "",
                     FileModel = "[{ \"name\":\""+_defaultNamespace+".Entities\",\"nuget\":[{ \"name\":\"SqlSugarCore\",\"version\":\"5.0.4\" }]}]",
                     FileInfo = _net5lib + "",
-                    ProjentName = "默认-实体生实-SqlSugar",
+                    ProjentName = "Def_方案_实体_Sugar",
                     Path = @"c:\"+ _defaultNamespace + @"\Entites",
                     IsDeleted = false,
                     IsInit = true,
@@ -442,7 +442,7 @@ namespace SoEasyPlatform
                     TemplateTypeName = "实体",
                     Sort = 0,
                     TemplateTypeId = 1,
-                    Title = "默认-实体模版-SqlSugar",
+                    Title = "Def_模版_实体_Sugar",
                     IsInit=true
 
                 }).ExecuteReturnIdentity();
@@ -456,7 +456,7 @@ namespace SoEasyPlatform
                     TemplateTypeName = "业务",
                     Sort = 0,
                     TemplateTypeId = 2,
-                    Title = "默认-业务模版-SqlSugar",
+                    Title = "Def-模版_业务_Sugar",
                     IsInit=true
 
                 }).ExecuteCommand();
