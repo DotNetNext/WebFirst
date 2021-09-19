@@ -322,7 +322,10 @@ btnPath.$Open("#divPath", {
             saveProjentName.value = "";
             saveTemplateId1.value = "";
             saveTemplateName1.value = "";
+            saveFileModel.value = "[{ \"name\":\"命名空间\"}]";
             SaveId.value = "";
+            saveFileInfoName.value = "";
+            saveFileInfo.value = "";
             return true;
         }
     },
