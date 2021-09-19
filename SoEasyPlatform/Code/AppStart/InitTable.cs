@@ -74,7 +74,7 @@ namespace SoEasyPlatform
                     FileModel = "[{ \"name\":\""+_defaultNamespace+"\",\"nuget\":[{ \"name\":\"SqlSugarCore\",\"version\":\"5.0.3.4\" }]},{\"name\":\"DbContext\", \"name_space\":\""+_defaultNamespace+"\" }]",
                     FileInfo = _net5lib + ","+_dbcontext,
                     ProjentName = "Def_方案_业务_Sugar",
-                    Path = @"c:\" + _defaultNamespace + @"\Entites",
+                    Path = @"c:\" + _defaultNamespace + @"\Services",
                     IsDeleted = false,
                     IsInit = true,
                     ModelId = 2
