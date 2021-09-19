@@ -456,7 +456,7 @@ namespace SoEasyPlatform
                     TemplateTypeName = "业务",
                     Sort = 0,
                     TemplateTypeId = 2,
-                    Title = "Def-模版_业务_Sugar",
+                    Title = "Def_模版_业务_Sugar",
                     IsInit=true
 
                 }).ExecuteCommand();
