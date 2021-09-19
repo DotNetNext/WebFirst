@@ -77,7 +77,7 @@ namespace SoEasyPlatform
                     Path = @"c:\" + _defaultNamespace + @"\Entites",
                     IsDeleted = false,
                     IsInit = true,
-                    ModelId = 1
+                    ModelId = 2
                 }).ExecuteReturnIdentity();
             }
         }
