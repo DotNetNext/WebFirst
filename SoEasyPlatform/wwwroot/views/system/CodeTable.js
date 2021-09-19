@@ -20,7 +20,8 @@
     text:
     {
         add: "创建虚拟类",
-        addPath: "手动生成",
+        addPath: "添加方案",
+        EditPath: "修改方案",
         addProject: "方案生成",
         addDbFirst: "导入虚拟类",
         edit: "修改虚拟类",
@@ -317,6 +318,9 @@ btnPath.$Open("#divPath", {
             "请选择记录".$Alert();
             return false;
         } else {
+            saveProjentName.value = "";
+            saveTemplateId1.value = "";
+            saveTemplateName1.value = "";
             return true;
         }
     },
@@ -347,6 +351,53 @@ btnPath.$Open("#divPath", {
         }
     },
     btn: ['创建方案', '关闭']
+});
+
+btnPathEdit.$Open("#divPath", {
+    title: configs.text.EditPath,
+    w: 600,
+    h: 560,
+    validate: function () {
+        var gridInfo = divGrid.$GridInfo();
+        if (txtDbId.value == null || txtDbId.value == "" || txtDbId.value == "0") {
+            "请选择数据库".$Alert();
+            return false;
+        } else if (gridInfo.length == 0) {
+            "请选择记录".$Alert();
+            return false;
+        } else if (saveProjectName.value == "") {
+            "请选择方案".$Alert();
+            return false;
+        } else {
+            return true;
+        }
+    },
+    yes: function () {
+        var gridInfo = divGrid.$GridInfo();
+        if (gridInfo.length > 0) {
+            SaveTable1.value = JSON.stringify(gridInfo);
+            btnPath.$Loading();
+            frmPathSave.$Form({
+                url: configs.url.CreateFile,
+                callback: function (msg) {
+                    btnPath.$CloseLoading();
+                    if (msg.IsKeyValuePair) {
+                        $sugar.$Validate(msg.Data, "save");
+                    } else {
+                        saveProjectName.$RestSelectTree({ url: configs.url.GetProjet })
+                        $sugar.$Validate("clear");
+                        msg.Message.$Alert();
+                        if (msg.IsSuccess) {
+                            $sugar.$CloseAll(divPath.getAttribute("dataindex"));
+                        }
+                    }
+                }
+            });
+        } else {
+            "请选择一条数据".$Alert();
+        }
+    },
+    btn: ['修改方案', '关闭']
 });
 
 btnProject.$Open("#divProject", {
