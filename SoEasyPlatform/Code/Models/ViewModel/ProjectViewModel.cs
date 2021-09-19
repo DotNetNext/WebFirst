@@ -24,6 +24,7 @@ namespace SoEasyPlatform
         public string Tables { get; set; }
         public int? ProjectId { get; set; }
         public int? ModelId { get;  set; }
+        [ValidateReduired()]
         public string ProjentName { get;  set; }
     }
     public class ProjectViewModel2 : PageViewModel, IView

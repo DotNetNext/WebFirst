@@ -208,27 +208,27 @@ namespace SoEasyPlatform.Apis
                 .SplitInsert(it => it.Item.Id > 0).ToStorage();
              var id=s.AsInsertable.ExecuteReturnIdentity();
              s.AsUpdateable.ExecuteCommand();
-            if (s.ErrorList.Any())
-            {
-                throw new Exception(s.ErrorList.First().StorageMessage);
-            }
-            var template = TemplateDb.GetById(model.TemplateId1).Content;
-            var tableids = Newtonsoft.Json.JsonConvert.DeserializeObject<List<CodeTypeGridViewModel>>(model.Tables).Select(it => it.Id).ToList();
-            var tableList = CodeTableDb.GetList(it => tableids.Contains(it.Id));
-            int dbId = tableList.First().DbId;
-            var connection = base.GetTryDb(dbId);
-            List<EntitiesGen> genList = GetGenList(tableList, CodeTypeDb.GetList(), connection.CurrentConnectionConfig.DbType);
-            string key = TemplateHelper.EntityKey + template.GetHashCode();
-            foreach (var item in genList)
-            {
-                item.name_space = GetNameSpace(model.FileModel,item.name_space);
-                var html = TemplateHelper.GetTemplateValue(key, template, item);
-                var fileName = GetFileName(model, item);
-                FileSugar.CreateFileReplace(fileName, html, Encoding.UTF8);
-            }
-            ProjectController_Common.CreateProject(dbModel);
-            result.IsSuccess = true;
-            result.Message = "生成生功";
+            //if (s.ErrorList.Any())
+            //{
+            //    throw new Exception(s.ErrorList.First().StorageMessage);
+            //}
+            //var template = TemplateDb.GetById(model.TemplateId1).Content;
+            //var tableids = Newtonsoft.Json.JsonConvert.DeserializeObject<List<CodeTypeGridViewModel>>(model.Tables).Select(it => it.Id).ToList();
+            //var tableList = CodeTableDb.GetList(it => tableids.Contains(it.Id));
+            //int dbId = tableList.First().DbId;
+            //var connection = base.GetTryDb(dbId);
+            //List<EntitiesGen> genList = GetGenList(tableList, CodeTypeDb.GetList(), connection.CurrentConnectionConfig.DbType);
+            //string key = TemplateHelper.EntityKey + template.GetHashCode();
+            //foreach (var item in genList)
+            //{
+            //    item.name_space = GetNameSpace(model.FileModel,item.name_space);
+            //    var html = TemplateHelper.GetTemplateValue(key, template, item);
+            //    var fileName = GetFileName(model, item);
+            //    FileSugar.CreateFileReplace(fileName, html, Encoding.UTF8);
+            //}
+            //ProjectController_Common.CreateProject(dbModel);
+            //result.IsSuccess = true;
+            //result.Message = "生成生功";
             return result;
         }
 
