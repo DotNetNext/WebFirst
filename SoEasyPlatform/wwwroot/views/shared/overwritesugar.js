@@ -27,6 +27,21 @@ var SugarContext = {
         })
     },
     SelectTree: function (element, value) {
+        if (value == "bind") {
+            var warp = $(element).closest(".comboTreeWrapper");
+            var ids = warp.next().val().split(",");
+            var text = "";
+            warp.find("[data-id]").each(function (i, v) {
+                var th = $(this);
+                var thid = th.data("id")+"";
+                if (ids.indexOf(thid)>=0)
+                {
+                    text += th.text()+",";
+                }
+            });
+            element.value = text.substr(0, text.length - 1);
+            return;
+        }
         if (value.cascadeSelect == undefined)
             value.cascadeSelect = null;
         if (value.collapse == undefined)

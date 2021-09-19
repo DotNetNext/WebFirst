@@ -374,6 +374,8 @@ btnPathEdit.$Open("#divPath", {
             (configs.url.getbyid + "?id=" + saveProjectId.value).$Ajax({
                 callback: function (msg) {
                     frmPathSave.$FillControls(msg.Data);
+                    saveTemplateName1.$SelectTree("bind");
+                    saveFileInfoName.$SelectTree("bind");
                 } 
             })
             return true;
