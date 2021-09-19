@@ -373,7 +373,7 @@ btnPathEdit.$Open("#divPath", {
         } else {
             (configs.url.getbyid + "?id=" + saveProjectId.value).$Ajax({
                 callback: function (msg) {
-                     
+                    frmPathSave.$FillControls(msg.Data);
                 } 
             })
             return true;
