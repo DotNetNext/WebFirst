@@ -208,10 +208,10 @@ namespace SoEasyPlatform.Apis
                 .SplitInsert(it => it.Item.Id > 0).ToStorage();
              var id=s.AsInsertable.ExecuteReturnIdentity();
              s.AsUpdateable.ExecuteCommand();
-            //if (s.ErrorList.Any())
-            //{
-            //    throw new Exception(s.ErrorList.First().StorageMessage);
-            //}
+            if (s.ErrorList.Any())
+            {
+                throw new Exception(s.ErrorList.First().StorageMessage);
+            }
             //var template = TemplateDb.GetById(model.TemplateId1).Content;
             //var tableids = Newtonsoft.Json.JsonConvert.DeserializeObject<List<CodeTypeGridViewModel>>(model.Tables).Select(it => it.Id).ToList();
             //var tableList = CodeTableDb.GetList(it => tableids.Contains(it.Id));
@@ -227,8 +227,8 @@ namespace SoEasyPlatform.Apis
             //    FileSugar.CreateFileReplace(fileName, html, Encoding.UTF8);
             //}
             //ProjectController_Common.CreateProject(dbModel);
-            //result.IsSuccess = true;
-            //result.Message = "生成生功";
+            result.IsSuccess = true;
+            result.Message = "创建成功";
             return result;
         }
 
