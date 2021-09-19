@@ -321,6 +321,7 @@ btnPath.$Open("#divPath", {
             saveProjentName.value = "";
             saveTemplateId1.value = "";
             saveTemplateName1.value = "";
+            SaveId.value = "";
             return true;
         }
     },
