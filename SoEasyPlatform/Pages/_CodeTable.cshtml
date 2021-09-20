@@ -57,7 +57,7 @@
                     <input id="saveProjentName" name="ProjentName" type="text" class="form-control" placeholder="取个名字方便下次记得" />
                 </div>
                 <input id="SaveTable1" type="hidden" name="Tables" value="" />
-                <input id="SaveId" type="hidden" name="Id"/>
+                <input id="SaveId" type="hidden" name="Id" />
             </div>
             <div class="field item form-group">
                 <label class="col-form-label col-md-2 col-sm-2  label-align">模版<span class="required">*</span></label>
@@ -80,6 +80,13 @@
                 </div>
             </div>
             <div class="field item form-group">
+                <label class="col-form-label col-md-2 col-sm-2  label-align">方案引用</label>
+                <div class="col-md-10 col-sm-9">
+                    <input type="text" id="saveReferenceName" name="ReferenceName" placeholder="Select" autocomplete="off" />
+                    <input id="saveReference" type="hidden" value="0" name="Reference" />
+                </div>
+            </div>
+            <div class="field item form-group">
                 <label class="col-form-label col-md-2 col-sm-2  label-align">附加文件</label>
                 <div class="col-md-10 col-sm-9">
                     <input type="text" id="saveFileInfoName" name="FileInfoName" placeholder="Select" autocomplete="off" />
@@ -90,7 +97,7 @@
                 <label class="col-form-label col-md-2 col-sm-2  label-align">文件填充</label>
                 <div class="col-md-10 col-sm-9">
                     <span>请修改参数：</span>
-                    <textarea style="height:170px" class="form-control" id="saveFileModel" name="FileModel" placeholder="查看选中文件的razor格式，填写相应的json" autocomplete="off"></textarea>
+                    <textarea style="height:100px" class="form-control" id="saveFileModel" name="FileModel" placeholder="查看选中文件的razor格式，填写相应的json" autocomplete="off"></textarea>
                 </div>
             </div>
         </div>
