@@ -39,13 +39,14 @@ namespace SoEasyPlatform
                         var context = fileInfo.Content;
                         if (!string.IsNullOrEmpty(project.Reference))
                         {
-                            StringBuilder sb = new StringBuilder("<ItemGroup>");
+                            StringBuilder sb = new StringBuilder();
+                            sb.AppendLine("<ItemGroup>");
                             //< ProjectReference Include = "..\Entites\WebFirst.Entities.csproj" />
                             foreach (var item in project.Reference.Split(','))
                             {
                                 var data = DbScoped.Sugar.Queryable<Project>().InSingle(item);
                                 var itemName = (dynamic)Newtonsoft.Json.JsonConvert.DeserializeObject(data.FileModel);
-                                sb.AppendLine("< ProjectReference Include = \"..\\" + data.Path.Split('\\').Last() + "\\" + itemName[0].name + ".csproj\" />");
+                                sb.AppendLine("<ProjectReference Include = \"..\\" + data.Path.Split('\\').Last() + "\\" + itemName[0].name + ".csproj\" />");
                             }
                             sb.AppendLine("</ItemGroup>");
                             (jsonItem as IDictionary<string, object>).Add("reference", sb.ToString());
