@@ -52,5 +52,7 @@ namespace SoEasyPlatform
         public string Path { get; set; }
         [DisplayName("文件后缀")]
         public string FileSuffix { get; set; }
+        [DisplayName("引用")]
+        public string Reference { get; set; }
     }
 }
