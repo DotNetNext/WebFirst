@@ -498,7 +498,7 @@ namespace SoEasyPlatform
                              new Menu{ MenuName="配置实体 by Code" , Url="/CodeFirst"},
                              new Menu{ MenuName="配置实体 by DB " , Url="/DbFirst"},
                              new Menu{ MenuName="配置业务",Url="/BIZ" },
-                             new Menu{ MenuName="配置客户端" ,Url="/Web"},
+                             new Menu{ MenuName="配置前端" ,Url="/Web"},
                              new Menu{ MenuName="方案管理" , Url="/Project"} ,
                              new Menu{ MenuName="模版管理" , Url="/Template"} ,
                             new Menu{ MenuName="文件管理" , Url="/FileInfo"} ,

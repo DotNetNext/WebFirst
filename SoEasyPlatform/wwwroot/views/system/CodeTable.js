@@ -16,6 +16,7 @@
         GetRazorModel: _root + "FileInfo/GetRazorModel",
         UpdateEntity: _root + "codetable/UpdateEntity",
         CreateTable: _root + "codetable/CreateTables",
+        GetProjetNoMy: _root + "codetable/GetProjectAll",
         Copy: _root + "codetable/Copy"
     },
     text:

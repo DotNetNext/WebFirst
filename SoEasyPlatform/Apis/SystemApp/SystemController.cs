@@ -152,17 +152,17 @@ namespace SoEasyPlatform.Apis
         /// <returns></returns>
         [HttpPost]
         [AuthorizeFilter]
-        [Route("GetProjectNoMyId")]
-        public ActionResult<ApiResult<List<TreeModel>>> GetProjectNoMyId(int id)
+        [Route("GetProjectAll")]
+        public ActionResult<ApiResult<List<TreeModel>>> GetProjectAll()
         {
             List<TreeModel> trees = new List<TreeModel>();
-            var databses = ProjectDb.GetList(it => it.Id!=id);
+            var databses = ProjectDb.GetList().OrderBy(it=>it.ModelId).ToList();
             foreach (var db in databses)
             {
                 trees.Add(new TreeModel()
                 {
                     Id = db.Id.ToString(),
-                    Title = db.ProjentName,
+                    Title = (GetModelId(db.ModelId)) +":"+ db.ProjentName,
                     IsSelectable = true
                 });
             }
@@ -170,6 +170,17 @@ namespace SoEasyPlatform.Apis
             result.Data = trees;
             result.IsSuccess = true;
             return result;
+        }
+        private  string GetModelId(int modeid)
+        {
+            switch (modeid)
+            {
+                case 1: return "实体";
+                case 2: return "业务";
+                case 3: return "前端";
+                default:
+                    return "其它";
+            }
         }
 
 
