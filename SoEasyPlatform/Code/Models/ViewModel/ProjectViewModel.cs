@@ -26,6 +26,7 @@ namespace SoEasyPlatform
         public int? ModelId { get;  set; }
         [ValidateReduired()]
         public string ProjentName { get;  set; }
+        public string Reference { get; set; }
     }
     public class ProjectViewModel2 : PageViewModel, IView
     {
