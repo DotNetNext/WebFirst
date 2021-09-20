@@ -458,7 +458,7 @@ namespace SoEasyPlatform
                     TemplateTypeName = "实体",
                     Sort = 0,
                     TemplateTypeId = 1,
-                    Title = "Def_模版_实体_Sugar",
+                    Title = "【简单三层】_模版_实体_Sugar",
                     IsInit=true
 
                 }).ExecuteReturnIdentity();
@@ -472,7 +472,7 @@ namespace SoEasyPlatform
                     TemplateTypeName = "业务",
                     Sort = 0,
                     TemplateTypeId = 2,
-                    Title = "Def_模版_业务_Sugar",
+                    Title = "【简单三层】_模版_业务_Sugar",
                     IsInit=true
 
                 }).ExecuteReturnIdentity();
