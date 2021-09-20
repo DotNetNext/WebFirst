@@ -24,6 +24,8 @@ namespace SoEasyPlatform
         public string SolutionId { get; set; }
         [SugarColumn(IsNullable = true)]
         public bool? IsInit { get; set; }
+        [SugarColumn(IsNullable = true)]
+        public string Reference { get; set; }
     }
 
  

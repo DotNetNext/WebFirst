@@ -16,7 +16,7 @@
         GetRazorModel: _root + "FileInfo/GetRazorModel",
         UpdateEntity: _root + "codetable/UpdateEntity",
         CreateTable: _root + "codetable/CreateTables",
-        GetProjetNoMy: _root + "codetable/GetProjectAll",
+        GetProjectAll: _root + "system/GetProjectAll",
         Copy: _root + "codetable/Copy"
     },
     text:
@@ -87,7 +87,12 @@ saveProjectName.$SelectTree({
     rootIsSelect: false
 })
 
- 
+saveReferenceName.$SelectTree({
+    isMultiple: true,
+    url: configs.url.GetProjectAll,
+    maxHeight: 100,
+    rootIsSelect: false
+})
 
 saveFileInfoName.$SelectTree({
     isMultiple: true,
@@ -327,6 +332,8 @@ btnPath.$Open("#divPath", {
             SaveId.value = "";
             saveFileInfoName.value = "";
             saveFileInfo.value = "";
+            saveReferenceName.value = "";
+            saveReference.value = "";
             return true;
         }
     },
@@ -380,6 +387,7 @@ btnPathEdit.$Open("#divPath", {
                     frmPathSave.$FillControls(msg.Data);
                     saveTemplateName1.$SelectTree("bind");
                     saveFileInfoName.$SelectTree("bind");
+                    saveReferenceName.$SelectTree("bind");
                 } 
             })
             return true;
