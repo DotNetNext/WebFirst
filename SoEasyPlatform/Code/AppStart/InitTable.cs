@@ -55,7 +55,7 @@ namespace SoEasyPlatform
             db.CodeFirst.InitTables<Project>();
             if (db.Queryable<Project>().Count() == 0)
             {
-                db.Insertable(new Project()
+                var pid= db.Insertable(new Project()
                 {
                     FileSuffix = ".cs",
                     TemplateId1 = _entitytempId + "",
@@ -77,7 +77,8 @@ namespace SoEasyPlatform
                     Path = @"c:\" + _defaultNamespace + @"\Services",
                     IsDeleted = false,
                     IsInit = true,
-                    ModelId = 2
+                    ModelId = 2,
+                    Reference=pid+""
                 }).ExecuteReturnIdentity();
             }
         }
