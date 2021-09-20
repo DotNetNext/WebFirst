@@ -145,6 +145,34 @@ namespace SoEasyPlatform.Apis
             return result;
         }
 
+
+        /// <summary>
+        /// 获取方案
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        [AuthorizeFilter]
+        [Route("GetProjectNoMyId")]
+        public ActionResult<ApiResult<List<TreeModel>>> GetProjectNoMyId(int id)
+        {
+            List<TreeModel> trees = new List<TreeModel>();
+            var databses = ProjectDb.GetList(it => it.Id!=id);
+            foreach (var db in databses)
+            {
+                trees.Add(new TreeModel()
+                {
+                    Id = db.Id.ToString(),
+                    Title = db.ProjentName,
+                    IsSelectable = true
+                });
+            }
+            ApiResult<List<TreeModel>> result = new ApiResult<List<TreeModel>>();
+            result.Data = trees;
+            result.IsSuccess = true;
+            return result;
+        }
+
+
         /// <summary>
         /// 根据类型获取模版
         /// </summary>
