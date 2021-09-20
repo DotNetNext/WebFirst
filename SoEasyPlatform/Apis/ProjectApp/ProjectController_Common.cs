@@ -41,14 +41,18 @@ namespace SoEasyPlatform
                         {
                             StringBuilder sb = new StringBuilder(" < ItemGroup >");
                             //< ProjectReference Include = "..\Entites\WebFirst.Entities.csproj" />
-                            foreach (var item in project.Reference.Split(',')) 
+                            foreach (var item in project.Reference.Split(','))
                             {
-                                var data= DbScoped.Sugar.Queryable<Project>().InSingle(item);
-                                var itemName =(dynamic)Newtonsoft.Json.JsonConvert.DeserializeObject(data.FileModel);
-                                sb.AppendLine("< ProjectReference Include = \"..\\"+ data.Path.Split('\\').Last() + "\\"+ itemName[0].name + ".csproj\" />");
+                                var data = DbScoped.Sugar.Queryable<Project>().InSingle(item);
+                                var itemName = (dynamic)Newtonsoft.Json.JsonConvert.DeserializeObject(data.FileModel);
+                                sb.AppendLine("< ProjectReference Include = \"..\\" + data.Path.Split('\\').Last() + "\\" + itemName[0].name + ".csproj\" />");
                             }
                             sb.AppendLine(" < ItemGroup >");
                             (jsonItem as IDictionary<string, object>).Add("reference", sb.ToString());
+                        }
+                        else 
+                        {
+                            (jsonItem as IDictionary<string, object>).Add("reference", null);
                         }
                         var html = TemplateHelper.GetTemplateValue(context, context, jsonItem);
                         var name = (jsonItem as IDictionary<string, object>)["name"];

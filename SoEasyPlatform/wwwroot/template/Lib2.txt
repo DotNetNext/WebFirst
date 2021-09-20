@@ -10,5 +10,5 @@
          <PackageReference Include="@item.name" Version="@item.version" />
     }
   </ItemGroup>
-  @Model.reference
+  @Raw(Model.reference)
 </Project>
