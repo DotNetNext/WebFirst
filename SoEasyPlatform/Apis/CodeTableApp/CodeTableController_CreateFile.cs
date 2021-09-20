@@ -27,7 +27,7 @@ namespace SoEasyPlatform.Apis
                 {
                     try
                     {
-                        System.Diagnostics.Process.Start("explorer.exe", project.Path);
+                        System.Diagnostics.Process.Start("explorer.exe",new System.IO.DirectoryInfo(project.Path).Parent.FullName);
                     }
                     catch
                     {
