@@ -1,6 +1,7 @@
 ﻿using SqlSugar;
 using System;
 using System.Collections.Generic;
+using WebFirst.Entities;
 namespace @Model.name_space
 {
 public class @(Model.ClassName)Manager : Repository<@Model.ClassName>
