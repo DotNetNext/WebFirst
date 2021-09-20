@@ -6,6 +6,7 @@ using SqlSugar.IOC;
 using SqlSugar;
 using Newtonsoft.Json.Linq;
 using System.Dynamic;
+using System.Text;
 
 namespace SoEasyPlatform
 {
@@ -36,7 +37,19 @@ namespace SoEasyPlatform
                         var fileId = ids[i].ToString();
                         var fileInfo = DbScoped.Sugar.Queryable<FileInfo>().InSingle(idsArray[i]);
                         var context = fileInfo.Content;
-
+                        if (!string.IsNullOrEmpty(project.Reference))
+                        {
+                            StringBuilder sb = new StringBuilder(" < ItemGroup >");
+                            //< ProjectReference Include = "..\Entites\WebFirst.Entities.csproj" />
+                            foreach (var item in project.Reference.Split(',')) 
+                            {
+                                var data= DbScoped.Sugar.Queryable<Project>().InSingle(item);
+                                var itemName =(dynamic)Newtonsoft.Json.JsonConvert.DeserializeObject(data.FileModel);
+                                sb.AppendLine("< ProjectReference Include = \"..\\"+ data.Path.Split('\\').Last() + "\\"+ itemName[0].name + ".csproj\" />");
+                            }
+                            sb.AppendLine(" < ItemGroup >");
+                            (jsonItem as IDictionary<string, object>).Add("reference", sb.ToString());
+                        }
                         var html = TemplateHelper.GetTemplateValue(context, context, jsonItem);
                         var name = (jsonItem as IDictionary<string, object>)["name"];
                         var fileName = FileSugar.MergeUrl(project.Path, name + "." + fileInfo.Suffix.TrimStart('.'));
