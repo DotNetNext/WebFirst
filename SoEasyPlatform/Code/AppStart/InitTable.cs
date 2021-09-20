@@ -496,8 +496,8 @@ namespace SoEasyPlatform
                         Child=new List<Menu>()
                         {
                              new Menu{ MenuName="配置数据库" , Url="/Database"},
-                             new Menu{ MenuName="配置实体-类建表" , Url="/CodeFirst"},
-                             new Menu{ MenuName="配置实体-表建类" , Url="/DbFirst"},
+                             new Menu{ MenuName="配置实体-类建表模式" , Url="/CodeFirst"},
+                             new Menu{ MenuName="配置实体-表建类模式" , Url="/DbFirst"},
                              new Menu{ MenuName="配置业务",Url="/BIZ" },
                              new Menu{ MenuName="配置前端" ,Url="/Web"},
                              new Menu{ MenuName="方案管理" , Url="/Project"} ,
