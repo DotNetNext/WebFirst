@@ -71,7 +71,7 @@ namespace SoEasyPlatform
                 {
                     FileSuffix = ".cs",
                     TemplateId1 = _biztempId + "",
-                    FileModel = "[{ \"name\":\""+_defaultNamespace+"\",\"nuget\":[{ \"name\":\"SqlSugarCore\",\"version\":\"5.0.3.4\" }]},{\"name\":\"DbContext\", \"name_space\":\""+_defaultNamespace+"\" }]",
+                    FileModel = "[{ \"name\":\""+_defaultNamespace+ ".Services\",\"nuget\":[{ \"name\":\"SqlSugarCore\",\"version\":\"5.0.3.4\" }]},{\"name\":\"DbContext\", \"name_space\":\"" + _defaultNamespace+ ".Services\" }]",
                     FileInfo = _net5lib + ","+_dbcontext,
                     ProjentName = "Def_方案_业务_Sugar",
                     Path = @"c:\" + _defaultNamespace + @"\Services",
