@@ -17,6 +17,10 @@ namespace SoEasyPlatform
         /// </summary>
         private int _biztempId = 0;
         /// <summary>
+        /// 默认Web模版
+        /// </summary>
+        private int _webtempId = 0;
+        /// <summary>
         /// 默认文件dbcontext
         /// </summary>
         private int _dbcontext = 0;
@@ -24,6 +28,10 @@ namespace SoEasyPlatform
         /// 默认文件 net5 lib
         /// </summary>
         private int _net5lib = 0;
+        /// <summary>
+        /// Web模版需要的文件
+        /// </summary>
+        private List<int> _WebFiles = new List<int>();
         /// <summary>
         /// 默认命名空间
         /// </summary>
@@ -55,21 +63,23 @@ namespace SoEasyPlatform
             db.CodeFirst.InitTables<Project>();
             if (db.Queryable<Project>().Count() == 0)
             {
-                var pid= db.Insertable(new Project()
+                var pid = db.Insertable(new Project()
                 {
                     FileSuffix = ".cs",
                     TemplateId1 = _entitytempId + "",
-                    FileModel = "[{ \"name\":\""+_defaultNamespace+".Entities\",\"nuget\":[{ \"name\":\"SqlSugarCore\",\"version\":\"5.0.4\" }]}]",
+                    FileModel = "[{ \"name\":\"" + _defaultNamespace + ".Entities\",\"nuget\":[{ \"name\":\"SqlSugarCore\",\"version\":\"5.0.4\" }]}]",
                     FileInfo = _net5lib + "",
+                    NameFormat = "Common\\{0}",
                     ProjentName = "【简单三层】_实体_Sugar",
-                    Path = @"c:\"+ _defaultNamespace + @"\Entites",
+                    Path = @"c:\" + _defaultNamespace + @"\Entites",
                     IsDeleted = false,
                     IsInit = true,
                     ModelId = 1
                 }).ExecuteReturnIdentity();
-                db.Insertable(new Project()
+                var pid2= db.Insertable(new Project()
                 {
                     FileSuffix = ".cs",
+                    NameFormat = "Common\\{0}",
                     TemplateId1 = _biztempId + "",
                     FileModel = "[{ \"name\":\""+_defaultNamespace+ ".Services\",\"nuget\":[{ \"name\":\"SqlSugarCore\",\"version\":\"5.0.4\" }]},{\"name\":\"DbContext\", \"name_space\":\"" + _defaultNamespace+ ".Services\" }]",
                     FileInfo = _net5lib + ","+_dbcontext,
@@ -79,6 +89,20 @@ namespace SoEasyPlatform
                     IsInit = true,
                     ModelId = 2,
                     Reference=pid+""
+                }).ExecuteReturnIdentity();
+                db.Insertable(new Project()
+                {
+                    FileSuffix = ".cs",
+                    TemplateId1 = _webtempId + "",
+                    FileModel = "[{ \"name\":\"命名空间\",\"nuget\":[{ \"name\":\"SqlSugarCore\",\"version\":\"5.0.3.4\" }]},{\"name\":\"Startup\", \"name_space\":\"命名空间\" },{\"name\":\"Program\", \"name_space\":\"命名空间\" },{\"name\":\"appsettings\"},".Replace("命名空间",$"{_defaultNamespace}.Api"),
+                    FileInfo =string.Join(",",_WebFiles),
+                    ProjentName = "【简单三层】_方案_前端_Sugar",
+                    NameFormat = "Common\\{0}",
+                    Path = @"c:\" + _defaultNamespace + @"\Services",
+                    IsDeleted = false,
+                    IsInit = true,
+                    ModelId = 3,
+                    Reference = pid + ","+pid2
                 }).ExecuteReturnIdentity();
             }
         }
@@ -378,7 +402,8 @@ namespace SoEasyPlatform
                 Suffix = "json"
 
             };
-            db.Insertable(d1).ExecuteCommand();
+            var id = db.Insertable(d1).ExecuteReturnIdentity();
+            _WebFiles.Add(id);
         }
         private void AddFile7(SqlSugarClient db)
         {
@@ -397,7 +422,8 @@ namespace SoEasyPlatform
                 Suffix = "json"
 
             };
-            db.Insertable(d1).ExecuteCommand();
+            var id = db.Insertable(d1).ExecuteReturnIdentity();
+            _WebFiles.Add(id);
         }
 
         private void AddFile6(SqlSugarClient db)
@@ -417,7 +443,8 @@ namespace SoEasyPlatform
                 Suffix = "cs"
 
             };
-            db.Insertable(d1).ExecuteCommand();
+            var id = db.Insertable(d1).ExecuteReturnIdentity();
+            _WebFiles.Add(id);
         }
 
         private void AddFile5(SqlSugarClient db)
@@ -437,7 +464,8 @@ namespace SoEasyPlatform
                 Suffix = "cs"
 
             };
-            db.Insertable(d1).ExecuteCommand();
+            var id= db.Insertable(d1).ExecuteReturnIdentity();
+            _WebFiles.Add(id);
         }
 
         private  void AddFile1(SqlSugarClient db)
@@ -477,6 +505,7 @@ namespace SoEasyPlatform
 
             };
             _net5lib= db.Insertable(d1).ExecuteReturnIdentity();
+            _WebFiles.Add(_net5lib);
         }
         private  void AddFile3(SqlSugarClient db)
         {
@@ -558,6 +587,20 @@ namespace SoEasyPlatform
                     TemplateTypeId = 2,
                     Title = "【简单三层】_模版_业务_Sugar",
                     IsInit=true
+
+                }).ExecuteReturnIdentity();
+
+
+                var temp3 = @"wwwroot\template\web.txt";
+                _webtempId = db.Insertable(new Template()
+                {
+                    ChangeTime = DateTime.Now,
+                    Content = FileSugar.FileToString(FileSugar.MergeUrl(directory, temp3)),
+                    TemplateTypeName = "业务",
+                    Sort = 0,
+                    TemplateTypeId = 2,
+                    Title = "【简单三层】_模版_前端_Sugar",
+                    IsInit = true
 
                 }).ExecuteReturnIdentity();
             }

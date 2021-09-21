@@ -27,6 +27,7 @@ namespace SoEasyPlatform
         [ValidateReduired()]
         public string ProjentName { get;  set; }
         public string Reference { get; set; }
+        public string NameFormat { get; set; }
     }
     public class ProjectViewModel2 : PageViewModel, IView
     {
@@ -54,5 +55,7 @@ namespace SoEasyPlatform
         public string FileSuffix { get; set; }
         [DisplayName("引用")]
         public string Reference { get; set; }
+        [DisplayName("名称格式")]
+        public string NameFormat { get; set; }
     }
 }

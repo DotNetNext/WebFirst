@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using WebFirst.Entities;
 using WebFirst.Services;
 
-namespace @Model.ClassName_space
+namespace @(Model.ClassName_space).Controllers
 {
     [ApiController]
     [Route("[controller]")]
