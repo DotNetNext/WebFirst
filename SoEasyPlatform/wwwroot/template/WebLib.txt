@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>5.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+   @foreach(var item in  Model.nuget)
+    {
+         <PackageReference Include="@item.name" Version="@item.version" />
+    }
+  </ItemGroup>
+  @Raw(Model.reference)
+</Project>
