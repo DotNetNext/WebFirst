@@ -370,7 +370,7 @@ namespace SoEasyPlatform
             {
                 ChangeTime = DateTime.Now,
                 Content = FileSugar.FileToString(FileSugar.MergeUrl(directory, temp)),
-                Json = FileSugar.FileToString(FileSugar.MergeUrl(directory, temp2)),
+                Json = FileSugar.FileToString(FileSugar.MergeUrl(directory, temp2)).Replace("DbContext", "Properties\\launchSettings"),
                 Name = "API文件[launchSettings.json]",
                 Id = 1,
                 IsInit = true,
@@ -389,7 +389,7 @@ namespace SoEasyPlatform
             {
                 ChangeTime = DateTime.Now,
                 Content = FileSugar.FileToString(FileSugar.MergeUrl(directory, temp)),
-                Json = FileSugar.FileToString(FileSugar.MergeUrl(directory, temp2)),
+                Json = FileSugar.FileToString(FileSugar.MergeUrl(directory, temp2)).Replace("DbContext", "appsettings"),
                 Name = "API文件[appsettings.json]",
                 Id = 1,
                 IsInit = true,
@@ -409,7 +409,7 @@ namespace SoEasyPlatform
             {
                 ChangeTime = DateTime.Now,
                 Content = FileSugar.FileToString(FileSugar.MergeUrl(directory, temp)),
-                Json = FileSugar.FileToString(FileSugar.MergeUrl(directory, temp2)),
+                Json = FileSugar.FileToString(FileSugar.MergeUrl(directory, temp2)).Replace("Program", "appsettings"),
                 Name = "API文件[Program]",
                 Id = 1,
                 IsInit = true,
@@ -429,7 +429,7 @@ namespace SoEasyPlatform
             {
                 ChangeTime = DateTime.Now,
                 Content = FileSugar.FileToString(FileSugar.MergeUrl(directory, temp)),
-                Json = FileSugar.FileToString(FileSugar.MergeUrl(directory, temp2)),
+                Json = FileSugar.FileToString(FileSugar.MergeUrl(directory, temp2)).Replace("Startup", "appsettings"),
                 Name = "API文件[Startup]",
                 Id = 1,
                 IsInit = true,
