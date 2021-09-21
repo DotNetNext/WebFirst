@@ -98,7 +98,7 @@ namespace SoEasyPlatform
                     FileInfo =string.Join(",",_WebFiles),
                     ProjentName = "【简单三层】_方案_前端_Sugar",
                     NameFormat = "Common\\{0}",
-                    Path = @"c:\" + _defaultNamespace + @"\Services",
+                    Path = @"c:\" + _defaultNamespace + @"\Api",
                     IsDeleted = false,
                     IsInit = true,
                     ModelId = 3,
