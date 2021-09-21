@@ -364,7 +364,7 @@ namespace SoEasyPlatform
         private void AddFile8(SqlSugarClient db)
         {
             var temp = @"wwwroot\template\Api_LanJson.txt";
-            var temp2 = @"wwwroot\template\Lib1_1.txt";
+            var temp2 = @"wwwroot\template\Default_1.txt";
             var directory = Directory.GetCurrentDirectory();
             var d1 = new FileInfo()
             {
@@ -383,7 +383,7 @@ namespace SoEasyPlatform
         private void AddFile7(SqlSugarClient db)
         {
             var temp = @"wwwroot\template\Api_SettJson.txt";
-            var temp2 = @"wwwroot\template\Lib1_1.txt";
+            var temp2 = @"wwwroot\template\Default_1.txt";
             var directory = Directory.GetCurrentDirectory();
             var d1 = new FileInfo()
             {
