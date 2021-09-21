@@ -534,3 +534,7 @@ btnCopyHide.$Open("#divCopy", {
     },
     btn: ['预览', '关闭']
 });
+
+btnExcel.onclick = function () {
+    "该功能还在开发中..".$Alert();
+}
