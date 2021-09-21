@@ -403,7 +403,7 @@ namespace SoEasyPlatform
         private void AddFile6(SqlSugarClient db)
         {
             var temp = @"wwwroot\template\Api_Program.txt";
-            var temp2 = @"wwwroot\template\Lib1_1.txt";
+            var temp2 = @"wwwroot\template\DbContext_1.txt";
             var directory = Directory.GetCurrentDirectory();
             var d1 = new FileInfo()
             {
@@ -423,7 +423,7 @@ namespace SoEasyPlatform
         private void AddFile5(SqlSugarClient db)
         {
             var temp = @"wwwroot\template\Api_Startup.txt";
-            var temp2 = @"wwwroot\template\Lib1_1.txt";
+            var temp2 = @"wwwroot\template\DbContext_1.txt";
             var directory = Directory.GetCurrentDirectory();
             var d1 = new FileInfo()
             {

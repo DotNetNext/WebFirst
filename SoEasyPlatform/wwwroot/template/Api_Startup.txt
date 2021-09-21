@@ -13,7 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebFirst.Api
+namespace @Model.name_space
 {
     public class Startup
     {
