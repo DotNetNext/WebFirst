@@ -69,7 +69,7 @@ namespace SoEasyPlatform
                     TemplateId1 = _entitytempId + "",
                     FileModel = "[{ \"name\":\"" + _defaultNamespace + ".Entities\",\"nuget\":[{ \"name\":\"SqlSugarCore\",\"version\":\"5.0.4\" }]}]",
                     FileInfo = _net5lib + "",
-                    NameFormat = "Common\\{0}",
+                    NameFormat = "DbModels\\{0}",
                     ProjentName = "【简单三层】_实体_Sugar",
                     Path = @"c:\" + _defaultNamespace + @"\Entites",
                     IsDeleted = false,
@@ -79,7 +79,7 @@ namespace SoEasyPlatform
                 var pid2= db.Insertable(new Project()
                 {
                     FileSuffix = ".cs",
-                    NameFormat = "Common\\{0}Manager",
+                    NameFormat = "Services\\{0}Manager",
                     TemplateId1 = _biztempId + "",
                     FileModel = "[{ \"name\":\""+_defaultNamespace+ ".Services\",\"nuget\":[{ \"name\":\"SqlSugarCore\",\"version\":\"5.0.4\" }]},{\"name\":\"Repository\", \"name_space\":\"" + _defaultNamespace+ ".Services\" }]",
                     FileInfo = _net5lib + ","+_dbcontext,
