@@ -198,6 +198,7 @@ namespace SoEasyPlatform.Apis
         public ActionResult<ApiResult<bool>> CreateFile([FromForm] ProjectViewModel model)
         {
             base.Check(model.Reference != null && model.Reference.Split(',').Contains(model.Id + ""), "方案不能自已引用自已");
+            base.Check(new System.IO.DirectoryInfo(model.Path)?.Parent?.Parent == null, "路径"+model.Path+"错误，正确格式  C:\\解决方案\\项目");
             var result = new ApiResult<bool>();
             var tempInfo = TemplateDb.GetById(model.TemplateId1);
             model.ModelId = tempInfo.TemplateTypeId;
