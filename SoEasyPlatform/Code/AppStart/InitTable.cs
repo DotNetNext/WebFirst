@@ -94,7 +94,7 @@ namespace SoEasyPlatform
                 {
                     FileSuffix = ".cs",
                     TemplateId1 = _webtempId + "",
-                    FileModel = "[{ \"name\":\"命名空间\",\"nuget\":[{ \"name\":\"SqlSugarCore\",\"version\":\"5.0.3.4\" }]},{\"name\":\"Startup\", \"name_space\":\"命名空间\" },{\"name\":\"Program\", \"name_space\":\"命名空间\" },{\"name\":\"appsettings\", \"name_space\":\"命名空间\"},{\"name\":\"launchSettings\", \"name_space\":\"命名空间\"}]".Replace("命名空间",$"{_defaultNamespace}.Api"),
+                    FileModel = "[{ \"name\":\"命名空间\",\"nuget\":[{ \"name\":\"SqlSugarCore\",\"version\":\"5.0.4\" }]},{\"name\":\"Startup\", \"name_space\":\"命名空间\" },{\"name\":\"Program\", \"name_space\":\"命名空间\" },{\"name\":\"appsettings\", \"name_space\":\"命名空间\"},{\"name\":\"launchSettings\", \"name_space\":\"命名空间\"}]".Replace("命名空间",$"{_defaultNamespace}.Api"),
                     FileInfo =string.Join(",",_WebFiles),
                     ProjentName = "【简单三层】_方案_前端_Sugar",
                     NameFormat = "Common\\{0}",
