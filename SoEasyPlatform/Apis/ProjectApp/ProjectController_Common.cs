@@ -16,14 +16,14 @@ namespace SoEasyPlatform
     /// </summary>
     public class ProjectController_Common
     {
-        public static void CreateProject(int id)
+        public static void CreateProject(int id,int dbId)
         {
             var project = DbScoped.Sugar.Queryable<Project>().InSingle(id);
-            CreateProject(project);
+            CreateProject(project, dbId);
 
         }
 
-        public static void CreateProject(Project project)
+        public static void CreateProject(Project project,int dbid=0)
         {
             var ids = project.FileInfo;
             if (!string.IsNullOrEmpty(ids))

@@ -263,7 +263,7 @@ namespace SoEasyPlatform.Apis
                 FileSugar.CreateFileReplace(fileName, html, Encoding.UTF8);
             }
             OpenPath(disOpen, project);
-            ProjectController_Common.CreateProject(project.Id);
+            ProjectController_Common.CreateProject(project.Id,model.DbId);
             result.IsSuccess = true;
             result.Message = "生成生功";
             return result;
@@ -524,7 +524,7 @@ namespace SoEasyPlatform.Apis
                 item.name_space = GetNameSpace(project.FileModel, item.name_space);
                 result.Data= TemplateHelper.GetTemplateValue(key, template, item);
             }
-            ProjectController_Common.CreateProject(project.Id);
+            ProjectController_Common.CreateProject(project.Id,model.DbId.Value);
             result.IsSuccess = true;
             return result;
         }
