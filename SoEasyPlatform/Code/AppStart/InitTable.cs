@@ -530,7 +530,7 @@ namespace SoEasyPlatform
         }
         private void AddFile2_1_1(SqlSugarClient db)
         {
-            var temp = @"wwwroot\template\WebLib2.txt";
+            var temp = @"wwwroot\template\WebLib.txt";
             var temp2 = @"wwwroot\template\Lib1_1.txt";
             var directory = Directory.GetCurrentDirectory();
             var d1 = new FileInfo()
