@@ -29,8 +29,8 @@ namespace @Model.name_space
         /// </summary>
         public static SqlSugarScope Db = new SqlSugarScope(new ConnectionConfig()
         {
-            DbType = SqlSugar.DbType.SqlServer,
-            ConnectionString = "",
+            DbType = [请设置DbType],
+            ConnectionString =  [请设置ConStr],
             IsAutoCloseConnection = true
         },
          db =>
