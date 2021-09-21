@@ -37,6 +37,11 @@ namespace SoEasyPlatform
                         ExpandoObject jsonItem = GetJsonItem(obj[i]);
                         var fileId = ids[i].ToString();
                         var fileInfo = DbScoped.Sugar.Queryable<FileInfo>().InSingle(idsArray[i]);
+                        if (dbid > 0&&fileInfo.Content.Contains("[请设置ConStr]")) 
+                        {
+                            var db = DbScoped.Sugar.Queryable<Database>().InSingle(dbid);
+                            fileInfo.Content = fileInfo.Content.Replace("[请设置DbType]","SqlSugar.DbType."+db.DbType+"").Replace("[请设置ConStr]", "\""+db.Connection+"\"");
+                        }
                         var context = fileInfo.Content;
                         if (!string.IsNullOrEmpty(project.Reference))
                         {
