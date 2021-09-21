@@ -7,7 +7,7 @@ namespace @Model.name_space
 public class @(Model.ClassName)Manager : Repository<@Model.ClassName>
 {
  
-    //当前类已经继承了 DbContext增、删、查、改的方法
+    //当前类已经继承了 Repository 增、删、查、改的方法
 
     //这里面写的代码不会给覆盖,如果要重新生成请删除 @(Model.ClassName)Manager.cs
 
