@@ -64,6 +64,7 @@ txtDbIdName.$SelectTree({
 
 txtDbIdName.onchange = function () {
     btnSearch.click();
+    saveDbId.value = txtDbId.value;
     //var tablebody = document.getElementsByClassName("fixed-table-body");
     //if (tablebody.length>0)
     // tablebody[0].$AddCss({ height:200})
