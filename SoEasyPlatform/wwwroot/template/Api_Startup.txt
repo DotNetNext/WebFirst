@@ -12,68 +12,75 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
-namespace @Model.name_space
-{
+namespace @Model.name_space{
+ 
     public class Startup
+{
+    public Startup(IConfiguration configuration)
     {
-        public Startup(IConfiguration configuration)
+        Configuration = configuration;
+    }
+
+    public IConfiguration Configuration { get; }
+    public readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+    // This method gets called by the runtime. Use this method to add services to the container.
+    public void ConfigureServices(IServiceCollection services)
+    {
+
+        services.AddControllers();
+        services.AddSwaggerGen(c =>
         {
-            Configuration = configuration;
-        }
+            c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebFirst.Api", Version = "v1" });
 
-        public IConfiguration Configuration { get; }
-        public readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        });
+
+        //配置JSON.NET
+        services.AddControllers().AddNewtonsoftJson(opt =>
         {
-
-            services.AddControllers();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebFirst.Api", Version = "v1" });
-            });
-
-            //配置JSON.NET
-            services.AddControllers().AddNewtonsoftJson(opt =>
-            {
                 //忽略循环引用
                 opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
 
                 //不改变字段大小
                 opt.SerializerSettings.ContractResolver = new DefaultContractResolver();
-            });
+        });
 
-            //配置可以跨域
-            services.AddCors(options =>
-            {
-                options.AddPolicy(MyAllowSpecificOrigins,
-                  builder => builder.AllowAnyOrigin()
-                            .AllowAnyHeader()
-                           .WithMethods("GET", "POST", "HEAD", "PUT", "DELETE", "OPTIONS")
-                             );
-            });
-        }
-
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        //配置可以跨域
+        services.AddCors(options =>
         {
-            if (env.IsDevelopment())
+            options.AddPolicy(MyAllowSpecificOrigins,
+              builder => builder.AllowAnyOrigin()
+                        .AllowAnyHeader()
+                       .WithMethods("GET", "POST", "HEAD", "PUT", "DELETE", "OPTIONS")
+                         );
+        });
+    }
+
+    // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+    {
+        if (env.IsDevelopment())
+        {
+            app.UseDeveloperExceptionPage();
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
             {
-                app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebFirst.Api v1"));
-            }
-            app.UseCors(MyAllowSpecificOrigins);//添加这个
-
-            app.UseRouting();
-
-            app.UseAuthorization();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
+                c.InjectJavascript("");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "API");
+                c.DocExpansion(Swashbuckle.AspNetCore.SwaggerUI.DocExpansion.None);
+                c.DefaultModelsExpandDepth(-1);
             });
         }
+        app.UseCors(MyAllowSpecificOrigins);//添加这个
+
+        app.UseRouting();
+
+        app.UseAuthorization();
+
+        app.UseEndpoints(endpoints =>
+        {
+            endpoints.MapControllers();
+        });
     }
 }
+}
+ 
