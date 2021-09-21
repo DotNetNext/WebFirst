@@ -1,0 +1,100 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using SqlSugar;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using WebFirst.Entities;
+using WebFirst.Services;
+
+namespace @Model.ClassName_space
+{
+    [ApiController]
+    [Route("[controller]")]
+    public class @(Model.ClassName)Controller : ControllerBase
+    {
+        
+        private @(Model.ClassName)Manager m = new @(Model.ClassName)Manager();
+
+
+        /***进入模版管理可以修改模版***/
+
+        /// <summary>
+        /// 获取所有
+        /// </summary>
+        /// <returns></returns>
+        [Route("GetList"), HttpPost]
+        public List<@(Model.ClassName)> GetList()
+        {
+            var result = m.GetList();
+            return result;
+        }
+
+
+        /// <summary>
+        /// 根据主键获取
+        /// </summary>
+        /// <returns></returns>
+        [Route("GetById"), HttpPost]
+        public @(Model.ClassName) GetById(int id)
+        {
+            var result = m.GetById(id);
+            return result;
+        }
+
+        /// <summary>
+        /// 根据主键删除
+        /// </summary>
+        /// <returns></returns>
+        [Route("DeleteByIds"), HttpPost]
+        public bool DeleteByIds([FromBody]object[] ids)
+        {
+            var result = m.DeleteByIds(ids);
+            return result;
+        }
+
+        /// <summary>
+        /// 添加 
+        /// </summary>
+        /// <returns></returns>
+        [Route("Insert"), HttpPost]
+        public bool Add([FromBody] @(Model.ClassName) data)
+        {
+            var result = m.Insert(data);
+            return result;
+        }
+        /// <summary>
+        /// 添加返回自增
+        /// </summary>
+        /// <returns></returns>
+        [Route("InsertReturnIdentity"), HttpPost]
+        public int InsertReturnIdentity([FromBody] @(Model.ClassName) data)
+        {
+            var result = m.InsertReturnIdentity(data);
+            return result;
+        }
+
+        /// <summary>
+        /// 修改
+        /// </summary>
+        /// <returns></returns>
+        [Route("Update"), HttpPost]
+        public bool Update([FromBody] @(Model.ClassName) data)
+        {
+            var result = m.Update(data);
+            return result;
+        }
+
+        /// <summary>
+        /// 通用分页 
+        /// </summary>
+        /// <returns></returns>
+        [Route("CommonPage"),HttpPost]
+        public object CommonPage([FromBody]QueryParameters pars,int pageIndex,int pagesize)
+        {
+            var result= m.CommonPage(pars, pageIndex, pagesize);
+            return result;
+        }
+    }
+}
