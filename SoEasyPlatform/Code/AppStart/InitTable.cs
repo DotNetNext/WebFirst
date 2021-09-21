@@ -383,30 +383,30 @@ namespace SoEasyPlatform
                 AddFile5(db);
                 AddFile6(db);
                 AddFile7(db);
-                AddFile8(db);
+                //AddFile8(db);
             }
         }
 
-        private void AddFile8(SqlSugarClient db)
-        {
-            var temp = @"wwwroot\template\Api_LanJson.txt";
-            var temp2 = @"wwwroot\template\Default_1.txt";
-            var directory = Directory.GetCurrentDirectory();
-            var d1 = new FileInfo()
-            {
-                ChangeTime = DateTime.Now,
-                Content = FileSugar.FileToString(FileSugar.MergeUrl(directory, temp)),
-                Json = FileSugar.FileToString(FileSugar.MergeUrl(directory, temp2)).Replace("文件名", "Properties\\launchSettings"),
-                Name = "API文件[launchSettings.json]",
-                Id = 1,
-                IsInit = true,
-                IsDeleted = false,
-                Suffix = "json"
+        //private void AddFile8(SqlSugarClient db)
+        //{
+        //    var temp = @"wwwroot\template\Api_LanJson.txt";
+        //    var temp2 = @"wwwroot\template\Default_1.txt";
+        //    var directory = Directory.GetCurrentDirectory();
+        //    var d1 = new FileInfo()
+        //    {
+        //        ChangeTime = DateTime.Now,
+        //        Content = FileSugar.FileToString(FileSugar.MergeUrl(directory, temp)),
+        //        Json = FileSugar.FileToString(FileSugar.MergeUrl(directory, temp2)).Replace("文件名", "Properties\\launchSettings"),
+        //        Name = "API文件[launchSettings.json]",
+        //        Id = 1,
+        //        IsInit = true,
+        //        IsDeleted = false,
+        //        Suffix = "json"
 
-            };
-            var id = db.Insertable(d1).ExecuteReturnIdentity();
-            _WebFiles.Add(id);
-        }
+        //    };
+        //    var id = db.Insertable(d1).ExecuteReturnIdentity();
+        //    _WebFiles.Add(id);
+        //}
         private void AddFile7(SqlSugarClient db)
         {
             var temp = @"wwwroot\template\Api_SettJson.txt";
