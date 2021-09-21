@@ -97,7 +97,7 @@ namespace SoEasyPlatform
                     FileModel = "[{ \"name\":\"命名空间\",\"nuget\":[{ \"name\":\"SqlSugarCore\",\"version\":\"5.0.4\" },{ \"name\":\"Microsoft.AspNetCore.Mvc.NewtonsoftJson\",\"version\":\"5.0.10\" },{ \"name\":\"Swashbuckle.AspNetCore\",\"version\":\"5.6.3\" }]},{\"name\":\"Startup\", \"name_space\":\"命名空间\" },{\"name\":\"Program\", \"name_space\":\"命名空间\" },{\"name\":\"appsettings\", \"name_space\":\"命名空间\"}]".Replace("命名空间",$"{_defaultNamespace}.Api"),
                     FileInfo =string.Join(",",_WebFiles),
                     ProjentName = "【简单三层】_方案_前端_Sugar",
-                    NameFormat = "Common\\{0}Controller",
+                    NameFormat = "Controllers\\{0}Controller",
                     Path = @"c:\" + _defaultNamespace + @"\Api",
                     IsDeleted = false,
                     IsInit = true,
