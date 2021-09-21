@@ -14,7 +14,7 @@ public class @(Model.ClassName)Manager : Repository<@Model.ClassName>
 
     #region 教学方法
     /// <summary>
-    /// 仓储方法满足不了复杂业务需求，业务代码请在这里面定义业务方案
+    /// 仓储方法满足不了复杂业务需求，业务代码请在这里面定义方法
     /// </summary>
     public void Study()
     {
