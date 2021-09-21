@@ -169,12 +169,17 @@ namespace SoEasyPlatform.Apis
         private string GetFileName(Project project, EntitiesGen item)
         {
             var p = ".";
+            string name = item.ClassName;
             project.FileSuffix = project.FileSuffix.TrimStart('.');
             if (project.FileSuffix.Contains("."))
             {
                 p = null;
             }
-            return FileSugar.MergeUrl(project.Path, item.ClassName + p + project.FileSuffix);
+            if (!string.IsNullOrEmpty(project.NameFormat)) 
+            {
+                name = string.Format(project.NameFormat, item.ClassName);
+            }
+            return FileSugar.MergeUrl(project.Path, name + p + project.FileSuffix);
         }
         private string GetNameSpace(string fileModel, string defaultvalue)
         {
