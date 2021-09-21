@@ -638,7 +638,7 @@ namespace SoEasyPlatform
                     Content = FileSugar.FileToString(FileSugar.MergeUrl(directory, temp3)),
                     TemplateTypeName = "业务",
                     Sort = 0,
-                    TemplateTypeId = 2,
+                    TemplateTypeId = 3,
                     Title = "【简单三层】_模版_前端_Sugar",
                     IsInit = true
 
