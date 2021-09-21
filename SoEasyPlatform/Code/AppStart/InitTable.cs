@@ -376,6 +376,8 @@ namespace SoEasyPlatform
             {
                 AddFile1(db);
                 AddFile2(db);
+                AddFile2_1(db);
+                AddFile2_1_1(db);
                 AddFile3(db);
                 AddFile4(db);
                 AddFile5(db);
