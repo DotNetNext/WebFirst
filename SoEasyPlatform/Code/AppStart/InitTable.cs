@@ -79,7 +79,7 @@ namespace SoEasyPlatform
                 var pid2= db.Insertable(new Project()
                 {
                     FileSuffix = ".cs",
-                    NameFormat = "Common\\{0}",
+                    NameFormat = "Common\\{0}Manager",
                     TemplateId1 = _biztempId + "",
                     FileModel = "[{ \"name\":\""+_defaultNamespace+ ".Services\",\"nuget\":[{ \"name\":\"SqlSugarCore\",\"version\":\"5.0.4\" }]},{\"name\":\"DbContext\", \"name_space\":\"" + _defaultNamespace+ ".Services\" }]",
                     FileInfo = _net5lib + ","+_dbcontext,
@@ -97,7 +97,7 @@ namespace SoEasyPlatform
                     FileModel = "[{ \"name\":\"命名空间\",\"nuget\":[{ \"name\":\"SqlSugarCore\",\"version\":\"5.0.4\" },{ \"name\":\"Microsoft.AspNetCore.Mvc.NewtonsoftJson\",\"version\":\"5.0.10\" },{ \"name\":\"Swashbuckle.AspNetCore\",\"version\":\"5.6.3\" }]},{\"name\":\"Startup\", \"name_space\":\"命名空间\" },{\"name\":\"Program\", \"name_space\":\"命名空间\" },{\"name\":\"appsettings\", \"name_space\":\"命名空间\"}]".Replace("命名空间",$"{_defaultNamespace}.Api"),
                     FileInfo =string.Join(",",_WebFiles),
                     ProjentName = "【简单三层】_方案_前端_Sugar",
-                    NameFormat = "Common\\{0}",
+                    NameFormat = "Common\\{0}Controller",
                     Path = @"c:\" + _defaultNamespace + @"\Api",
                     IsDeleted = false,
                     IsInit = true,
