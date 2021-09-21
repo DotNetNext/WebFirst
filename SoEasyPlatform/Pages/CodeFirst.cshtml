@@ -89,6 +89,12 @@
                     </div>
                 </div>
                 <div class="field item form-group">
+                    <label class="col-form-label col-md-2 col-sm-2  label-align">名称格式<span class="required">*</span></label>
+                    <div class="col-md-10 col-sm-9">
+                        <input id="saveNameFormat" name="NameFormat" type="text" class="form-control" />
+                    </div>
+                </div>
+                <div class="field item form-group">
                     <label class="col-form-label col-md-2 col-sm-2  label-align">方案引用</label>
                     <div class="col-md-10 col-sm-9">
                         <input type="text" id="saveReferenceName" name="ReferenceName" placeholder="Select" autocomplete="off" />
@@ -106,7 +112,7 @@
                     <label class="col-form-label col-md-2 col-sm-2  label-align">文件填充</label>
                     <div class="col-md-10 col-sm-9">
                         <span>请修改参数：</span>
-                        <textarea style="height:125px" class="form-control" id="saveFileModel" name="FileModel" placeholder="查看选中文件的razor格式，填写相应的json" autocomplete="off"></textarea>
+                        <textarea style="height:100px" class="form-control" id="saveFileModel" name="FileModel" placeholder="查看选中文件的razor格式，填写相应的json" autocomplete="off"></textarea>
                     </div>
                 </div>
             </div>
@@ -121,6 +127,7 @@
                         <input type="text" id="saveProjectName" name="ProjectName" placeholder="Select" autocomplete="off" />
                         <input id="saveProjectId" type="hidden" value="0" name="ProjectId" />
                         <input id="SaveTable2" type="hidden" name="Tables" value="" />
+                        <input id="saveDbId" type="hidden" name="DbId" />
                         <br />
                         <button id="btnPath" type="button" class="btn btn-green"><i class="fa fa-plus"></i> 创建方案</button>
                         <button id="btnPathEdit" type="button" class="btn btn-green"><i class="fa fa-edit"></i> 修改方案</button>
