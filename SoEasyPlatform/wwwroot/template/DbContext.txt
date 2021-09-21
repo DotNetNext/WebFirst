@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 namespace @Model.name_space
 {
+     /***这里面写的代码不会给覆盖,如果要重新生成请删除 Repository.cs ***/
 
     /// <summary>
     /// 仓储模式
