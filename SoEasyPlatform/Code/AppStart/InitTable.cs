@@ -354,7 +354,90 @@ namespace SoEasyPlatform
                 AddFile2(db);
                 AddFile3(db);
                 AddFile4(db);
+                AddFile5(db);
+                AddFile6(db);
+                AddFile7(db);
+                AddFile8(db);
             }
+        }
+
+        private void AddFile8(SqlSugarClient db)
+        {
+            var temp = @"wwwroot\template\Api_LanJson.txt";
+            var temp2 = @"wwwroot\template\Lib1_1.txt";
+            var directory = Directory.GetCurrentDirectory();
+            var d1 = new FileInfo()
+            {
+                ChangeTime = DateTime.Now,
+                Content = FileSugar.FileToString(FileSugar.MergeUrl(directory, temp)),
+                Json = FileSugar.FileToString(FileSugar.MergeUrl(directory, temp2)),
+                Name = "API文件[launchSettings.json]",
+                Id = 1,
+                IsInit = true,
+                IsDeleted = false,
+                Suffix = "json"
+
+            };
+            db.Insertable(d1).ExecuteCommand();
+        }
+        private void AddFile7(SqlSugarClient db)
+        {
+            var temp = @"wwwroot\template\Api_SettJson.txt";
+            var temp2 = @"wwwroot\template\Lib1_1.txt";
+            var directory = Directory.GetCurrentDirectory();
+            var d1 = new FileInfo()
+            {
+                ChangeTime = DateTime.Now,
+                Content = FileSugar.FileToString(FileSugar.MergeUrl(directory, temp)),
+                Json = FileSugar.FileToString(FileSugar.MergeUrl(directory, temp2)),
+                Name = "API文件[appsettings.json]",
+                Id = 1,
+                IsInit = true,
+                IsDeleted = false,
+                Suffix = "json"
+
+            };
+            db.Insertable(d1).ExecuteCommand();
+        }
+
+        private void AddFile6(SqlSugarClient db)
+        {
+            var temp = @"wwwroot\template\Api_Program.txt";
+            var temp2 = @"wwwroot\template\Lib1_1.txt";
+            var directory = Directory.GetCurrentDirectory();
+            var d1 = new FileInfo()
+            {
+                ChangeTime = DateTime.Now,
+                Content = FileSugar.FileToString(FileSugar.MergeUrl(directory, temp)),
+                Json = FileSugar.FileToString(FileSugar.MergeUrl(directory, temp2)),
+                Name = "API文件[Program]",
+                Id = 1,
+                IsInit = true,
+                IsDeleted = false,
+                Suffix = "cs"
+
+            };
+            db.Insertable(d1).ExecuteCommand();
+        }
+
+        private void AddFile5(SqlSugarClient db)
+        {
+            var temp = @"wwwroot\template\Api_Startup.txt";
+            var temp2 = @"wwwroot\template\Lib1_1.txt";
+            var directory = Directory.GetCurrentDirectory();
+            var d1 = new FileInfo()
+            {
+                ChangeTime = DateTime.Now,
+                Content = FileSugar.FileToString(FileSugar.MergeUrl(directory, temp)),
+                Json = FileSugar.FileToString(FileSugar.MergeUrl(directory, temp2)),
+                Name = "API文件[Startup]",
+                Id = 1,
+                IsInit = true,
+                IsDeleted = false,
+                Suffix = "cs"
+
+            };
+            db.Insertable(d1).ExecuteCommand();
         }
 
         private  void AddFile1(SqlSugarClient db)
