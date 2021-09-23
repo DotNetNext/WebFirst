@@ -108,7 +108,14 @@ namespace SoEasyPlatform
                     Db.Ado.CommandTimeOut = 2;
                     if (db.DbType != DbType.Oracle)
                     {
-                        Db.DbMaintenance.CreateDatabase();
+                        try
+                        {
+                            Db.DbMaintenance.CreateDatabase();
+                        }
+                        catch  
+                        {
+                             
+                        }
                     }
                     Db.Open();
                     return true;
