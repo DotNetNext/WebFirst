@@ -22,6 +22,7 @@ namespace SoEasyPlatform
 
         public DateTime ChangeTime { get; set; }
         public bool IsDeleted { get; set; }
+        [SugarColumn(IsNullable =true)]
         public bool? IsInit { get; set; }
     }
  
