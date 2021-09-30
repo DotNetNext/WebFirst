@@ -681,8 +681,8 @@ namespace SoEasyPlatform
                         Icon="fa fa-bar-chart-o",
                         Child=new List<Menu>()
                         {
-                             new Menu{ MenuName="待定1" },
-                             new Menu{ MenuName="待定2" },
+                             new Menu{ MenuName="SQL查询" },
+                             new Menu{ MenuName="表设计管理" },
 
                         }
                      }
