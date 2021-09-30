@@ -36,6 +36,22 @@ namespace SoEasyPlatform.Apis
                 });
             }
         }
+        /// <summary>
+        /// 打开目录
+        /// </summary>
+        /// <param name="disOpen"></param>
+        /// <param name="project"></param>
+        private static void OpenPath(string path)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start("explorer.exe", new System.IO.DirectoryInfo(path).Parent.FullName);
+            }
+            catch
+            {
+
+            }
+        }
         private List<EntitiesGen> GetGenList(List<CodeTable> tableList, List<CodeType> types,SqlSugar.DbType databasedbType)
         {
             List<EntitiesGen> result = new List<EntitiesGen>();

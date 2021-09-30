@@ -13,7 +13,7 @@ namespace SoEasyPlatform.Apis
     public partial class CodeTableController : BaseController
     {
 
-        private void Export(string model, SqlSugarClient tableDb)
+        private DataTable [] Export(string model, SqlSugarClient tableDb)
         {
             var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<CodeTableViewModel>>(model);
             var oldList = CodeTableDb.AsQueryable().In(list.Select(it => it.Id).ToList()).ToList();
@@ -39,8 +39,10 @@ namespace SoEasyPlatform.Apis
                     dr["表描述"] = item.Description;
                     dt.Rows.Add(dr);
                 }
+                dt.TableName = item.TableName;
                 datatables.Add(dt);
             }
+            return datatables.ToArray();
         }
     }
 }

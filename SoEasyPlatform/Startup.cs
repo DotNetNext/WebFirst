@@ -67,7 +67,7 @@ namespace SoEasyPlatform
             });
         }
 
-        private static string GetCurrentDirectory()
+        public static string GetCurrentDirectory()
         {
 #if DEBUG
             return AppContext.BaseDirectory;

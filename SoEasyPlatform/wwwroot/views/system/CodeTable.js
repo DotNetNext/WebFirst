@@ -544,7 +544,7 @@ btnExcel.onclick = function () {
             callback: function (msg) {
                 btnExcel.$CloseLoading();
                 if (msg.IsSuccess) {
-                    "更新成功".$Alert();
+                    "已经保存到根目录Excel文件夹".$Alert();
                     btnSearch.click();
                 }
                 else {

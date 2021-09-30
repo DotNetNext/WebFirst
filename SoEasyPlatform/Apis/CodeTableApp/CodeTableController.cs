@@ -278,15 +278,15 @@ namespace SoEasyPlatform.Apis
         [HttpPost]
         [ExceptionFilter]
         [Route("exportfile")]
-        public ActionResult<ApiResult<bool>> Exportfile([FromForm] string model, [FromForm] int dbid)
+        public ApiResult<bool> Exportfile([FromForm] string model, [FromForm] int dbid)
         {
+            ApiResult<bool> result = new ApiResult<bool>() { IsSuccess=true};
             var tableDb = base.GetTryDb(dbid);
-            var result = new ApiResult<bool>();
-            if (!string.IsNullOrEmpty(model))
-            {
-                Export(model, tableDb);
-            }
-            result.IsSuccess = true;
+            var dts= Export(model, tableDb);
+            var bytes = Table_ToExcel.ExportExcel(dts, "数据库文档.xlsx");
+            var url = FileSugar.MergeUrl(Startup.GetCurrentDirectory(), "excel/数据库文档"+SqlSugar.SnowFlakeSingle.Instance.getID()+".xlsx");
+            FileSugar.CreateFile(url, bytes);
+            OpenPath(url);
             return result;
         }
         #endregion
