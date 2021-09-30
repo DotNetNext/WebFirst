@@ -17,7 +17,8 @@
         UpdateEntity: _root + "codetable/UpdateEntity",
         CreateTable: _root + "codetable/CreateTables",
         GetProjectAll: _root + "system/GetProjectAll",
-        Copy: _root + "codetable/Copy"
+        Copy: _root + "codetable/Copy",
+        Export: _root + "codetable/exportfile",
     },
     text:
     {
@@ -536,5 +537,24 @@ btnCopyHide.$Open("#divCopy", {
 });
 
 btnExcel.onclick = function () {
-    "该功能还在开发中..".$Alert();
+    var gridInfo = divGrid.$GridInfo();
+    if (gridInfo.length > 0) {
+        btnExcel.$Loading();
+        configs.url.Export.$Ajax({
+            callback: function (msg) {
+                btnExcel.$CloseLoading();
+                if (msg.IsSuccess) {
+                    "更新成功".$Alert();
+                    btnSearch.click();
+                }
+                else {
+                    msg.Data.$Alert();
+                }
+            },
+            data: { "model": JSON.stringify(gridInfo), dbid: txtDbId.value }
+        })
+    } else {
+        "请选择一条数据".$Alert();
+        btnExcel.$CloseLoading();
+    }
 }

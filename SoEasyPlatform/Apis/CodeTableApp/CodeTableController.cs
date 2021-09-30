@@ -270,7 +270,26 @@ namespace SoEasyPlatform.Apis
             return result;
         }
         #endregion
-
+        #region Export
+        /// <summary>
+        ////导出文档
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        [ExceptionFilter]
+        [Route("exportfile")]
+        public ActionResult<ApiResult<bool>> Exportfile([FromForm] string model, [FromForm] int dbid)
+        {
+            var tableDb = base.GetTryDb(dbid);
+            var result = new ApiResult<bool>();
+            if (!string.IsNullOrEmpty(model))
+            {
+                Export(model, tableDb);
+            }
+            result.IsSuccess = true;
+            return result;
+        }
+        #endregion
         #region CreateTable
         /// <summary>
         ////生成表
