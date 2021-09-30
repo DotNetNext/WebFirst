@@ -55,7 +55,7 @@ namespace SoEasyPlatform
                 ConfigId = "master1",
                 DbType = IocDbType.Sqlite,
                 IsAutoCloseConnection = true,
-                ConnectionString = "DataSource=" + AppContext.BaseDirectory + @"\database\sqlite.db"
+                ConnectionString = "DataSource=" + System.Environment.CurrentDirectory + @"\database\sqlite.db"
             });
             services.ConfigurationSugar(db =>
             {
