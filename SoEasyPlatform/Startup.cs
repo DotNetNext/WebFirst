@@ -55,7 +55,7 @@ namespace SoEasyPlatform
                 ConfigId = "master1",
                 DbType = IocDbType.Sqlite,
                 IsAutoCloseConnection = true,
-                ConnectionString = "DataSource=" + System.Environment.CurrentDirectory + @"\database\sqlite.db"
+                ConnectionString = "DataSource=" + GetCurrentDirectory() + @"\database\sqlite.db"
             });
             services.ConfigurationSugar(db =>
             {
@@ -67,11 +67,19 @@ namespace SoEasyPlatform
             });
         }
 
+        private static string GetCurrentDirectory()
+        {
+#if DEBUG
+            return AppContext.BaseDirectory;
+#endif
+            return System.Environment.CurrentDirectory;
+        }
+
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             Configures.AddConfigure(app, env);
         } 
-        #endregion
+#endregion
     }
 }
