@@ -3,10 +3,13 @@
     Layout = "~/Pages/Shared/_Layout.cshtml";
     ViewData["Title"] = "视图生成类";
     ViewBag.DetaultName = "SugarModels";
+    ViewBag.IsView = true;
 }
 @section js{
     <script src="~/views/system/codetable.js@(ViewBag.version)"></script>
     <link href="~/views/system/css/CodeTable.css@(ViewBag.version)" rel="stylesheet" />
+    <link href="~/views/system/css/dbview.css@(ViewBag.version)" rel="stylesheet" />
+    <script src="~/views/system/dbview.js@(ViewBag.version)"></script>
 }
 <input id="hidType" type="hidden" value="1" />
 <div class="x_panel search_box">
