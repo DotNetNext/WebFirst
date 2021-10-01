@@ -1,4 +1,14 @@
 ﻿@page
-@model SoEasyPlatform.Pages.DbViewModel
 @{
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+    ViewData["Title"] = "视图生成类";
+    ViewBag.DetaultName = "SugarModels";
 }
+@section js{
+    <script src="~/views/system/codetable.js@(ViewBag.version)"></script>
+    <link href="~/views/system/css/CodeTable.css@(ViewBag.version)" rel="stylesheet" />
+}
+<input id="hidType" type="hidden" value="3" />
+<div class="x_panel search_box">
+    @Html.Partial("_CodeTable.cshtml")
+</div>

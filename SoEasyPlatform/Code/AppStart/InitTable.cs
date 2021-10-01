@@ -70,7 +70,7 @@ namespace SoEasyPlatform
                     FileModel = "[{ \"name\":\"" + _defaultNamespace + ".Entities\",\"nuget\":[{ \"name\":\"SqlSugarCore\",\"version\":\"5.0.4\" }]}]",
                     FileInfo = _net5lib + "",
                     NameFormat = "DbModels\\{0}",
-                    ProjentName = "【简单三层】_实体_Sugar",
+                    ProjentName = "【简单三层】_方案_实体_Sugar",
                     Path = @"c:\" + _defaultNamespace + @"\Entites",
                     IsDeleted = false,
                     IsInit = true,
