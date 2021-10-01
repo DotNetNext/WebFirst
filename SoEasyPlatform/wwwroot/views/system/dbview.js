@@ -19,27 +19,18 @@ btnAddView.$Open("#divView", {
         }
     },
     yes: function () {
-        alert("开发中。。");
-        //var gridInfo = divGrid.$GridInfo();
-        //if (gridInfo.length > 0) {
-        //    SaveTable2.value = JSON.stringify(gridInfo);
-        //    btnProject.$Loading();
-        //    frmProjectSave.$Form({
-        //        url: configs.url.Copy,
-        //        callback: function (msg) {
-        //            btnProject.$CloseLoading();
-        //            if (msg.IsSuccess) {
-        //                $sugar.$CloseAll(divProject.getAttribute("dataindex"));
-        //                btnCopyHide.click();
-        //            }
-        //            else {
-        //                msg.Data.$Alert();
-        //            }
-        //        }
-        //    });
-        //} else {
-        //    "请选择一条数据".$Alert();
-        //}
+        btnProject.$Loading();
+        frmView.$Form({
+            url: _root + "codetable/CreateTableByView",
+            callback: function (msg) {
+                btnProject.$CloseLoading();
+                if (msg.IsSuccess) {
+                    $sugar.$CloseAll(divProject.getAttribute("dataindex"));
+                    btnSearch.click();
+                }
+                msg.Data.$Alert();
+            }
+        });
     },
     btn: ['创建类', '关闭']
 });

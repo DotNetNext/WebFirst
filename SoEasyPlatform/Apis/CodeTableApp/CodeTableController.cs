@@ -270,6 +270,7 @@ namespace SoEasyPlatform.Apis
             return result;
         }
         #endregion
+
         #region Export
         /// <summary>
         ////导出文档
@@ -290,6 +291,7 @@ namespace SoEasyPlatform.Apis
             return result;
         }
         #endregion
+
         #region CreateTable
         /// <summary>
         ////生成表
@@ -359,6 +361,21 @@ namespace SoEasyPlatform.Apis
 
             }
             result.IsSuccess = true;
+            return result;
+        }
+        /// <summary>
+        /// 生成表根据视图
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [ExceptionFilter]
+        [Route("CreateTableByView")]
+        public ActionResult<ApiResult<string>> CreateTableByView([FromForm] string ViewSql) 
+        {
+            ApiResult<string> result = new ApiResult<string>() { IsSuccess = true };
+            result.IsSuccess = true;
+            result.Data = result.Message = "创建成功";
             return result;
         }
         #endregion
