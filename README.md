@@ -1,5 +1,8 @@
 **项目说明** 
-- renren-generator是人人开源项目的代码生成器，可在线生成entity、xml、dao、service、html、js、sql代码，减少70%以上的开发任务
+- 1. WebFirst是果糖网开发的代码生成器，可在线生成entity、xml、dao、service、html、js、sql代码，减少70%以上的开发任务
+- 2. 可以在线创建数据库和导出文档
+- 3. 可在线建类并且生成表
+- 4. 支持方案保存，模版管理
 <br> 
 
 
