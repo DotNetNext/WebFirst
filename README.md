@@ -1,6 +1,5 @@
 **WebFirst 代码生成器** 
 
-WebFirst是果糖网开发的代码生成器
 - 在线生成entity、xml、dao、service、html、js、sql代码，减少70%以上的开发任务
 - 可以在线创建数据库和导出文档
 - 可在线建类并且生成表
