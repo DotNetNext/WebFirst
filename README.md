@@ -18,7 +18,7 @@ WebFirst是果糖网开发的代码生成器
 - 如需关注项目最新动态，请Watch、Star项目，同时也是对项目最好的支持
 - 微信扫码加好友【果糖网】，与作者互动<br><br> 
 ![输入图片说明](https://www.donet5.com/_theme/img/addWX.jpg "加微信")
-<br> 
+
  **本地部署**
 - 通过git下载源码
 - F5直接运行项目
