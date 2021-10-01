@@ -16,5 +16,15 @@
     @Html.Partial("_CodeTable.cshtml")
 </div>
 <div id="divView" style="display:none">
-    aaa
+    <from id="frmView">
+        <textarea name="ViewSql" style="height:180px;border:0" class="form-control">
+           
+            Select * from  替换视图名  where 1=2 
+
+
+         </textarea>
+        <p  class="red" >
+           &nbsp; 说明: 根据查询结构创建实体
+        </p>
+    </from>
 </div>

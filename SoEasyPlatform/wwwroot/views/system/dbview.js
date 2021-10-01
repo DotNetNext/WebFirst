@@ -19,6 +19,7 @@ btnAddView.$Open("#divView", {
         }
     },
     yes: function () {
+        alert("开发中。。");
         //var gridInfo = divGrid.$GridInfo();
         //if (gridInfo.length > 0) {
         //    SaveTable2.value = JSON.stringify(gridInfo);
