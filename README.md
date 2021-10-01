@@ -11,7 +11,7 @@ WebFirst是果糖网开发的代码生成器
 **如何交流、反馈、参与贡献？** 
 - Github： https://github.com/donet5/WebFirst
 - OSC Gitee：https://gitee.com/sunkaixuan/web-first
- [果糖网] https://www.donet5.com/
+- [果糖网] https://www.donet5.com/
 - 官方QQ群：958343000
 - 技术讨论、二次开发等咨询、问题和建议，请移步到人人开源社区，我会在第一时间进行解答和回复
 - 如需关注项目最新动态，请Watch、Star项目，同时也是对项目最好的支持
