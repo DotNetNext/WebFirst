@@ -25,7 +25,12 @@ namespace SoEasyPlatform.Apis
                 dt.Columns.Add("列名");
                 dt.Columns.Add("列描述");
                 dt.Columns.Add("列类型");
-                dt.Columns.Add("实体型");
+                dt.Columns.Add("实体类型");
+                dt.Columns.Add("主键");
+                dt.Columns.Add("自增");
+                dt.Columns.Add("可空");
+                dt.Columns.Add("长度");
+                dt.Columns.Add("精度");
                 dt.Columns.Add("表名"); ;
                 dt.Columns.Add("表描述");
                 foreach (var it in item.PropertyGens)
@@ -34,9 +39,16 @@ namespace SoEasyPlatform.Apis
                     dr["列名"] = it.DbColumnName;
                     dr["列描述"] = it.Description;
                     dr["列类型"] = it.DbType;
-                    dr["实体型"] = it.Type;
+                    dr["实体类型"] = it.Type;
                     dr["表名"] = item.TableName; ;
                     dr["表描述"] = item.Description;
+
+                    dr["主键"] = it.IsPrimaryKey?"是":"";
+                    dr["自增"] = it.IsIdentity ? "是" : "";
+                    dr["可空"] = it.IsNullable ? "是" : "";
+                    dr["长度"] = it.Length;
+                    dr["精度"] = it.DecimalDigits;
+
                     dt.Rows.Add(dr);
                 }
                 dt.TableName = item.TableName;
