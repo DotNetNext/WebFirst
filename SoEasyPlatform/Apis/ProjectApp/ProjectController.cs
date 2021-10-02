@@ -42,7 +42,9 @@ namespace SoEasyPlatform.Apis
                   Path=it.Path,
                   ProjentName=it.ProjentName,
                   TemplateId1=it.TemplateId1.GetConfigValue<Template>(),
-                  FileModel=it.FileModel
+                  FileModel=it.FileModel,
+                  Reference=it.Reference,
+                  NameFormat=it.NameFormat
                 })
                 .Mapper(it=> {
                     if(!string.IsNullOrEmpty(it.FileInfo))
