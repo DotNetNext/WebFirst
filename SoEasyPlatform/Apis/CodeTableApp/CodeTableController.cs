@@ -376,6 +376,7 @@ namespace SoEasyPlatform.Apis
             ApiResult<string> result = new ApiResult<string>() { IsSuccess = true };
             var tableDb = base.GetTryDb(dbid);
             var dt= tableDb.Ado.GetDataTable(ViewSql);
+            base.Check(dt.Rows.Count == 0, "SQL查询必须要有一条记录才能创建类");
             CodeTable table = new CodeTable() { 
              TableName= className,
              CreateTime=DateTime.Now,
@@ -395,23 +396,23 @@ namespace SoEasyPlatform.Apis
                     CodeTableId = id,
                     ClassProperName = item.ColumnName,
                     DbColumnName = item.ColumnName,
-                    CodeType = listtypes.FirstOrDefault(it => it.CSharepType.Equals(item.DataType.Name, StringComparison.OrdinalIgnoreCase) || it.DbType.Any(y => y.Name.Equals(item.DataType.Name, StringComparison.OrdinalIgnoreCase)))?.CSharepType
+                    CodeType = listtypes.FirstOrDefault(it => it.CSharepType.Equals(item.DataType.Name, StringComparison.OrdinalIgnoreCase) || it.DbType.Any(y => y.Name.Equals(item.DataType.Name, StringComparison.OrdinalIgnoreCase)))?.Name
                 };
                 if (item.DataType.Name.ToLower()=="int32")
                 {
-                    columns.CodeType = listtypes.Where(it => it.CSharepType == "int").First().CSharepType;
+                    columns.CodeType = listtypes.Where(it => it.CSharepType == "int").First().Name;
                 }
                 if (item.DataType.Name.ToLower() == "int16")
                 {
-                    columns.CodeType = listtypes.Where(it => it.CSharepType == "short").First().CSharepType;
+                    columns.CodeType = listtypes.Where(it => it.CSharepType == "short").First().Name;
                 }
                 if (item.DataType.Name.ToLower() == "int64")
                 {
-                    columns.CodeType = listtypes.Where(it => it.CSharepType == "long").First().CSharepType;
+                    columns.CodeType = listtypes.Where(it => it.CSharepType == "long").First().Name;
                 }
                 if (string.IsNullOrEmpty(columns.CodeType)) 
                 {
-                    columns.CodeType = listtypes.Where(it => it.CSharepType == "string").First().CSharepType;
+                    columns.CodeType = listtypes.Where(it => it.CSharepType == "string").First().Name;
                 }
                 cols.Add(columns);
             }
