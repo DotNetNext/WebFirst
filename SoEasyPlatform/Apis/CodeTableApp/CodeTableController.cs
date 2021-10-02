@@ -24,6 +24,65 @@ namespace SoEasyPlatform.Apis
 
         #region CodeTable CRUD
         /// <summary>
+        /// 生成表根据视图
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [ExceptionFilter]
+        [Route("CreateTableByView")]
+        public ActionResult<ApiResult<string>> CreateTableByView([FromForm] string ViewSql, [FromForm] int dbid, [FromForm] string className)
+        {
+            ApiResult<string> result = new ApiResult<string>() { IsSuccess = true };
+            var tableDb = base.GetTryDb(dbid);
+            var dt = tableDb.Ado.GetDataTable(ViewSql);
+            base.Check(dt.Rows.Count == 0, "SQL查询必须要有一条记录才能创建类");
+            CodeTable table = new CodeTable()
+            {
+                TableName = className,
+                CreateTime = DateTime.Now,
+                ClassName = className,
+                IsLock = true,
+                DbId = dbid,
+                UpdateTime = DateTime.Now,
+                Description = "数据源导入"
+            };
+            var id = Db.Insertable(table).ExecuteReturnIdentity();
+            List<CodeColumns> cols = new List<CodeColumns>();
+            var listtypes = CodeTypeDb.GetList();
+            foreach (System.Data.DataColumn item in dt.Columns)
+            {
+                CodeColumns columns = new CodeColumns()
+                {
+                    CodeTableId = id,
+                    ClassProperName = item.ColumnName,
+                    DbColumnName = item.ColumnName,
+                    CodeType = listtypes.FirstOrDefault(it => it.CSharepType.Equals(item.DataType.Name, StringComparison.OrdinalIgnoreCase) || it.DbType.Any(y => y.Name.Equals(item.DataType.Name, StringComparison.OrdinalIgnoreCase)))?.Name
+                };
+                if (item.DataType.Name.ToLower() == "int32")
+                {
+                    columns.CodeType = listtypes.Where(it => it.CSharepType == "int").First().Name;
+                }
+                if (item.DataType.Name.ToLower() == "int16")
+                {
+                    columns.CodeType = listtypes.Where(it => it.CSharepType == "short").First().Name;
+                }
+                if (item.DataType.Name.ToLower() == "int64")
+                {
+                    columns.CodeType = listtypes.Where(it => it.CSharepType == "long").First().Name;
+                }
+                if (string.IsNullOrEmpty(columns.CodeType))
+                {
+                    columns.CodeType = listtypes.Where(it => it.CSharepType == "string").First().Name;
+                }
+                cols.Add(columns);
+            }
+            Db.Insertable(cols).ExecuteReturnIdentity();
+            result.IsSuccess = true;
+            result.Data = result.Message = "创建成功";
+            return result;
+        }
+        /// <summary>
         /// 获取虚拟类
         /// </summary>
         /// <returns></returns>
@@ -363,64 +422,7 @@ namespace SoEasyPlatform.Apis
             result.IsSuccess = true;
             return result;
         }
-        /// <summary>
-        /// 生成表根据视图
-        /// </summary>
-        /// <param name="sql"></param>
-        /// <returns></returns>
-        [HttpPost]
-        [ExceptionFilter]
-        [Route("CreateTableByView")]
-        public ActionResult<ApiResult<string>> CreateTableByView([FromForm] string ViewSql, [FromForm] int dbid, [FromForm] string className ) 
-        {
-            ApiResult<string> result = new ApiResult<string>() { IsSuccess = true };
-            var tableDb = base.GetTryDb(dbid);
-            var dt= tableDb.Ado.GetDataTable(ViewSql);
-            base.Check(dt.Rows.Count == 0, "SQL查询必须要有一条记录才能创建类");
-            CodeTable table = new CodeTable() { 
-             TableName= className,
-             CreateTime=DateTime.Now,
-             ClassName=className,
-             IsLock=true,
-             DbId=dbid,
-             UpdateTime=DateTime.Now,
-             Description= "数据源导入"
-            };
-            var id = Db.Insertable(table).ExecuteReturnIdentity();
-            List<CodeColumns> cols = new List<CodeColumns>();
-            var listtypes = CodeTypeDb.GetList();
-            foreach (System.Data.DataColumn item in dt.Columns)
-            {
-                CodeColumns columns = new CodeColumns()
-                {
-                    CodeTableId = id,
-                    ClassProperName = item.ColumnName,
-                    DbColumnName = item.ColumnName,
-                    CodeType = listtypes.FirstOrDefault(it => it.CSharepType.Equals(item.DataType.Name, StringComparison.OrdinalIgnoreCase) || it.DbType.Any(y => y.Name.Equals(item.DataType.Name, StringComparison.OrdinalIgnoreCase)))?.Name
-                };
-                if (item.DataType.Name.ToLower()=="int32")
-                {
-                    columns.CodeType = listtypes.Where(it => it.CSharepType == "int").First().Name;
-                }
-                if (item.DataType.Name.ToLower() == "int16")
-                {
-                    columns.CodeType = listtypes.Where(it => it.CSharepType == "short").First().Name;
-                }
-                if (item.DataType.Name.ToLower() == "int64")
-                {
-                    columns.CodeType = listtypes.Where(it => it.CSharepType == "long").First().Name;
-                }
-                if (string.IsNullOrEmpty(columns.CodeType)) 
-                {
-                    columns.CodeType = listtypes.Where(it => it.CSharepType == "string").First().Name;
-                }
-                cols.Add(columns);
-            }
-            Db.Insertable(cols).ExecuteReturnIdentity();
-            result.IsSuccess = true;
-            result.Data = result.Message = "创建成功";
-            return result;
-        }
+
         #endregion
 
         #region  Update entity by db
