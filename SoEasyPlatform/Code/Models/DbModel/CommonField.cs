@@ -19,5 +19,6 @@ namespace SoEasyPlatform
         public string Description { get; set; }
         public string CodeType { get; set; }
         public int CodeTableId { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }
