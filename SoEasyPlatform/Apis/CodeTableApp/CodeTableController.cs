@@ -367,6 +367,7 @@ namespace SoEasyPlatform.Apis
             {
                 var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<CodeTableViewModel>>(model);
                 var oldList = CodeTableDb.AsQueryable().In(list.Select(it => it.Id).ToList()).ToList();
+                base.Check(oldList.Any(it => it.IsLock), string.Join(",", oldList.Where(it=>it.IsLock).Select(it => it.ClassName)) + "是锁表状态禁止建表");
                 List<EntitiesGen> genList = GetGenList(oldList, CodeTypeDb.GetList(), tableDb.CurrentConnectionConfig.DbType);
                 foreach (var item in genList)
                 {
