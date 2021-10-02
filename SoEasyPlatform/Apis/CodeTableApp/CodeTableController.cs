@@ -371,7 +371,7 @@ namespace SoEasyPlatform.Apis
         [HttpPost]
         [ExceptionFilter]
         [Route("CreateTableByView")]
-        public ActionResult<ApiResult<string>> CreateTableByView([FromForm] string ViewSql) 
+        public ActionResult<ApiResult<string>> CreateTableByView([FromForm] string ViewSql, [FromForm] int dbid) 
         {
             ApiResult<string> result = new ApiResult<string>() { IsSuccess = true };
             result.IsSuccess = true;
