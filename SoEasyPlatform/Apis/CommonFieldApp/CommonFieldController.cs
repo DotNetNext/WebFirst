@@ -72,8 +72,8 @@ namespace SoEasyPlatform.Apis
             if (!string.IsNullOrEmpty(model))
             {
                 var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<CommonFieldViewModel>>(model);
-                var isInit = Db.Queryable<CommonField>().In(list.Select(it=>it.Id).ToList()).Any(it => it.IsInit == true);
-                base.Check(isInit, "无法删除初始化数据");
+               // var isInit = Db.Queryable<CommonField>().In(list.Select(it=>it.Id).ToList()).Any(it => it.IsInit == true);
+               // base.Check(isInit, "无法删除初始化数据");
                 var exp = Expressionable.Create<CommonField>();
                 foreach (var item in list)
                 {
