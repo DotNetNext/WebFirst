@@ -672,6 +672,7 @@ namespace SoEasyPlatform
                             new Menu{ MenuName="文件管理" , Url="/FileInfo"} ,
                              new Menu{ MenuName="云方案 ×" , Url="/Solution"},
                              new Menu{ MenuName="数据类型" , Url="/CodeType"},
+                             new Menu{ MenuName="公共字段" , Url="/CommonFiled"},
                         }
                      }
                     ,
