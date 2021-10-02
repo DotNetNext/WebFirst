@@ -371,9 +371,51 @@ namespace SoEasyPlatform.Apis
         [HttpPost]
         [ExceptionFilter]
         [Route("CreateTableByView")]
-        public ActionResult<ApiResult<string>> CreateTableByView([FromForm] string ViewSql, [FromForm] int dbid) 
+        public ActionResult<ApiResult<string>> CreateTableByView([FromForm] string ViewSql, [FromForm] int dbid, [FromForm] string className, [FromForm] string description) 
         {
             ApiResult<string> result = new ApiResult<string>() { IsSuccess = true };
+            var tableDb = base.GetTryDb(dbid);
+            var dt= tableDb.Ado.GetDataTable(ViewSql);
+            CodeTable table = new CodeTable() { 
+             TableName= className,
+             CreateTime=DateTime.Now,
+             ClassName=className,
+             IsLock=true,
+             DbId=dbid,
+             UpdateTime=DateTime.Now,
+             Description= description
+            };
+            var id = Db.Insertable(table).ExecuteReturnIdentity();
+            List<CodeColumns> cols = new List<CodeColumns>();
+            var listtypes = CodeTypeDb.GetList();
+            foreach (System.Data.DataColumn item in dt.Columns)
+            {
+                CodeColumns columns = new CodeColumns()
+                {
+                    CodeTableId = id,
+                    ClassProperName = item.ColumnName,
+                    DbColumnName = item.ColumnName,
+                    CodeType = listtypes.FirstOrDefault(it => it.CSharepType.Equals(item.DataType.Name, StringComparison.OrdinalIgnoreCase) || it.DbType.Any(y => y.Name.Equals(item.DataType.Name, StringComparison.OrdinalIgnoreCase)))?.CSharepType
+                };
+                if (item.DataType.Name.ToLower()=="int32")
+                {
+                    columns.CodeType = listtypes.Where(it => it.CSharepType == "int").First().CSharepType;
+                }
+                if (item.DataType.Name.ToLower() == "int16")
+                {
+                    columns.CodeType = listtypes.Where(it => it.CSharepType == "short").First().CSharepType;
+                }
+                if (item.DataType.Name.ToLower() == "int64")
+                {
+                    columns.CodeType = listtypes.Where(it => it.CSharepType == "long").First().CSharepType;
+                }
+                if (string.IsNullOrEmpty(columns.CodeType)) 
+                {
+                    columns.CodeType = listtypes.Where(it => it.CSharepType == "string").First().CSharepType;
+                }
+                cols.Add(columns);
+            }
+            Db.Insertable(cols).ExecuteReturnIdentity();
             result.IsSuccess = true;
             result.Data = result.Message = "创建成功";
             return result;

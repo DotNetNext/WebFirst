@@ -16,15 +16,31 @@
     @Html.Partial("_CodeTable.cshtml")
 </div>
 <div id="divView" style="display:none">
-    <from id="frmView">
-        <textarea name="ViewSql" style="height:180px;border:0" class="form-control">
+    <from id="frmView"  >
+        <br />
+        <div class="field item form-group lib">
+            <label class="col-form-label col-md-2 col-sm-2  label-align"> 类名：</label>
+            <div class="col-md-10 col-sm-9">
+                <input name="classname" type="text" placeholder="请输入类名" class="form-control" />
+            </div>
+
+        </div>
+        <div class="field item form-group lib">
+            <label class="col-form-label col-md-2 col-sm-2  label-align"> SQL：</label>
+            <div class="col-md-10 col-sm-9">
+                <label for="ex3" class="col-form-label"></label>
+                <textarea name="ViewSql" style="height:150px; " class="form-control">
            
             Select * from  替换视图名  where 1=2 
 
 
          </textarea>
-        <p  class="red" >
-           &nbsp; 说明: 根据查询结构创建实体
-        </p>
+                <input id="hidviewdbid" value="0" name="dbid" type="hidden" />
+            </div>
+
+        </div>
+   
+
+
     </from>
 </div>
