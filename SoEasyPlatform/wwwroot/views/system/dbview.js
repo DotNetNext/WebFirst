@@ -26,7 +26,7 @@ btnAddView.$Open("#divView", {
             callback: function (msg) {
                 btnProject.$CloseLoading();
                 if (msg.IsSuccess) {
-                    $sugar.$CloseAll(divProject.getAttribute("dataindex"));
+                    $sugar.$CloseAll(divView.getAttribute("dataindex"));
                     btnSearch.click();
                 }
                 msg.Data.$Alert();
