@@ -371,7 +371,7 @@ namespace SoEasyPlatform.Apis
         [HttpPost]
         [ExceptionFilter]
         [Route("CreateTableByView")]
-        public ActionResult<ApiResult<string>> CreateTableByView([FromForm] string ViewSql, [FromForm] int dbid, [FromForm] string className, [FromForm] string description) 
+        public ActionResult<ApiResult<string>> CreateTableByView([FromForm] string ViewSql, [FromForm] int dbid, [FromForm] string className ) 
         {
             ApiResult<string> result = new ApiResult<string>() { IsSuccess = true };
             var tableDb = base.GetTryDb(dbid);
@@ -384,7 +384,7 @@ namespace SoEasyPlatform.Apis
              IsLock=true,
              DbId=dbid,
              UpdateTime=DateTime.Now,
-             Description= description
+             Description= "数据源导入"
             };
             var id = Db.Insertable(table).ExecuteReturnIdentity();
             List<CodeColumns> cols = new List<CodeColumns>();
