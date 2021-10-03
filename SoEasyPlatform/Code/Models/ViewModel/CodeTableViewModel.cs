@@ -22,6 +22,7 @@ namespace SoEasyPlatform
         public bool IsLock { get; set; }
         [PropertyName("属性")]
         public List<CodeColumnsViewModel> ColumnInfoList { get; set; }
+        public DateTime? CreateTime { get; set; }
     }
     public class CodeColumnsViewModel
     {

@@ -145,6 +145,7 @@ namespace SoEasyPlatform.Apis
         {
             var result = new ApiResult<bool>();
             CodeTableViewModel viewModel = Newtonsoft.Json.JsonConvert.DeserializeObject<CodeTableViewModel>(model);
+            viewModel.CreateTime = DateTime.Now;
             SaveCodeTableToDb(viewModel);
             result.IsSuccess = true;
             return result;
