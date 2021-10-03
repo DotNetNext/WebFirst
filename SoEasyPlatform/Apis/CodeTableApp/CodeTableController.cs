@@ -640,7 +640,7 @@ namespace SoEasyPlatform.Apis
                     {
                         if (!filedItem.ClassProperName.ToLower().Equals(col.ClassProperName.ToLower()) && !filedItem.DbColumnName.ToLower().Equals(col.DbColumnName.ToLower()))
                         {
-                            if (!addcolumns.Any(it => it.DbColumnName == filedItem.DbColumnName))
+                            if (!addcolumns.Any(it => it.DbColumnName == filedItem.DbColumnName&&it.CodeTableId==filedItem.CodeTableId))
                             {
                                 addcolumns.Add(new CodeColumns()
                                 {
