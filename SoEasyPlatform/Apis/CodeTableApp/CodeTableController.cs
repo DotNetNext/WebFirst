@@ -638,19 +638,22 @@ namespace SoEasyPlatform.Apis
                 {
                     foreach (var filedItem in fieldInfoList)
                     {
-                        if (!filedItem.ClassProperName.ToLower().Equals(col.ClassProperName.ToLower()) && filedItem.DbColumnName.ToLower().Equals(col.DbColumnName.ToLower()))
+                        if (!filedItem.ClassProperName.ToLower().Equals(col.ClassProperName.ToLower()) && !filedItem.DbColumnName.ToLower().Equals(col.DbColumnName.ToLower()))
                         {
-                            addcolumns.Add(new CodeColumns()
+                            if (!addcolumns.Any(it => it.DbColumnName == filedItem.DbColumnName))
                             {
-                                CodeTableId = Convert.ToInt32(item.Id),
-                                 DbColumnName =filedItem.DbColumnName,
-                                 ClassProperName=filedItem.ClassProperName,
-                                  CodeType=filedItem.CodeType,
-                                   IsIdentity=filedItem.IsIdentity,
-                                    IsPrimaryKey=filedItem.IsPrimaryKey,
-                                     Required=filedItem.Required,
+                                addcolumns.Add(new CodeColumns()
+                                {
+                                    CodeTableId = Convert.ToInt32(item.Id),
+                                    DbColumnName = filedItem.DbColumnName,
+                                    ClassProperName = filedItem.ClassProperName,
+                                    CodeType = filedItem.CodeType,
+                                    IsIdentity = filedItem.IsIdentity,
+                                    IsPrimaryKey = filedItem.IsPrimaryKey,
+                                    Required = filedItem.Required,
 
-                        });
+                                });
+                            }
                         }
                     }
                 }
