@@ -24,6 +24,7 @@ namespace SoEasyPlatform
             db.QueryFilter.Add(new TableFilterItem<Template>(it => it.IsDeleted == false));
             db.QueryFilter.Add(new TableFilterItem<Project>(it => it.IsDeleted == false));
             db.QueryFilter.Add(new TableFilterItem<CommonField>(it => it.IsDeleted == false));
+            db.QueryFilter.Add(new TableFilterItem<TagProperty>(it => it.IsDeleted == false));
             db.Aop.OnError = exp =>
             {
                 var logPath = FileSugar.MergeUrl(AppContext.BaseDirectory, "log","log" + DateTime.Now.ToString("yyyyMMdd") + ".txt");
