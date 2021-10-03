@@ -74,7 +74,7 @@ namespace SoEasyPlatform
                     FileModel = "[{ \"name\":\"" + _defaultNamespace + ".Entities\",\"nuget\":[{ \"name\":\"SqlSugarCore\",\"version\":\"5.0.4\" }]}]",
                     FileInfo = _net5lib + "",
                     NameFormat = "DbModels\\{0}",
-                    ProjentName = "【简单三层】_方案_实体_Sugar",
+                    ProjentName = "[简单三层]_方案_实体_Sugar",
                     Path = @"c:\" + _defaultNamespace + @"\Entites",
                     IsDeleted = false,
                     IsInit = true,
@@ -87,7 +87,7 @@ namespace SoEasyPlatform
                     TemplateId1 = _biztempId + "",
                     FileModel = "[{ \"name\":\""+_defaultNamespace+ ".Services\",\"nuget\":[{ \"name\":\"SqlSugarCore\",\"version\":\"5.0.4\" }]},{\"name\":\"Repository\", \"name_space\":\"" + _defaultNamespace+ ".Services\" }]",
                     FileInfo = _net5lib + ","+_dbcontext,
-                    ProjentName = "【简单三层】_方案_业务_Sugar",
+                    ProjentName = "[简单三层]_方案_业务_Sugar",
                     Path = @"c:\" + _defaultNamespace + @"\Services",
                     IsDeleted = false,
                     IsInit = true,
@@ -100,7 +100,7 @@ namespace SoEasyPlatform
                     TemplateId1 = _webtempId + "",
                     FileModel = "[{ \"name\":\"命名空间\",\"nuget\":[{ \"name\":\"SqlSugarCore\",\"version\":\"5.0.4\" },{ \"name\":\"Microsoft.AspNetCore.Mvc.NewtonsoftJson\",\"version\":\"5.0.10\" },{ \"name\":\"Swashbuckle.AspNetCore\",\"version\":\"5.6.3\" }]},{\"name\":\"Startup\", \"name_space\":\"命名空间\" },{\"name\":\"Program\", \"name_space\":\"命名空间\" },{\"name\":\"appsettings\", \"name_space\":\"命名空间\"}]".Replace("命名空间",$"{_defaultNamespace}.Api"),
                     FileInfo =string.Join(",",_WebFiles),
-                    ProjentName = "【简单三层】_方案_前端_Sugar",
+                    ProjentName = "[简单三层]_方案_前端_Sugar",
                     NameFormat = "Controllers\\{0}Controller",
                     Path = @"c:\" + _defaultNamespace + @"\Api",
                     IsDeleted = false,
@@ -615,7 +615,7 @@ namespace SoEasyPlatform
                     TemplateTypeName = "实体",
                     Sort = 0,
                     TemplateTypeId = 1,
-                    Title = "【简单三层】_模版_实体_Sugar",
+                    Title = "[简单三层]_模版_实体_Sugar",
                     IsInit=true
 
                 }).ExecuteReturnIdentity();
@@ -629,7 +629,7 @@ namespace SoEasyPlatform
                     TemplateTypeName = "业务",
                     Sort = 0,
                     TemplateTypeId = 2,
-                    Title = "【简单三层】_模版_业务_Sugar",
+                    Title = "[简单三层]_模版_业务_Sugar",
                     IsInit=true
 
                 }).ExecuteReturnIdentity();
@@ -643,7 +643,7 @@ namespace SoEasyPlatform
                     TemplateTypeName = "业务",
                     Sort = 0,
                     TemplateTypeId = 3,
-                    Title = "【简单三层】_模版_前端_Sugar",
+                    Title = "[简单三层]_模版_前端_Sugar",
                     IsInit = true
 
                 }).ExecuteReturnIdentity();
