@@ -661,7 +661,7 @@ namespace SoEasyPlatform
                 {
                     new Menu()
                      {
-                      MenuName="代码管理",
+                      MenuName="代码生成",
                       Icon="fa fa-edit",
                         Child=new List<Menu>()
                         {
@@ -671,23 +671,22 @@ namespace SoEasyPlatform
                              new Menu{ MenuName="配置实体（视图建类模式）" , Url="/DbView"},
                              new Menu{ MenuName="配置业务",Url="/BIZ" },
                              new Menu{ MenuName="配置前端" ,Url="/Web"},
-                             new Menu{ MenuName="方案管理" , Url="/Project"} ,
-                             new Menu{ MenuName="模版管理" , Url="/Template"} ,
-                            new Menu{ MenuName="文件管理" , Url="/FileInfo"} ,
                              new Menu{ MenuName="云方案 ×" , Url="/Solution"},
-                             new Menu{ MenuName="数据类型" , Url="/CodeType"},
-                             new Menu{ MenuName="公共字段" , Url="/CommonFiled"},
+                         
                         }
                      }
                     ,
                      new Menu()
                      {
-                        MenuName="数据库管理",
+                        MenuName="代码配置",
                         Icon="fa fa-bar-chart-o",
                         Child=new List<Menu>()
                         {
-                             new Menu{ MenuName="SQL查询" },
-                             new Menu{ MenuName="表设计管理" },
+                           new Menu{ MenuName="模版管理" , Url="/Template"} ,
+                           new Menu{ MenuName="文件管理" , Url="/FileInfo"} ,
+                           new Menu{ MenuName="数据类型" , Url="/CodeType"},
+                           new Menu{ MenuName="公共字段" , Url="/CommonFiled"},
+                           new Menu{ MenuName="方案管理" , Url="/Project"} 
 
                         }
                      }
