@@ -28,16 +28,15 @@ btnCommonFiled.$Open("#divCommonFiled", {
     yes: function () {
         var gridInfo = divGrid.$GridInfo();
         if (gridInfo.length > 0) {
-            SaveTable2.value = JSON.stringify(gridInfo);
+            cfmodel.value = JSON.stringify(gridInfo);
             btnProject.$Loading();
             frmCommField.$Form({
                 url: curls.save,
-                data: { "model": JSON.stringify(gridInfo), dbid: txtDbId.value },
                 callback: function (msg) {
                     btnProject.$CloseLoading();
                     if (msg.IsSuccess) {
                         $sugar.$CloseAll(divCommonFiled.getAttribute("dataindex"));
-                        
+                        msg.Data.$Alert();
                     }
                     else {
                         msg.Data.$Alert();
