@@ -634,26 +634,24 @@ namespace SoEasyPlatform.Apis
             foreach (var item in list)
             {
                 var columns = CodeColumnsDb.GetList(it => it.CodeTableId == item.Id);
-                foreach (var col in columns)
+    
+                foreach (var filedItem in fieldInfoList)
                 {
-                    foreach (var filedItem in fieldInfoList)
+                    if (columns.Any(y=>y.DbColumnName.ToLower() != filedItem.DbColumnName.ToLower())&& columns.Any(y => y.ClassProperName.ToLower() != filedItem.ClassProperName.ToLower()))
                     {
-                        if (!filedItem.ClassProperName.ToLower().Equals(col.ClassProperName.ToLower()) && !filedItem.DbColumnName.ToLower().Equals(col.DbColumnName.ToLower()))
+                        if (!addcolumns.Any(it => it.DbColumnName == filedItem.DbColumnName && it.CodeTableId == Convert.ToInt32(item.Id)))
                         {
-                            if (!addcolumns.Any(it => it.DbColumnName == filedItem.DbColumnName&&it.CodeTableId== Convert.ToInt32(item.Id)))
+                            addcolumns.Add(new CodeColumns()
                             {
-                                addcolumns.Add(new CodeColumns()
-                                {
-                                    CodeTableId = Convert.ToInt32(item.Id),
-                                    DbColumnName = filedItem.DbColumnName,
-                                    ClassProperName = filedItem.ClassProperName,
-                                    CodeType = filedItem.CodeType,
-                                    IsIdentity = filedItem.IsIdentity,
-                                    IsPrimaryKey = filedItem.IsPrimaryKey,
-                                    Required = filedItem.Required,
+                                CodeTableId = Convert.ToInt32(item.Id),
+                                DbColumnName = filedItem.DbColumnName,
+                                ClassProperName = filedItem.ClassProperName,
+                                CodeType = CodeTypeDb.GetById(filedItem.CodeType).Name,
+                                IsIdentity = filedItem.IsIdentity,
+                                IsPrimaryKey = filedItem.IsPrimaryKey,
+                                Required = filedItem.Required,
 
-                                });
-                            }
+                            });
                         }
                     }
                 }
