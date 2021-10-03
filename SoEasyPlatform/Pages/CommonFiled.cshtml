@@ -36,32 +36,44 @@
         <form id="frmSave" class="" action="" method="post" novalidate="">
             <div class="x_content" style="margin-top:20px">
                 <div class="field item form-group">
-                    <label class="col-form-label col-md-2 col-sm-2  label-align">模版类型<span class="required">*</span></label>
+                    <label class="col-form-label col-md-2 col-sm-2  label-align">属性名称<span class="required">*</span></label>
                     <div class="col-md-10 col-sm-9">
-                        <input type="text" readonly id="saveTemplateTypeName" name="TemplateTypeName" placeholder="Select" autocomplete="off" />
-                        <input type="hidden" readonly id="saveTemplateTypeId" name="TemplateTypeId" autocomplete="off" />
+                        <input type="text"   id="saveClassProperName" name="ClassProperName" class="form-control"  />
+                        <input type="hidden" readonly id="saveId" name="Id" autocomplete="off" />
                     </div>
                 </div>
                 <div class="field item form-group">
-                    <label class="col-form-label col-md-2 col-sm-2  label-align">标题<span class="required">*</span></label>
+                    <label class="col-form-label col-md-2 col-sm-2  label-align">数据类型</label>
                     <div class="col-md-10 col-sm-9">
-                        <input id="saveTitle" type="text" name="Title" class="form-control" />
+                        <input type="text" readonly id="saveCodeTypeName" name="CodeTypeName" placeholder="Select" autocomplete="off" />
+                        <input type="hidden" readonly id="saveCodeType" name="CodeType" autocomplete="off" />
                     </div>
                 </div>
-                <div class="field item form-group">
-                    <label class="col-form-label col-md-2 col-sm-2  label-align">  <button id="btnParameter" type="button" class="btn btn-info"><i class="fa fa-search"></i>参数查看</button><span class="required">*</span></label>
-                    <div class="col-md-10 col-sm-9">
-                        <textarea id="saveContent" name="Content" style="height:330px" class="form-control"></textarea>
-                        <input id="saveId" type="hidden" name="Id" value="" />
 
+                <div class="field item form-group">
+                    <label class="col-form-label col-md-2 col-sm-2  label-align">字段名称<span class="required">*</span></label>
+                    <div class="col-md-10 col-sm-9">
+                        <input id="saveDbColumnName" type="text" name="DbColumnName" class="form-control" />
                     </div>
                 </div>
-                @*<div class="field item form-group">
-                        <label class="col-form-label col-md-2 col-sm-2  label-align">连接字符串<span class="required">*</span></label>
-                        <div class="col-md-10 col-sm-9">
-                            <input id="saveConnection" name="Connection" class="form-control" type="text" />
-                        </div>
-                    </div>*@
+                <div class="field item form-group">
+                    <label class="col-form-label col-md-2 col-sm-2  label-align">必填<span class="required">*</span></label>
+                    <div class="col-md-10 col-sm-9">
+                         <input style="width:20px" type="checkbox" id="saveRequired"  name="Required" value="true" class="form-control"/>
+                    </div>
+                </div>
+                <div class="field item form-group">
+                    <label class="col-form-label col-md-2 col-sm-2  label-align">自增<span class="required">*</span></label>
+                    <div class="col-md-10 col-sm-9">
+                        <input style="width:20px" type="checkbox" id="saveIsIdentity" name="IsIdentity" value="true" class="form-control" />
+                    </div>
+                </div>
+                <div class="field item form-group">
+                    <label class="col-form-label col-md-2 col-sm-2  label-align">主键<span class="required">*</span></label>
+                    <div class="col-md-10 col-sm-9">
+                        <input style="width:20px" type="checkbox" id="saveIsPrimaryKey" name="IsPrimaryKey" value="true" class="form-control" />
+                    </div>
+                </div>
             </div>
         </form>
     </div>
