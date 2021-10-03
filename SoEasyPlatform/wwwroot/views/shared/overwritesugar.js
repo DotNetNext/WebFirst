@@ -151,6 +151,7 @@ var SugarContext = {
         $(element).find(":input").val("");
         $(element).find(":hidden").val("");
         $(element).find("[type='checkbox']").prop("checked", false);
+        $(element).find("[type='checkbox']").val(true);
     },
     Grid: function (element, data) {
 
