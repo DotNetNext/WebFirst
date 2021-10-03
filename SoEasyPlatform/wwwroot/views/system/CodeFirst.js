@@ -2,7 +2,7 @@
     save: _root + "codetable/SaveCommField",
     getfields: _root + "system/GetCommonFiled"
 }
-saveReferenceName.$SelectTree({
+saveFieldName.$SelectTree({
     isMultiple: true,
     url: curls.getfields,
     maxHeight: 100,
@@ -47,5 +47,5 @@ btnCommonFiled.$Open("#divCommonFiled", {
             "请选择一条数据".$Alert();
         }
     },
-    btn: ['预览', '关闭']
+    btn: ['追加', '关闭']
 });
