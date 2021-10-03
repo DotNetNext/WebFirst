@@ -93,7 +93,7 @@ namespace SoEasyPlatform.Apis
             var result = new ApiResult<TableModel<CodeTableGridViewModel>>();
             result.Data = new TableModel<CodeTableGridViewModel>();
             int count = 0;
-            var list =Db.Queryable<CodeTable, Database>(
+            var list = Db.Queryable<CodeTable, Database>(
                  (it, db) => new JoinQueryInfos(
                        JoinType.Left, it.DbId == db.Id
                      )
@@ -107,7 +107,7 @@ namespace SoEasyPlatform.Apis
                     DbName = db.Desc
                 })
                 .ToPageList(model.PageIndex, int.MaxValue, ref count)
-                .OrderBy(it=>it.CreateTime.AddSeconds(100)>=DateTime.Now?0:1).ToList();
+                .OrderBy(it => it.CreateTime.AddSeconds(100) >= DateTime.Now ? 0 : 1).ToList();
             result.Data.Rows = list;
             result.Data.Total = count;
             result.Data.PageSize = count;
@@ -259,18 +259,18 @@ namespace SoEasyPlatform.Apis
         public ActionResult<ApiResult<bool>> CreateFile([FromForm] ProjectViewModel model)
         {
             base.Check(model.Reference != null && model.Reference.Split(',').Contains(model.Id + ""), "方案不能自已引用自已");
-            base.Check(new System.IO.DirectoryInfo(model.Path)?.Parent?.Parent == null, "路径"+model.Path+"错误，正确格式  C:\\解决方案\\项目");
+            base.Check(new System.IO.DirectoryInfo(model.Path)?.Parent?.Parent == null, "路径" + model.Path + "错误，正确格式  C:\\解决方案\\项目");
             var result = new ApiResult<bool>();
             var tempInfo = TemplateDb.GetById(model.TemplateId1);
             model.ModelId = tempInfo.TemplateTypeId;
             var dbModel = mapper.Map<Project>(model);
             var s = base.Db.Storageable(dbModel)
                 .SplitError(it => string.IsNullOrEmpty(model.Tables), "请选择表")
-                .SplitError(it => Db.Queryable<Project>().Any(s => s.Id!=model.Id&& s.ProjentName == model.ProjentName && s.TemplateId1 == model.TemplateId1), "方前方案已存在请换个名字或者使用方案生成")
+                .SplitError(it => Db.Queryable<Project>().Any(s => s.Id != model.Id && s.ProjentName == model.ProjentName && s.TemplateId1 == model.TemplateId1), "方前方案已存在请换个名字或者使用方案生成")
                 .Saveable()
                 .ToStorage();
-             var id=s.AsInsertable.ExecuteReturnIdentity();
-             s.AsUpdateable.ExecuteCommand();
+            var id = s.AsInsertable.ExecuteReturnIdentity();
+            s.AsUpdateable.ExecuteCommand();
             if (s.ErrorList.Any())
             {
                 throw new Exception(s.ErrorList.First().StorageMessage);
@@ -291,7 +291,7 @@ namespace SoEasyPlatform.Apis
             //}
             //ProjectController_Common.CreateProject(dbModel);
             result.IsSuccess = true;
-            result.Message =model.Id==0? "创建成功":"修改成功";
+            result.Message = model.Id == 0 ? "创建成功" : "修改成功";
             return result;
         }
 
@@ -303,7 +303,7 @@ namespace SoEasyPlatform.Apis
         [FormValidateFilter]
         [ExceptionFilter]
         [Route("CreateFileByProjectId")]
-        public ActionResult<ApiResult<bool>> CreateFileByProjectId([FromForm] ProjectViewModel2 model,bool disOpen=true)
+        public ActionResult<ApiResult<bool>> CreateFileByProjectId([FromForm] ProjectViewModel2 model, bool disOpen = true)
         {
             var result = new ApiResult<bool>();
             var tables = model.Tables;
@@ -325,7 +325,7 @@ namespace SoEasyPlatform.Apis
                 FileSugar.CreateFileReplace(fileName, html, Encoding.UTF8);
             }
             OpenPath(disOpen, project);
-            ProjectController_Common.CreateProject(project.Id,model.DbId.Value);
+            ProjectController_Common.CreateProject(project.Id, model.DbId.Value);
             result.IsSuccess = true;
             result.Message = "生成生功";
             return result;
@@ -342,11 +342,11 @@ namespace SoEasyPlatform.Apis
         [Route("exportfile")]
         public ApiResult<bool> Exportfile([FromForm] string model, [FromForm] int dbid)
         {
-            ApiResult<bool> result = new ApiResult<bool>() { IsSuccess=true};
+            ApiResult<bool> result = new ApiResult<bool>() { IsSuccess = true };
             var tableDb = base.GetTryDb(dbid);
-            var dts= Export(model, tableDb);
+            var dts = Export(model, tableDb);
             var bytes = Table_ToExcel.ExportExcel(dts, "数据库文档.xlsx");
-            var url = FileSugar.MergeUrl(Startup.GetCurrentDirectory(), "excel/数据库文档"+SqlSugar.SnowFlakeSingle.Instance.getID()+".xlsx");
+            var url = FileSugar.MergeUrl(Startup.GetCurrentDirectory(), "excel/数据库文档" + SqlSugar.SnowFlakeSingle.Instance.getID() + ".xlsx");
             FileSugar.CreateFile(url, bytes);
             OpenPath(url);
             return result;
@@ -369,14 +369,14 @@ namespace SoEasyPlatform.Apis
             {
                 var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<CodeTableViewModel>>(model);
                 var oldList = CodeTableDb.AsQueryable().In(list.Select(it => it.Id).ToList()).ToList();
-                base.Check(oldList.Any(it => it.IsLock), string.Join(",", oldList.Where(it=>it.IsLock).Select(it => it.ClassName)) + "是锁表状态禁止建表");
+                base.Check(oldList.Any(it => it.IsLock), string.Join(",", oldList.Where(it => it.IsLock).Select(it => it.ClassName)) + "是锁表状态禁止建表");
                 List<EntitiesGen> genList = GetGenList(oldList, CodeTypeDb.GetList(), tableDb.CurrentConnectionConfig.DbType);
                 foreach (var item in genList)
                 {
                     item.PropertyGens = item.PropertyGens.Where(it => it.IsIgnore == false).ToList();
                     foreach (var property in item.PropertyGens)
                     {
-                        if (property.IsSpecialType) 
+                        if (property.IsSpecialType)
                         {
                             property.Type = "string";
                         }
@@ -387,36 +387,36 @@ namespace SoEasyPlatform.Apis
                 {
                     var classString = TemplateHelper.GetTemplateValue(key, SyntaxTreeHelper.TemplateString, item);
                     var type = SyntaxTreeHelper.GetModelTypeByClass(classString, item.ClassName);
-                    tableDb.CurrentConnectionConfig.ConfigureExternalServices=new ConfigureExternalServices() {
-                        EntityNameService = (type, info) => 
+                    tableDb.CurrentConnectionConfig.ConfigureExternalServices = new ConfigureExternalServices() {
+                        EntityNameService = (type, info) =>
                         {
-                            if (info.EntityName == item.ClassName||(info.EntityName==null && info.DbTableName==item.ClassName)) 
+                            if (info.EntityName == item.ClassName || (info.EntityName == null && info.DbTableName == item.ClassName))
                             {
                                 info.EntityName = item.ClassName;
                                 info.DbTableName = item.TableName;
                                 info.TableDescription = item.Description;
                             }
                         },
-                        EntityService=(type, info) => 
-                        {
-                            if (info.EntityName == item.ClassName) 
-                            {
-                                var column = item.PropertyGens.FirstOrDefault(it => it.PropertyName == info.PropertyName);
-                                info.DbColumnName = column.DbColumnName;
-                                info.ColumnDescription = column.Description;
-                                info.IsNullable = column.IsNullable;
-                                info.Length = Convert.ToInt32(column.Length);
-                                info.DecimalDigits = Convert.ToInt32(column.DecimalDigits);
-                                info.IsPrimarykey = column.IsPrimaryKey;
-                                info.IsIdentity = column.IsIdentity;
-                                info.IsIgnore = column.IsIgnore;
-                                info.DataType = column.DbType;
-                                if (tableDb.CurrentConnectionConfig.DbType == DbType.Sqlite&&info.IsIdentity) 
-                                {
-                                    info.DataType = "integer";
-                                }
-                            }
-                        }
+                        EntityService = (type, info) =>
+                          {
+                              if (info.EntityName == item.ClassName)
+                              {
+                                  var column = item.PropertyGens.FirstOrDefault(it => it.PropertyName == info.PropertyName);
+                                  info.DbColumnName = column.DbColumnName;
+                                  info.ColumnDescription = column.Description;
+                                  info.IsNullable = column.IsNullable;
+                                  info.Length = Convert.ToInt32(column.Length);
+                                  info.DecimalDigits = Convert.ToInt32(column.DecimalDigits);
+                                  info.IsPrimarykey = column.IsPrimaryKey;
+                                  info.IsIdentity = column.IsIdentity;
+                                  info.IsIgnore = column.IsIgnore;
+                                  info.DataType = column.DbType;
+                                  if (tableDb.CurrentConnectionConfig.DbType == DbType.Sqlite && info.IsIdentity)
+                                  {
+                                      info.DataType = "integer";
+                                  }
+                              }
+                          }
                     };
                     tableDb.CodeFirst.InitTables(type);
                 }
@@ -512,11 +512,11 @@ namespace SoEasyPlatform.Apis
                 var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<CodeTableViewModel>>(model);
                 var oldList = CodeTableDb.AsQueryable().In(list.Select(it => it.Id).ToList()).ToList();
                 var oldColumns = Db.Queryable<CodeColumns, CodeTable>((c, t) => c.CodeTableId == t.Id).Where((c, t) => oldList.Select(it => it.Id).Contains(t.Id)).Select((c, t) => new { TableId = t.Id, TableName = t.TableName, Columns = c }).ToList();
-                var alltables = tableDb.DbMaintenance.GetTableInfoList(false).Select(it=>it.Name.ToLower()).ToList();
+                var alltables = tableDb.DbMaintenance.GetTableInfoList(false).Select(it => it.Name.ToLower()).ToList();
                 var ids = list.Select(it => it.Id).ToList();
                 var tableNames = list.Select(it => it.TableName.ToLower()).ToList();
                 var errorTables = list.Where(it => !alltables.Contains(it.TableName.ToLower()) && !alltables.Contains(it.ClassName.ToLower())).ToList();
-                base.Check(errorTables.Any(),string.Join(",", errorTables.Select(y=>y.TableName??y.ClassName))+"未创建表不能同步");
+                base.Check(errorTables.Any(), string.Join(",", errorTables.Select(y => y.TableName ?? y.ClassName)) + "未创建表不能同步");
                 try
                 {
                     Db.BeginTran();
@@ -549,14 +549,14 @@ namespace SoEasyPlatform.Apis
                                     col.ClassProperName = addColumn.Columns.ClassProperName;
                                     UpdateColumns.Add(col);
                                 }
-                                else 
+                                else
                                 {
 
                                 }
                             }
                             foreach (var oldItem in item.ToList())
                             {
-                                if (oldItem.Columns.CodeType.Equals("ignore",StringComparison.CurrentCultureIgnoreCase)) 
+                                if (oldItem.Columns.CodeType.Equals("ignore", StringComparison.CurrentCultureIgnoreCase))
                                 {
                                     var mapp = _mapper.Map<CodeColumns>(oldItem.Columns);
                                     mapp.CodeTableId = columns[0].CodeTableId;
@@ -607,12 +607,31 @@ namespace SoEasyPlatform.Apis
             foreach (var item in genList.Take(1))
             {
                 item.name_space = GetNameSpace(project.FileModel, item.name_space);
-                result.Data= TemplateHelper.GetTemplateValue(key, template, item);
+                result.Data = TemplateHelper.GetTemplateValue(key, template, item);
             }
-            ProjectController_Common.CreateProject(project.Id,model.DbId.Value);
+            ProjectController_Common.CreateProject(project.Id, model.DbId.Value);
             result.IsSuccess = true;
             return result;
         }
+        #endregion
+
+        #region 追加字段
+        /// <summary>
+        ///  追加字段
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        [FormValidateFilter]
+        [ExceptionFilter]
+        [Route("SaveCommField")]
+        public ActionResult<ApiResult<string>> SaveCommField(string Field)
+        {
+            ApiResult<string> result = new ApiResult<string>();
+            result.IsSuccess = true;
+            result.Data = "追加成功";
+            return result;
+         }
+
         #endregion
     }
 }
