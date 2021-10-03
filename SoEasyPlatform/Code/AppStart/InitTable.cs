@@ -661,7 +661,7 @@ namespace SoEasyPlatform
                 {
                     new Menu()
                      {
-                      MenuName="代码生成",
+                      MenuName="方案生成",
                       Icon="fa fa-edit",
                         Child=new List<Menu>()
                         {
@@ -678,7 +678,7 @@ namespace SoEasyPlatform
                     ,
                      new Menu()
                      {
-                        MenuName="代码配置",
+                        MenuName="自定义配置",
                         Icon="fa fa-bar-chart-o",
                         Child=new List<Menu>()
                         {

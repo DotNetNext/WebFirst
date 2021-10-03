@@ -39,7 +39,7 @@ btnCommonFiled.$Open("#divCommonFiled", {
                         msg.Data.$Alert();
                     }
                     else {
-                        msg.Data.$Alert();
+                        "追加失败，请选择字段".$Alert();
                     }
                 }
             });
