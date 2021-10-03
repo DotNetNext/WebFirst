@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace SoEasyPlatform.Pages
 {
-    public class TemplateModel : PageModel
+    public class TagPropertyModel : PageModel
     {
         public void OnGet()
         {
