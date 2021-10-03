@@ -17,7 +17,7 @@ namespace SoEasyPlatform
         [ValidateReduired()]
         [PropertyName("数据类型")]
         public string CodeType { get; set; }
-        [ValidateUnique("CommonField", "DbColumnName", "id")]
+        [PropertyName("数据库字段名")]
         public string DbColumnName { get; set; }
         public bool? Required { get; set; }
         public bool? IsIdentity { get; set; }
