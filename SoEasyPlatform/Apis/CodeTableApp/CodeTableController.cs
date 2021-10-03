@@ -637,7 +637,7 @@ namespace SoEasyPlatform.Apis
     
                 foreach (var filedItem in fieldInfoList)
                 {
-                    if (columns.Any(y=>y.DbColumnName.ToLower() != filedItem.DbColumnName.ToLower())&& columns.Any(y => y.ClassProperName.ToLower() != filedItem.ClassProperName.ToLower()))
+                    if (!columns.Any(y=>y.DbColumnName.ToLower() == filedItem.DbColumnName.ToLower())&& !columns.Any(y => y.ClassProperName.ToLower() == filedItem.ClassProperName.ToLower()))
                     {
                         if (!addcolumns.Any(it => it.DbColumnName == filedItem.DbColumnName && it.CodeTableId == Convert.ToInt32(item.Id)))
                         {
