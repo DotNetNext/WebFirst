@@ -32,6 +32,7 @@ btnCommonFiled.$Open("#divCommonFiled", {
             btnProject.$Loading();
             frmCommField.$Form({
                 url: curls.save,
+                data: { "model": JSON.stringify(gridInfo), dbid: txtDbId.value },
                 callback: function (msg) {
                     btnProject.$CloseLoading();
                     if (msg.IsSuccess) {
