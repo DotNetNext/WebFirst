@@ -10,6 +10,19 @@
     <script src="~/views/system/CodeFirst.js@(ViewBag.version)"></script>
 }
 <input id="hidType" type="hidden" value="1" />
+<div id="divCommonFiled">
+    <form id="frmCommField">
+        <div class="x_content" style="margin-top:20px">
+            <div class="field item form-group">
+                <label class="col-form-label col-md-2 col-sm-2  label-align">公共字段<span class="required">*</span></label>
+                <div class="col-md-10 col-sm-9">
+                    <input type="text" id="saveFieldName" name="FieldName" placeholder="Select" autocomplete="off" />
+                    <input id="saveField" type="hidden" value="0" name="Field" />
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
 <div class="x_panel search_box">
     <div class="x_title">
         <h2><i class="fa fa-home"></i> 首页 / @ViewData["Title"] </h2>

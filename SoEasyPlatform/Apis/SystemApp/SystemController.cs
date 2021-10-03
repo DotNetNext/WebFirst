@@ -266,5 +266,33 @@ namespace SoEasyPlatform.Apis
             result.IsSuccess = true;
             return result;
         }
+
+
+        /// <summary>
+        /// 公共字段
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [AuthorizeFilter]
+        [Route("GetCommonFiled")]
+        public ActionResult<ApiResult<List<TreeModel>>> GetCommonFiled()
+        {
+            List<TreeModel> trees = new List<TreeModel>();
+            var datas = CommonFieldDb.GetList();
+            foreach (var data in datas)
+            {
+                trees.Add(new TreeModel()
+                {
+                    Id = data.Id.ToString(),
+                    Title = data.ClassProperName,
+                    IsSelectable = true
+                });
+            }
+            ApiResult<List<TreeModel>> result = new ApiResult<List<TreeModel>>();
+            result.Data = trees;
+            result.IsSuccess = true;
+            return result;
+        }
     }
 }
