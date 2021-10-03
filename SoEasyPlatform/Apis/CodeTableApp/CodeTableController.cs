@@ -624,7 +624,7 @@ namespace SoEasyPlatform.Apis
         [FormValidateFilter]
         [ExceptionFilter]
         [Route("SaveCommField")]
-        public ActionResult<ApiResult<string>> SaveCommField([FromBody]string Field)
+        public ActionResult<ApiResult<string>> SaveCommField([FromForm] string Field)
         {
             ApiResult<string> result = new ApiResult<string>();
             result.IsSuccess = true;
