@@ -12,11 +12,13 @@ namespace SoEasyPlatform
         public int? Id { get; set; }
         [ValidateReduired()]
         [PropertyName("类中属性名")]
+        [ValidateUnique("CommonField", "ClassProperName", "id")]
         public string ClassProperName { get; set; }
         [ValidateReduired()]
         [PropertyName("数据类型")]
         public string CodeType { get; set; }
         [PropertyName("数据库字段名")]
+        [ValidateUnique("CommonField", "DbColumnName", "id")]
         public string DbColumnName { get; set; }
         public bool? Required { get; set; }
         public bool? IsIdentity { get; set; }
