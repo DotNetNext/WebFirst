@@ -135,7 +135,14 @@ var SugarContext = {
             pre = "";
         for (var p in json) {
             var control = $(element).find("[name='" + pre + p + "']");
-            if (control.is(":input")) {
+            if (control.attr("type") == "checkbox")
+            {
+                if (json[p] == true)
+                {
+                    control.prop('checked', true)
+                }
+            }
+            else if (control.is(":input")) {
                 control.val(json[p]);
             }
         }
@@ -143,6 +150,7 @@ var SugarContext = {
     ClearControls: function (element) {
         $(element).find(":input").val("");
         $(element).find(":hidden").val("");
+        $(element).find("[type='checkbox']").prop("checked", false);
     },
     Grid: function (element, data) {
 
