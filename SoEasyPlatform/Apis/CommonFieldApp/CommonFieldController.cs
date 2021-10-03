@@ -48,6 +48,10 @@ namespace SoEasyPlatform.Apis
         [Route("SaveCommonField")]
         public ActionResult<ApiResult<string>> SaveCommonField([FromForm] CommonFieldViewModel model)
         {
+            if (string.IsNullOrEmpty(model.DbColumnName)) 
+            {
+                model.DbColumnName = model.ClassProperName;
+            }
             JsonResult errorResult = base.ValidateModel(model.Id);
             if (errorResult != null) return errorResult;
             var saveObject = base.mapper.Map<CommonField>(model);

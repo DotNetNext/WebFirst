@@ -3,7 +3,7 @@
         Get: _root + "CommonField/GetCommonFieldList",
         Del: _root + "CommonField/DeleteCommonField",
         SaveSystem: _root + "CommonField/SaveCommonField",
-       /* GetDbType: _root +"CommonField/GetCommonFieldType"*/
+        GetDbType: _root +"system/getdatatype?type=0"
     },
     text:
     {
@@ -11,8 +11,8 @@
         edit:"修改公共字段"
     },
     w: {
-        w: 600,
-        h:570
+        w: 500,
+        h:420
     }
 };
 divFrom.$Form({
@@ -35,12 +35,12 @@ btnSearch.$Button({
 });
 
 
-//saveTemplateTypeName.$SelectTree({
-//    isMultiple: false,
-//    url: configs.url.GetDbType,
-//    maxHeight: 180,
-//    rootIsSelect: false
-//})
+saveCodeTypeName.$SelectTree({
+    isMultiple: false,
+    url: configs.url.GetDbType,
+    maxHeight: 180,
+    rootIsSelect: false
+})
 
 btnReset.$Reset();
 
@@ -72,11 +72,7 @@ btnAdd.$Open("#divOpen", {
     },
     btn: ['添加', '关闭']
 });
-btnParameter.$Open("#divRemark", {
-    title:"参数说明",
-    w: 550,
-    h: configs.w.h,
-})
+ 
 btnEdit.$Open("#divOpen", {
     title: configs.text.edit,
     w: configs.w.w,
