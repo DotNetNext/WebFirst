@@ -52,5 +52,8 @@ namespace SoEasyPlatform
         public string Description { get; set; }
         [DisplayName("锁表")]
         public bool IsLock { get; set; }
+        [DisplayName("创建时间")]
+        [Newtonsoft.Json.JsonIgnore]
+        public DateTime CreateTime { get; set; }
     }
 }

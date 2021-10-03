@@ -106,7 +106,8 @@ namespace SoEasyPlatform.Apis
                     Id = it.Id.SelectAll(),
                     DbName = db.Desc
                 })
-                .ToPageList(model.PageIndex, int.MaxValue, ref count);
+                .ToPageList(model.PageIndex, int.MaxValue, ref count)
+                .OrderBy(it=>it.CreateTime.AddSeconds(100)>=DateTime.Now?0:1).ToList();
             result.Data.Rows = list;
             result.Data.Total = count;
             result.Data.PageSize = count;
