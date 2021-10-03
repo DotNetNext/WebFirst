@@ -37,7 +37,7 @@ btnCommonFiled.$Open("#divCommonFiled", {
                     btnProject.$CloseLoading();
                     if (msg.IsSuccess) {
                         $sugar.$CloseAll(divCommonFiled.getAttribute("dataindex"));
-                        btnCopyHide.click();
+                        
                     }
                     else {
                         msg.Data.$Alert();
