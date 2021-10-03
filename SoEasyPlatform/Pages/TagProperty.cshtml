@@ -35,31 +35,101 @@
     <div id="divOpen" style="display:none">
         <form id="frmSave" class="" action="" method="post" novalidate="">
             <div class="x_content" style="margin-top:20px">
+    
                 <div class="field item form-group">
-                    <label class="col-form-label col-md-2 col-sm-2  label-align">模版类型<span class="required">*</span></label>
+                    <label class="col-form-label col-md-2 col-sm-2  label-align">唯一标识 <span class="required">*</span></label>
                     <div class="col-md-10 col-sm-9">
-                        <input type="text" readonly id="saveTemplateTypeName" name="TemplateTypeName" placeholder="Select" autocomplete="off" />
-                        <input type="hidden" readonly id="saveTemplateTypeId" name="TemplateTypeId" autocomplete="off" />
+                        <input id="saveId" type="hidden" name="Id" class="form-control" />
+                        <input id="saveUniueCode" type="text" name="UniueCode" class="form-control" />
+
                     </div>
                 </div>
                 <div class="field item form-group">
-                    <label class="col-form-label col-md-2 col-sm-2  label-align">标题<span class="required">*</span></label>
+                    <label class="col-form-label col-md-2 col-sm-2  label-align"> 描述  </label>
                     <div class="col-md-10 col-sm-9">
-                        <input id="saveTitle" type="text" name="Title"  class="form-control"  />
+
+                        <input id="saveDescription" type="text" name="Description" class="form-control" />
+
                     </div>
                 </div>
                 <div class="field item form-group">
-                    <label class="col-form-label col-md-2 col-sm-2  label-align">  <button id="btnParameter" type="button" class="btn btn-info"><i class="fa fa-search"></i>参数查看</button><span class="required">*</span></label>
+                    <label class="col-form-label col-md-2 col-sm-2  label-align"> 控件类型 </label>
                     <div class="col-md-10 col-sm-9">
-                        <textarea id="saveContent" name="Content" style="height:330px" class="form-control"></textarea>
-                        <input id="saveId" type="hidden" name="Id" value="" />
+
+                        <input id="saveControlType" type="text" name="ControlType" class="form-control" />
+
+                    </div>
+                </div>
+                <div class="field item form-group">
+                    <label class="col-form-label col-md-2 col-sm-2  label-align"> 接口 Key </label>
+                    <div class="col-md-10 col-sm-9">
+
+                        <input id="saveUrlKey" type="text" name="UrlKey" class="form-control" />
+
+                    </div>
+                </div>
+                <div class="field item form-group">
+                    <label class="col-form-label col-md-2 col-sm-2  label-align"> 接口  </label>
+                    <div class="col-md-10 col-sm-9">
+
+                        <input id="saveUrl" type="text" name="Url" class="form-control" />
+
+                    </div>
+                </div>
+                <div class="field item form-group">
+                    <label class="col-form-label col-md-2 col-sm-2  label-align"> 字段值 </label>
+                    <div class="col-md-10 col-sm-9">
+
+                        <input id="saveFileValue" type="text" name="FileValue" class="form-control" />
+
+                    </div>
+                </div>
+                <div class="field item form-group">
+                    <label class="col-form-label col-md-2 col-sm-2  label-align"> 字段名 </label>
+                    <div class="col-md-10 col-sm-9">
+
+                        <input id="saveFileName" type="text" name="FileName" class="form-control" />
+
+                    </div>
+                </div>
+                <div class="field item form-group">
+                    <label class="col-form-label col-md-2 col-sm-2  label-align"> 扩展1  </label>
+                    <div class="col-md-10 col-sm-9">
+
+                        <input id="saveExt1" type="text" name="Ext1" class="form-control" />
+
+                    </div>
+                </div>
+                <div class="field item form-group">
+                    <label class="col-form-label col-md-2 col-sm-2  label-align">  扩展2</label>
+                    <div class="col-md-10 col-sm-9">
+
+                        <input id="saveExt2" type="text" name="Ext2" class="form-control" />
+
+                    </div>
+                </div>
+                <div class="field item form-group">
+                    <label class="col-form-label col-md-2 col-sm-2  label-align"> 扩展3 </label>
+                    <div class="col-md-10 col-sm-9">
+
+                        <input id="saveExt3" type="text" name="Ext3" class="form-control" />
 
                     </div>
                 </div>
                 @*<div class="field item form-group">
-                    <label class="col-form-label col-md-2 col-sm-2  label-align">连接字符串<span class="required">*</span></label>
+                    <label class="col-form-label col-md-2 col-sm-2  label-align"> 扩展4 </label>
                     <div class="col-md-10 col-sm-9">
-                        <input id="saveConnection" name="Connection" class="form-control" type="text" />
+
+                        <input id="saveExt4" type="text" name="Ext4" class="form-control" />
+
+                    </div>
+                </div>
+                <div class="field item form-group">
+                    <label class="col-form-label col-md-2 col-sm-2  label-align">  扩展5</label>
+                    <div class="col-md-10 col-sm-9">
+
+                        <input id="saveExt5" type="text" name="Ext5" class="form-control" />
+
                     </div>
                 </div>*@
             </div>

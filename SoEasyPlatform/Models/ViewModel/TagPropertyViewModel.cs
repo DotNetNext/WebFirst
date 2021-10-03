@@ -34,19 +34,29 @@ namespace SoEasyPlatform
     /// </summary>
     public class TagPropertyGridViewModel : PageViewModel, IView
     {
+        [DisplayName("主键")]
         public int? Id { get; set; }
         [DisplayName("唯一标识")]
         public string UniueCode { get; set; }
+        [DisplayName("描述")]
         public string Description { get; set; }
+        [DisplayName("控件类型")]
         public string ControlType { get; set; }
+        [DisplayName("接口 Key")]
         public string UrlKey { get; set; }
+        [DisplayName("接口 地址")]
         public string Url { get; set; }
+        [DisplayName("字段值")]
         public string FileValue { get; set; }
+        [DisplayName("字段名")]
         public string FileName { get; set; }
+        [DisplayName("扩展1")]
         public string Ext1 { get; set; }
+        [DisplayName("扩展2")]
         public string Ext2 { get; set; }
+        [DisplayName("扩展3")]
         public string Ext3 { get; set; }
-        public string Ext4 { get; set; }
-        public string Ext5 { get; set; }
+        //public string Ext4 { get; set; }
+        //public string Ext5 { get; set; }
     }
 }
