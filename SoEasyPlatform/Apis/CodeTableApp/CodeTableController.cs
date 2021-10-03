@@ -627,6 +627,8 @@ namespace SoEasyPlatform.Apis
         public ActionResult<ApiResult<string>> SaveCommField([FromForm] string Field,[FromForm] string model,[FromForm] int? dbid)
         {
             ApiResult<string> result = new ApiResult<string>();
+            var fields = (Field+"").Split(',').Where(it=>!string.IsNullOrEmpty(it)).ToList();
+            var fieldInfoList = CommonFieldDb.GetList(it => fields.Contains(it.Id.ToString()));
             result.IsSuccess = true;
             result.Data = "追加成功";
             return result;
