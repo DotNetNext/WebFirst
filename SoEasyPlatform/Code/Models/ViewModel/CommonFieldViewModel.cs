@@ -28,21 +28,21 @@ namespace SoEasyPlatform
 
     public class CommonFieldGridViewModel 
     {
-        [PropertyName("编号")]
+        [DisplayName("编号")]
         public int Id { get; set; }
-        [PropertyName("类中属性名")]
+        [DisplayName("类中属性名")]
         public string ClassProperName { get; set; }
-        [PropertyName("数据类型")]
+        [DisplayName("数据类型")]
         public string CodeType { get; set; }
-        [PropertyName("数据库字段名")]
+        [DisplayName("数据库字段名")]
         public string DbColumnName { get; set; }
-        [PropertyName("必填")]
+        [DisplayName("必填")]
         public bool? Required { get; set; }
-        [PropertyName("自增")]
+        [DisplayName("自增")]
         public bool? IsIdentity { get; set; }
-        [PropertyName("主键")]
+        [DisplayName("主键")]
         public bool? IsPrimaryKey { get; set; }
-        [PropertyName("备注")]
+        [DisplayName("备注")]
         public string Description { get; set; }
     }
 }
