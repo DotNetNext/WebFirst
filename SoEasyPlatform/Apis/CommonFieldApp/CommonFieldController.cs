@@ -12,10 +12,10 @@ namespace SoEasyPlatform.Apis
     [Route("api/[controller]")]
     [ExceptionFilter]
     [ApiController]
-    public class CommonFiledController : BaseController
+    public class CommonFieldController : BaseController
     {
 
-        public CommonFiledController(IMapper mapper) : base(mapper)
+        public CommonFieldController(IMapper mapper) : base(mapper)
         {
         }
         /// <summary>

@@ -1,9 +1,9 @@
 ﻿var configs = {
     url: {
-        Get: _root + "CommonFiled/GetCommonFiledList",
-        Del: _root + "CommonFiled/DeleteCommonFiled",
-        SaveSystem: _root + "CommonFiled/SaveCommonFiled",
-        GetDbType: _root +"CommonFiled/GetCommonFiledType"
+        Get: _root + "CommonField/GetCommonFieldList",
+        Del: _root + "CommonField/DeleteCommonField",
+        SaveSystem: _root + "CommonField/SaveCommonField",
+       /* GetDbType: _root +"CommonField/GetCommonFieldType"*/
     },
     text:
     {
@@ -35,12 +35,12 @@ btnSearch.$Button({
 });
 
 
-saveTemplateTypeName.$SelectTree({
-    isMultiple: false,
-    url: configs.url.GetDbType,
-    maxHeight: 180,
-    rootIsSelect: false
-})
+//saveTemplateTypeName.$SelectTree({
+//    isMultiple: false,
+//    url: configs.url.GetDbType,
+//    maxHeight: 180,
+//    rootIsSelect: false
+//})
 
 btnReset.$Reset();
 

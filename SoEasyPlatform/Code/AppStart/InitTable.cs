@@ -54,10 +54,14 @@ namespace SoEasyPlatform
 
             InitProject(db);
 
- 
+            InitCommonField(db);
         }
 
- 
+        private void InitCommonField(SqlSugarClient db)
+        {
+            db.CodeFirst.InitTables<CommonField>();
+        }
+
         private  void InitProject(SqlSugarClient db)
         {
             db.CodeFirst.InitTables<Project>();
