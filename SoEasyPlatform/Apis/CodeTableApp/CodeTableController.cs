@@ -629,6 +629,33 @@ namespace SoEasyPlatform.Apis
             ApiResult<string> result = new ApiResult<string>();
             var fields = (Field+"").Split(',').Where(it=>!string.IsNullOrEmpty(it)).ToList();
             var fieldInfoList = CommonFieldDb.GetList(it => fields.Contains(it.Id.ToString()));
+            var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<CodeTableGridViewModel>>(model);
+            List<CodeColumns> addcolumns = new List<CodeColumns>();
+            foreach (var item in list)
+            {
+                var columns = CodeColumnsDb.GetList(it => it.CodeTableId == item.Id);
+                foreach (var col in columns)
+                {
+                    foreach (var filedItem in fieldInfoList)
+                    {
+                        if (!filedItem.ClassProperName.ToLower().Equals(col.ClassProperName.ToLower()) && filedItem.DbColumnName.ToLower().Equals(col.DbColumnName.ToLower()))
+                        {
+                            addcolumns.Add(new CodeColumns()
+                            {
+                                CodeTableId = Convert.ToInt32(item.Id),
+                                 DbColumnName =filedItem.DbColumnName,
+                                 ClassProperName=filedItem.ClassProperName,
+                                  CodeType=filedItem.CodeType,
+                                   IsIdentity=filedItem.IsIdentity,
+                                    IsPrimaryKey=filedItem.IsPrimaryKey,
+                                     Required=filedItem.Required,
+
+                        });
+                        }
+                    }
+                }
+            }
+            CodeColumnsDb.InsertRange(addcolumns);
             result.IsSuccess = true;
             result.Data = "追加成功";
             return result;
