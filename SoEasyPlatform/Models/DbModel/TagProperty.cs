@@ -36,5 +36,6 @@ namespace SoEasyPlatform
         public string Ext4 { get; set; }
         [SqlSugar.SugarColumn(IsNullable =true)]
         public string Ext5 { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }

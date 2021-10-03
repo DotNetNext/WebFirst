@@ -29,7 +29,9 @@ namespace SoEasyPlatform
         protected Repository<CodeType> CodeTypeDb => new Repository<CodeType>();
         protected Repository<Project> ProjectDb =>new  Repository<Project>();
         protected Repository<CommonField> CommonFieldDb => new Repository<CommonField>();
+        protected Repository<TagProperty> TagPropertyDb = new Repository<TagProperty>();
         protected SqlSugarClient Db => Repository<object>.GetInstance();
+
         /// <summary>
         /// 验证数据库逻辑是否符合要求
         /// </summary>
