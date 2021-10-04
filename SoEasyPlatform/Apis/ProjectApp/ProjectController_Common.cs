@@ -40,7 +40,7 @@ namespace SoEasyPlatform
                         if (dbid > 0&&fileInfo.Content.Contains("[请设置ConStr]")) 
                         {
                             var db = DbScoped.Sugar.Queryable<Database>().InSingle(dbid);
-                            fileInfo.Content = fileInfo.Content.Replace("[请设置DbType]","SqlSugar.DbType."+db.DbType+"").Replace("[请设置ConStr]", "@@\""+db.Connection+"\"");
+                            fileInfo.Content = fileInfo.Content.Replace("[请设置DbType]","SqlSugar.DbType."+db.DbType+"").Replace("[请设置ConStr]", "@@\""+db.Connection.Replace("@","@@")+"\"");
                         }
                         var context = fileInfo.Content;
                         if (!string.IsNullOrEmpty(project.Reference))
