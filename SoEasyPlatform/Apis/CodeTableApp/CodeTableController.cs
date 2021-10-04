@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
 using SqlSugar;
 
 namespace SoEasyPlatform.Apis
@@ -615,7 +616,7 @@ namespace SoEasyPlatform.Apis
         }
         #endregion
 
-        #region 追加字段
+        #region Append Field
         /// <summary>
         ///  追加字段
         /// </summary>
@@ -662,6 +663,32 @@ namespace SoEasyPlatform.Apis
             return result;
          }
 
+        #endregion
+
+        #region Append Property
+        /// <summary>
+        ///  追加属性
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        [ExceptionFilter]
+        [Route("SaveTagProperty")]
+        public ActionResult<ApiResult<string>> SaveTagProperty([FromForm] string model, [FromForm] int? dbid = 0)
+        {
+            dynamic json = JObject.Parse(model);
+            var table = json.table.Value;
+            foreach (var item in json.columns)
+            {
+                var key = item.key.Value;
+                var value = item.value;
+                if (value.Count > 0)
+                {
+
+                }
+            }
+            ApiResult<string> result = new ApiResult<string>() { IsSuccess = true };
+            return result;
+        } 
         #endregion
     }
 }

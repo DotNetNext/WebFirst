@@ -9,7 +9,21 @@
     Layout = "~/Pages/Shared/_Window.cshtml";
 }
 <script>
-
+    var tableName = "@tableInfo.TableName";
+    function GetData()
+    {
+        var result = [];
+        $("#tbbox .tr").each(function () {
+            var th = $(this);
+            var values = [];
+            th.find(":checked").each(function () {
+                var item = $(this);
+                values.push(item.val())
+            });
+            result.push({ key: th.find("[name=ClassProperName]").val(), value: values });
+        });
+        return { table: tableName, columns: result };
+    }
 </script>
 <style>
     td ,th{
@@ -26,13 +40,13 @@
     }
 </style>
 <div style="height:400px;overflow-y:scroll">
-    <table>
+    <table id="tbbox">
         <tr>
             <th colspan="2">    @(tagpros.Count==0?"对不起没你还没有配置扩展属性，请到【扩展属性】菜单配置" : @tableInfo.TableName) </th>
         </tr>
         @foreach (var item in columns)
         {
-            <tr>
+            <tr class="tr">
                 <td>
                     @item.ClassProperName @item.Description
                     <input type="hidden" name="ClassProperName" value="@item.ClassProperName" />
@@ -42,7 +56,7 @@
                     @foreach (TagProperty tgp in tagpros)
                     {
 
-                        @: &nbsp; <input type="checkbox" value="true" /> @tgp.UniueCode  
+                        @: &nbsp; <input type="checkbox" value="@tgp.Id" /> @tgp.UniueCode  
 
 
                     }

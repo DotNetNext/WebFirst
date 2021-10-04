@@ -20,7 +20,7 @@
         Copy: _root + "codetable/Copy",
         Export: _root + "codetable/exportfile",
         Tag: "/TagPropertyInfo",
-        SaveTagProperty: +_root+""
+        SaveTagProperty: _root +"codetable/SaveTagProperty"
     },
     text:
     {
@@ -593,7 +593,7 @@ btnTagProperty.$Open("#divOpen", {
             callback: function (msg) {
                 btnTagProperty.$CloseLoading();
                 if (msg.IsSuccess) {
-                    "添加成功".$Alert();
+                    "保存成功".$Alert();
                     $sugar.$CloseAll(divOpen.getAttribute("dataindex"));
                     btnSearch.click();
                 }
