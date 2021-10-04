@@ -2,8 +2,9 @@
 @using SoEasyPlatform
 @model SoEasyPlatform.Pages.TagPropertyInfoModel
 @{
-    var tableId =Convert.ToInt32(Request.Query["tableid"] + "");
-    List<CodeColumns> columns = new Repository<CodeColumns>().GetList(it=>it.CodeTableId== tableId);
+    var tableId = Convert.ToInt32(Request.Query["tableid"] + "");
+    var tableInfo = new Repository<CodeTable>().GetById(tableId);
+    List<CodeColumns> columns = new Repository<CodeColumns>().GetList(it => it.CodeTableId == tableId);
     List<TagProperty> tagpros = new Repository<TagProperty>().GetList();
     Layout = "~/Pages/Shared/_Window.cshtml";
 }
@@ -11,35 +12,43 @@
 
 </script>
 <style>
-    td {
-        padding:10px;
-        font-size:14px; 
-        width:200px;
+    td ,th{
+        padding: 10px;
+        font-size: 14px;
+        width: 200px;
     }
+
     tr:hover {
-        background:#ccc;
+        background: #ccc;
+    }
+    th:hover {
+        background: #fff;
     }
 </style>
-<div style="height:600px;overflow-y:scroll"> 
-<table>
-    @foreach (var item in columns)
-    {
-    <tr>
-        <td>
-            @item.ClassProperName @item.Description
-            <input type="hidden" name="ClassProperName" value="@item.ClassProperName" />
-        </td>
-        <td style="width:400px">
-    
-                @foreach (TagProperty tgp in tagpros)
-                {
+<div style="height:400px;overflow-y:scroll">
+    <table>
+        <tr>
+            <th colspan="2">  @tableInfo.TableName</th>
+        </tr>
+        @foreach (var item in columns)
+        {
+            <tr>
+                <td>
+                    @item.ClassProperName @item.Description
+                    <input type="hidden" name="ClassProperName" value="@item.ClassProperName" />
+                </td>
+                <td style="width:400px">
 
-                   @: &nbsp; <input type="checkbox" value="true" /> @tgp.UniueCode @tgp.Description
-                   
-                }
-          
-        </td>
-    </tr>
-    }
-</table>
+                    @foreach (TagProperty tgp in tagpros)
+                    {
+
+                        @: &nbsp; <input type="checkbox" value="true" /> @tgp.UniueCode  
+
+
+                    }
+
+                </td>
+            </tr>
+        }
+    </table>
 </div>

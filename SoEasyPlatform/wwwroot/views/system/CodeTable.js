@@ -19,6 +19,7 @@
         GetProjectAll: _root + "system/GetProjectAll",
         Copy: _root + "codetable/Copy",
         Export: _root + "codetable/exportfile",
+        Tag:  "/TagPropertyInfo",
     },
     text:
     {
@@ -28,7 +29,8 @@
         addProject: "方案生成",
         addDbFirst: "导入虚拟类",
         edit: "修改虚拟类",
-        copy:"预览复制"
+        copy: "预览复制",
+        tag:"配置附加属性"
     },
     w: {
         w: "100%",
@@ -558,3 +560,48 @@ btnExcel.onclick = function () {
         btnExcel.$CloseLoading();
     }
 }
+
+//配置附加属性
+btnTagProperty.$Open("#divOpen", {
+    validate: function () {
+        if (txtDbId.value == null || txtDbId.value == "" || txtDbId.value == "0") {
+            "请选择数据库".$Alert();
+            return false;
+        }
+        else {
+            var gridInfo = divGrid.$GridInfo();
+            if (gridInfo.length == 0)
+            {
+                "请选择一条记录".$Alert();
+            }
+            return true;
+        }
+
+    },
+    title: configs.text.tag,
+    w: configs.w.w,
+    h: configs.w.h,
+    url: configs.url.Tag,
+    format: function (msg) {
+        msg.url = configs.url.Tag + "?tableid=" + divGrid.$GridInfo()[0].Id;
+    },
+    yes: function () {
+        //btnDbFirstAdd.$Loading();
+        //var data = document.getElementsByTagName("iframe")[0].contentWindow.GetData();
+        //configs.url.SaveImport.$Ajax({
+        //    callback: function (msg) {
+        //        btnDbFirstAdd.$CloseLoading();
+        //        if (msg.IsSuccess) {
+        //            "添加成功".$Alert();
+        //            $sugar.$CloseAll(divOpen.getAttribute("dataindex"));
+        //            btnSearch.click();
+        //        }
+        //        else {
+        //            msg.Data.$Alert();
+        //        }
+        //    },
+        //    data: { "dbid": txtDbId.value, "model": JSON.stringify(data) }
+        //})
+    },
+    btn: ['保存', '关闭']
+})
