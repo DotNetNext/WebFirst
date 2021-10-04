@@ -19,7 +19,8 @@
         GetProjectAll: _root + "system/GetProjectAll",
         Copy: _root + "codetable/Copy",
         Export: _root + "codetable/exportfile",
-        Tag:  "/TagPropertyInfo",
+        Tag: "/TagPropertyInfo",
+        SaveTagProperty: +_root+""
     },
     text:
     {
@@ -586,22 +587,22 @@ btnTagProperty.$Open("#divOpen", {
         msg.url = configs.url.Tag + "?tableid=" + divGrid.$GridInfo()[0].Id;
     },
     yes: function () {
-        //btnDbFirstAdd.$Loading();
-        //var data = document.getElementsByTagName("iframe")[0].contentWindow.GetData();
-        //configs.url.SaveImport.$Ajax({
-        //    callback: function (msg) {
-        //        btnDbFirstAdd.$CloseLoading();
-        //        if (msg.IsSuccess) {
-        //            "添加成功".$Alert();
-        //            $sugar.$CloseAll(divOpen.getAttribute("dataindex"));
-        //            btnSearch.click();
-        //        }
-        //        else {
-        //            msg.Data.$Alert();
-        //        }
-        //    },
-        //    data: { "dbid": txtDbId.value, "model": JSON.stringify(data) }
-        //})
+        btnTagProperty.$Loading();
+        var data = document.getElementsByTagName("iframe")[0].contentWindow.GetData();
+        configs.url.SaveTagProperty.$Ajax({
+            callback: function (msg) {
+                btnTagProperty.$CloseLoading();
+                if (msg.IsSuccess) {
+                    "添加成功".$Alert();
+                    $sugar.$CloseAll(divOpen.getAttribute("dataindex"));
+                    btnSearch.click();
+                }
+                else {
+                    msg.Data.$Alert();
+                }
+            },
+            data: { "dbid": txtDbId.value, "model": JSON.stringify(data) }
+        })
     },
     btn: ['保存', '关闭']
 })

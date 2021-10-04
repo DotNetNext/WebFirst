@@ -32,7 +32,7 @@ namespace SoEasyPlatform
     /// <summary>
     /// 属性标签，用于模版扩展
     /// </summary>
-    public class TagPropertyGridViewModel : PageViewModel, IView
+    public class TagPropertyGridViewModel 
     {
         [DisplayName("主键")]
         public int? Id { get; set; }
