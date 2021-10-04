@@ -56,6 +56,7 @@ namespace SoEasyPlatform.Apis
         {
             List<EntitiesGen> result = new List<EntitiesGen>();
             var mapping = Db.Queryable<MappingProperty>().ToList();
+            var tags = Db.Queryable<TagProperty>().ToList();
             foreach (var item in tableList)
             {
                 EntitiesGen gen = new EntitiesGen()
@@ -85,7 +86,8 @@ namespace SoEasyPlatform.Apis
                             IsIgnore = true,
                             CodeType=column.CodeType
                         };
-                        proGen.MappingProperties = mapping.Where(it => item.DbId == it.DbId && it.TableName == item.ClassName && it.ColumnName == column.ClassProperName).ToList();
+                        var mappings= mapping.Where(it => item.DbId == it.DbId && it.TableName == item.ClassName && it.ColumnName == column.ClassProperName).ToList(); ;
+                        proGen.MappingProperties = tags.Where(it => mappings.Any(x => x.TagId == it.Id + "")).ToList();
                         gen.PropertyGens.Add(proGen);
                     }
                     else
@@ -106,6 +108,8 @@ namespace SoEasyPlatform.Apis
                             IsSpecialType= IsSpecialType(column),
                             CodeType= column.CodeType
                         };
+                        var mappings = mapping.Where(it => item.DbId == it.DbId && it.TableName == item.ClassName && it.ColumnName == column.ClassProperName).ToList(); ;
+                        proGen.MappingProperties = tags.Where(it => mappings.Any(x => x.TagId == it.Id + "")).ToList();
                         gen.PropertyGens.Add(proGen);
                     }
                 }

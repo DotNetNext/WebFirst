@@ -95,6 +95,6 @@ namespace SoEasyPlatform
         /// <summary>
         /// 扩展属性
         /// </summary>
-        public List<MappingProperty> MappingProperties { get; set; }
+        public List<TagProperty> MappingProperties { get; set; }
     }
 }
