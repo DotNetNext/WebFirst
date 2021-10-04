@@ -1,0 +1,45 @@
+﻿@page
+@using SoEasyPlatform
+@model SoEasyPlatform.Pages.TagPropertyInfoModel
+@{
+    var tableId =Convert.ToInt32(Request.Query["tableid"] + "");
+    List<CodeColumns> columns = new Repository<CodeColumns>().GetList(it=>it.CodeTableId== tableId);
+    List<TagProperty> tagpros = new Repository<TagProperty>().GetList();
+    Layout = "~/Pages/Shared/_Window.cshtml";
+}
+<script>
+
+</script>
+<style>
+    td {
+        padding:10px;
+        font-size:14px; 
+        width:200px;
+    }
+    tr:hover {
+        background:#ccc;
+    }
+</style>
+<div style="height:600px;overflow-y:scroll"> 
+<table>
+    @foreach (var item in columns)
+    {
+    <tr>
+        <td>
+            @item.ClassProperName @item.Description
+            <input type="hidden" name="ClassProperName" value="@item.ClassProperName" />
+        </td>
+        <td style="width:400px">
+    
+                @foreach (TagProperty tgp in tagpros)
+                {
+
+                   @: &nbsp; <input type="checkbox" value="true" /> @tgp.UniueCode @tgp.Description
+                   
+                }
+          
+        </td>
+    </tr>
+    }
+</table>
+</div>
