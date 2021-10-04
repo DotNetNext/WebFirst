@@ -676,14 +676,19 @@ namespace SoEasyPlatform.Apis
         public ActionResult<ApiResult<string>> SaveTagProperty([FromForm] string model, [FromForm] int? dbid = 0)
         {
             dynamic json = JObject.Parse(model);
-            var table = json.table.Value;
+            string table = json.table.Value ;
+            Db.Deleteable<MappingProperty>().Where(it => it.DbId == dbid.Value && it.TableName == table).ExecuteCommand();
             foreach (var item in json.columns)
             {
                 var key = item.key.Value;
                 var value = item.value;
                 if (value.Count > 0)
                 {
+                    foreach (var tag in value)
+                    {
 
+                        Db.Insertable(new MappingProperty() { DbId = dbid.Value, TableName = table, ColumnName = key, TagId= tag.Value }).ExecuteCommand();
+                    }
                 }
             }
             ApiResult<string> result = new ApiResult<string>() { IsSuccess = true };

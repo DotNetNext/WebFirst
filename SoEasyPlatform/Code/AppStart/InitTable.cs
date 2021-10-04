@@ -57,6 +57,13 @@ namespace SoEasyPlatform
             InitCommonField(db);
 
             InitTagProperty(db);
+
+            InitOther(db);
+        }
+
+        private void InitOther(SqlSugarClient db)
+        {
+            db.CodeFirst.InitTables<MappingProperty>();
         }
 
         private void InitTagProperty(SqlSugarClient db)

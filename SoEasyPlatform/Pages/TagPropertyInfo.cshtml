@@ -6,10 +6,11 @@
     var tableInfo = new Repository<CodeTable>().GetById(tableId);
     List<CodeColumns> columns = new Repository<CodeColumns>().GetList(it => it.CodeTableId == tableId);
     List<TagProperty> tagpros = new Repository<TagProperty>().GetList();
+    var mappings = new Repository<MappingProperty>().GetList();
     Layout = "~/Pages/Shared/_Window.cshtml";
 }
 <script>
-    var tableName = "@tableInfo.TableName";
+    var tableName = "@tableInfo.ClassName";
     function GetData()
     {
         var result = [];
@@ -55,8 +56,14 @@
 
                     @foreach (TagProperty tgp in tagpros)
                     {
-
-                        @: &nbsp; <input type="checkbox" value="@tgp.Id" /> @tgp.UniueCode  
+                        if (mappings.Any(it => it.TableName == tableInfo.ClassName && it.ColumnName == item.ClassProperName && it.TagId == tgp.Id.ToString()))
+                        {
+                            @: &nbsp; <input type="checkbox" checked="checked" value="@tgp.Id" /> @tgp.UniueCode
+                        }
+                        else
+                        {
+                            @: &nbsp; <input type="checkbox" value="@tgp.Id" /> @tgp.UniueCode
+                        }
 
 
                     }
