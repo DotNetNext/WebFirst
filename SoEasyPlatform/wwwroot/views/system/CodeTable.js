@@ -320,7 +320,7 @@ btnTable.onclick = function () {
 btnPath.$Open("#divPath", {
     title: configs.text.addPath,
     w: 600,
-    h: 560,
+    h: 600,
     validate: function () {
         var gridInfo = divGrid.$GridInfo();
         if (txtDbId.value == null || txtDbId.value == "" || txtDbId.value == "0") {
@@ -374,7 +374,7 @@ btnPath.$Open("#divPath", {
 btnPathEdit.$Open("#divPath", {
     title: configs.text.EditPath,
     w: 600,
-    h: 560,
+    h: 600,
     validate: function () {
         var gridInfo = divGrid.$GridInfo();
         if (txtDbId.value == null || txtDbId.value == "" || txtDbId.value == "0") {
