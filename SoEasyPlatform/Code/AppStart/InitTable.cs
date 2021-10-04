@@ -693,7 +693,7 @@ namespace SoEasyPlatform
                            new Menu{ MenuName="文件管理" , Url="/FileInfo"} ,
                            new Menu{ MenuName="数据类型" , Url="/CodeType"},
                            new Menu{ MenuName="公共字段" , Url="/CommonFiled"},
-                           new Menu{ MenuName="属性标签",Url="/TagProperty" },
+                           new Menu{ MenuName="扩展属性",Url="/TagProperty" },
                            new Menu{ MenuName="方案管理" , Url="/Project"} 
 
                         }

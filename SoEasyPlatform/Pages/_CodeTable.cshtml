@@ -1,6 +1,7 @@
 ﻿@{ 
 
     var btnCss = ViewBag.IsDbFirst == true?"":"none";
+    var btnCss2 = (ViewBag.IsDbFirst == true|| ViewBag.IsView == true) ? "" : "none";
 }
 <div class="x_title">
     <h2 ><i class="fa fa-home"></i> @ViewData["Title"] </h2>
@@ -43,6 +44,7 @@
     <button id="btnProject" type="button" class="btn btn-success"><i class="fa fa-cogs"></i>生成方案</button>
     <button id="btnCopy" type="button" class="btn btn-danger"><i class="fa fa-copy"></i> 预览</button>
     <button id="btnExcel" type="button" class="btn btn-dark @btnCss"><i class="fa fa-download"></i>文档</button>
+    <button id="btnTagProperty" type="button" class="btn btn-c3 @btnCss2"><i class="fa fa-yelp"></i>扩展属性</button>
 </div>
 <div class="x_content">
     <table id="divGrid"></table>
