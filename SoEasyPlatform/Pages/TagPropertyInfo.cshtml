@@ -28,7 +28,7 @@
 <div style="height:400px;overflow-y:scroll">
     <table>
         <tr>
-            <th colspan="2">  @tableInfo.TableName   @(tagpros.Count==0?"请到【扩展属性】菜单配置":"") </th>
+            <th colspan="2">    @(tagpros.Count==0?"对不起，请到【扩展属性】菜单配置" : @tableInfo.TableName) </th>
         </tr>
         @foreach (var item in columns)
         {
