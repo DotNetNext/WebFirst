@@ -55,6 +55,7 @@ namespace SoEasyPlatform.Apis
         private List<EntitiesGen> GetGenList(List<CodeTable> tableList, List<CodeType> types,SqlSugar.DbType databasedbType)
         {
             List<EntitiesGen> result = new List<EntitiesGen>();
+            var mapping = Db.Queryable<MappingProperty>().ToList();
             foreach (var item in tableList)
             {
                 EntitiesGen gen = new EntitiesGen()
@@ -84,6 +85,7 @@ namespace SoEasyPlatform.Apis
                             IsIgnore = true,
                             CodeType=column.CodeType
                         };
+                        proGen.MappingProperties = mapping.Where(it => item.DbId == it.DbId && it.TableName == item.ClassName && it.ColumnName == column.ClassProperName).ToList();
                         gen.PropertyGens.Add(proGen);
                     }
                     else

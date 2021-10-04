@@ -92,5 +92,9 @@ namespace SoEasyPlatform
         /// 配置的类型名称 (比如 string100)
         /// </summary>
         public string CodeType { get;  set; }
+        /// <summary>
+        /// 扩展属性
+        /// </summary>
+        public List<MappingProperty> MappingProperties { get; set; }
     }
 }
