@@ -12,7 +12,7 @@ namespace SoEasyPlatform
             if (dbColumnName.Contains("_"))
             {
                 dbColumnName = dbColumnName.TrimEnd('_');
-                var array = dbColumnName.Split('_').Select(it=>GetFirstUpper(it)).ToArray();
+                var array = dbColumnName.Split('_').Select(it=>GetFirstUpper(it,true)).ToArray();
                 return string.Join("", array);
             }
             else
@@ -21,11 +21,18 @@ namespace SoEasyPlatform
             }
         }
 
-        private static string GetFirstUpper(string dbColumnName)
+        private static string GetFirstUpper(string dbColumnName,bool islower=false)
         {
             if (dbColumnName == null)
                 return null;
-            return dbColumnName.Substring(0, 1).ToUpper() + dbColumnName.Substring(1).ToLower();
+            if (islower)
+            {
+                return dbColumnName.Substring(0, 1).ToUpper() + dbColumnName.Substring(1).ToLower();
+            }
+            else 
+            {
+                return dbColumnName.Substring(0, 1).ToUpper() + dbColumnName.Substring(1);
+            }
         }
     }
 }
