@@ -25,7 +25,7 @@ namespace SoEasyPlatform
         {
             if (dbColumnName == null)
                 return null;
-            return dbColumnName.Substring(0, 1).ToUpper() + dbColumnName.Substring(1);
+            return dbColumnName.Substring(0, 1).ToUpper() + dbColumnName.Substring(1).ToLower();
         }
     }
 }
