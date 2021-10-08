@@ -514,72 +514,80 @@ namespace SoEasyPlatform.Apis
             if (!string.IsNullOrEmpty(model))
             {
                 var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<CodeTableViewModel>>(model);
-                var oldList = CodeTableDb.AsQueryable().In(list.Select(it => it.Id).ToList()).ToList();
-                var oldColumns = Db.Queryable<CodeColumns, CodeTable>((c, t) => c.CodeTableId == t.Id).Where((c, t) => oldList.Select(it => it.Id).Contains(t.Id)).Select((c, t) => new { TableId = t.Id, TableName = t.TableName, Columns = c }).ToList();
-                var alltables = tableDb.DbMaintenance.GetTableInfoList(false).Select(it => it.Name.ToLower()).ToList();
-                var ids = list.Select(it => it.Id).ToList();
-                var tableNames = list.Select(it => it.TableName.ToLower()).ToList();
-                var errorTables = list.Where(it => !alltables.Contains(it.TableName.ToLower()) && !alltables.Contains(it.ClassName.ToLower())).ToList();
-                base.Check(errorTables.Any(), string.Join(",", errorTables.Select(y => y.TableName ?? y.ClassName)) + "未创建表不能同步");
-                try
+                Db.Utilities.PageEach(list, 20, pageList =>
                 {
-                    Db.BeginTran();
-                    CodeTableDb.DeleteByIds(ids.Select(it => (object)it).ToArray());
-                    var dbTableGridList = tableDb.DbMaintenance.GetTableInfoList(false).Where(it => tableNames.Contains(it.Name.ToLower())).Select(it => new DbTableGridViewModel()
-                    {
-                        Description = it.Description,
-                        Name = it.Name
-                    });
-                    if (dbTableGridList.Any())
-                    {
-                        SaveCodetableImport(dbid, Newtonsoft.Json.JsonConvert.SerializeObject(dbTableGridList));
-                    }
-                    foreach (var item in oldList)
-                    {
-                        CodeTableDb.AsUpdateable(item).UpdateColumns(it => it.ClassName).WhereColumns(it => it.TableName).ExecuteCommand();
-                    }
-                    List<CodeColumns> UpdateColumns = new List<CodeColumns>();
-                    foreach (var item in oldColumns.GroupBy(it => new { it.TableId, it.TableName }).ToList())
-                    {
-                        var tableId = CodeTableDb.AsQueryable().Where(it => it.TableName == item.Key.TableName && it.DbId == dbid).First()?.Id;
-                        if (tableId != null)
-                        {
-                            var columns = CodeColumnsDb.AsQueryable().Where(it => it.CodeTableId == tableId).ToList();
-                            foreach (var col in columns)
-                            {
-                                var addColumn = item.FirstOrDefault(it => it.Columns.DbColumnName == col.DbColumnName);
-                                if (addColumn != null)
-                                {
-                                    col.ClassProperName = addColumn.Columns.ClassProperName;
-                                    UpdateColumns.Add(col);
-                                }
-                                else
-                                {
-
-                                }
-                            }
-                            foreach (var oldItem in item.ToList())
-                            {
-                                if (oldItem.Columns.CodeType.Equals("ignore", StringComparison.CurrentCultureIgnoreCase))
-                                {
-                                    var mapp = _mapper.Map<CodeColumns>(oldItem.Columns);
-                                    mapp.CodeTableId = columns[0].CodeTableId;
-                                    CodeColumnsDb.AsInsertable(mapp).ExecuteCommand();
-                                }
-                            }
-                        }
-                    }
-                    CodeColumnsDb.AsUpdateable(UpdateColumns).UpdateColumns(it => it.ClassProperName).ExecuteCommand();
-                    Db.CommitTran();
-                }
-                catch (Exception ex)
-                {
-                    Db.RollbackTran();
-                    throw ex;
-                }
+                      UpdateEntityItem(dbid, tableDb, pageList);
+                  });
             }
             result.IsSuccess = true;
             return result;
+        }
+
+        private void UpdateEntityItem(int dbid, SqlSugarClient tableDb, List<CodeTableViewModel> list)
+        {
+            var oldList = CodeTableDb.AsQueryable().In(list.Select(it => it.Id).ToList()).ToList();
+            var oldColumns = Db.Queryable<CodeColumns, CodeTable>((c, t) => c.CodeTableId == t.Id).Where((c, t) => oldList.Select(it => it.Id).Contains(t.Id)).Select((c, t) => new { TableId = t.Id, TableName = t.TableName, Columns = c }).ToList();
+            var alltables = tableDb.DbMaintenance.GetTableInfoList(false).Select(it => it.Name.ToLower()).ToList();
+            var ids = list.Select(it => it.Id).ToList();
+            var tableNames = list.Select(it => it.TableName.ToLower()).ToList();
+            var errorTables = list.Where(it => !alltables.Contains(it.TableName.ToLower()) && !alltables.Contains(it.ClassName.ToLower())).ToList();
+            base.Check(errorTables.Any(), string.Join(",", errorTables.Select(y => y.TableName ?? y.ClassName)) + "未创建表不能同步");
+            try
+            {
+                Db.BeginTran();
+                CodeTableDb.DeleteByIds(ids.Select(it => (object)it).ToArray());
+                var dbTableGridList = tableDb.DbMaintenance.GetTableInfoList(false).Where(it => tableNames.Contains(it.Name.ToLower())).Select(it => new DbTableGridViewModel()
+                {
+                    Description = it.Description,
+                    Name = it.Name
+                });
+                if (dbTableGridList.Any())
+                {
+                    SaveCodetableImport(dbid, Newtonsoft.Json.JsonConvert.SerializeObject(dbTableGridList));
+                }
+                foreach (var item in oldList)
+                {
+                    CodeTableDb.AsUpdateable(item).UpdateColumns(it => it.ClassName).WhereColumns(it => it.TableName).ExecuteCommand();
+                }
+                List<CodeColumns> UpdateColumns = new List<CodeColumns>();
+                foreach (var item in oldColumns.GroupBy(it => new { it.TableId, it.TableName }).ToList())
+                {
+                    var tableId = CodeTableDb.AsQueryable().Where(it => it.TableName == item.Key.TableName && it.DbId == dbid).First()?.Id;
+                    if (tableId != null)
+                    {
+                        var columns = CodeColumnsDb.AsQueryable().Where(it => it.CodeTableId == tableId).ToList();
+                        foreach (var col in columns)
+                        {
+                            var addColumn = item.FirstOrDefault(it => it.Columns.DbColumnName == col.DbColumnName);
+                            if (addColumn != null)
+                            {
+                                col.ClassProperName = addColumn.Columns.ClassProperName;
+                                UpdateColumns.Add(col);
+                            }
+                            else
+                            {
+
+                            }
+                        }
+                        foreach (var oldItem in item.ToList())
+                        {
+                            if (oldItem.Columns.CodeType.Equals("ignore", StringComparison.CurrentCultureIgnoreCase))
+                            {
+                                var mapp = _mapper.Map<CodeColumns>(oldItem.Columns);
+                                mapp.CodeTableId = columns[0].CodeTableId;
+                                CodeColumnsDb.AsInsertable(mapp).ExecuteCommand();
+                            }
+                        }
+                    }
+                }
+                CodeColumnsDb.AsUpdateable(UpdateColumns).UpdateColumns(it => it.ClassProperName).ExecuteCommand();
+                Db.CommitTran();
+            }
+            catch (Exception ex)
+            {
+                Db.RollbackTran();
+                throw ex;
+            }
         }
 
 
