@@ -165,12 +165,15 @@ namespace SoEasyPlatform.Apis
             if (!string.IsNullOrEmpty(model))
             {
                 var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<CodeTableViewModel>>(model);
-                var exp = Expressionable.Create<CodeTable>();
-                foreach (var item in list)
+                Db.Utilities.PageEach(list, 50, eitem =>
                 {
-                    exp.Or(it => it.Id == item.Id);
-                }
-                CodeTableDb.Update(it => new CodeTable() { IsDeleted = true }, exp.ToExpression());
+                    var exp = Expressionable.Create<CodeTable>();
+                    foreach (var item in eitem)
+                    {
+                        exp.Or(it => it.Id == item.Id);
+                    }
+                    CodeTableDb.Update(it => new CodeTable() { IsDeleted = true }, exp.ToExpression());
+                });
             }
             result.IsSuccess = true;
             return result;
