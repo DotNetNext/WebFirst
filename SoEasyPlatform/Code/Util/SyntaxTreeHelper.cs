@@ -51,11 +51,12 @@ namespace SoEasyPlatform
                         diagnostic.IsWarningAsError ||
                         diagnostic.Severity == DiagnosticSeverity.Error);
 
+                    string message = "";
                     foreach (Diagnostic diagnostic in failures)
                     {
-                        Console.Error.WriteLine("\t{0}: {1}", diagnostic.Id, diagnostic.GetMessage());
+                        message += diagnostic.GetMessage();
                     }
-                    throw new Exception("解析实体类出错，请检查命名" + classString);
+                    throw new Exception("解析实体类出错，请检查命名" + message +" \r\n "+classString);
                 }
                 else
                 {
