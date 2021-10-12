@@ -3,6 +3,7 @@
 @{
     Layout = "~/Pages/Shared/_Window.cshtml";
     var edit = string.IsNullOrEmpty(Request.QueryString.Value) ? "" : "edit";
+    ViewBag.version = "?v="+SoEasyPlatform.Startup.Version;
 }
 @section js
 {
