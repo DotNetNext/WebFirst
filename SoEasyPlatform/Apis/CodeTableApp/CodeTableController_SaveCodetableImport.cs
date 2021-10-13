@@ -36,7 +36,7 @@ namespace SoEasyPlatform.Apis
                         SortTypeInfoList.Add(item);
                     }
                 }
-                var result= SortTypeInfoList.OrderByDescending(it=>it.Sort).First();
+                var result= SortTypeInfoList.Where(it=>it.CodeType.Name!= "json_default").OrderByDescending(it=>it.Sort).First();
                 return result;
             }
         }

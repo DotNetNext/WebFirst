@@ -392,6 +392,10 @@ namespace SoEasyPlatform
                       } 
                 }).ExecuteCommand();
             }
+            if (db.Queryable<CodeType>().Any(it => it.Name == "json_default"))
+            {
+                db.Updateable<CodeType>().SetColumns(it => new CodeType() {  CSharepType = "dynamic" }).Where(it => it.Name == "json_default").ExecuteCommand();
+            }
         }
 
         private  void InitConnection(SqlSugarClient db)
