@@ -93,6 +93,10 @@ namespace SoEasyPlatform
         /// </summary>
         public string CodeType { get;  set; }
         /// <summary>
+        /// 默认值
+        /// </summary>
+        public string DefaultValue { get; set; }
+        /// <summary>
         /// 扩展属性
         /// </summary>
         public List<TagProperty> MappingProperties { get; set; }

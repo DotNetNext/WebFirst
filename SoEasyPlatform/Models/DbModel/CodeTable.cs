@@ -33,6 +33,8 @@ namespace SoEasyPlatform
         public string Description { get; set; }
         public string CodeType { get; set; }
         public int CodeTableId { get; set; }
+        [SugarColumn(IsNullable =true)]
+        public string DefaultValue { get; set; }
 
     }
 }

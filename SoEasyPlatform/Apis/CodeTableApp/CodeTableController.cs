@@ -253,7 +253,7 @@ namespace SoEasyPlatform.Apis
 
         #region Create File
         /// <summary>
-        /// 生成实体
+        /// 创建方案
         /// </summary>
         /// <returns></returns>
         [HttpPost]
@@ -483,7 +483,8 @@ namespace SoEasyPlatform.Apis
                             CodeTableId = entity.Id,
                             CodeType = typeInfo.CodeType.Name,
                             Length = typeInfo.DbTypeInfo.Length,
-                            DecimalDigits = typeInfo.DbTypeInfo.DecimalDigits
+                            DecimalDigits = typeInfo.DbTypeInfo.DecimalDigits,
+                            DefaultValue = columnInfo.DefaultValue
                         };
                         code.ColumnInfoList.Add(column);
                     }

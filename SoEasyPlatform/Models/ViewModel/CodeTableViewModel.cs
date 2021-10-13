@@ -38,6 +38,7 @@ namespace SoEasyPlatform
         public int CodeTableId { get; set; }
         public int? DecimalDigits { get;  set; }
         public int? Length { get;  set; }
+        public string DefaultValue { get; set; }
     }
     public class CodeTableGridViewModel  
     {
