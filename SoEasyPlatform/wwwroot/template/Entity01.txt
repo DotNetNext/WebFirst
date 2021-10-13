@@ -29,7 +29,7 @@ namespace @Model.name_space
         @:/// @(item.Description) 
         @if(item.DefaultValue!=null)
         {
-        @:/// @Raw(item.DefaultValue)
+        @:///默认值: @Raw(item.DefaultValue)
         }
         @:///</summary>
         @: [SugarColumn(ColumnName="@item.DbColumnName" @(isPrimaryKey) @(isIdentity) @(isIgnore) @(isJson))]
