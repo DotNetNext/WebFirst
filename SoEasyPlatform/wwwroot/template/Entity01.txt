@@ -5,7 +5,7 @@ using SqlSugar;
 namespace @Model.name_space
 {
     /// <summary>
-    /// @(Model.Description)
+    /// @((Model.Description+"").Replace("\r","").Replace("\n",""))
     ///</summary>
     [SugarTable("@(Model.TableName)")]
     public class @(Model.ClassName)
@@ -25,7 +25,7 @@ namespace @Model.name_space
     }
     //想和数据库一样就用  item.DbColumnName
 
-    var desc=(item.Description+"").Replace((char)13,(char)0).Replace((char)10,(char)0);//处理换行
+    var desc=(item.Description+"").Replace("\r","").Replace("\n","");//处理换行
 
     if(isIgnore!="")
     {
