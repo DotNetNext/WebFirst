@@ -22,7 +22,7 @@ namespace @Model.name_space
        isPrimaryKey =isIdentity =isNull="";
      }
         @:/// <summary>
-        @:/// @(item.Description)
+        @:/// @(item.Description) (item.DefaultValue)
         @:///</summary>
         @: [SugarColumn(ColumnName="@item.DbColumnName" @(isPrimaryKey) @(isIdentity) @(isIgnore) @(isJson))]
         @: public @Raw(item.Type)@isNull @item.PropertyName { get; set; }

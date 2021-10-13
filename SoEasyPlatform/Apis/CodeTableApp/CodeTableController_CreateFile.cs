@@ -107,7 +107,8 @@ namespace SoEasyPlatform.Apis
                             Length = dbType.Length,
                             DecimalDigits = dbType.DecimalDigits,
                             IsSpecialType= IsSpecialType(column),
-                            CodeType= column.CodeType
+                            CodeType= column.CodeType,
+                            DefaultValue=column.DefaultValue
                         };
                         var mappings = mapping.Where(it => item.DbId == it.DbId && it.TableName == item.ClassName && it.ColumnName == column.ClassProperName).ToList(); ;
                         proGen.MappingProperties = tags.Where(it => mappings.Any(x => x.TagId == it.Id + "")).ToList();
