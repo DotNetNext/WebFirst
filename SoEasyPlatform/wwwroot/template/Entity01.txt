@@ -19,6 +19,10 @@ namespace @Model.name_space
     var isJson=(item.CodeType.StartsWith("json")?",IsJson= true":"");
 
     var newPropertyName=item.PropertyName; //这里可以用C#处理 实体属性的显式格式
+    if(System.Text.RegularExpressions.Regex.IsMatch(newPropertyName.Substring(0,1), "[0-9]"))
+    {
+        newPropertyName="_"+newPropertyName;//处理属性名开头为数字情况
+    }
     //想和数据库一样就用  item.DbColumnName
 
     var desc=(item.Description+"").Replace("\r"," ").Replace("\n"," ");//处理换行
