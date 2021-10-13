@@ -346,7 +346,7 @@ namespace SoEasyPlatform
                                   Name="byteArray",
                                   CSharepType="byte[]",
                                   DbType=new DbTypeInfo[]{
-                                                           new DbTypeInfo(){  Name="clob"},
+                                                           new DbTypeInfo(){  Name="blob"},
                                                            new DbTypeInfo(){  Name="bit"},
                                                            new DbTypeInfo(){  Name="longblob"},
                                                            new DbTypeInfo(){  Name="binary"}
