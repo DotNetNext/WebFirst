@@ -19,7 +19,7 @@ namespace @Model.name_space
     var isJson=(item.CodeType.StartsWith("json")?",IsJson= true":"");
 
     var newPropertyName=item.PropertyName; //这里可以用C#处理 实体属性的显式格式
-
+    //想和数据库一样就用  item.DbColumnName
 
     if(isIgnore!="")
     {
