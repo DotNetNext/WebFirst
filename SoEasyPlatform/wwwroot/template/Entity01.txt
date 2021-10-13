@@ -14,7 +14,7 @@ namespace @Model.name_space
 {
     var isPrimaryKey = item.IsPrimaryKey ? ",IsPrimaryKey = true" : "";
     var isIdentity = item.IsIdentity ? ",IsIdentity = true" : "";
-    var isNull=(item.IsNullable&&item.Type!="string"&&item.IsSpecialType==false)?"?":"";
+    var isNull=(item.IsNullable&&item.Type!="string"&&item.IsSpecialType==false&&item.Type!="byte[]")?"?":"";
     var isIgnore=(item.IsIgnore?",IsIgnore = true":"");
     var isJson=(item.CodeType.StartsWith("json")?",IsJson= true":"");
 
@@ -25,7 +25,7 @@ namespace @Model.name_space
     }
     //想和数据库一样就用  item.DbColumnName
 
-    var desc=(item.Description+"").Replace("\r"," ").Replace("\n"," ");//处理换行
+    var desc=(item.Description+"").Replace((char)13,(char)0).Replace((char)10,(char)0);//处理换行
 
     if(isIgnore!="")
     {
@@ -35,7 +35,7 @@ namespace @Model.name_space
         @:/// @(desc) 
         @if(item.DefaultValue!=null)
         {
-        @:///默认值: @Raw(item.DefaultValue)
+        @:/// 默认值: @Raw(item.DefaultValue)
         }
         @:///</summary>
         @: [SugarColumn(ColumnName="@item.DbColumnName" @(isPrimaryKey) @(isIdentity) @(isIgnore) @(isJson))]
