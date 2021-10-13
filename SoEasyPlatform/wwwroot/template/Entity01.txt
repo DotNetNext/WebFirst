@@ -21,12 +21,14 @@ namespace @Model.name_space
     var newPropertyName=item.PropertyName; //这里可以用C#处理 实体属性的显式格式
     //想和数据库一样就用  item.DbColumnName
 
+    var desc=(item.Description+"").Replace("\r"," ").Replace("\n"," ");//处理换行
+
     if(isIgnore!="")
     {
        isPrimaryKey =isIdentity =isNull="";
      }
         @:/// <summary>
-        @:/// @(item.Description) 
+        @:/// @(desc) 
         @if(item.DefaultValue!=null)
         {
         @:///默认值: @Raw(item.DefaultValue)
