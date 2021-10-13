@@ -18,7 +18,7 @@ namespace @Model.name_space
     var isIgnore=(item.IsIgnore?",IsIgnore = true":"");
     var isJson=(item.CodeType.StartsWith("json")?",IsJson= true":"");
 
-    var newPropertyName=item.PropertyName; //这里可以用C#处理 newPropertyName 值的显式格式
+    var newPropertyName=item.PropertyName; //这里可以用C#处理 实体属性的显式格式
 
 
     if(isIgnore!="")
