@@ -54,7 +54,14 @@ namespace SoEasyPlatform
                 }
                 catch  
                 {
-                    wb.Worksheets.Add(newdt, dt.TableName.Substring(0,25)+DateTime.Now.ToString("...")+index);
+                    if (dt.TableName.Length < 28)
+                    {
+                        wb.Worksheets.Add(newdt,"_"+dt.TableName);
+                    }
+                    else
+                    {
+                        wb.Worksheets.Add(newdt, dt.TableName.Substring(0, 25) + DateTime.Now.ToString("...") + index);
+                    }
                 }
                 var worksheet = wb.Worksheets.Last();
                 foreach (var item in worksheet.Tables)
