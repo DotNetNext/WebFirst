@@ -21,8 +21,10 @@ namespace SoEasyPlatform
         {
             XLWorkbook wb = new XLWorkbook();
 
+            int index = 0;
             foreach (var dt in dts)
             {
+                index++;
                 for (int i = 1; i < 15; i++)
                 {
                     //删除Ignore列
@@ -46,7 +48,14 @@ namespace SoEasyPlatform
                     }
                     newdt.Rows.Add(dr);
                 }
-                wb.Worksheets.Add(newdt, dt.TableName);
+                try
+                {
+                    wb.Worksheets.Add(newdt, dt.TableName);
+                }
+                catch  
+                {
+                    wb.Worksheets.Add(newdt, dt.TableName.Substring(0,25)+DateTime.Now.ToString("...")+index);
+                }
                 var worksheet = wb.Worksheets.Last();
                 foreach (var item in worksheet.Tables)
                 {

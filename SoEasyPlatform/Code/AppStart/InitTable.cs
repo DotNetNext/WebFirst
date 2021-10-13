@@ -394,7 +394,7 @@ namespace SoEasyPlatform
             }
             if (db.Queryable<CodeType>().Any(it => it.Name == "json_default"))
             {
-                db.Updateable<CodeType>().SetColumns(it => new CodeType() {  CSharepType = "dynamic" }).Where(it => it.Name == "json_default").ExecuteCommand();
+                db.Updateable<CodeType>().SetColumns(it => new CodeType() {  CSharepType = "object" }).Where(it => it.Name == "json_default").ExecuteCommand();
             }
         }
 
