@@ -33,7 +33,7 @@ namespace @Model.name_space
         }
         @:///</summary>
         @: [SugarColumn(ColumnName="@item.DbColumnName" @(isPrimaryKey) @(isIdentity) @(isIgnore) @(isJson))]
-        @: public @Raw(item.Type)@isNull @newProperytyName { get; set; }
+        @: public @Raw(item.Type)@isNull @newPropertyName { get; set; }
     }
     }
 }
