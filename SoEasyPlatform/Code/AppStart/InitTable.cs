@@ -380,6 +380,19 @@ namespace SoEasyPlatform
                 }
                 db.Insertable(list).ExecuteCommand();
             }
+            if (!db.Queryable<CodeType>().Any(it => it.CSharepType == "DateTimeOffset")) 
+            {
+                db.Insertable(new CodeType()
+                {
+                     CSharepType= "DateTimeOffset",
+                     Name= "DateTimeOffset",
+                      DbType=new DbTypeInfo[] 
+                      { 
+                        new DbTypeInfo(){ Name="DateTimeOffset" },
+                        new DbTypeInfo(){ Name="DateTime" }
+                      } 
+                }).ExecuteCommand();
+            }
         }
 
         private  void InitConnection(SqlSugarClient db)
