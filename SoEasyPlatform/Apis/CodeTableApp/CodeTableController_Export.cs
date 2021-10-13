@@ -31,6 +31,7 @@ namespace SoEasyPlatform.Apis
                 dt.Columns.Add("可空");
                 dt.Columns.Add("长度");
                 dt.Columns.Add("精度");
+                dt.Columns.Add("默认值");
                 dt.Columns.Add("表名"); ;
                 dt.Columns.Add("表描述");
                 foreach (var it in item.PropertyGens)
@@ -48,6 +49,7 @@ namespace SoEasyPlatform.Apis
                     dr["可空"] = it.IsNullable ? "是" : "";
                     dr["长度"] = it.Length;
                     dr["精度"] = it.DecimalDigits;
+                    dr["默认值"] = it.DefaultValue;
 
                     dt.Rows.Add(dr);
                 }
