@@ -402,6 +402,7 @@ namespace SoEasyPlatform
                 {
                     CSharepType = "string",
                     Name = "string_char10",
+                    Sort=100,
                     DbType = new DbTypeInfo[]
                        {
                         new DbTypeInfo(){ Name="char",Length=10  } 
