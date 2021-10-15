@@ -36,7 +36,11 @@ namespace SoEasyPlatform.Apis
                         SortTypeInfoList.Add(item);
                     }
                 }
-                var result= SortTypeInfoList.Where(it=>it.CodeType.Name!= "json_default").OrderByDescending(it=>it.Sort).First();
+                var result= SortTypeInfoList.Where(it=>it.CodeType.Name!= "json_default").OrderByDescending(it=>it.Sort).FirstOrDefault();
+                if (result == null)
+                {
+                    throw new Exception($"没有匹配到类型{columnInfo.DataType} 从自 {columnInfo.TableName} 表 {columnInfo.DbColumnName} ，请到类型管理添加");
+                }
                 return result;
             }
         }

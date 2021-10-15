@@ -396,6 +396,18 @@ namespace SoEasyPlatform
             {
                 db.Updateable<CodeType>().SetColumns(it => new CodeType() {  CSharepType = "object" }).Where(it => it.Name == "json_default").ExecuteCommand();
             }
+            if (!db.Queryable<CodeType>().Any(it => it.CSharepType == "string_char"))
+            {
+                db.Insertable(new CodeType()
+                {
+                    CSharepType = "string",
+                    Name = "string_char10",
+                    DbType = new DbTypeInfo[]
+                       {
+                        new DbTypeInfo(){ Name="char",Length=10  } 
+                       }
+                }).ExecuteCommand();
+            }
         }
 
         private  void InitConnection(SqlSugarClient db)
