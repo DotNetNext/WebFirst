@@ -663,7 +663,7 @@ namespace SoEasyPlatform.Apis
                                 IsIdentity = filedItem.IsIdentity,
                                 IsPrimaryKey = filedItem.IsPrimaryKey,
                                 Required = filedItem.Required,
-
+                                Description= filedItem.Description
                             });
                         }
                     }
