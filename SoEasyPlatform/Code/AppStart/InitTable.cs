@@ -396,7 +396,7 @@ namespace SoEasyPlatform
             {
                 db.Updateable<CodeType>().SetColumns(it => new CodeType() {  CSharepType = "object" }).Where(it => it.Name == "json_default").ExecuteCommand();
             }
-            if (!db.Queryable<CodeType>().Any(it => it.Name == "string_char"))
+            if (!db.Queryable<CodeType>().Any(it => it.Name == "string_char10"))
             {
                 db.Insertable(new CodeType()
                 {
