@@ -106,6 +106,14 @@ namespace SoEasyPlatform.Apis
                 {
                     item.DbColumnName = item.ClassProperName;
                 }
+                if (!string.IsNullOrEmpty(item.ClassProperName)) 
+                {
+                    item.ClassProperName = item.ClassProperName.Trim();
+                }
+                if (!string.IsNullOrEmpty(item.DbColumnName))
+                {
+                    item.DbColumnName = item.DbColumnName.Trim();
+                }
             }
         }
 
