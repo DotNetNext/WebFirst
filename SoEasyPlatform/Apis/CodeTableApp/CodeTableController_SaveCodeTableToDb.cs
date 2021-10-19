@@ -16,6 +16,14 @@ namespace SoEasyPlatform.Apis
     {
         private void SaveCodeTableToDb(CodeTableViewModel viewModel)
         {
+            if (!string.IsNullOrEmpty(viewModel.TableName)) 
+            {
+                viewModel.TableName = viewModel.TableName.Trim();
+            }
+            if (!string.IsNullOrEmpty(viewModel.ClassName))
+            {
+                viewModel.ClassName = viewModel.ClassName.Trim();
+            }
             base.Check(string.IsNullOrEmpty(viewModel.TableName) || string.IsNullOrEmpty(viewModel.ClassName), "表名或者实体类名必须填一个");
             viewModel.ColumnInfoList = viewModel.ColumnInfoList
                 .Where(it => !string.IsNullOrEmpty(it.ClassProperName) || !string.IsNullOrEmpty(it.DbColumnName)).ToList();
