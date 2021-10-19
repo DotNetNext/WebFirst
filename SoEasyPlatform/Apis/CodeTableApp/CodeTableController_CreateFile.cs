@@ -199,7 +199,12 @@ namespace SoEasyPlatform.Apis
             {
                 p = null;
             }
-            if (!string.IsNullOrEmpty(project.NameFormat)) 
+            if (project.NameFormat != null && project.NameFormat.Contains("@(") && project.NameFormat.Contains(")")) 
+            {
+                var format = project.NameFormat.Replace("{0}", "Model.ClassName");
+                name = TemplateHelper.GetTemplateValue(project.NameFormat + "format", format, item);
+            }
+            else if (!string.IsNullOrEmpty(project.NameFormat)) 
             {
                 name = string.Format(project.NameFormat, item.ClassName);
             }
