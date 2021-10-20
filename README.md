@@ -13,7 +13,7 @@
 - OSC Gitee：https://gitee.com/sunkaixuan/web-first
 - [果糖官网] https://www.donet5.com/
 - [使用文档] https://www.donet5.com/Doc/11
-- [下载] https://www.donet5.com/Doc/11/2388
+- [安装文件下载] https://www.donet5.com/Doc/11/2388
 - 官方QQ群：958343000
 - 技术讨论、二次开发等咨询、问题和建议，请移步到人人开源社区，我会在第一时间进行解答和回复
 - 如需关注项目最新动态，请Watch、Star项目，同时也是对项目最好的支持
