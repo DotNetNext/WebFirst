@@ -243,8 +243,9 @@ namespace SoEasyPlatform.Apis
                 result.Data = model.DbType + "格式不正确";
                 return result;
             }
-
-            CodeTypeDb.Insert(codetype);
+            var x = Db.Storageable(codetype).ToStorage();
+            x.AsUpdateable.ExecuteCommand();
+            x.AsInsertable.ExecuteCommand();
             result.IsSuccess = true;
             result.Data = Pubconst.MESSAGEADDSUCCESS;
             return result;
