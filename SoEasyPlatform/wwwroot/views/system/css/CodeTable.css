@@ -38,3 +38,13 @@
 #frmPathSave .comboTreeDropDownContainer {
     height: 100px
 }
+
+@media (max-width: 1270px) 
+{
+    .btn-many {
+        max-width:500px !important
+    }
+    .btn-many  button{
+        margin-bottom:5px;
+    }
+}
