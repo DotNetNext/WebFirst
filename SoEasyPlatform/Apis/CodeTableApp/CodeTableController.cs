@@ -247,7 +247,7 @@ namespace SoEasyPlatform.Apis
             x.AsUpdateable.ExecuteCommand();
             x.AsInsertable.ExecuteCommand();
             result.IsSuccess = true;
-            result.Data = Pubconst.MESSAGEADDSUCCESS;
+            result.Data =x.InsertList.Any()? Pubconst.MESSAGEADDSUCCESS:Pubconst.MESSAGESAVESUCCESS;
             return result;
         }
         #endregion
