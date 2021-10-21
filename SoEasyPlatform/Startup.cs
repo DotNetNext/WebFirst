@@ -24,7 +24,7 @@ namespace SoEasyPlatform
         /// <summary>
         /// 版本号
         /// </summary>
-        public static string Version = "1.2611";
+        public static string Version = "1.27";
         /// <summary>
         /// 接口域名目录
         /// </summary>

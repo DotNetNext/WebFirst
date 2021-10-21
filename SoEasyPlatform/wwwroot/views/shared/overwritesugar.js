@@ -365,8 +365,16 @@ var SugarContext = {
                 // ...
             });
         })
+    },
+    Onresize: function () {
+        window.onresize = function ()
+        {
+
+            $(".x_panel").css({ height: $(window).height() - 45 });
+        }
     }
 };
 $sugar.init(SugarContext);
 SugarContext.AjaxAopLoadingInit();
+SugarContext.Onresize();
 
