@@ -228,7 +228,7 @@ namespace SoEasyPlatform.Apis
             if (errorResult != null) return errorResult;
             CodeType codetype = new CodeType()
             {
-                Id = 0,
+                Id =Convert.ToInt32(model.Id),
                 CSharepType = model.CSharepType,
                 Name = model.Name,
                 Sort = model.Sort.Value
