@@ -57,6 +57,14 @@ namespace SoEasyPlatform.Apis
             List<EntitiesGen> result = new List<EntitiesGen>();
             var mapping = Db.Queryable<MappingProperty>().ToList();
             var tags = Db.Queryable<TagProperty>().ToList();
+            if (databasedbType == DbType.MySql) 
+            {
+                var timestamp = types.FirstOrDefault(it => it.Name == "timestamp");
+                if (timestamp != null) 
+                {
+                    timestamp.CSharepType = "DateTime";
+                }
+            }
             foreach (var item in tableList)
             {
                 EntitiesGen gen = new EntitiesGen()
