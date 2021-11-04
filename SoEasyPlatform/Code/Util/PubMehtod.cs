@@ -12,6 +12,7 @@ namespace SoEasyPlatform
             if (dbColumnName.Contains("_"))
             {
                 dbColumnName = dbColumnName.TrimEnd('_');
+                dbColumnName = dbColumnName.TrimStart('_');
                 var array = dbColumnName.Split('_').Select(it=>GetFirstUpper(it,true)).ToArray();
                 return string.Join("", array);
             }
