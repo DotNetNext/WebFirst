@@ -98,6 +98,12 @@ function init_sidebar() {
                 setContentHeight();
             });
         }
+        if ($(".nav-sm").size() >= 1)
+        {
+            var side = $(this).closest(".side-menu");
+            side.find("li").removeClass("active");
+            side.children().addClass("active");
+        }
        // $(".nav-sm .child_menu[style='display: none;']").parent().parent().parent().addClass("active");
     });
 
