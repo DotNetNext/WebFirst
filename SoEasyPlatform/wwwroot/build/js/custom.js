@@ -115,6 +115,7 @@ function init_sidebar() {
             $(".child_menu[style='display: block;']").hide();
         } else {
             $SIDEBAR_MENU.find('li.active-sm ul').show();
+            $(".active .child_menu").show();
             $SIDEBAR_MENU.find('li.active-sm').addClass('active').removeClass('active-sm');
         }
 
