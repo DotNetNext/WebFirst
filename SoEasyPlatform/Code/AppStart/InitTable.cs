@@ -409,6 +409,19 @@ namespace SoEasyPlatform
                        }
                 }).ExecuteCommand();
             }
+            if (!db.Queryable<CodeType>().Any(it => it.Name == "float"))
+            {
+                db.Insertable(new CodeType()
+                {
+                    CSharepType = "decimal",
+                    Name = "float",
+                    Sort = 10000,
+                    DbType = new DbTypeInfo[]
+                       {
+                        new DbTypeInfo(){ Name="float"  }
+                       }
+                }).ExecuteCommand();
+            }
         }
 
         private  void InitConnection(SqlSugarClient db)
