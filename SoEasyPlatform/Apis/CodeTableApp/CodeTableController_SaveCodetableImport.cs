@@ -41,6 +41,10 @@ namespace SoEasyPlatform.Apis
                 {
                     throw new Exception($"没有匹配到类型{columnInfo.DataType} 来自 {columnInfo.TableName} 表 {columnInfo.DbColumnName} ，请到类型管理添加");
                 }
+                if (result.CodeType.Name == "guid" && columnInfo.DataType == "char" && columnInfo.Length!=36) 
+                {
+                    result = SortTypeInfoList.FirstOrDefault(it => it.CodeType.Name == "string100");
+                }
                 return result;
             }
         }
