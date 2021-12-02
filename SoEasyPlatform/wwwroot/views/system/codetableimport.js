@@ -23,6 +23,14 @@ divFrom.$Form({
     }
 })
 
+document.onkeydown = function (e) {
+    var ev = (typeof event != 'undefined') ? window.event : e;
+    if (ev.keyCode == 13) {
+        btnSearch.click();
+        return false;
+    }
+}
+
 function GetData()
 {
     var gridInfo = divGrid.$GridInfo();
