@@ -422,6 +422,33 @@ namespace SoEasyPlatform
                        }
                 }).ExecuteCommand();
             }
+
+            if (!db.Queryable<CodeType>().Any(it => it.Name == "PgSqlDate"))
+            {
+                db.Insertable(new CodeType()
+                {
+                    CSharepType = "DateTime",
+                    Name = "PgSqlDate",
+                    Sort = 10000,
+                    DbType = new DbTypeInfo[]
+                       {
+                        new DbTypeInfo(){ Name="date"  }
+                       }
+                }).ExecuteCommand();
+            }
+            if (!db.Queryable<CodeType>().Any(it => it.Name == "PgSqlTime"))
+            {
+                db.Insertable(new CodeType()
+                {
+                    CSharepType = "DateTime",
+                    Name = "PgSqlTime",
+                    Sort = 10000,
+                    DbType = new DbTypeInfo[]
+                       {
+                        new DbTypeInfo(){ Name="time"  }
+                       }
+                }).ExecuteCommand();
+            }
         }
 
         private  void InitConnection(SqlSugarClient db)
