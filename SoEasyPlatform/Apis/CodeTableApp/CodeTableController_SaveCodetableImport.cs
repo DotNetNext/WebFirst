@@ -50,6 +50,10 @@ namespace SoEasyPlatform.Apis
                 {
                     result = SortTypeInfoList.FirstOrDefault(it => it.CodeType.Name == "string100");
                 }
+                if (dbtype == DbType.PostgreSQL) 
+                {
+
+                }
                 return result;
             }
         }

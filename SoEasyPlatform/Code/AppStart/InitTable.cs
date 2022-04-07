@@ -423,32 +423,87 @@ namespace SoEasyPlatform
                 }).ExecuteCommand();
             }
 
-            if (!db.Queryable<CodeType>().Any(it => it.Name == "PgSqlDate"))
+            if (!db.Queryable<CodeType>().Any(it => it.Name == "Extension_Time_20220407"))
             {
                 db.Insertable(new CodeType()
                 {
                     CSharepType = "DateTime",
-                    Name = "PgSqlDate",
+                    Name = "Extension_Time_20220407",
                     Sort = 10000,
                     DbType = new DbTypeInfo[]
                        {
-                        new DbTypeInfo(){ Name="date"  }
+                         new DbTypeInfo(){ Name="date" },
+                        new DbTypeInfo(){ Name="time"  },
+                        new DbTypeInfo(){ Name="timestamp with time zone"  },
+                        new DbTypeInfo(){ Name="timestamptz"  },
+                        new DbTypeInfo(){ Name="timestamp without time zone"  },
+                        new DbTypeInfo(){ Name="time with time zone"  }
                        }
                 }).ExecuteCommand();
             }
-            if (!db.Queryable<CodeType>().Any(it => it.Name == "PgSqlTime"))
+            if (!db.Queryable<CodeType>().Any(it => it.Name == "Extension_Bool_20220407"))
             {
                 db.Insertable(new CodeType()
                 {
-                    CSharepType = "DateTime",
-                    Name = "PgSqlTime",
+                    CSharepType = "bool",
+                    Name = "Extension_Bool_20220407",
                     Sort = 10000,
                     DbType = new DbTypeInfo[]
                        {
-                        new DbTypeInfo(){ Name="time"  }
+                        new DbTypeInfo(){ Name="bool"  },
+                        new DbTypeInfo(){ Name="Boolean"  }
                        }
                 }).ExecuteCommand();
             }
+            if (!db.Queryable<CodeType>().Any(it => it.Name == "Extension_Decimal_20220407"))
+            {
+                db.Insertable(new CodeType()
+                {
+                    CSharepType = "decimal",
+                    Name = "Extension_Decimal_20220407",
+                    Sort = 10000,
+                    DbType = new DbTypeInfo[]
+                       {
+                        new DbTypeInfo(){ Name="float4"  },
+                        new DbTypeInfo(){ Name="float8"  },
+                        new DbTypeInfo(){ Name="interval"  },
+                        new DbTypeInfo(){ Name="lseg"  },
+                        new DbTypeInfo(){ Name="macaddr"  },
+                        //new DbTypeInfo(){ Name="money"  },
+                        new DbTypeInfo(){ Name="path"  },
+                        new DbTypeInfo(){ Name="point"  },
+                        new DbTypeInfo(){ Name="polygon"  },
+                        new DbTypeInfo(){ Name="double precision"  },
+                        new DbTypeInfo(){ Name="real"  }
+                       }
+                }).ExecuteCommand();
+            }
+            if (!db.Queryable<CodeType>().Any(it => it.Name == "Extension_Byte_20220407"))
+            {
+                db.Insertable(new CodeType()
+                {
+                    CSharepType = "byte",
+                    Name = "Extension_Byte_20220407",
+                    Sort = 10000,
+                    DbType = new DbTypeInfo[]
+                       {
+                        new DbTypeInfo(){ Name="varbit"  } 
+                       }
+                }).ExecuteCommand();
+            }
+            if (!db.Queryable<CodeType>().Any(it => it.Name == "Extension_Guid_20220407"))
+            {
+                db.Insertable(new CodeType()
+                {
+                    CSharepType = "guid",
+                    Name = "Extension_Guid_20220407",
+                    Sort = 10000,
+                    DbType = new DbTypeInfo[]
+                       {
+                        new DbTypeInfo(){ Name="uuid"  }
+                       }
+                }).ExecuteCommand();
+            } 
         }
 
         private  void InitConnection(SqlSugarClient db)
