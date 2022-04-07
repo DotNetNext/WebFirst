@@ -27,6 +27,11 @@ namespace SoEasyPlatform.Apis
                 var type = types.First(it => it.Name == "string100");
                 return new SortTypeInfo() { CodeType = type, DbTypeInfo = type.DbType[0] };
             }
+            else  if (columnInfo.DataType == "json")
+            {
+                var type = types.First(it => it.Name.ToLower() == "string2000");
+                return new SortTypeInfo() { CodeType = type, DbTypeInfo = type.DbType[0] };
+            }
             else
             {
                 List<SortTypeInfo> SortTypeInfoList = new List<SortTypeInfo>();
@@ -50,9 +55,13 @@ namespace SoEasyPlatform.Apis
                 {
                     result = SortTypeInfoList.FirstOrDefault(it => it.CodeType.Name == "string100");
                 }
-                if (dbtype == DbType.PostgreSQL) 
+                if (dbtype == DbType.PostgreSQL)
                 {
-
+                    if (columnInfo.DataType == "bit")
+                    {
+                        var type = types.First(it => it.Name.ToLower() == "bytearray");
+                        return new SortTypeInfo() { CodeType = type, DbTypeInfo = type.DbType[0] };
+                    }
                 }
                 return result;
             }

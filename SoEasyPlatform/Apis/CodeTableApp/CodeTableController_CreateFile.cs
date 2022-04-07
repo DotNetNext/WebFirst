@@ -168,6 +168,12 @@ namespace SoEasyPlatform.Apis
                     mstypes = SqlSugar.OracleDbBind.MappingTypesConst.Select(it => it.Key.ToLower()).ToList();
                     break;
                 case DbType.PostgreSQL:
+                    if (dbType.Any(it => it.Name == "blob")) 
+                    {
+                        var list = new List<DbTypeInfo> { new DbTypeInfo() { Name = "bit" } };
+                        list.AddRange(dbType);
+                        dbType = list.ToArray();
+                    }
                     mstypes = SqlSugar.PostgreSQLDbBind.MappingTypesConst.Select(it => it.Key.ToLower()).ToList();
                     break;
                 case DbType.Dm:
