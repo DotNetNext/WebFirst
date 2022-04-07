@@ -17,10 +17,15 @@ namespace SoEasyPlatform.Apis
         private SortTypeInfo GetEntityType(List<CodeType> types, DbColumnInfo columnInfo, CodeTableController codeTableController,DbType dbtype)
         {
             var typeInfo = types.FirstOrDefault(y => y.DbType.Any(it => it.Name.Equals(columnInfo.DataType, StringComparison.OrdinalIgnoreCase)));
-            if (typeInfo == null)
+            if(typeInfo == null && columnInfo.DataType == "Double")
+            {
+                var type = types.First(it => it.Name == "decimal_18_4");
+                return new SortTypeInfo() { CodeType = type, DbTypeInfo = type.DbType[0] };
+            }
+            else if (typeInfo == null)
             {
                 var type = types.First(it => it.Name == "string100");
-                return new SortTypeInfo() { CodeType= type, DbTypeInfo= type.DbType[0] };
+                return new SortTypeInfo() { CodeType = type, DbTypeInfo = type.DbType[0] };
             }
             else
             {
@@ -32,16 +37,16 @@ namespace SoEasyPlatform.Apis
                         SortTypeInfo item = new SortTypeInfo();
                         item.DbTypeInfo = cstype;
                         item.CodeType = type;
-                        item.Sort = GetSort(cstype,type,columnInfo,dbtype);
+                        item.Sort = GetSort(cstype, type, columnInfo, dbtype);
                         SortTypeInfoList.Add(item);
                     }
                 }
-                var result= SortTypeInfoList.Where(it=>it.CodeType.Name!= "json_default").OrderByDescending(it=>it.Sort).FirstOrDefault();
+                var result = SortTypeInfoList.Where(it => it.CodeType.Name != "json_default").OrderByDescending(it => it.Sort).FirstOrDefault();
                 if (result == null)
                 {
                     throw new Exception($"没有匹配到类型{columnInfo.DataType} 来自 {columnInfo.TableName} 表 {columnInfo.DbColumnName} ，请到类型管理添加");
                 }
-                if (result.CodeType.Name == "guid" && columnInfo.DataType == "char" && columnInfo.Length!=36) 
+                if (result.CodeType.Name == "guid" && columnInfo.DataType == "char" && columnInfo.Length != 36)
                 {
                     result = SortTypeInfoList.FirstOrDefault(it => it.CodeType.Name == "string100");
                 }
