@@ -49,12 +49,15 @@ namespace SoEasyPlatform.Apis
             List<TreeModel> trees = new List<TreeModel>();
             foreach (DbType type in Enum.GetValues(typeof(DbType)))
             {
-                trees.Add(new TreeModel()
+                if (type != DbType.MySqlConnector && type != DbType.Custom && type != DbType.Access && type != DbType.Oscar)
                 {
-                    Id = type.ToString(),
-                    Title = type.ToString(),
-                    IsSelectable = true
-                });
+                    trees.Add(new TreeModel()
+                    {
+                        Id = type.ToString(),
+                        Title = type.ToString(),
+                        IsSelectable = true
+                    });
+                }
             }
             ApiResult<List<TreeModel>> result = new ApiResult<List<TreeModel>>();
             result.Data = trees;
