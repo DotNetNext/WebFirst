@@ -32,6 +32,11 @@ namespace SoEasyPlatform.Apis
                 var type = types.First(it => it.Name.ToLower() == "string2000");
                 return new SortTypeInfo() { CodeType = type, DbTypeInfo = type.DbType[0] };
             }
+            else if (columnInfo.DataType == "timestamp"&&dbtype!=DbType.SqlServer)
+            {
+                var type = types.First(it => it.Name.ToLower() == "datetime");
+                return new SortTypeInfo() { CodeType = type, DbTypeInfo = type.DbType[0] };
+            }
             else
             {
                 List<SortTypeInfo> SortTypeInfoList = new List<SortTypeInfo>();
