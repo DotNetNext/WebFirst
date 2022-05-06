@@ -16,6 +16,7 @@
         GetRazorModel: _root + "FileInfo/GetRazorModel",
         UpdateEntity: _root + "codetable/UpdateEntity",
         CreateTable: _root + "codetable/CreateTables",
+        GetTableDiff: _root + "codetable/GetTableDiff",
         GetProjectAll: _root + "system/GetProjectAll",
         Copy: _root + "codetable/Copy",
         Export: _root + "codetable/exportfile",
@@ -31,7 +32,8 @@
         addDbFirst: "导入虚拟类",
         edit: "修改虚拟类",
         copy: "预览复制",
-        tag:"配置附加属性"
+        tag: "配置附加属性",
+        diff: "更新表确认"
     },
     w: {
         w: "100%",
@@ -292,15 +294,47 @@ btnTableToEntity.onclick = function () {
     }
 } 
 
-btnTable.onclick = function () {
-
-    var gridInfo = divGrid.$GridInfo();
-    if (gridInfo.length > 0) {
+btnTable.$Open("#divDiff", {
+    title: configs.text.diff,
+    w: 600,
+    h: 500,
+    validate: function ()
+    {
+        var gridInfo = divGrid.$GridInfo();
+        if (gridInfo.length == 0) {
+            "请选择一条数据".$Alert();
+            return false;
+        } else
+        {
+            return true;
+        }
+    },
+    callback: function ()
+    {
+        var gridInfo = divGrid.$GridInfo();
+        btnTable.$Loading();
+        configs.url.GetTableDiff.$Ajax({
+            callback: function (msg) {
+                btnTable.$CloseLoading();
+                if (msg.IsSuccess) {
+                    divDiff.innerHTML=(msg.Data);
+                }
+                else {
+                    msg.Data.$Alert();
+                }
+            },
+            data: { "model": JSON.stringify(gridInfo), dbid: txtDbId.value }
+        })
+    },
+    yes: function ()
+    {
+        var gridInfo = divGrid.$GridInfo();
         btnTable.$Loading();
         configs.url.CreateTable.$Ajax({
             callback: function (msg) {
                 btnTable.$CloseLoading();
                 if (msg.IsSuccess) {
+                    $sugar.$CloseAll(divDiff.getAttribute("dataindex"));
                     "更新成功".$Alert();
                     btnSearch.click();
                 }
@@ -310,12 +344,10 @@ btnTable.onclick = function () {
             },
             data: { "model": JSON.stringify(gridInfo), dbid: txtDbId.value }
         })
-    } else {
-        "请选择一条数据".$Alert();
-        btnTable.$CloseLoading();
-    }
+    },
+    btn: ['更新表', '关闭']
+});
 
-}
 
 btnPath.$Open("#divPath", {
     title: configs.text.addPath,

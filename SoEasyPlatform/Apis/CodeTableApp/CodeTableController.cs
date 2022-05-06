@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
@@ -431,6 +432,102 @@ namespace SoEasyPlatform.Apis
             return result;
         }
 
+
+
+        /// <summary>
+        ////结构对比
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        [ExceptionFilter]
+        [Route("GetTableDiff")]
+        public ActionResult<ApiResult<string>> GetTableDiff([FromForm] string model, [FromForm] int dbid)
+        {
+            var tableDb = base.GetTryDb(dbid);
+            var result = new ApiResult<string>();
+            List<string> tableDifferences = new List<string>();
+            if (!string.IsNullOrEmpty(model))
+            {
+                var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<CodeTableViewModel>>(model);
+                var oldList = CodeTableDb.AsQueryable().In(list.Select(it => it.Id).ToList()).ToList();
+                base.Check(oldList.Any(it => it.IsLock), string.Join(",", oldList.Where(it => it.IsLock).Select(it => it.ClassName)) + "是锁表状态禁止建表");
+                List<EntitiesGen> genList = GetGenList(oldList, CodeTypeDb.GetList(), tableDb.CurrentConnectionConfig.DbType);
+                foreach (var item in genList)
+                {
+                    item.PropertyGens = item.PropertyGens.Where(it => it.IsIgnore == false).ToList();
+                    foreach (var property in item.PropertyGens)
+                    {
+                        if (property.IsSpecialType)
+                        {
+                            property.Type = "string";
+                        }
+                    }
+                }
+                string key = TemplateHelper.EntityKey + SyntaxTreeHelper.TemplateString.GetHashCode();
+                foreach (var item in genList)
+                {
+                    var classString = TemplateHelper.GetTemplateValue(key, SyntaxTreeHelper.TemplateString, item);
+                    var type = SyntaxTreeHelper.GetModelTypeByClass(classString, item.ClassName);
+                    tableDb.CurrentConnectionConfig.ConfigureExternalServices = new ConfigureExternalServices()
+                    {
+                        EntityNameService = (type, info) =>
+                        {
+                            if (info.EntityName == item.ClassName || (info.EntityName == null && info.DbTableName == item.ClassName))
+                            {
+                                info.EntityName = item.ClassName;
+                                info.DbTableName = item.TableName;
+                                info.TableDescription = item.Description;
+                            }
+                        },
+                        EntityService = (type, info) =>
+                        {
+                            if (info.EntityName == item.ClassName)
+                            {
+                                var column = item.PropertyGens.FirstOrDefault(it => it.PropertyName == info.PropertyName);
+                                info.DbColumnName = column.DbColumnName;
+                                info.ColumnDescription = column.Description;
+                                info.IsNullable = column.IsNullable;
+                                info.Length = Convert.ToInt32(column.Length);
+                                info.DecimalDigits = Convert.ToInt32(column.DecimalDigits);
+                                info.IsPrimarykey = column.IsPrimaryKey;
+                                info.IsIdentity = column.IsIdentity;
+                                info.IsIgnore = column.IsIgnore;
+                                info.DataType = column.DbType;
+                                if (tableDb.CurrentConnectionConfig.DbType == DbType.Sqlite && info.IsIdentity)
+                                {
+                                    info.DataType = "integer";
+                                }
+                            }
+                        }
+                    };
+                    if(tableDb.DbMaintenance.IsAnyTable(item.TableName, false))
+                    {
+                        var diff = tableDb.CodeFirst.GetDifferenceTables(type).ToDiffString();
+                        if (diff != null && !diff.Contains("No change"))
+                        {
+                            tableDifferences.Add(diff);
+                        }
+                    }
+                }
+
+            }
+            if (tableDifferences.Count == 0)
+            {
+                result.Data = "<span class='diff_bule'>此操作没有风险，可以继续！！</span>";
+            }
+            else
+            {
+                result.Data = string.Join("", tableDifferences).Replace("\n","<br>");
+            }
+            result.Data = result.Data.Replace( "<br>----", "<h3 class='diff_h3'>");
+            result.Data = result.Data.Replace("----", "</h3>");
+            result.Data = result.Data.Replace("Table:", "表名:");
+            result.Data = result.Data.Replace("Add column", "<span class='diff_bule'>添加列</span>");
+            result.Data = result.Data.Replace("Update column", "<span class='diff_yellow'>更新列</span>");
+            result.Data = result.Data.Replace("Delete column", "<span class='diff_red'>删除列</span>");
+            result.IsSuccess = true;
+            return result;
+        }
         #endregion
 
         #region  Update entity by db

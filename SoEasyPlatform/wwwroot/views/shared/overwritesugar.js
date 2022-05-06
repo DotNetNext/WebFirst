@@ -274,6 +274,10 @@ var SugarContext = {
             yes: data.yes
         });
         $(divElement).attr("dataIndex", index)
+        if (data.callback != null)
+        {
+            data.callback();
+        }
     },
     CloseAll: function (index) {
 
