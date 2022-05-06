@@ -24,6 +24,7 @@ namespace SoEasyPlatform.Apis
             {
                 viewModel.ClassName = viewModel.ClassName.Trim();
             }
+
             base.Check(string.IsNullOrEmpty(viewModel.TableName) || string.IsNullOrEmpty(viewModel.ClassName), "表名或者实体类名必须填一个");
             viewModel.ColumnInfoList = viewModel.ColumnInfoList
                 .Where(it => !string.IsNullOrEmpty(it.ClassProperName) || !string.IsNullOrEmpty(it.DbColumnName)).ToList();
@@ -32,6 +33,10 @@ namespace SoEasyPlatform.Apis
             AutoFillTable(dbTable);
             var dbColumns = mapper.Map<List<CodeColumns>>(viewModel.ColumnInfoList);
             AutoFillColumns(dbColumns);
+            if (dbColumns.Where(it=>!string.IsNullOrEmpty(it.DbColumnName)).GroupBy(it => it.DbColumnName.ToLower()).Any(it => it.Count() > 1)) 
+            {
+                base.Check(true, "存在重复列不能保存");
+            }
             if (viewModel.Id == null || viewModel.Id == 0)
             {
                 CheckAddName(viewModel, CodeTableDb);
