@@ -513,7 +513,7 @@ namespace SoEasyPlatform.Apis
             }
             if (tableDifferences.Count == 0)
             {
-                result.Data = "<span class='diff_bule'>此操作没有风险，可以继续！！</span>";
+                result.Data = "<span class='diff_bule diff_success'>此操作没有风险，可以继续！！</span>";
             }
             else
             {
