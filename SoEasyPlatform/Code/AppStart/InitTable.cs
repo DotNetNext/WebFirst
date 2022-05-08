@@ -78,6 +78,8 @@ namespace SoEasyPlatform
 
         private  void InitProject(SqlSugarClient db)
         {
+            db.CodeFirst.InitTables<ProjectGroup>();
+
             db.CodeFirst.InitTables<Project>();
             if (db.Queryable<Project>().Count() == 0)
             {
@@ -108,7 +110,7 @@ namespace SoEasyPlatform
                     ModelId = 2,
                     Reference=pid+""
                 }).ExecuteReturnIdentity();
-                db.Insertable(new Project()
+                var pid3= db.Insertable(new Project()
                 {
                     FileSuffix = ".cs",
                     TemplateId1 = _webtempId + "",
@@ -122,6 +124,18 @@ namespace SoEasyPlatform
                     ModelId = 3,
                     Reference = pid + ","+pid2
                 }).ExecuteReturnIdentity();
+
+
+                if (db.Queryable<ProjectGroup>().Count() == 0)
+                {
+                    db.Insertable(new ProjectGroup()
+                    {
+                        Name = ".Net5 SqlSugar+仓储",
+                        ProjectIds = new int[] { pid, pid2, pid3 },
+                        SolutionPath = "c:\\WebFirst\\Demo01",
+                        ProjectNames=String.Join(",", db.Queryable<Project>().In(pid, pid2, pid3).Select(it=>it.ProjentName).ToArray())
+                    }).ExecuteReturnIdentity();
+                }
             }
         }
 
@@ -804,13 +818,12 @@ namespace SoEasyPlatform
                         Child=new List<Menu>()
                         {
                              new Menu{ MenuName="配置数据库" , Url="/Database"},
+                             new Menu{ MenuName="一键生成" , Url="/Solution"},
                              new Menu{ MenuName="配置实体（类建表模式）" , Url="/CodeFirst"},
                              new Menu{ MenuName="配置实体（表建类模式）" , Url="/DbFirst"},
                              new Menu{ MenuName="配置实体（视图建类模式）" , Url="/DbView"},
                              new Menu{ MenuName="配置业务",Url="/BIZ" },
                              new Menu{ MenuName="配置前端" ,Url="/Web"},
-                             new Menu{ MenuName="云方案 ×" , Url="/Solution"},
-                         
                         }
                      }
                     ,
