@@ -22,7 +22,7 @@ btnProjectGroup.onclick = function ()
                     msg.Data.$Alert();
                 }
             },
-            data: { "model": JSON.stringify(gridInfo) }
+            data: { "model": JSON.stringify(gridInfo), pgid: hidProjectGroupid.value, dbid:txtDbId.value}
         })
     } else {
         "请选择一条数据，只能是一条".$Alert();

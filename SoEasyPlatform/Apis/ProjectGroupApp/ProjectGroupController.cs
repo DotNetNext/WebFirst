@@ -90,15 +90,39 @@ namespace SoEasyPlatform.Apis
         /// <returns></returns>
         [HttpPost]
         [Route("BuilderProjects")]
-        public ActionResult<ApiResult<bool>> BuilderProjects([FromForm] string model)
+        public ActionResult<ApiResult<bool>> BuilderProjects([FromForm] string model, [FromForm] int pgid, [FromForm] int dbid)
         {
             var result = new ApiResult<bool>();
             if (!string.IsNullOrEmpty(model))
             {
-                var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<ProjectGroupViewModel>>(model);
-                var id = list.First().Id;
-                var group = Db.Queryable<ProjectGroup>().InSingle(id);
+                var group = Db.Queryable<ProjectGroup>().InSingle(pgid);
                 var projectids = group.ProjectIds;
+                var list= Db.Queryable<Project>().In(projectids).OrderBy(it => it.ModelId).ToList();
+                try
+                {
+                    Db.BeginTran();
+                    foreach (var item in list)
+                    {
+                        var name = System.IO.Path.GetFileName(item.Path);
+                        item.Path = System.IO.Path.Combine(group.SolutionPath,name);
+                        Db.Updateable(item).ExecuteCommand();
+                        new CodeTableController(null).CreateFileByProjectId(new ProjectViewModel2
+                        {
+
+                            Tables = model,
+                            ProjectId = item.Id,
+                            DbId = dbid,
+                            ModelId = item.ModelId
+                        }, list.Last() == item);
+                    }
+                    //Db.Updateable(list).ExecuteCommand();
+                    Db.CommitTran();
+                }
+                catch (Exception ex)
+                {
+                    Db.RollbackTran();
+                    throw ex;
+                }
             }
             result.IsSuccess = true;
             return result;
