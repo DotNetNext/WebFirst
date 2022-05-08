@@ -118,21 +118,22 @@ btnProject.$Confirm({
     title: "是否生成项目",
     ok: function () {
         var gridInfo = divGrid.$GridInfo();
-        if (gridInfo.length == 0) {
-            configs.url.BuilderProjects.$Ajax({
-                callback: function (msg) {
-                    if (msg.IsSuccess) {
-                        "生成成功".$Alert();
-                        btnSearch.click();
-                    }
-                    else {
-                        msg.Data.$Alert();
-                    }
-                },
-                data: { "model": JSON.stringify(gridInfo) }
-            })
+        if (gridInfo.length == 1) {
+            //configs.url.BuilderProjects.$Ajax({
+            //    callback: function (msg) {
+            //        if (msg.IsSuccess) {
+            //            "生成成功".$Alert();
+            //            btnSearch.click();
+            //        }
+            //        else {
+            //            msg.Data.$Alert();
+            //        }
+            //    },
+            //    data: { "model": JSON.stringify(gridInfo) }
+            //})
+            window.location.href = "/all?id=" + gridInfo[0].Id + "&name=" + encodeURI(gridInfo[0].Name);
         } else {
-            "请选择一条数据".$Alert();
+            "请选择一条数据，只能是一条".$Alert();
         }
     }
 })

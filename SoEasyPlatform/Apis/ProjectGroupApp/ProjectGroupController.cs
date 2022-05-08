@@ -84,6 +84,25 @@ namespace SoEasyPlatform.Apis
             return result;
         }
 
+        /// <summary>
+        /// 执行一键生成
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("BuilderProjects")]
+        public ActionResult<ApiResult<bool>> BuilderProjects([FromForm] string model)
+        {
+            var result = new ApiResult<bool>();
+            if (!string.IsNullOrEmpty(model))
+            {
+                var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<ProjectGroupViewModel>>(model);
+                var id = list.First().Id;
+                var group = Db.Queryable<ProjectGroup>().InSingle(id);
+                var projectids = group.ProjectIds;
+            }
+            result.IsSuccess = true;
+            return result;
+        }
 
         /// <summary>
         /// 删除解决方案

@@ -1,0 +1,168 @@
+﻿@page
+@{
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+    ViewData["Title"] = "生成解决方案："+HttpContext.Request.Query["name"];
+    ViewBag.DetaultName = "SugarModels";
+}
+@section js{
+    <script src="~/views/system/codetable.js@(ViewBag.version)"></script>
+    <link href="~/views/system/css/CodeTable.css@(ViewBag.version)" rel="stylesheet" />
+    <script src="~/views/system/CodeFirst.js@(ViewBag.version)"></script>
+    <script src="~/views/system/BuilderAll.js@(ViewBag.version)"></script>
+
+}
+<input id="hidType" type="hidden" value="1" />
+<input id="hidProjectGroupid" type="hidden" value="@HttpContext.Request.Query["id"]"/>
+<div id="divCommonFiled" style="display:none">
+    <form id="frmCommField">
+        <div class="x_content" style="margin-top:20px">
+            <div class="field item form-group">
+                <label class="col-form-label col-md-2 col-sm-2  label-align">公共字段<span class="required">*</span></label>
+                <div class="col-md-10 col-sm-9">
+                    <input type="text" id="saveFieldName" name="FieldName" placeholder="Select" autocomplete="off" />
+                    <input id="saveField" type="hidden" value="0" name="Field" />
+                    <input id="cfmodel" type="hidden" name="model" />
+                </div>
+
+            </div>
+            <p style="text-align:right; padding-right:10px"><a class="red"  onclick="window.location.href='/CommonFiled'" href="#">+创建公共字段</a></p>
+        </div>
+    </form>
+</div>
+<div class="x_panel search_box">
+    <div class="x_title">
+        <h2><i class="fa fa-home"></i> 首页 / @ViewData["Title"] </h2>
+        <div class="clearfix"></div>
+    </div>
+
+    <div class="x_content main-box">
+        <form id="divFrom" class="form-inline">
+
+            <div class="form-group  ">
+                <label for="ex3" class="col-form-label red">请选择数据库：</label>
+                <input type="text" id="txtDbIdName" name="DbIdName" placeholder="Select" class="w-70" autocomplete="off" />
+                <input id="txtDbId" type="hidden" value="0" name="DbId" />
+            </div>
+
+            <div class="form-group ">
+                <label for="ex3" class="col-form-label m-l-15"> 名称：</label>
+                <input type="text" id="ClassName" name="ClassName" class="form-control input w-70" placeholder="表或类名">
+            </div>
+
+            <button id="btnSearch" type="button" class="btn btn-blue"><i class="fa fa-search"></i>搜索</button>
+            <button id="btnReset" type="button" class="btn btn-info"><i class="fa fa-refresh"></i>重置</button>
+
+            @Html.Partial("Page")
+        </form>
+    </div>
+    <div class="x_content btn-many">
+        <div style="display:none">
+        <button id="btnAdd" type="button" class="btn btn-green "><i class="fa fa-plus"></i> 建类</button>
+        <button id="btnDbFirstAdd" type="button" class="btn btn-dark hide"><i class="fa fa-cloud-upload"></i> 数据库导入</button>
+        <button id="btnEdit" type="button" class="btn btn-primary"><i class="fa fa-edit"></i> 改</button>
+        <button id="btnDel" type="button" class="btn btn-search"><i class="fa fa-close"></i> 删</button>
+        <button id="btnTable" type="button" class="btn btn-c1 "><i class="fa fa-exchange"></i> 更新表</button>
+        <button id="btnTableToEntity" type="button" class="btn btn-dark hide"><i class="fa fa-exchange"></i> 同步实体</button>
+        <button id="btnProject" type="button" class="btn btn-success"><i class="fa fa-cogs"></i>生成方案</button>
+        <button id="btnCopy" type="button" class="btn btn-danger"><i class="fa fa-copy"></i> 预览</button>
+        <button id="btnExcel" type="button" class="btn btn-dark"><i class="fa fa-download"></i>文档</button>
+        <button id="btnCommonFiled" type="button" class="btn btn-c2"><i class="fa fa-creative-commons"></i>公共字段</button>
+        <button id="btnTagProperty" type="button" class="btn btn-c3"><i class="fa fa-yelp"></i>扩展属性</button>
+        </div>
+         <button id="btnProjectGroup" type="button" class="btn btn-success"><i class="fa fa-cogs"></i>生成解决方案</button>
+         <button id="btnBack" type="button" class="btn btn-success"><i class="fa fa-yelp"></i>返回</button>
+    </div>
+    <div class="x_content">
+        <table id="divGrid"></table>
+        <div id="divGridPage" class="pagination"></div>
+    </div>
+    <div id="divOpen" style="display:none">
+
+    </div>
+    <div id="divCopy" style="display:none">
+        <input id="btnCopyHide" type="hidden" />
+        <textarea id="txtCopy" style="width:970px;height:450px;border:0" class="form-control"></textarea>
+    </div>
+    <div id="divDiff" style="display:none">
+
+    </div>
+    <div id="divPath" style="display:none">
+        <form id="frmPathSave" class="" action="" method="post" novalidate="">
+            <div class="x_content" style="margin-top:20px">
+                <div class="field item form-group lib">
+                    <label class="col-form-label col-md-2 col-sm-2  label-align">方案名<span class="required">*</span></label>
+                    <div class="col-md-10 col-sm-9">
+                        <input id="saveProjentName" name="ProjentName" type="text" class="form-control" placeholder="取个名字方便下次记得" />
+                    </div>
+                    <input id="SaveTable1" type="hidden" name="Tables" value="" />
+                    <input id="SaveId" type="hidden" name="Id" />
+                </div>
+                <div class="field item form-group">
+                    <label class="col-form-label col-md-2 col-sm-2  label-align">模版<span class="required">*</span></label>
+                    <div class="col-md-10 col-sm-9">
+                        <input type="text" id="saveTemplateName1" name="TemplateName1" placeholder="Select" autocomplete="off" />
+                        <input id="saveTemplateId1" type="hidden" value="0" name="TemplateId1" />
+                    </div>
+                </div>
+                <div class="field item form-group">
+                    <label class="col-form-label col-md-2 col-sm-2  label-align">生成路径<span class="required">*</span></label>
+                    <div class="col-md-10 col-sm-9">
+                        <input id="savePath" name="Path" type="text" value="C:\suagrdemo\@ViewBag.DetaultName" class="form-control" />
+
+                    </div>
+                </div>
+                <div class="field item form-group">
+                    <label class="col-form-label col-md-2 col-sm-2  label-align">文件后缀<span class="required">*</span></label>
+                    <div class="col-md-10 col-sm-9">
+                        <input id="saveFileSuffix" name="FileSuffix" type="text" value=".cs" class="form-control" />
+                    </div>
+                </div>
+                <div class="field item form-group">
+                    <label class="col-form-label col-md-2 col-sm-2  label-align">名称格式</label>
+                    <div class="col-md-10 col-sm-9">
+                        <input id="saveNameFormat" name="NameFormat" type="text" class="form-control" />
+                    </div>
+                </div>
+                <div class="field item form-group">
+                    <label class="col-form-label col-md-2 col-sm-2  label-align">方案引用</label>
+                    <div class="col-md-10 col-sm-9">
+                        <input type="text" id="saveReferenceName" name="ReferenceName" placeholder="Select" autocomplete="off" />
+                        <input id="saveReference" type="hidden" value="0" name="Reference" />
+                    </div>
+                </div>
+                <div class="field item form-group">
+                    <label class="col-form-label col-md-2 col-sm-2  label-align">附加文件</label>
+                    <div class="col-md-10 col-sm-9">
+                        <input type="text" id="saveFileInfoName" name="FileInfoName" placeholder="Select" autocomplete="off" />
+                        <input id="saveFileInfo" type="hidden" value="0" name="FileInfo" />
+                    </div>
+                </div>
+                <div class="field item form-group">
+                    <label class="col-form-label col-md-2 col-sm-2  label-align">文件填充</label>
+                    <div class="col-md-10 col-sm-9">
+                        <span>请修改参数：</span>
+                        <textarea style="height:100px" class="form-control" id="saveFileModel" name="FileModel" placeholder="查看选中文件的razor格式，填写相应的json" autocomplete="off"></textarea>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div id="divProject" style="display:none">
+        <form id="frmProjectSave" class="" action="" method="post" novalidate="">
+            <div class="x_content" style="margin-top:20px">
+                <div class="field item form-group">
+                    <label class="col-form-label col-md-2 col-sm-2  label-align">方案<span class="required">*</span></label>
+                    <div class="col-md-10 col-sm-9">
+                        <input type="text" id="saveProjectName" name="ProjectName" placeholder="Select" autocomplete="off" />
+                        <input id="saveProjectId" type="hidden" value="0" name="ProjectId" />
+                        <input id="SaveTable2" type="hidden" name="Tables" value="" />
+                        <input id="saveDbId" type="hidden" name="DbId" />
+                        <br />
+                        <button id="btnPath" type="button" class="btn btn-green"><i class="fa fa-plus"></i> 创建方案</button>
+                        <button id="btnPathEdit" type="button" class="btn btn-green"><i class="fa fa-edit"></i> 修改方案</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
