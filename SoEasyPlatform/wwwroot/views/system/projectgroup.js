@@ -2,7 +2,9 @@
     url: {
         Get: _root + "projectgroup/GetProjectGroupList",
         SaveSystem: _root + "projectgroup/SaveProjectGroup",
-        GetProjet: _root + "system/GetProject"
+        GetProjet: _root + "system/GetProject",
+        BuilderProjects: _root + "projectgroup/BuilderProjects",
+        Del: _root+"projectgroup/deleteProjectGroup"
     },
     text:
     {
@@ -17,7 +19,7 @@
 saveProjectNamesName.$SelectTree({
     isMultiple: true,
     url: configs.url.GetProjet,
-    maxHeight: 100,
+    maxHeight: 200,
     rootIsSelect: false
 })
 
@@ -111,5 +113,48 @@ btnEdit.$Open("#divOpen", {
     },
     btn: ['保存', '关闭']
 });
- 
- 
+
+btnProject.$Confirm({
+    title: "是否生成项目",
+    ok: function () {
+        var gridInfo = divGrid.$GridInfo();
+        if (gridInfo.length == 0) {
+            configs.url.BuilderProjects.$Ajax({
+                callback: function (msg) {
+                    if (msg.IsSuccess) {
+                        "生成成功".$Alert();
+                        btnSearch.click();
+                    }
+                    else {
+                        msg.Data.$Alert();
+                    }
+                },
+                data: { "model": JSON.stringify(gridInfo) }
+            })
+        } else {
+            "请选择一条数据".$Alert();
+        }
+    }
+})
+btnDel.$Confirm({
+    title: "是否删除记录",
+    ok: function () {
+        var gridInfo = divGrid.$GridInfo();
+        if (gridInfo.length > 0) {
+            configs.url.Del.$Ajax({
+                callback: function (msg) {
+                    if (msg.IsSuccess) {
+                        "删除成功".$Alert();
+                        btnSearch.click();
+                    }
+                    else {
+                        msg.Data.$Alert();
+                    }
+                },
+                data: { "model": JSON.stringify(gridInfo) }
+            })
+        } else {
+            "请选择一条数据".$Alert();
+        }
+    }
+})

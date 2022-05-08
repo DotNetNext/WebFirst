@@ -83,5 +83,24 @@ namespace SoEasyPlatform.Apis
             result.Data = x.InsertList.Any() ? Pubconst.MESSAGEADDSUCCESS : Pubconst.MESSAGESAVESUCCESS;
             return result;
         }
+
+
+        /// <summary>
+        /// 删除解决方案
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("deleteProjectGroup")]
+        public ActionResult<ApiResult<bool>> deleteProjectGroup([FromForm] string model)
+        {
+            var result = new ApiResult<bool>();
+            if (!string.IsNullOrEmpty(model))
+            {
+                var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<ProjectGroupViewModel>>(model);
+                Db.Deleteable<ProjectGroup>().In(list.Select(it => it.Id).ToList()).ExecuteCommand();
+            }
+            result.IsSuccess = true;
+            return result;
+        }
     }
 }
