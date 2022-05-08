@@ -11,7 +11,7 @@ btnBack.onclick = function () {
 btnProjectGroup.onclick = function ()
 {
     var gridInfo = divGrid.$GridInfo();
-    if (gridInfo.length == 1) {
+    if (gridInfo.length >0) {
         btnProjectGroup.$Loading();
         configs.url.BuilderProjects.$Ajax({
             callback: function (msg) {
@@ -27,6 +27,6 @@ btnProjectGroup.onclick = function ()
             data: { "model": JSON.stringify(gridInfo), pgid: hidProjectGroupid.value, dbid:txtDbId.value}
         })
     } else {
-        "请选择一条数据，只能是一条".$Alert();
+        "请选择一条数据".$Alert();
     }
 }
