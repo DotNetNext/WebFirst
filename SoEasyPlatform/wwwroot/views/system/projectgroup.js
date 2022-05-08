@@ -114,29 +114,21 @@ btnEdit.$Open("#divOpen", {
     btn: ['保存', '关闭']
 });
 
-btnProject.$Confirm({
-    title: "是否生成项目",
-    ok: function () {
-        var gridInfo = divGrid.$GridInfo();
-        if (gridInfo.length == 1) {
-            //configs.url.BuilderProjects.$Ajax({
-            //    callback: function (msg) {
-            //        if (msg.IsSuccess) {
-            //            "生成成功".$Alert();
-            //            btnSearch.click();
-            //        }
-            //        else {
-            //            msg.Data.$Alert();
-            //        }
-            //    },
-            //    data: { "model": JSON.stringify(gridInfo) }
-            //})
-            window.location.href = "/all?id=" + gridInfo[0].Id + "&name=" + encodeURI(gridInfo[0].Name);
-        } else {
-            "请选择一条数据，只能是一条".$Alert();
-        }
+btnProject.onclick = function ()
+{
+    var gridInfo = divGrid.$GridInfo();
+    if (gridInfo.length == 1)
+    {
+        window.location.href = "/all?id=" + gridInfo[0].Id + "&name=" + encodeURI(gridInfo[0].Name);
     }
-})
+    else if (gridInfo.length == 0)
+    {
+        "请选择一条数据".$Alert();
+    }
+    else {
+        "只能选择一个方案组".$Alert();
+    }
+}
 btnDel.$Confirm({
     title: "是否删除记录",
     ok: function () {
