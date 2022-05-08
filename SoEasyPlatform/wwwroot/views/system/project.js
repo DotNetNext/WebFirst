@@ -12,7 +12,7 @@
     },
     w: {
         w: 600,
-        h:450
+        h:550
     }
 };
 divFrom.$Form({
@@ -71,4 +71,21 @@ btnDel.$Confirm({
     }
 })
 
-
+btnAdd.$Open("#divOpen", {
+    title: "添加方案教程",
+    w: configs.w.w,
+    h: configs.w.h,
+    validate: function () {
+     
+    },
+    btn: [ '关闭']
+});
+btnEdit.$Open("#divOpen", {
+    title: "修改方案教程",
+    w: configs.w.w,
+    h: configs.w.h,
+    validate: function () {
+        
+    },
+    btn: [ '关闭']
+});
