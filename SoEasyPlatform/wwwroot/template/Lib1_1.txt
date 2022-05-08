@@ -1,1 +1,1 @@
-﻿{ "name":"命名空间类库名","nuget":[{ "name":"SqlSugarCore","version":"5.0.6.4" }]}
+﻿{ "name":"命名空间类库名","nuget":[{ "name":"SqlSugarCore","version":"5.0.7.8" }]}
