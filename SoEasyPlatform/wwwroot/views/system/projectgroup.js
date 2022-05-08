@@ -1,7 +1,8 @@
 ﻿var configs = {
     url: {
         Get: _root + "projectgroup/GetProjectGroupList",
-        SaveSystem: _root + "projectgroup/SaveProjectGroup"
+        SaveSystem: _root + "projectgroup/SaveProjectGroup",
+        GetProjet: _root + "system/GetProject"
     },
     text:
     {
@@ -12,6 +13,14 @@
         h:400
     }
 };
+
+saveProjectNamesName.$SelectTree({
+    isMultiple: true,
+    url: configs.url.GetProjet,
+    maxHeight: 100,
+    rootIsSelect: false
+})
+
 divFrom.$Form({
     url: configs.url.Get,
     callback: function (msg) {
@@ -43,9 +52,7 @@ btnAdd.$Open("#divOpen", {
     h: configs.w.h,
     validate: function () {
         frmSave.$ClearControls();
-        saveName.removeAttribute("readOnly");
-        saveDbType.removeAttribute("readOnly")
-        saveCSharepType.removeAttribute("readOnly")
+        saveSort.value = 0;
         return true;
     },
     yes: function () {
@@ -80,9 +87,8 @@ btnEdit.$Open("#divOpen", {
         } else {
             gridInfo = gridInfo[0];
             frmSave.$FillControls(gridInfo);
-            saveName.setAttribute("readOnly", true);
-            saveDbType.setAttribute("readOnly", true)
-            saveCSharepType.setAttribute("readOnly", true)
+            saveProjectNamesName.value = saveProjectNames.value;
+            saveProjectNames.value="noupdate"
             return true;
         }
     },

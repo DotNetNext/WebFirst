@@ -129,10 +129,11 @@ namespace SoEasyPlatform.Apis
         [HttpPost]
         [AuthorizeFilter]
         [Route("GetProject")]
-        public ActionResult<ApiResult<List<TreeModel>>> GetProject(int typeId)
+        public ActionResult<ApiResult<List<TreeModel>>> GetProject(int? typeId)
         {
             List<TreeModel> trees = new List<TreeModel>();
-            var databses = ProjectDb.GetList(it => it.ModelId.Equals(typeId));
+            var databses = typeId==null? ProjectDb.GetList(): ProjectDb.GetList(it => it.ModelId.Equals(typeId));
+           
             foreach (var db in databses)
             {
                 trees.Add(new TreeModel()

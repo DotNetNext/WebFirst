@@ -39,25 +39,27 @@
                     <label class="col-form-label col-md-2 col-sm-2  label-align">名称<span class="required">*</span></label>
                     <div class="col-md-10 col-sm-9">
                         <input id="saveName" name="Name" class="form-control" type="text" />
+                        <input type="hidden" value="" id="saveId" name="Id" />
                     </div>
                 </div>
                 <div class="field item form-group">
-                    <label class="col-form-label col-md-2 col-sm-2  label-align">数据类型<span class="required">*</span></label>
+                       <label class="col-form-label col-md-2 col-sm-2  label-align">方案</label>
                     <div class="col-md-10 col-sm-9">
-                        <textarea id="saveDbType" style="height:100px" name="DbType" class="form-control" type="text"></textarea>
+                        <input type="text" id="saveProjectNamesName" name="ProjectNamesName" placeholder="Select" autocomplete="off" />
+                        <input id="saveProjectNames" type="hidden" value="0" name="ProjectNames" />
                     </div>
                 </div>
                 <div class="field item form-group">
-                    <label class="col-form-label col-md-2 col-sm-2  label-align">C#类型<span class="required">*</span></label>
+                    <label class="col-form-label col-md-2 col-sm-2  label-align">解决方案路径<span class="required">*</span></label>
                     <div class="col-md-10 col-sm-9">
-                        <input id="saveCSharepType" name="CSharepType" class="form-control" type="text" />
+                        <input id="SolutionPath" name="SolutionPath" class="form-control" type="text" />
+                        <p>可以全局替换私有方案中 " 路径 " 的   相同   部分</p> 
                     </div>
                 </div>
                 <div class="field item form-group">
                     <label class="col-form-label col-md-2 col-sm-2  label-align">排序<span class="required">*</span></label>
                     <div class="col-md-10 col-sm-9">
                         <input type="text" value="1000" id="saveSort" name="Sort" class="form-control" autocomplete="off" />
-                        <input id="saveId" type="hidden" value="0" name="Id" />
                     </div>
                 </div>
 

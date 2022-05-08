@@ -62,6 +62,11 @@ namespace SoEasyPlatform.Apis
             var result = new ApiResult<string>();
             JsonResult errorResult = base.ValidateModel(model.Id);
             if (errorResult != null) return errorResult;
+            var isNoUpdatProjectIds = model.ProjectNames == "noupdate";
+            if (isNoUpdatProjectIds)
+            {
+                model.ProjectNames = "0";
+            }
             ProjectGroup ProjectGroup = new ProjectGroup()
             {
                 Id = Convert.ToInt32(model.Id),
@@ -72,7 +77,7 @@ namespace SoEasyPlatform.Apis
                 ProjectNames = String.Join(",", Db.Queryable<Project>().In(model.ProjectNames.Split(',').Select(it => Convert.ToInt32(it)).ToArray()).Select(it => it.ProjentName).ToArray())
             };
             var x = Db.Storageable(ProjectGroup).ToStorage();
-            x.AsUpdateable.ExecuteCommand();
+            x.AsUpdateable.IgnoreColumnsIF(isNoUpdatProjectIds, it=>new { it.ProjectIds,it.ProjectNames}).ExecuteCommand();
             x.AsInsertable.ExecuteCommand();
             result.IsSuccess = true;
             result.Data = x.InsertList.Any() ? Pubconst.MESSAGEADDSUCCESS : Pubconst.MESSAGESAVESUCCESS;
