@@ -8,7 +8,7 @@
         [PropertyName("名称")]
         public string Name { get; set; }
         [ValidateReduired()]
-        [PropertyName("统一路径,会替换私有路径")]
+        [PropertyName("生成会更新方案中的主目录")]
         public string SolutionPath { get; set; }
         [ValidateReduired()]
         [PropertyName("方案集合")]
@@ -23,7 +23,7 @@
         public int? Id { get; set; }
         [DisplayName("名称")]
         public string Name { get; set; }
-        [DisplayName("统一路径,会替换私有路径")]
+        [DisplayName("生成会更新方案中的主目录")]
         public string SolutionPath { get; set; }
         [DisplayName("方案集合")]
         public string ProjectNames { get; set; }
