@@ -351,7 +351,7 @@ btnTable.$Open("#divDiff", {
 
 btnPath.$Open("#divPath", {
     title: configs.text.addPath,
-    w: 600,
+    w: 680,
     h: 600,
     validate: function () {
         var gridInfo = divGrid.$GridInfo();
@@ -405,7 +405,7 @@ btnPath.$Open("#divPath", {
 
 btnPathEdit.$Open("#divPath", {
     title: configs.text.EditPath,
-    w: 600,
+    w: 680,
     h: 600,
     validate: function () {
         var gridInfo = divGrid.$GridInfo();
