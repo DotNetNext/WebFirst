@@ -4,7 +4,9 @@ var configs = {
         BuilderProjects: _root + "projectgroup/BuilderProjects"
     }
 };
-
+btnStudent.onclick = function () {
+    "用该功能之前需要先配置实体（菜单3种方式）".$Alert();
+}
 btnBack.onclick = function () {
     window.location.href =  "/Solution";
 }
