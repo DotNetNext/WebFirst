@@ -41,3 +41,6 @@ WebFirst  是果糖大数据团队开发的新一代 高性能 代码生成器&�
 
 ## 下载软件
 [WebFirst最新版本下载](https://www.donet5.com/Doc/11/2388)
+
+## QQ群效流
+QQ交流群：958343000
