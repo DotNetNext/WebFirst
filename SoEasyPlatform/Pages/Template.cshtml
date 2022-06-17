@@ -51,9 +51,9 @@
                 <div class="field item form-group">
                     <label class="col-form-label col-md-2 col-sm-2  label-align">  <button id="btnParameter" type="button" class="btn btn-info"><i class="fa fa-search"></i>参数查看</button><span class="required">*</span></label>
                     <div class="col-md-10 col-sm-9">
-                        <textarea id="saveContent" name="Content" style="height:330px" class="form-control"></textarea>
+                        <input id="saveContent" type="hidden" name="Content" />
                         <input id="saveId" type="hidden" name="Id" value="" />
-
+                        <iframe id="editorContainer" src="~/vendors/monaco-editor/monaco-editor.html" frameborder="0" style="width: 100%; height: 340px; border: 1px solid grey"></iframe>
                     </div>
                 </div>
                 @*<div class="field item form-group">

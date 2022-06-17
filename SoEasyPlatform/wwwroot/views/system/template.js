@@ -89,10 +89,14 @@ btnEdit.$Open("#divOpen", {
         } else {
             gridInfo = gridInfo[0];
             frmSave.$FillControls(gridInfo);
+            setTimeout(function () {
+                editorContainer.contentWindow.setValue(gridInfo.Content);
+            }, 300);
             return true;
         }
     },
     yes: function () {
+        $("#saveContent").val(editorContainer.contentWindow.getValue());
         frmSave.$Form({
             url: configs.url.SaveSystem,
             callback: function (msg) {

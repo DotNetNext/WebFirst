@@ -352,7 +352,7 @@ namespace SoEasyPlatform.Apis
             var tableDb = base.GetTryDb(dbid);
             var dts = Export(model, tableDb);
             var bytes = Table_ToExcel.ExportExcel(dts, "数据库文档.xlsx");
-            var url = FileSugar.MergeUrl(Startup.GetCurrentDirectory(), "excel/数据库文档" + SqlSugar.SnowFlakeSingle.Instance.getID() + ".xlsx");
+            var url = FileSugar.MergeUrl(Startup.CurrentDirectory, "excel/数据库文档" + SqlSugar.SnowFlakeSingle.Instance.getID() + ".xlsx");
             FileSugar.CreateFile(url, bytes);
             OpenPath(url);
             return result;

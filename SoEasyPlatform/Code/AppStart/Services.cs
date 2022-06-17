@@ -1,13 +1,8 @@
-﻿using AutoMapper;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace SoEasyPlatform 
+namespace SoEasyPlatform
 {
     public class Services
     {
@@ -18,8 +13,7 @@ namespace SoEasyPlatform
             services.AddAutoMapper(typeof(SoEasyPlatform.MapperProfiles).Assembly);
 #if DEBUG
             //启用动态编译
-            services.AddControllersWithViews()
-            .AddRazorRuntimeCompilation();
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();
 #endif
             services.AddControllersWithViews().AddNewtonsoftJson(opt =>
             {
