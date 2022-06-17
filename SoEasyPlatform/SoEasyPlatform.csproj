@@ -1,8 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <UserSecretsId>f7dcf8bd-82fe-4106-89cd-f16326d6b5f6</UserSecretsId>
+    <Nullable>disable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
@@ -40,17 +41,117 @@
     <None Include="wwwroot\vendors\bootstrap\.github\SUPPORT.md" />
     <None Include="wwwroot\vendors\editTable\jquery.edittable.js" />
     <None Include="wwwroot\vendors\editTable\jquery.edittable.min.js" />
+    <None Include="wwwroot\vendors\monaco-editor\csharpLanguageProvider.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\base\worker\workerMain.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\abap\abap.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\apex\apex.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\azcli\azcli.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\bat\bat.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\bicep\bicep.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\cameligo\cameligo.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\clojure\clojure.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\coffee\coffee.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\cpp\cpp.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\csharp\csharp.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\csp\csp.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\css\css.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\dart\dart.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\dockerfile\dockerfile.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\ecl\ecl.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\elixir\elixir.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\flow9\flow9.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\freemarker2\freemarker2.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\fsharp\fsharp.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\go\go.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\graphql\graphql.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\handlebars\handlebars.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\hcl\hcl.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\html\html.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\ini\ini.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\javascript\javascript.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\java\java.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\julia\julia.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\kotlin\kotlin.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\less\less.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\lexon\lexon.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\liquid\liquid.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\lua\lua.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\m3\m3.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\markdown\markdown.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\mips\mips.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\msdax\msdax.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\mysql\mysql.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\objective-c\objective-c.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\pascaligo\pascaligo.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\pascal\pascal.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\perl\perl.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\pgsql\pgsql.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\php\php.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\pla\pla.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\postiats\postiats.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\powerquery\powerquery.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\powershell\powershell.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\protobuf\protobuf.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\pug\pug.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\python\python.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\qsharp\qsharp.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\razor\razor.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\redis\redis.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\redshift\redshift.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\restructuredtext\restructuredtext.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\ruby\ruby.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\rust\rust.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\r\r.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\sb\sb.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\scala\scala.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\scheme\scheme.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\scss\scss.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\shell\shell.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\solidity\solidity.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\sophia\sophia.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\sparql\sparql.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\sql\sql.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\st\st.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\swift\swift.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\systemverilog\systemverilog.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\tcl\tcl.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\twig\twig.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\typescript\typescript.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\vb\vb.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\xml\xml.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\basic-languages\yaml\yaml.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\editor\editor.main.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\editor\editor.main.nls.de.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\editor\editor.main.nls.es.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\editor\editor.main.nls.fr.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\editor\editor.main.nls.it.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\editor\editor.main.nls.ja.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\editor\editor.main.nls.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\editor\editor.main.nls.ko.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\editor\editor.main.nls.ru.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\editor\editor.main.nls.zh-cn.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\editor\editor.main.nls.zh-tw.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\language\css\cssMode.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\language\css\cssWorker.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\language\html\htmlMode.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\language\html\htmlWorker.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\language\json\jsonMode.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\language\json\jsonWorker.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\language\typescript\tsMode.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\language\typescript\tsWorker.js" />
+    <None Include="wwwroot\vendors\monaco-editor\vs\loader.js" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="9.0.0" />
-    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.6" />
+    <PackageReference Include="SqlSugar.IOC" Version="1.8.0" />
+    <PackageReference Include="SqlSugarCore" Version="5.0.8.4" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.1" />
+    <PackageReference Include="AutoMapper" Version="11.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="ClosedXML" Version="0.95.4" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.10" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.5" />
     <PackageReference Include="RazorEngine.NetCore" Version="3.1.0" />
-    <PackageReference Include="SqlSugar.IOC" Version="1.6.0" />
-    <PackageReference Include="SqlSugarCore" Version="5.0.8.1" />
   </ItemGroup>
 
   <ItemGroup>
