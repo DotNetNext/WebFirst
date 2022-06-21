@@ -160,6 +160,7 @@ namespace SoEasyPlatform.Apis
                     break;
                 case DbType.SqlServer:
                     mstypes= SqlSugar.SqlServerDbBind.MappingTypesConst.Select(it => it.Key.ToLower()).ToList();
+                    mstypes.Add("xml");
                     break;
                 case DbType.Sqlite:
                     mstypes = SqlSugar.SqliteDbBind.MappingTypesConst.Select(it => it.Key.ToLower()).ToList();
