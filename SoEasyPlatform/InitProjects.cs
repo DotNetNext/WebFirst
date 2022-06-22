@@ -10,7 +10,8 @@ namespace SoEasyPlatform
     {
         private void InitProjects(SqlSugarClient db)
         {
-            var directory = Directory.GetCurrentDirectory() + "";
+            var directory = FileSugar.MergeUrl(Directory.GetCurrentDirectory(), "wwwroot", "template", "Projects");
+            var projectPathList=Directory.GetDirectories(directory);
         }
     }
 }

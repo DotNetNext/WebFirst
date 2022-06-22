@@ -3,31 +3,36 @@
     "模版": "Entity.txt",
     "文件夹": "FurionApi.Web.Core",
     "子目录": "Entities",
+    "文件后缀": "cs",
     "描述": "实体",
-    "使用说明": "模版.txt可以为空白，可以启动程序后在模管版理进行修改"
+    "使用说明": "模版.txt可以为空白，可以启动程序后在模管版理进行修改",
   },
   {
     "模版": "Biz.txt",
     "文件夹": "FurionApi.Application",
     "子目录": "Services",
+    "文件后缀": "cs",
     "描述": "业务"
   },
   {
     "模版": "API.txt",
     "文件夹": "FurionApi.Web.Entry",
     "子目录": "Apis",
+    "文件后缀": "cs",
     "描述": "启动项目"
   },
   {
     "模版": "IBiz.txt",
     "文件夹": "FurionApi.Application",
     "子目录": "IServices",
+    "文件后缀": "cs",
     "描述": "业务接口"
   },
   {
     "模版": "WebCore.txt",
     "文件夹": "FurionApi.Web.Core",
     "子目录": "",
+    "文件后缀": "cs",
     "描述": "WEB辅助类库"
   }
 ]
