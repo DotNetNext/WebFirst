@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using SqlSugar;
 namespace SoEasyPlatform
 {
-    public class InitTable
+    public partial class InitTable
     {
         /// <summary>
         /// 默认实体ID
@@ -59,6 +59,8 @@ namespace SoEasyPlatform
             InitTagProperty(db);
 
             InitOther(db);
+
+            InitProjects(db);
         }
 
         private void InitOther(SqlSugarClient db)
