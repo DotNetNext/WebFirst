@@ -12,6 +12,8 @@ namespace SoEasyPlatform
         {
             var directory = FileSugar.MergeUrl(Directory.GetCurrentDirectory(), "wwwroot", "template", "Projects");
             var projectPathList=Directory.GetDirectories(directory);
+            var configUrl = directory + "Config.json";
+            var jsonConfig = "directory";
         }
     }
 }
