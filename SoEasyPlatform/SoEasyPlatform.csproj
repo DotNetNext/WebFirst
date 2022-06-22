@@ -10,20 +10,26 @@
     <Compile Remove="wwwroot\vendors\echarts\**" />
     <Compile Remove="wwwroot\vendors\Flot\**" />
     <Compile Remove="wwwroot\vendors\parsleyjs\**" />
+    <Compile Remove="wwwroot\新文件夹\**" />
     <Content Remove="wwwroot\vendors\echarts\**" />
     <Content Remove="wwwroot\vendors\Flot\**" />
     <Content Remove="wwwroot\vendors\parsleyjs\**" />
+    <Content Remove="wwwroot\新文件夹\**" />
     <EmbeddedResource Remove="wwwroot\vendors\echarts\**" />
     <EmbeddedResource Remove="wwwroot\vendors\Flot\**" />
     <EmbeddedResource Remove="wwwroot\vendors\parsleyjs\**" />
+    <EmbeddedResource Remove="wwwroot\新文件夹\**" />
     <None Remove="wwwroot\vendors\echarts\**" />
     <None Remove="wwwroot\vendors\Flot\**" />
     <None Remove="wwwroot\vendors\parsleyjs\**" />
+    <None Remove="wwwroot\新文件夹\**" />
   </ItemGroup>
 
   <ItemGroup>
     <None Remove="WebFirst.exe" />
   </ItemGroup>
+
+  
 
   <ItemGroup>
     <Content Include="WebFirst.exe">
