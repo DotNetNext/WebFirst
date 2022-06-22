@@ -4,7 +4,7 @@ using System.IO;
 namespace SoEasyPlatform
 {
     /// <summary>
-    /// 用来初始化整个项目 template/
+    /// 用来初始化整个项目 /wwwroot/template/Projects
     /// </summary>
     public partial class InitTable
     {

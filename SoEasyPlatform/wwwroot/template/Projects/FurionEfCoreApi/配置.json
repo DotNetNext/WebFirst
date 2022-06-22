@@ -1,0 +1,19 @@
+﻿[
+  {
+    "实体模版": "Entity.txt",
+    "文件夹": "FurionApi.Web.Core",
+    "子目录": "Entities" 
+  },
+  {
+    "业务模版": "Biz.txt",
+    "文件夹": "FurionApi.Application",
+    "子目录": "Services"
+  }
+  ,
+  {
+    "业务接口": "IBiz.txt",
+    "文件夹": "FurionApi.Application",
+    "子目录": "IServices"
+  }
+]
+//接口可以删掉
