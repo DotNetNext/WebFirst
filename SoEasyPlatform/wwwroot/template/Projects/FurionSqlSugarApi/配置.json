@@ -1,19 +1,33 @@
 ﻿[
   {
-    "实体模版": "Entity.txt",
+    "模版": "Entity.txt",
     "文件夹": "FurionApi.Web.Core",
-    "子目录": "Entities" 
+    "子目录": "Entities",
+    "描述": "实体"
   },
   {
-    "业务模版": "Biz.txt",
+    "模版": "Biz.txt",
     "文件夹": "FurionApi.Application",
-    "子目录": "Services"
-  }
-  ,
+    "子目录": "Services",
+    "描述": "业务"
+  },
   {
-    "业务接口": "IBiz.txt",
+    "模版": "API.txt",
+    "文件夹": "FurionApi.Web.Entry",
+    "子目录": "Apis",
+    "描述": "启动项目"
+  },
+  {
+    "模版": "IBiz.txt",
     "文件夹": "FurionApi.Application",
-    "子目录": "IServices"
+    "子目录": "IServices",
+    "描述": "业务接口"
+  },
+  {
+    "模版": "WebCore.txt",
+    "文件夹": "FurionApi.Web.Core",
+    "子目录": "",
+    "描述": "WEB辅助类库"
   }
 ]
-//接口可以删掉
+//
