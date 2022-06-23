@@ -18,21 +18,16 @@ namespace SoEasyPlatform
             projectNames = "";
             var slnName = System.IO.Path.GetFileName(sln);
             var groupdata = db.Queryable<ProjectGroup>().First(it => it.Name == slnName);
-            if (groupdata != null)
-            {
-                ClearGroup(groupdata);
-            }
-            ProjectGroup projectGroup = new ProjectGroup()
-            {
-                ProjectIds = new int[] { },
-                Name = "",
-                ProjectNames = "",
-                SolutionPath = "",
-                Sort = 100
-            };
+            ClearGroup(groupdata);
+            ProjectGroup projectGroup = CreateEmptyProject();
             groupId = db.Insertable(projectGroup).ExecuteReturnIdentity();
             var ids = AddProjects(sln, slnName);
-            projectGroup = new ProjectGroup()
+            projectGroup = UpdateProject(slnName, ids);
+        }
+
+        private ProjectGroup UpdateProject(string slnName, List<int> ids)
+        {
+            ProjectGroup projectGroup = new ProjectGroup()
             {
                 ProjectIds = ids.ToArray(),
                 Name = slnName,
@@ -42,13 +37,30 @@ namespace SoEasyPlatform
                 Id = groupId
             };
             db.Updateable(projectGroup).ExecuteCommand();
+            return projectGroup;
+        }
+
+        private static ProjectGroup CreateEmptyProject()
+        {
+            return new ProjectGroup()
+            {
+                ProjectIds = new int[] { },
+                Name = "",
+                ProjectNames = "",
+                SolutionPath = "",
+                Sort = 100
+            };
         }
 
         private void ClearGroup(ProjectGroup groupdata)
         {
-            db.Deleteable<ProjectGroup>(groupdata).ExecuteCommand();
-            db.Deleteable<Project>().Where(it => it.SolutionId.Equals(groupdata.Id)).ExecuteCommand();
-            db.Deleteable<FileInfo>().Where(it => it.SolutionId.Equals(groupdata.Id)).ExecuteCommand();
+            if (groupdata != null)
+            {
+
+                db.Deleteable<ProjectGroup>(groupdata).ExecuteCommand();
+                db.Deleteable<Project>().Where(it => it.SolutionId.Equals(groupdata.Id)).ExecuteCommand();
+                db.Deleteable<FileInfo>().Where(it => it.SolutionId.Equals(groupdata.Id)).ExecuteCommand();
+            }
         }
 
     }
