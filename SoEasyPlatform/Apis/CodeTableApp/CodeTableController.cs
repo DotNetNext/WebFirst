@@ -328,7 +328,10 @@ namespace SoEasyPlatform.Apis
                 item.name_space = GetNameSpace(project.FileModel, item.name_space);
                 var html = TemplateHelper.GetTemplateValue(key, template, item);
                 var fileName = GetFileName(project, item);
-                FileSugar.CreateFileReplace(fileName, html, Encoding.UTF8);
+                if (fileName.Last() != '.')
+                {
+                    FileSugar.CreateFileReplace(fileName, html, Encoding.UTF8);
+                }
             }
             OpenPath(disOpen, project);
             ProjectController_Common.CreateProject(project.Id, model.DbId.Value);
