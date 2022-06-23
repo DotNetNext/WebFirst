@@ -1,1 +1,9 @@
 ﻿//修改Api.txt模版后, 重新启动程序
+[DynamicApiController]
+public class @(Model.ClassName)Api
+{
+    public string Test()
+    {
+        return "Hello, Furion";
+    }
+}
