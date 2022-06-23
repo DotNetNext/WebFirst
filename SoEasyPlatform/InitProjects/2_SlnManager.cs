@@ -19,8 +19,15 @@ namespace SoEasyPlatform
             var slnName = System.IO.Path.GetFileName(sln);
             var groupdata = db.Queryable<ProjectGroup>().First(it => it.Name == slnName);
             ClearGroup(groupdata);
-            ProjectGroup projectGroup = CreateEmptyProject();
-            groupId = db.Insertable(projectGroup).ExecuteReturnIdentity();
+            ProjectGroup projectGroup = groupdata==null?CreateEmptyProject():groupdata;
+            if (groupdata.Id == 0)
+            {
+                groupId = db.Insertable(projectGroup).ExecuteReturnIdentity();
+            }
+            else 
+            {
+                groupId = groupdata.Id;
+            }
             var ids = AddProjects(sln, slnName);
             projectGroup = UpdateProject(slnName, ids);
         }
@@ -57,7 +64,7 @@ namespace SoEasyPlatform
             if (groupdata != null)
             {
 
-                db.Deleteable<ProjectGroup>(groupdata).ExecuteCommand();
+                //db.Deleteable<ProjectGroup>(groupdata).ExecuteCommand();
                 db.Deleteable<Project>().Where(it => it.SolutionId.Equals(groupdata.Id)).ExecuteCommand();
                 db.Deleteable<FileInfo>().Where(it => it.SolutionId.Equals(groupdata.Id)).ExecuteCommand();
                 db.Deleteable<Template>().Where(it => it.SolutionId.Equals(groupdata.Id)).ExecuteCommand();
