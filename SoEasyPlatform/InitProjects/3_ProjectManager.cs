@@ -71,7 +71,7 @@ namespace SoEasyPlatform
             project.FileInfo = String.Join(",", fieldIds);
             project.FileSuffix = suff;
             project.SolutionId = groupId + "";
-            project.TemplateId1 = tempTypeId + "";
+            //project.ty = tempTypeId + "";
             var pid = db.Insertable(project).ExecuteReturnIdentity();
             return pid;
         }
