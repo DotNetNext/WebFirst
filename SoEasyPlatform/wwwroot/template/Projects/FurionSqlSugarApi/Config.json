@@ -18,21 +18,21 @@
     "文件夹": "FurionApi.Web.Entry",
     "子目录": "Apis",
     "文件后缀": "cs",
-    "描述": "启动项目"
+    "描述": "Web"
   },
   {
     "模版": "IBiz.txt",
     "文件夹": "FurionApi.Application",
     "子目录": "IServices",
     "文件后缀": "cs",
-    "描述": "业务接口"
+    "描述": "业务"
   },
   {
     "模版": "WebCore.txt",
     "文件夹": "FurionApi.Web.Core",
     "子目录": "",
     "文件后缀": "cs",
-    "描述": "WEB辅助类库"
+    "描述": "业务"
   }
 ]
  
