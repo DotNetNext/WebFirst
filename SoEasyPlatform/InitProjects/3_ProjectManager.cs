@@ -55,8 +55,8 @@ namespace SoEasyPlatform
                     IsDeleted = false,
                     IsInit = true,
                     Name = System.IO.Path.GetFileName(filePath),
-                    Json = "{\"name\":\"" + System.IO.Path.GetFileName(filePath) + "\"}",
-                    Suffix = "{\"name\":\"" + System.IO.Path.GetExtension(filePath) + "\"}",
+                    Json = "{\"name\":\"" + System.IO.Path.GetFileNameWithoutExtension(filePath) + "\"}",
+                    Suffix =System.IO.Path.GetExtension(filePath),
                     SolutionId = groupId + "",
                     Sort = 999,
 
