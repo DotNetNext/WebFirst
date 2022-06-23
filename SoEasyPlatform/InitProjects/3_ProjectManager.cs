@@ -43,6 +43,7 @@ namespace SoEasyPlatform
             var files = Directory.GetFiles(projectPath);
             Project project = new Project();
             List<int> fieldIds = new List<int>();
+            JArray jArray = new JArray();
             foreach (var filePath in files)
             {
 
@@ -53,13 +54,14 @@ namespace SoEasyPlatform
                     Content = FileSugar.FileToString(filePath),
                     IsDeleted = false,
                     IsInit = true,
-                    Name = "",
+                    Name = System.IO.Path.GetFileName(filePath),
                     Json = "{\"name\":\"" + System.IO.Path.GetFileName(filePath) + "\"}",
                     Suffix = "{\"name\":\"" + System.IO.Path.GetExtension(filePath) + "\"}",
                     SolutionId = groupId + "",
                     Sort = 999,
 
                 };
+                jArray.Add(JObject.Parse( "{ \"name\":\""+file.Name+"\"}"));
                 var fieldId = db.Insertable(file).ExecuteReturnIdentity();
                 fieldIds.Add(fieldId);
             }
@@ -71,6 +73,8 @@ namespace SoEasyPlatform
             project.FileInfo = String.Join(",", fieldIds);
             project.FileSuffix = suff;
             project.SolutionId = groupId + "";
+            project.IsInit = true;
+            project.FileModel = jArray.ToString();
             //project.ty = tempTypeId + "";
             var pid = db.Insertable(project).ExecuteReturnIdentity();
             return pid;

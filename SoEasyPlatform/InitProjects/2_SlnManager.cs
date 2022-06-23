@@ -60,6 +60,7 @@ namespace SoEasyPlatform
                 db.Deleteable<ProjectGroup>(groupdata).ExecuteCommand();
                 db.Deleteable<Project>().Where(it => it.SolutionId.Equals(groupdata.Id)).ExecuteCommand();
                 db.Deleteable<FileInfo>().Where(it => it.SolutionId.Equals(groupdata.Id)).ExecuteCommand();
+                db.Deleteable<Template>().Where(it => it.SolutionId.Equals(groupdata.Id)).ExecuteCommand();
             }
         }
     }

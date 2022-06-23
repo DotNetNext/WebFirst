@@ -11,19 +11,9 @@ namespace SoEasyPlatform
     /// </summary>
     public partial class InitTable
     {
-        int tempTypeId = 0;
         private int AddTemplate(string configUrl, string 文件夹, string 描述, string tempUrl, string slnName)
         {
             var name = slnName + "_" + 文件夹 + 描述;
-            var dbtemp = db.Queryable<Template>().First(it => it.Title == name);
-            if (dbtemp != null && !string.IsNullOrEmpty(dbtemp.Content))
-            {
-                return dbtemp.Id;
-            }
-            else if (dbtemp != null)
-            {
-                db.Deleteable<Template>().In(dbtemp.Id).ExecuteCommand();
-            }
             var temp = new Template()
             {
                 Content = FileSugar.FileToString(tempUrl),
@@ -33,10 +23,10 @@ namespace SoEasyPlatform
                 TemplateTypeName = 描述,
                 Title = name,
                 IsInit = true,
-                TemplateTypeId = Convert.ToInt32(GetTempTypeId(描述, configUrl))
+                TemplateTypeId = Convert.ToInt32(GetTempTypeId(描述, configUrl)),
+                SolutionId=groupId+""
             };
             var tempId = db.Insertable<Template>(temp).ExecuteReturnIdentity();
-            tempTypeId = temp.TemplateTypeId;
             return tempId;
         }
 

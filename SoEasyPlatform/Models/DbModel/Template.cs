@@ -24,6 +24,9 @@ namespace SoEasyPlatform
         public bool IsDeleted { get; set; }
         [SugarColumn(IsNullable =true)]
         public bool? IsInit { get; set; }
+
+        [SugarColumn(IsNullable = true, Length = 50)]
+        public string SolutionId { get; set; }
     }
  
     public class TemplateHistory
