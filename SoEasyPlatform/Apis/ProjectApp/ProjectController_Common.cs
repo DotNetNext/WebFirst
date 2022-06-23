@@ -70,7 +70,7 @@ namespace SoEasyPlatform
                         var html = TemplateHelper.GetTemplateValue(context, context, jsonItem);
                         var name = (jsonItem as IDictionary<string, object>)["name"];
                         var fileName = FileSugar.MergeUrl(project.Path,fileInfo.Directory, name + "." + fileInfo.Suffix.TrimStart('.'));
-                        if (!FileSugar.IsExistFile(fileName)&& !string.IsNullOrEmpty(fileInfo.Suffix))
+                        if (!FileSugar.IsExistFile(fileName))
                             FileSugar.CreateFile(fileName, html);
                         if (fileName.EndsWith(".csproj")) 
                         {
