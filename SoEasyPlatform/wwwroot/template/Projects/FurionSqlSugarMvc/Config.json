@@ -21,6 +21,13 @@
     "描述": "Web"
   },
   {
+    "模版": "Razor.txt",
+    "文件夹": "FurionMvc.Web.Entry",
+    "子目录": "{0}/Index",
+    "文件后缀": "cshtml",
+    "描述": "Web"
+  },
+  {
     "模版": "IBiz.txt",
     "文件夹": "FurionMvc.Application",
     "子目录": "IServices/I{0}",
