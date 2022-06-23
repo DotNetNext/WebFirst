@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -959,8 +960,43 @@ namespace SoEasyPlatform
                 reval.Append(itUrl);
                 itUrl = null;
             }
-            return reval.ToString();
-        } 
+            return GetRuntimeDirectory(reval.ToString());
+        }
+        #endregion
+        #region 路径处理
+        public static string GetRuntimeDirectory(string path)
+        {
+            //ForLinux
+            if (IsLinuxRunTime())
+                return GetLinuxDirectory(path);
+            //ForWindows
+            if (IsWindowRunTime())
+                return GetWindowDirectory(path);
+            return path;
+        }
+
+        //OSPlatform.Windows监测运行环境
+        public static bool IsWindowRunTime()
+        {
+            return System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
+        }
+
+        //OSPlatform.Linux运行环境
+        public static bool IsLinuxRunTime()
+        {
+            return System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(OSPlatform.Linux);
+        }
+
+        public static string GetLinuxDirectory(string path)
+        {
+            string pathTemp = Path.Combine(path);
+            return pathTemp.Replace("\\", "/");
+        }
+        public static string GetWindowDirectory(string path)
+        {
+            string pathTemp = Path.Combine(path);
+            return pathTemp.Replace("/", "\\");
+        }
         #endregion
     }
 }
