@@ -29,10 +29,10 @@ namespace SoEasyPlatform
                 groupId = groupdata.Id;
             }
             var ids = AddProjects(sln, slnName);
-            projectGroup = UpdateProject(slnName, ids);
+            projectGroup = UpdateProjectGroup(slnName, ids);
         }
 
-        private ProjectGroup UpdateProject(string slnName, List<int> ids)
+        private ProjectGroup UpdateProjectGroup(string slnName, List<int> ids)
         {
             ProjectGroup projectGroup = new ProjectGroup()
             {
