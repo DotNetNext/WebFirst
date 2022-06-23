@@ -61,6 +61,10 @@ namespace SoEasyPlatform
                     SolutionId = groupId + "",
                     Sort = 999, 
                 };
+                if (file.Suffix == "dll") 
+                {
+                    continue;
+                }
                 jArray.Add(JObject.Parse( "{ \"name\":\""+file.Name+"\"}"));
                 var fieldId = db.Insertable(file).ExecuteReturnIdentity();
                 fieldIds.Add(fieldId);
