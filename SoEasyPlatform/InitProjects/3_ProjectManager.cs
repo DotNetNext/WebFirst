@@ -54,12 +54,11 @@ namespace SoEasyPlatform
                     Content = FileSugar.FileToString(filePath),
                     IsDeleted = false,
                     IsInit = true,
-                    Name = System.IO.Path.GetFileName(filePath),
+                    Name = System.IO.Path.GetFileNameWithoutExtension(filePath),
                     Json = "{\"name\":\"" + System.IO.Path.GetFileNameWithoutExtension(filePath) + "\"}",
                     Suffix =System.IO.Path.GetExtension(filePath),
                     SolutionId = groupId + "",
-                    Sort = 999,
-
+                    Sort = 999, 
                 };
                 jArray.Add(JObject.Parse( "{ \"name\":\""+file.Name+"\"}"));
                 var fieldId = db.Insertable(file).ExecuteReturnIdentity();
