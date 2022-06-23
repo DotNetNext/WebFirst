@@ -67,7 +67,7 @@ namespace SoEasyPlatform
             }
             project.ProjentName = slnName+"_"+apiName;
             projectNames += (apiName + ",");
-            project.Path = projectPath;
+            project.Path =FileSugar.MergeUrl("c:\\Projects\\",slnName,apiName);
             project.SolutionId = "0";
             project.TemplateId1 = tempId + "";
             project.FileInfo = String.Join(",", fieldIds);
