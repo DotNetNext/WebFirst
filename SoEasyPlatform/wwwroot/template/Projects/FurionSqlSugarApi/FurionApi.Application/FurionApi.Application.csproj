@@ -8,6 +8,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Compile Remove="System\**" />
+	  <EmbeddedResource Remove="System\**" />
+	  <None Remove="System\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<None Remove="applicationsettings.json" />
 		<None Remove="FurionApi.Application.xml" />
 	</ItemGroup>
@@ -20,10 +26,6 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\FurionApi.Core\FurionApi.Core.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<Folder Include="System\Services\" />
 	</ItemGroup>
 
 </Project>
