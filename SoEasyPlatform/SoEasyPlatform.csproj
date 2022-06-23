@@ -176,7 +176,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\template\Projects\FurionSqlSugarMvc\" />
+    <Folder Include="wwwroot\template\Projects\FurionSqlSugarMvc\FurionMvc.Web.Entry\" />
   </ItemGroup>
 
 </Project>
