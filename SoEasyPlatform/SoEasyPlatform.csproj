@@ -33,6 +33,16 @@
     <None Remove="WebFirst.exe" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Include="wwwroot\template\Projects\FurionSqlSugarMvc\FurionMvc.Application\GlobalUsings.cs" />
+    <Compile Include="wwwroot\template\Projects\FurionSqlSugarMvc\FurionMvc.Application\System\ISystemService.cs" />
+    <Compile Include="wwwroot\template\Projects\FurionSqlSugarMvc\FurionMvc.Application\System\SystemService.cs" />
+    <Compile Include="wwwroot\template\Projects\FurionSqlSugarMvc\FurionMvc.Core\DbContext.cs" />
+    <Compile Include="wwwroot\template\Projects\FurionSqlSugarMvc\FurionMvc.Web.Core\Startup.cs" />
+    <Compile Include="wwwroot\template\Projects\FurionSqlSugarMvc\FurionMvc.Web.Entry\Controllers\HomeController.cs" />
+    <Compile Include="wwwroot\template\Projects\FurionSqlSugarMvc\FurionMvc.Web.Entry\Program.cs" />
+  </ItemGroup>
+
   
 
   <ItemGroup>
@@ -42,6 +52,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\template\Projects\FurionSqlSugarApi\FurionApi.sln" />
+    <None Include="wwwroot\template\Projects\FurionSqlSugarMvc\FurionMvc.Application\FurionMvc.Application.csproj" />
+    <None Include="wwwroot\template\Projects\FurionSqlSugarMvc\FurionMvc.Core\FurionMvc.Core.csproj" />
+    <None Include="wwwroot\template\Projects\FurionSqlSugarMvc\FurionMvc.sln" />
+    <None Include="wwwroot\template\Projects\FurionSqlSugarMvc\FurionMvc.Web.Core\FurionMvc.Web.Core.csproj" />
+    <None Include="wwwroot\template\Projects\FurionSqlSugarMvc\FurionMvc.Web.Entry\FurionMvc.Web.Entry.csproj" />
+    <None Include="wwwroot\template\Projects\FurionSqlSugarMvc\FurionMvc.Web.Entry\Views\Home\Index.cshtml" />
+    <None Include="wwwroot\template\Projects\FurionSqlSugarMvc\FurionMvc.Web.Entry\Views\Shared\_Layout.cshtml" />
+    <None Include="wwwroot\template\Projects\FurionSqlSugarMvc\FurionMvc.Web.Entry\Views\_ViewImports.cshtml" />
+    <None Include="wwwroot\template\Projects\FurionSqlSugarMvc\FurionMvc.Web.Entry\Views\_ViewStart.cshtml" />
     <None Include="wwwroot\vendors\bootstrap\.github\CODEOWNERS" />
     <None Include="wwwroot\vendors\bootstrap\.github\CONTRIBUTING.md" />
     <None Include="wwwroot\vendors\bootstrap\.github\ISSUE_TEMPLATE\bug.md" />

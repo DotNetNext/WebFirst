@@ -1,0 +1,50 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using SqlSugar;
+namespace @Model.name_space
+{
+    /// <summary>
+    /// @((Model.Description+"").Replace("\r","").Replace("\n",""))
+    ///</summary>
+    [SugarTable("@(Model.TableName)")]
+    public class @(Model.ClassName)
+    {
+@foreach (var item in Model.PropertyGens)
+{
+    var isPrimaryKey = item.IsPrimaryKey ? ",IsPrimaryKey = true" : "";
+    var isIdentity = item.IsIdentity ? ",IsIdentity = true" : "";
+    var isNull=(item.IsNullable&&item.Type!="string"&&item.IsSpecialType==false&&item.Type!="byte[]")?"?":"";
+    var isIgnore=(item.IsIgnore?",IsIgnore = true":"");
+    var isJson=(item.CodeType.StartsWith("json")?",IsJson= true":"");
+
+    var newPropertyName=item.PropertyName; //这里可以用C#处理 实体属性的显式格式
+    //想和数据库一样就用 newPropertyName=item.DbColumnName
+    if(System.Text.RegularExpressions.Regex.IsMatch(newPropertyName.Substring(0,1), "[0-9]"))
+    {
+        newPropertyName="_"+newPropertyName;//处理属性名开头为数字情况
+    }
+    if(newPropertyName==Model.ClassName)
+    {
+        newPropertyName="_"+newPropertyName;//处理属性名不能等于类名
+    }
+
+
+    var desc=(item.Description+"").Replace("\r","").Replace("\n","");//处理换行
+
+    if(isIgnore!="")
+    {
+       isPrimaryKey =isIdentity =isNull="";
+     }
+        @:/// <summary>
+        @:/// @(desc) 
+        @if(item.DefaultValue!=null)
+        {
+        @:/// 默认值: @Raw(item.DefaultValue)
+        }
+        @:///</summary>
+        @: [SugarColumn(ColumnName="@item.DbColumnName" @(isPrimaryKey) @(isIdentity) @(isIgnore) @(isJson))]
+        @: public @Raw(item.Type)@isNull @newPropertyName { get; set; }
+    }
+    }
+}
