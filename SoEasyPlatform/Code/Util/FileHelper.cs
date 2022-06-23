@@ -934,7 +934,12 @@ namespace SoEasyPlatform
             }
             else if (urls.Length == 1)
             {
+                urls = urls.Where(it => it != null).ToArray();
                 return urls[0];
+            }
+            else 
+            {
+                urls = urls.Where(it => it != null).ToArray();
             }
             StringBuilder reval = new StringBuilder();
             int i = 0;

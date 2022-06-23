@@ -51,6 +51,7 @@ namespace SoEasyPlatform
                 FileInfo file = new FileInfo()
                 {
                     ChangeTime = DateTime.Now,
+                    Directory=path.Replace(System.IO.Path.GetFileName(filePath),""),
                     Content = FileSugar.FileToString(filePath),
                     IsDeleted = false,
                     IsInit = true,

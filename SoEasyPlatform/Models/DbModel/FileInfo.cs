@@ -29,5 +29,8 @@ namespace SoEasyPlatform
         /// </summary>
         [SugarColumn(IsNullable = true, Length = 50)]
         public string SolutionId { get; set; }
+
+        [SugarColumn(IsNullable = true)]
+        public string Directory { get; set; } 
     }
 }

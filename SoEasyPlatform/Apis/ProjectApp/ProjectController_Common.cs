@@ -42,6 +42,12 @@ namespace SoEasyPlatform
                             var db = DbScoped.Sugar.Queryable<Database>().InSingle(dbid);
                             fileInfo.Content = fileInfo.Content.Replace("[请设置DbType]","SqlSugar.DbType."+db.DbType+"").Replace("[请设置ConStr]", "@@\""+db.Connection.Replace("@","@@")+"\"");
                         }
+                        else if (dbid > 0 && fileInfo.Content.Contains("[ConStr]"))
+                        {
+                            var db = DbScoped.Sugar.Queryable<Database>().InSingle(dbid);
+                            fileInfo.Content = fileInfo.Content.Replace("[DbType]",   db.DbType+"" )
+                                .Replace("[ConStr]",   db.Connection.Replace("@", "@@")  );
+                        }
                         var context = fileInfo.Content;
                         if (!string.IsNullOrEmpty(project.Reference))
                         {
@@ -63,7 +69,7 @@ namespace SoEasyPlatform
                         }
                         var html = TemplateHelper.GetTemplateValue(context, context, jsonItem);
                         var name = (jsonItem as IDictionary<string, object>)["name"];
-                        var fileName = FileSugar.MergeUrl(project.Path, name + "." + fileInfo.Suffix.TrimStart('.'));
+                        var fileName = FileSugar.MergeUrl(project.Path,fileInfo.Directory, name + "." + fileInfo.Suffix.TrimStart('.'));
                         if (!FileSugar.IsExistFile(fileName))
                             FileSugar.CreateFile(fileName, html);
                         if (fileName.EndsWith(".csproj")) 
