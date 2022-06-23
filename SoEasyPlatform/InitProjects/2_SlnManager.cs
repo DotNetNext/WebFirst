@@ -62,6 +62,5 @@ namespace SoEasyPlatform
                 db.Deleteable<FileInfo>().Where(it => it.SolutionId.Equals(groupdata.Id)).ExecuteCommand();
             }
         }
-
     }
 }
