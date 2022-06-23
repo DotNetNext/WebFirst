@@ -10,14 +10,14 @@ namespace Furion.Web.Entry.Controllers
     {
         private readonly I@(Model.ClassName)Service _service;
 
-        public @(Model.ClassName)Controller(I@(Model.ClassName)Service @(Model.ClassName)Service)
+        public @(Model.ClassName)Controller(I@(Model.ClassName)Service service)
         {
-            _service = systemService;
+            _service = service;
         }
 
         public IActionResult Index()
         {
-            ViewBag.Description = _service.GetDescription();
+            ViewBag.Description = _service.Get@(Model.ClassName)();
 
             return View();
         }
