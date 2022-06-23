@@ -20,7 +20,6 @@ namespace SoEasyPlatform
             CheckProjectConfig(configUrl);
             var json = FileSugar.FileToString(configUrl);
             var projects = JArray.Parse(json);
-            projectNames = "";
             foreach (var item in projects)
             {
                 CheckConfigItemChilds(configUrl, item);
@@ -33,13 +32,13 @@ namespace SoEasyPlatform
                 CheckProjectConfig(tempUrl);
                 var tempId = AddTemplate(configUrl, 文件夹, 描述, tempUrl, slnName);
                 var projectPath = FileSugar.MergeUrl(sln, 文件夹);
-                var id = AddProject(tempId, slnName + "_" + 文件夹, sln, projectPath, 文件后缀);
+                var id = AddProject(tempId, slnName, 文件夹, sln, projectPath, 文件后缀);
                 result.Add(id);
             }
             return result;
         }
 
-        private int AddProject(int tempId, string apiName, string rootPath, string projectPath, string suff)
+        private int AddProject(int tempId,string slnName, string apiName, string rootPath, string projectPath, string suff)
         {
             var files = Directory.GetFiles(projectPath);
             Project project = new Project();
@@ -64,8 +63,8 @@ namespace SoEasyPlatform
                 var fieldId = db.Insertable(file).ExecuteReturnIdentity();
                 fieldIds.Add(fieldId);
             }
-            project.ProjentName = apiName;
-            projectNames += apiName = ",";
+            project.ProjentName = slnName+"_"+apiName;
+            projectNames += (apiName + ",");
             project.Path = projectPath;
             project.SolutionId = "0";
             project.TemplateId1 = tempId + "";

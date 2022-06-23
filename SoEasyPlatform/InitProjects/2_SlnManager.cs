@@ -15,8 +15,8 @@ namespace SoEasyPlatform
         int groupId = 0;
         private void AddSln(string sln)
         {
+            projectNames = "";
             var slnName = System.IO.Path.GetFileName(sln);
-            string projectNames = "";
             var groupdata = db.Queryable<ProjectGroup>().First(it => it.Name == slnName);
             if (groupdata != null)
             {
@@ -36,7 +36,7 @@ namespace SoEasyPlatform
             {
                 ProjectIds = ids.ToArray(),
                 Name = slnName,
-                ProjectNames = projectNames,
+                ProjectNames = projectNames.TrimEnd(','),
                 SolutionPath = "c:\\Projects\\" + slnName,
                 Sort = 100,
                 Id = groupId
