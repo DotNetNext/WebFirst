@@ -70,7 +70,7 @@ namespace SoEasyPlatform
                         var html = TemplateHelper.GetTemplateValue(context, context, jsonItem);
                         var name = (jsonItem as IDictionary<string, object>)["name"];
                         var fileName = FileSugar.MergeUrl(project.Path,fileInfo.Directory, name + "." + fileInfo.Suffix.TrimStart('.'));
-                        if (!FileSugar.IsExistFile(fileName))
+                        if (!FileSugar.IsExistFile(fileName)&&fileName.Contains("."))
                             FileSugar.CreateFile(fileName, html);
                         if (fileName.EndsWith(".csproj")) 
                         {
@@ -98,8 +98,11 @@ namespace SoEasyPlatform
 Global");
                                         text = text.Replace(@"EndProject
 Global", sb.ToString());
-                                        FileSugar.DeleteFile(item);
-                                        FileSugar.CreateFile(item, text);
+                                        if (item.Contains("."))
+                                        {
+                                            FileSugar.DeleteFile(item);
+                                            FileSugar.CreateFile(item, text);
+                                        }
                                     }
                                 }
                             }
