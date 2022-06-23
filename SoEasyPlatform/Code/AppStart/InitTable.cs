@@ -106,7 +106,7 @@ namespace SoEasyPlatform
                     FileModel = "[{ \"name\":\""+_defaultNamespace+ ".Services\",\"nuget\":[{ \"name\":\"SqlSugarCore\",\"version\":\"5.0.7.8\" }]},{\"name\":\"Repository\", \"name_space\":\"" + _defaultNamespace+ ".Services\" }]",
                     FileInfo = _net5lib + ","+_dbcontext,
                     ProjentName = "[简单三层]_方案_业务_Sugar",
-                    Path = @"c:\" + _defaultNamespace + @"\Services",
+                    Path = FileSugar.MergeUrl(@"c:\" + _defaultNamespace + @"\Services"),
                     IsDeleted = false,
                     IsInit = true,
                     ModelId = 2,
