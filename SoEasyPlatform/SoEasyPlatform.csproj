@@ -43,6 +43,7 @@
     <Content Include="WebFirst.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="wwwroot\template\Projects\FurionSqlSugarMvc\Razor.txt" />
   </ItemGroup>
 
   <ItemGroup>
@@ -173,10 +174,6 @@
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\template\Projects\FurionSqlSugarMvc\" />
   </ItemGroup>
 
 </Project>
