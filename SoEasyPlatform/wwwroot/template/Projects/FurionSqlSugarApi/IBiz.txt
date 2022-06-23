@@ -1,1 +1,8 @@
 ﻿//修改IBiz.txt模版后, 重新启动程序
+namespace FurionApi.Application
+{
+    public interface I@(Model.ClassName)Service
+    {
+        string Get@(Model.ClassName)();
+    }
+}
