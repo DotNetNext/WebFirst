@@ -35,11 +35,8 @@
 
   <ItemGroup>
     <Compile Include="wwwroot\template\Projects\FurionSqlSugarMvc\FurionMvc.Application\GlobalUsings.cs" />
-    <Compile Include="wwwroot\template\Projects\FurionSqlSugarMvc\FurionMvc.Application\System\ISystemService.cs" />
-    <Compile Include="wwwroot\template\Projects\FurionSqlSugarMvc\FurionMvc.Application\System\SystemService.cs" />
     <Compile Include="wwwroot\template\Projects\FurionSqlSugarMvc\FurionMvc.Core\DbContext.cs" />
     <Compile Include="wwwroot\template\Projects\FurionSqlSugarMvc\FurionMvc.Web.Core\Startup.cs" />
-    <Compile Include="wwwroot\template\Projects\FurionSqlSugarMvc\FurionMvc.Web.Entry\Controllers\HomeController.cs" />
     <Compile Include="wwwroot\template\Projects\FurionSqlSugarMvc\FurionMvc.Web.Entry\Program.cs" />
   </ItemGroup>
 

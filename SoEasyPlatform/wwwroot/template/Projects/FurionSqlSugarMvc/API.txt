@@ -1,9 +1,25 @@
 ﻿//修改Api.txt模版后, 重新启动程序
-[DynamicApiController]
-public class @(Model.ClassName)Api
+using FurionMvc.Application;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+
+namespace Furion.Web.Entry.Controllers
 {
-    public string Test()
+    [AllowAnonymous]
+    public class @(Model.ClassName)Controller : Controller
     {
-        return "Hello, Furion";
+        private readonly I@(Model.ClassName)Service _service;
+
+        public @(Model.ClassName)Controller(I@(Model.ClassName)Service @(Model.ClassName)Service)
+        {
+            _service = systemService;
+        }
+
+        public IActionResult Index()
+        {
+            ViewBag.Description = _service.GetDescription();
+
+            return View();
+        }
     }
 }
