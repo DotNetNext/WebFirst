@@ -32,7 +32,7 @@ namespace SoEasyPlatform
                 ProjectIds = ids.ToArray(),
                 Name = slnName,
                 ProjectNames = projectNames.TrimEnd(','),
-                SolutionPath = "c:\\Projects\\" + slnName,
+                SolutionPath =FileSugar.MergeUrl("c:\\Projects\\" + slnName),
                 Sort = 100,
                 Id = groupId
             };
