@@ -93,7 +93,7 @@ namespace SoEasyPlatform
                     FileInfo = _net5lib + "",
                     NameFormat = "DbModels\\{0}",
                     ProjentName = "[简单三层]_方案_实体_Sugar",
-                    Path = @"c:\" + _defaultNamespace + @"\Entites",
+                    Path =FileSugar.MergeUrl( @"c:\" + _defaultNamespace + @"\Entites"),
                     IsDeleted = false,
                     IsInit = true,
                     ModelId = 1
@@ -120,7 +120,7 @@ namespace SoEasyPlatform
                     FileInfo =string.Join(",",_WebFiles),
                     ProjentName = "[简单三层]_方案_前端_Sugar",
                     NameFormat = "Controllers\\{0}Controller",
-                    Path = @"c:\" + _defaultNamespace + @"\Api",
+                    Path =FileSugar.MergeUrl( @"c:\" + _defaultNamespace + @"\Api"),
                     IsDeleted = false,
                     IsInit = true,
                     ModelId = 3,
@@ -134,7 +134,7 @@ namespace SoEasyPlatform
                     {
                         Name = ".Net5 SqlSugar+仓储",
                         ProjectIds = new int[] { pid, pid2, pid3 },
-                        SolutionPath = "c:\\WebFirst\\Demo01",
+                        SolutionPath =FileSugar.MergeUrl( "c:\\WebFirst\\Demo01"),
                         ProjectNames=String.Join(",", db.Queryable<Project>().In(pid, pid2, pid3).Select(it=>it.ProjentName).ToArray())
                     }).ExecuteReturnIdentity();
                 }
