@@ -26,6 +26,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\template\Projects\FurionSqlSugarApi\FurionApi.Application\obj\FurionApi.Application.csproj.nuget.g.props" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="WebFirst.exe" />
   </ItemGroup>
 
@@ -165,6 +169,10 @@
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\template\Projects\FurionSqlSugarApi\FurionApi.Application\obj\Debug\net6.0\" />
   </ItemGroup>
 
 </Project>
