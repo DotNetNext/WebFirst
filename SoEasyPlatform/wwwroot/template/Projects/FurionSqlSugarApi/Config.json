@@ -1,7 +1,7 @@
 ﻿[
   {
     "模版": "Entity.txt",
-    "文件夹": "FurionApi.Web.Core",
+    "文件夹": "FurionApi.Core",
     "子目录": "Entities",
     "文件后缀": "cs",
     "描述": "实体"
