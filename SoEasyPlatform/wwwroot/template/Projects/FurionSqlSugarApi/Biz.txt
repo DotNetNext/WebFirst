@@ -1,6 +1,6 @@
 ﻿//修改Biz.txt模版后, 重新启动程序
 //修改Biz.txt模版后, 重新启动程序
-namespace FurionAPI.Application
+namespace FurionApi.Application
 {
     public class @(Model.ClassName)Service : I@(Model.ClassName)Service, ITransient
     {
