@@ -19,10 +19,10 @@ namespace SoEasyPlatform
             var slnName = System.IO.Path.GetFileName(sln);
             var groupdata = db.Queryable<ProjectGroup>().First(it => it.Name == slnName);
             ClearGroup(groupdata);
-            ProjectGroup projectGroup = groupdata==null?CreateEmptyProject():groupdata;
+            groupdata = groupdata==null?CreateEmptyProject():groupdata;
             if (groupdata.Id == 0)
             {
-                groupId = db.Insertable(projectGroup).ExecuteReturnIdentity();
+                groupId = db.Insertable(groupdata).ExecuteReturnIdentity();
             }
             else 
             {
