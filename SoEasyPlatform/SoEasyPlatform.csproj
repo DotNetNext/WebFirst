@@ -49,10 +49,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\template\Projects\FurionSqlSugarApi\FurionApi.sln" />
     <None Include="wwwroot\template\Projects\FurionSqlSugarMvc\FurionMvc.Application\FurionMvc.Application.csproj" />
     <None Include="wwwroot\template\Projects\FurionSqlSugarMvc\FurionMvc.Core\FurionMvc.Core.csproj" />
-    <None Include="wwwroot\template\Projects\FurionSqlSugarMvc\FurionMvc.sln" />
     <None Include="wwwroot\template\Projects\FurionSqlSugarMvc\FurionMvc.Web.Core\FurionMvc.Web.Core.csproj" />
     <None Include="wwwroot\template\Projects\FurionSqlSugarMvc\FurionMvc.Web.Entry\FurionMvc.Web.Entry.csproj" />
     <None Include="wwwroot\template\Projects\FurionSqlSugarMvc\FurionMvc.Web.Entry\Views\Home\Index.cshtml" />
