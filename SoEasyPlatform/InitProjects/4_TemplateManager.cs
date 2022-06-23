@@ -11,6 +11,7 @@ namespace SoEasyPlatform
     /// </summary>
     public partial class InitTable
     {
+        int tempTypeId=0;
         private int AddTemplate(string configUrl, string 文件夹, string 描述, string tempUrl, string slnName)
         {
             var name = slnName + "_" + 文件夹 + 描述;
@@ -27,6 +28,7 @@ namespace SoEasyPlatform
                 SolutionId=groupId+""
             };
             var tempId = db.Insertable<Template>(temp).ExecuteReturnIdentity();
+            tempTypeId = temp.TemplateTypeId;
             return tempId;
         }
 

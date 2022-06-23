@@ -75,6 +75,7 @@ namespace SoEasyPlatform
             project.SolutionId = groupId + "";
             project.IsInit = true;
             project.FileModel = jArray.ToString();
+            project.ModelId =tempTypeId;
             //project.ty = tempTypeId + "";
             var pid = db.Insertable(project).ExecuteReturnIdentity();
             return pid;
