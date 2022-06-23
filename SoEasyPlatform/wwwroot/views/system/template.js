@@ -54,6 +54,7 @@ btnAdd.$Open("#divOpen", {
         return true;
     },
     yes: function () {
+        $("#saveContent").val(editorContainer.contentWindow.getValue());
         frmSave.$Form({
             url: configs.url.SaveSystem,
             callback: function (msg) {
