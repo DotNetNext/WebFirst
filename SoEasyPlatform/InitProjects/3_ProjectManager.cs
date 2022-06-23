@@ -40,7 +40,7 @@ namespace SoEasyPlatform
 
         private int AddProject(int tempId,string slnName, string apiName, string rootPath, string projectPath, string suff)
         {
-            var files = Directory.GetFiles(projectPath);
+            var files = FileSugar.GetFileNames(projectPath,"*",true);
             Project project = new Project();
             List<int> fieldIds = new List<int>();
             JArray jArray = new JArray();
