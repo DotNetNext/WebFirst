@@ -7,18 +7,26 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\template\Projects\FurionSqlSugarApi\**" />
+    <Compile Remove="wwwroot\template\Projects\FurionSqlSugarMvc\**" />
     <Compile Remove="wwwroot\vendors\echarts\**" />
     <Compile Remove="wwwroot\vendors\Flot\**" />
     <Compile Remove="wwwroot\vendors\parsleyjs\**" />
     <Compile Remove="wwwroot\新文件夹\**" />
+    <Content Remove="wwwroot\template\Projects\FurionSqlSugarApi\**" />
+    <Content Remove="wwwroot\template\Projects\FurionSqlSugarMvc\**" />
     <Content Remove="wwwroot\vendors\echarts\**" />
     <Content Remove="wwwroot\vendors\Flot\**" />
     <Content Remove="wwwroot\vendors\parsleyjs\**" />
     <Content Remove="wwwroot\新文件夹\**" />
+    <EmbeddedResource Remove="wwwroot\template\Projects\FurionSqlSugarApi\**" />
+    <EmbeddedResource Remove="wwwroot\template\Projects\FurionSqlSugarMvc\**" />
     <EmbeddedResource Remove="wwwroot\vendors\echarts\**" />
     <EmbeddedResource Remove="wwwroot\vendors\Flot\**" />
     <EmbeddedResource Remove="wwwroot\vendors\parsleyjs\**" />
     <EmbeddedResource Remove="wwwroot\新文件夹\**" />
+    <None Remove="wwwroot\template\Projects\FurionSqlSugarApi\**" />
+    <None Remove="wwwroot\template\Projects\FurionSqlSugarMvc\**" />
     <None Remove="wwwroot\vendors\echarts\**" />
     <None Remove="wwwroot\vendors\Flot\**" />
     <None Remove="wwwroot\vendors\parsleyjs\**" />
@@ -26,18 +34,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Remove="wwwroot\template\Projects\FurionSqlSugarApi\FurionApi.Application\obj\FurionApi.Application.csproj.nuget.g.props" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Remove="WebFirst.exe" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Include="wwwroot\template\Projects\FurionSqlSugarMvc\FurionMvc.Application\GlobalUsings.cs" />
-    <Compile Include="wwwroot\template\Projects\FurionSqlSugarMvc\FurionMvc.Core\DbContext.cs" />
-    <Compile Include="wwwroot\template\Projects\FurionSqlSugarMvc\FurionMvc.Web.Core\Startup.cs" />
-    <Compile Include="wwwroot\template\Projects\FurionSqlSugarMvc\FurionMvc.Web.Entry\Program.cs" />
   </ItemGroup>
 
   
@@ -49,14 +46,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\template\Projects\FurionSqlSugarMvc\FurionMvc.Application\FurionMvc.Application.csproj" />
-    <None Include="wwwroot\template\Projects\FurionSqlSugarMvc\FurionMvc.Core\FurionMvc.Core.csproj" />
-    <None Include="wwwroot\template\Projects\FurionSqlSugarMvc\FurionMvc.Web.Core\FurionMvc.Web.Core.csproj" />
-    <None Include="wwwroot\template\Projects\FurionSqlSugarMvc\FurionMvc.Web.Entry\FurionMvc.Web.Entry.csproj" />
-    <None Include="wwwroot\template\Projects\FurionSqlSugarMvc\FurionMvc.Web.Entry\Views\Home\Index.cshtml" />
-    <None Include="wwwroot\template\Projects\FurionSqlSugarMvc\FurionMvc.Web.Entry\Views\Shared\_Layout.cshtml" />
-    <None Include="wwwroot\template\Projects\FurionSqlSugarMvc\FurionMvc.Web.Entry\Views\_ViewImports.cshtml" />
-    <None Include="wwwroot\template\Projects\FurionSqlSugarMvc\FurionMvc.Web.Entry\Views\_ViewStart.cshtml" />
     <None Include="wwwroot\vendors\bootstrap\.github\CODEOWNERS" />
     <None Include="wwwroot\vendors\bootstrap\.github\CONTRIBUTING.md" />
     <None Include="wwwroot\vendors\bootstrap\.github\ISSUE_TEMPLATE\bug.md" />
@@ -187,7 +176,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\template\Projects\FurionSqlSugarApi\FurionApi.Application\obj\Debug\net6.0\" />
+    <Folder Include="wwwroot\template\Projects\" />
   </ItemGroup>
 
 </Project>
