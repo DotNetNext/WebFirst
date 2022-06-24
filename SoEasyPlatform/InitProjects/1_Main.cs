@@ -18,6 +18,7 @@ namespace SoEasyPlatform
             this.db = db;
             var directory = FileSugar.MergeUrl(Directory.GetCurrentDirectory(), "wwwroot", "template", "Projects");
             var slnListPathList = Directory.GetDirectories(directory);
+            if (slnListPathList == null) return;
             try
             {
                 db.BeginTran();
