@@ -32,7 +32,14 @@ namespace SoEasyPlatform
             }
             else 
             {
-                return dbColumnName.Substring(0, 1).ToUpper() + dbColumnName.Substring(1).ToLower();
+                if (dbColumnName.ToUpper() == dbColumnName)
+                {
+                    return dbColumnName.Substring(0, 1).ToUpper() + dbColumnName.Substring(1).ToLower();
+                }
+                else
+                {
+                    return dbColumnName.Substring(0, 1).ToUpper() + dbColumnName.Substring(1);
+                }
             }
         }
     }
