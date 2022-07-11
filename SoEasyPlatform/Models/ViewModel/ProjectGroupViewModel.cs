@@ -27,5 +27,7 @@
         public string SolutionPath { get; set; }
         [DisplayName("方案集合")]
         public string ProjectNames { get; set; }
+        [DisplayName("描述")]
+        public string Description { get; set; }
     }
 }

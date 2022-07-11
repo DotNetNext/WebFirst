@@ -13,5 +13,7 @@ namespace SoEasyPlatform
         public int[] ProjectIds { get; set; }
         public string ProjectNames { get; set; }
         public int Sort { get;  set; }
+        [SugarColumn(IsNullable =true)]
+        public string Description { get; set; }
     }
 }

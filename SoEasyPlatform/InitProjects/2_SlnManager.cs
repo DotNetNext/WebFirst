@@ -41,7 +41,8 @@ namespace SoEasyPlatform
                 ProjectNames = projectNames.TrimEnd(','),
                 SolutionPath =FileSugar.MergeUrl("c:\\Projects\\" + slnName),
                 Sort = 100,
-                Id = groupId
+                Id = groupId,
+                 Description= $"启用文件同步中。<br>删掉 wwwroot\\template\\Projects\\slnName 可以关闭自动同步"
             };
             db.Updateable(projectGroup).ExecuteCommand();
             return projectGroup;
