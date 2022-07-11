@@ -127,6 +127,58 @@ namespace SoEasyPlatform.Apis
             result.IsSuccess = true;
             return result;
         }
+        /// <summary>
+        /// 执行一键生成通过下载
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("BuilderProjectsByHttp")]
+        public ApiResult<string> BuilderProjectsByHttp([FromForm] string model, [FromForm] int pgid, [FromForm] int dbid)
+        {
+            var result = new ApiResult<string>();
+            if (!string.IsNullOrEmpty(model))
+            {
+                var group = Db.Queryable<ProjectGroup>().InSingle(pgid);
+                var projectids = group.ProjectIds;
+                var list = Db.Queryable<Project>().In(projectids).OrderBy(it => it.ModelId).ToList();
+
+                try
+                {
+                    Db.BeginTran();
+                    foreach (var item in list)
+                    {
+                        var name = System.IO.Path.GetFileName(item.Path);
+                        item.Path = System.IO.Path.Combine(group.SolutionPath, name);
+
+                        result.Data = item.Path;
+
+                        Db.Updateable(item).ExecuteCommand();
+                        new CodeTableController(null).CreateFileByProjectId(new ProjectViewModel2
+                        {
+                            Tables = model,
+                            ProjectId = item.Id,
+                            DbId = dbid,
+                            ModelId = item.ModelId
+                        }, list.Last() == item);
+                    }
+
+                    var zipName = $"{DateTime.Now.ToString("yyyy-MM-dd-hh-mm-ss")}.zip";
+                    var zipPath = System.IO.Path.Combine("wwwroot", "temp", zipName);
+                    ZipHelper.ZipFileDirectory(result.Data, zipPath);
+                    result.Data = zipPath;
+
+                    Db.CommitTran();
+                }
+                catch (Exception ex)
+                {
+                    Db.RollbackTran();
+                    throw ex;
+                }
+            }
+            result.IsSuccess = true;
+
+            return result;
+        }
 
         /// <summary>
         /// 删除解决方案

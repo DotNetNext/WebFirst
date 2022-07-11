@@ -1,7 +1,8 @@
 ﻿
 var configs = {
     url: {
-        BuilderProjects: _root + "projectgroup/BuilderProjects"
+        BuilderProjects: _root + "projectgroup/BuilderProjects",
+        BuilderProjectsByHttp: _root + "projectgroup/BuilderProjectsByHttp"
     }
 };
 btnStudent.onclick = function () {
@@ -27,6 +28,28 @@ btnProjectGroup.onclick = function ()
                 btnProjectGroup.$CloseLoading();
             },
             data: { "model": JSON.stringify(gridInfo), pgid: hidProjectGroupid.value, dbid:txtDbId.value}
+        })
+    } else {
+        "请选择一条数据".$Alert();
+    }
+}
+
+btnProjectGroupHttp.onclick = function () {
+    var gridInfo = divGrid.$GridInfo();
+    if (gridInfo.length > 0) {
+        btnProjectGroup.$Loading();
+        configs.url.BuilderProjectsByHttp.$Ajax({
+            callback: function (msg) {
+                if (msg.IsSuccess) {
+                    "生成成功".$Alert();
+                    btnSearch.click();
+                }
+                else {
+                    msg.Data.$Alert();
+                }
+                btnProjectGroup.$CloseLoading();
+            },
+            data: { "model": JSON.stringify(gridInfo), pgid: hidProjectGroupid.value, dbid: txtDbId.value }
         })
     } else {
         "请选择一条数据".$Alert();
