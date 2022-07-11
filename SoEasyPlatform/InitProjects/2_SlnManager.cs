@@ -29,6 +29,9 @@ namespace SoEasyPlatform
                 groupId = groupdata.Id;
             }
             var ids = AddProjects(sln, slnName);
+            db.Updateable<ProjectGroup>().SetColumns(it => it.Description == "")
+            .Where(it => true)
+            .ExecuteCommand();
             UpdateProjectGroup(slnName, ids);
         }
 
@@ -44,9 +47,7 @@ namespace SoEasyPlatform
                 Id = groupId,
                 Description= $"<a style='display: block;width: 200px;' href='https://www.donet5.com/Doc/11/2433' target='_bank' >启用文件同步中,点击关闭</a>"
             };
-            db.Updateable<ProjectGroup>().SetColumns(it => it.Description == "")
-                .Where(it=>true)
-                .ExecuteCommand();
+        
             db.Updateable(projectGroup).ExecuteCommand();
             return projectGroup;
         }
