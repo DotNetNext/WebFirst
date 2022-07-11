@@ -23,6 +23,9 @@ namespace SoEasyPlatform
             try
             {
                 db.BeginTran();
+                db.Updateable<ProjectGroup>().SetColumns(it => it.Description == "")
+.Where(it => true)
+.ExecuteCommand();
                 foreach (var sln in slnListPathList)
                 {
                     AddSln(sln);

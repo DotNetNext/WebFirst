@@ -29,9 +29,6 @@ namespace SoEasyPlatform
                 groupId = groupdata.Id;
             }
             var ids = AddProjects(sln, slnName);
-            db.Updateable<ProjectGroup>().SetColumns(it => it.Description == "")
-            .Where(it => true)
-            .ExecuteCommand();
             UpdateProjectGroup(slnName, ids);
         }
 
