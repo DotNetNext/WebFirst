@@ -42,7 +42,7 @@ namespace SoEasyPlatform
                 SolutionPath =FileSugar.MergeUrl("c:\\Projects\\" + slnName),
                 Sort = 100,
                 Id = groupId,
-                 Description= $"启用文件同步中。<br>删掉 wwwroot\\template\\Projects\\slnName 可以关闭自动同步"
+                Description= $"启用文件同步中 [<a href='https://www.donet5.com/Doc/11/2433'>关闭？</a>]"
             };
             db.Updateable(projectGroup).ExecuteCommand();
             return projectGroup;
