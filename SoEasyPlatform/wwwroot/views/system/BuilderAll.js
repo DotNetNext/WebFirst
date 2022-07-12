@@ -9,12 +9,11 @@ btnStudent.onclick = function () {
     "用该功能之前需要先配置实体（菜单3种方式）".$Alert();
 }
 btnBack.onclick = function () {
-    window.location.href =  "/Solution";
+    window.location.href = "/Solution";
 }
-btnProjectGroup.onclick = function ()
-{
+btnProjectGroup.onclick = function () {
     var gridInfo = divGrid.$GridInfo();
-    if (gridInfo.length >0) {
+    if (gridInfo.length > 0) {
         btnProjectGroup.$Loading();
         configs.url.BuilderProjects.$Ajax({
             callback: function (msg) {
@@ -27,7 +26,7 @@ btnProjectGroup.onclick = function ()
                 }
                 btnProjectGroup.$CloseLoading();
             },
-            data: { "model": JSON.stringify(gridInfo), pgid: hidProjectGroupid.value, dbid:txtDbId.value}
+            data: { "model": JSON.stringify(gridInfo), pgid: hidProjectGroupid.value, dbid: txtDbId.value }
         })
     } else {
         "请选择一条数据".$Alert();
@@ -41,6 +40,8 @@ btnProjectGroupHttp.onclick = function () {
         configs.url.BuilderProjectsByHttp.$Ajax({
             callback: function (msg) {
                 if (msg.IsSuccess) {
+
+                    window.open(msg.Data, "_blank");
                     "生成成功".$Alert();
                     btnSearch.click();
                 }
