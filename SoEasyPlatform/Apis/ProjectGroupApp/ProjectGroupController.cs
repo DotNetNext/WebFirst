@@ -141,7 +141,7 @@ namespace SoEasyPlatform.Apis
                 var group = Db.Queryable<ProjectGroup>().InSingle(pgid);
                 var projectids = group.ProjectIds;
                 var list = Db.Queryable<Project>().In(projectids).OrderBy(it => it.ModelId).ToList();
-
+                result.Data = group.SolutionPath;
                 try
                 {
                     Db.BeginTran();
@@ -150,7 +150,7 @@ namespace SoEasyPlatform.Apis
                         var name = System.IO.Path.GetFileName(item.Path);
                         item.Path = System.IO.Path.Combine(group.SolutionPath, name);
 
-                        result.Data = item.Path;
+                     
 
                         Db.Updateable(item).ExecuteCommand();
                         new CodeTableController(null).CreateFileByProjectId(new ProjectViewModel2
@@ -159,13 +159,17 @@ namespace SoEasyPlatform.Apis
                             ProjectId = item.Id,
                             DbId = dbid,
                             ModelId = item.ModelId
-                        }, list.Last() == item);
+                        }, false);
                     }
 
+                    if (!System.IO.Directory.Exists(System.IO.Path.Combine("wwwroot", "temp")))
+                    {
+                        System.IO.Directory.CreateDirectory(System.IO.Path.Combine("wwwroot", "temp"));//不存在就创建文件夹
+                    }
                     var zipName = $"{DateTime.Now.ToString("yyyy-MM-dd-hh-mm-ss")}.zip";
                     var zipPath = System.IO.Path.Combine("wwwroot", "temp", zipName);
                     ZipHelper.ZipFileDirectory(result.Data, zipPath);
-                    result.Data = zipPath;
+                    result.Data = System.IO.Path.Combine("temp", zipName);
 
                     Db.CommitTran();
                 }
