@@ -41,7 +41,7 @@ btnProjectGroupHttp.onclick = function () {
             callback: function (msg) {
                 if (msg.IsSuccess) {
 
-                    window.open(msg.Data, "_blank");
+                    window.open("/"+msg.Data, "_blank");
                     "生成成功".$Alert();
                     btnSearch.click();
                 }

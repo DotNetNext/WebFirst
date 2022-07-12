@@ -169,7 +169,7 @@ namespace SoEasyPlatform.Apis
                     var zipName = $"{DateTime.Now.ToString("yyyy-MM-dd-hh-mm-ss")}.zip";
                     var zipPath = System.IO.Path.Combine("wwwroot", "temp", zipName);
                     ZipHelper.ZipFileDirectory(result.Data, zipPath);
-                    result.Data = System.IO.Path.Combine("temp", zipName);
+                    result.Data = System.IO.Path.Combine("temp", zipName).Replace("\\","/");
 
                     Db.CommitTran();
                 }
