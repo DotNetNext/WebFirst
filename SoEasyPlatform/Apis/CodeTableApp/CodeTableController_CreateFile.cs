@@ -225,6 +225,10 @@ namespace SoEasyPlatform.Apis
                 {
                     name = project.NameFormat.Replace("{TableName}",item.TableName);
                 }
+                else if (project.NameFormat.Contains("{ClassName}"))
+                {
+                    name = project.NameFormat.Replace("{ClassName}", item.ClassName);
+                }
                 else
                 {
                     name = string.Format(project.NameFormat, item.ClassName);
