@@ -35,7 +35,6 @@ namespace SoEasyPlatform
             catch (System.Exception ex)
             {
                 db.RollbackTran();
-                throw new System.Exception(ex.Message);
             }
         }
     }
