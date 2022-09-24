@@ -221,7 +221,14 @@ namespace SoEasyPlatform.Apis
             }
             else if (!string.IsNullOrEmpty(project.NameFormat)) 
             {
-                name = string.Format(project.NameFormat, item.ClassName);
+                if (project.NameFormat.Contains("{TableName}"))
+                {
+                    name = project.NameFormat.Replace("{TableName}",item.TableName);
+                }
+                else
+                {
+                    name = string.Format(project.NameFormat, item.ClassName);
+                }
             }
             return FileSugar.MergeUrl(project.Path, name + p + project.FileSuffix);
         }
