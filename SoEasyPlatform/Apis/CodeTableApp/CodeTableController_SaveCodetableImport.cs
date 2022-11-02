@@ -17,7 +17,7 @@ namespace SoEasyPlatform.Apis
         private SortTypeInfo GetEntityType(List<CodeType> types, DbColumnInfo columnInfo, CodeTableController codeTableController,DbType dbtype)
         {
             var typeInfo = types.FirstOrDefault(y => y.DbType.Any(it => it.Name.Equals(columnInfo.DataType, StringComparison.OrdinalIgnoreCase)));
-            if(typeInfo == null && columnInfo.DataType == "Double")
+            if(typeInfo == null && (columnInfo.DataType+"").ToLower()=="double")
             {
                 var type = types.First(it => it.Name == "decimal_18_4");
                 return new SortTypeInfo() { CodeType = type, DbTypeInfo = type.DbType[0] };
