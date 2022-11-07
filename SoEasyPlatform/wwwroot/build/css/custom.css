@@ -5111,3 +5111,8 @@ input.sugar-tip {
     background-color: #8bc34a;
     border-color: #8bc34a;
 }
+
+/*下拉框高度百分比*/
+.layui-layer-content {
+     height: 80% !important;
+ }
