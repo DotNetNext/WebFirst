@@ -31,9 +31,11 @@ namespace SoEasyPlatform.Apis
         public ActionResult<ApiResult<List<Menu>>> GetMenu()
         {
             var list = MenuDb.AsQueryable().ToTree(it => it.Child, it => it.ParentId, null);
-            var result = new ApiResult<List<Menu>>();
-            result.Data = list;
-            result.IsSuccess = true;
+            var result = new ApiResult<List<Menu>>
+            {
+                Data = list,
+                IsSuccess = true
+            };
             return result;
         }
 
@@ -59,9 +61,11 @@ namespace SoEasyPlatform.Apis
                     });
                 }
             }
-            ApiResult<List<TreeModel>> result = new ApiResult<List<TreeModel>>();
-            result.Data = trees;
-            result.IsSuccess = true;
+            ApiResult<List<TreeModel>> result = new ApiResult<List<TreeModel>>
+            {
+                Data = trees,
+                IsSuccess = true
+            };
             return result;
         }
 
@@ -86,9 +90,11 @@ namespace SoEasyPlatform.Apis
                     IsSelectable = true
                 });
             }
-            ApiResult<List<TreeModel>> result = new ApiResult<List<TreeModel>>();
-            result.Data = trees;
-            result.IsSuccess = true;
+            ApiResult<List<TreeModel>> result = new ApiResult<List<TreeModel>>
+            {
+                Data = trees,
+                IsSuccess = true
+            };
             return result;
         }
 
@@ -114,9 +120,11 @@ namespace SoEasyPlatform.Apis
                     IsSelectable = true
                 });
             }
-            ApiResult<List<TreeModel>> result = new ApiResult<List<TreeModel>>();
-            result.Data = trees;
-            result.IsSuccess = true;
+            ApiResult<List<TreeModel>> result = new ApiResult<List<TreeModel>>
+            {
+                Data = trees,
+                IsSuccess = true
+            };
             return result;
         }
  
@@ -143,9 +151,11 @@ namespace SoEasyPlatform.Apis
                     IsSelectable = true
                 });
             }
-            ApiResult<List<TreeModel>> result = new ApiResult<List<TreeModel>>();
-            result.Data = trees;
-            result.IsSuccess = true;
+            ApiResult<List<TreeModel>> result = new ApiResult<List<TreeModel>>
+            {
+                Data = trees,
+                IsSuccess = true
+            };
             return result;
         }
 
@@ -170,9 +180,11 @@ namespace SoEasyPlatform.Apis
                     IsSelectable = true
                 });
             }
-            ApiResult<List<TreeModel>> result = new ApiResult<List<TreeModel>>();
-            result.Data = trees;
-            result.IsSuccess = true;
+            ApiResult<List<TreeModel>> result = new ApiResult<List<TreeModel>>
+            {
+                Data = trees,
+                IsSuccess = true
+            };
             return result;
         }
         private  string GetModelId(int modeid)
@@ -209,9 +221,11 @@ namespace SoEasyPlatform.Apis
                     IsSelectable = true
                 });
             }
-            ApiResult<List<TreeModel>> result = new ApiResult<List<TreeModel>>();
-            result.Data = trees;
-            result.IsSuccess = true;
+            ApiResult<List<TreeModel>> result = new ApiResult<List<TreeModel>>
+            {
+                Data = trees,
+                IsSuccess = true
+            };
             return result;
         }
 
@@ -237,9 +251,11 @@ namespace SoEasyPlatform.Apis
                     IsSelectable = true
                 });
             }
-            ApiResult<List<TreeModel>> result = new ApiResult<List<TreeModel>>();
-            result.Data = trees;
-            result.IsSuccess = true;
+            ApiResult<List<TreeModel>> result = new ApiResult<List<TreeModel>>
+            {
+                Data = trees,
+                IsSuccess = true
+            };
             return result;
         }
 
@@ -265,9 +281,11 @@ namespace SoEasyPlatform.Apis
                     IsSelectable = true
                 });
             }
-            ApiResult<List<TreeModel>> result = new ApiResult<List<TreeModel>>();
-            result.Data = trees;
-            result.IsSuccess = true;
+            ApiResult<List<TreeModel>> result = new ApiResult<List<TreeModel>>
+            {
+                Data = trees,
+                IsSuccess = true
+            };
             return result;
         }
 
@@ -293,9 +311,11 @@ namespace SoEasyPlatform.Apis
                     IsSelectable = true
                 });
             }
-            ApiResult<List<TreeModel>> result = new ApiResult<List<TreeModel>>();
-            result.Data = trees;
-            result.IsSuccess = true;
+            ApiResult<List<TreeModel>> result = new ApiResult<List<TreeModel>>
+            {
+                Data = trees,
+                IsSuccess = true
+            };
             return result;
         }
     }

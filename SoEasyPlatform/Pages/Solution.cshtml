@@ -3,12 +3,17 @@
     ViewData["Title"] = "解决方案：一键生成";
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
+
 @section js{
     <script src="~/views/system/projectgroup.js@(ViewBag.version)"></script>
 }
+
+
 <div class="x_panel search_box">
     <div class="x_title">
-        <h2><i class="fa fa-home"></i> @ViewData["Title"] </h2>
+        <h2>
+            <i class="fa fa-home"></i> @ViewData["Title"]
+        </h2>
         <div class="clearfix"></div>
     </div>
 
@@ -26,41 +31,41 @@
     <div class="x_content">
         <button id="btnAdd" type="button" class="btn btn-green"><i class="fa fa-plus"></i>添加</button>
         <button id="btnEdit" type="button" class="btn btn-primary"><i class="fa fa-edit"></i>修改</button>
-        <button id="btnDel" type="button" class="btn btn-search"><i class="fa fa-close"></i>删除</button> 
+        <button id="btnDel" type="button" class="btn btn-search"><i class="fa fa-close"></i>删除</button>
         <button id="btnProject" type="button" class="btn btn-success"><i class="fa fa-cogs"></i>一键生成</button>
     </div>
     <div class="x_content">
         <table id="divGrid"></table>
         <div id="divGridPage" class="pagination"></div>
     </div>
-    <div id="divOpen" style="display:none">
+    <div id="divOpen" name="solutiondiv" style="display: none">
         <form id="frmSave" class="" action="" method="post" novalidate="">
-            <div class="x_content" style="margin-top:20px">
+            <div class="x_content" style="margin-top: 20px">
                 <div class="field item form-group">
                     <label class="col-form-label col-md-2 col-sm-2  label-align">名称<span class="required">*</span></label>
                     <div class="col-md-10 col-sm-9">
-                        <input id="saveName" name="Name" class="form-control" type="text" />
-                        <input type="hidden" value="" id="saveId" name="Id" />
+                        <input id="saveName" name="Name" class="form-control" type="text"/>
+                        <input type="hidden" value="" id="saveId" name="Id"/>
                     </div>
                 </div>
                 <div class="field item form-group">
-                       <label class="col-form-label col-md-2 col-sm-2  label-align">方案集合<span class="required">*</span></label>
+                    <label class="col-form-label col-md-2 col-sm-2  label-align">方案集合<span class="required">*</span></label>
                     <div class="col-md-10 col-sm-9">
-                        <input type="text" id="saveProjectNamesName" name="ProjectNamesName" placeholder="Select" autocomplete="off" />
-                        <input id="saveProjectNames" type="hidden" value="0" name="ProjectNames" />
+                        <input type="text" id="saveProjectNamesName" name="ProjectNamesName" placeholder="Select" autocomplete="off"/>
+                        <input id="saveProjectNames" type="hidden" value="0" name="ProjectNames"/>
                     </div>
                 </div>
                 <div class="field item form-group">
                     <label class="col-form-label col-md-2 col-sm-2  label-align">主目录<span class="required">*</span></label>
                     <div class="col-md-10 col-sm-9">
-                        <input id="saveSolutionPath" name="SolutionPath" placeholder="c:\zzz\yyyy" class="form-control" type="text" />
-                        <p>生成会更新方案中的主目录</p> 
+                        <input id="saveSolutionPath" name="SolutionPath" placeholder="c:\zzz\yyyy" class="form-control" type="text"/>
+                        <p>生成会更新方案中的主目录</p>
                     </div>
                 </div>
                 <div class="field item form-group">
                     <label class="col-form-label col-md-2 col-sm-2  label-align">排序<span class="required">*</span></label>
                     <div class="col-md-10 col-sm-9">
-                        <input type="text" value="1000" id="saveSort" name="Sort" class="form-control" autocomplete="off" />
+                        <input type="text" value="1000" id="saveSort" name="Sort" class="form-control" autocomplete="off"/>
                     </div>
                 </div>
 

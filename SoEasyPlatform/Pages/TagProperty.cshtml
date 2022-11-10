@@ -3,9 +3,11 @@
     ViewData["Title"] = "属性标签管理";
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
+
 @section js{
     <script src="~/views/system/tagproperty.js@(ViewBag.version)"></script>
 }
+
 <div class="x_panel search_box">
     <div class="x_title">
         <h2><i class="fa fa-home"></i> 属性标签管理 (可以扩展模版标签)</h2>
@@ -32,23 +34,23 @@
         <table id="divGrid"></table>
         <div id="divGridPage" class="pagination"></div>
     </div>
-    <div id="divOpen" style="display:none">
+    <div id="divOpen" style="display: none">
         <form id="frmSave" class="" action="" method="post" novalidate="">
-            <div class="x_content" style="margin-top:20px">
-    
+            <div class="x_content" style="margin-top: 20px">
+
                 <div class="field item form-group">
                     <label class="col-form-label col-md-2 col-sm-2  label-align">唯一标识 <span class="required">*</span></label>
                     <div class="col-md-10 col-sm-9">
-                        <input id="saveId" type="hidden" name="Id" class="form-control" />
-                        <input id="saveUniueCode" type="text" name="UniueCode" class="form-control" />
+                        <input id="saveId" type="hidden" name="Id" class="form-control"/>
+                        <input id="saveUniueCode" type="text" name="UniueCode" class="form-control"/>
 
                     </div>
                 </div>
                 <div class="field item form-group">
-                    <label class="col-form-label col-md-2 col-sm-2  label-align"> 描述  </label>
+                    <label class="col-form-label col-md-2 col-sm-2  label-align"> 描述 </label>
                     <div class="col-md-10 col-sm-9">
 
-                        <input id="saveDescription" type="text" name="Description" class="form-control" />
+                        <input id="saveDescription" type="text" name="Description" class="form-control"/>
 
                     </div>
                 </div>
@@ -56,7 +58,7 @@
                     <label class="col-form-label col-md-2 col-sm-2  label-align"> 控件类型 </label>
                     <div class="col-md-10 col-sm-9">
 
-                        <input id="saveControlType" type="text" name="ControlType" class="form-control" />
+                        <input id="saveControlType" type="text" name="ControlType" class="form-control"/>
 
                     </div>
                 </div>
@@ -64,15 +66,15 @@
                     <label class="col-form-label col-md-2 col-sm-2  label-align"> 接口 Key </label>
                     <div class="col-md-10 col-sm-9">
 
-                        <input id="saveUrlKey" type="text" name="UrlKey" class="form-control" />
+                        <input id="saveUrlKey" type="text" name="UrlKey" class="form-control"/>
 
                     </div>
                 </div>
                 <div class="field item form-group">
-                    <label class="col-form-label col-md-2 col-sm-2  label-align"> 接口  </label>
+                    <label class="col-form-label col-md-2 col-sm-2  label-align"> 接口 </label>
                     <div class="col-md-10 col-sm-9">
 
-                        <input id="saveUrl" type="text" name="Url" class="form-control" />
+                        <input id="saveUrl" type="text" name="Url" class="form-control"/>
 
                     </div>
                 </div>
@@ -80,7 +82,7 @@
                     <label class="col-form-label col-md-2 col-sm-2  label-align"> 字段值 </label>
                     <div class="col-md-10 col-sm-9">
 
-                        <input id="saveFileValue" type="text" name="FileValue" class="form-control" />
+                        <input id="saveFileValue" type="text" name="FileValue" class="form-control"/>
 
                     </div>
                 </div>
@@ -88,23 +90,23 @@
                     <label class="col-form-label col-md-2 col-sm-2  label-align"> 字段名 </label>
                     <div class="col-md-10 col-sm-9">
 
-                        <input id="saveFileName" type="text" name="FileName" class="form-control" />
+                        <input id="saveFileName" type="text" name="FileName" class="form-control"/>
 
                     </div>
                 </div>
                 <div class="field item form-group">
-                    <label class="col-form-label col-md-2 col-sm-2  label-align"> 扩展1  </label>
+                    <label class="col-form-label col-md-2 col-sm-2  label-align"> 扩展1 </label>
                     <div class="col-md-10 col-sm-9">
 
-                        <input id="saveExt1" type="text" name="Ext1" class="form-control" />
+                        <input id="saveExt1" type="text" name="Ext1" class="form-control"/>
 
                     </div>
                 </div>
                 <div class="field item form-group">
-                    <label class="col-form-label col-md-2 col-sm-2  label-align">  扩展2</label>
+                    <label class="col-form-label col-md-2 col-sm-2  label-align"> 扩展2</label>
                     <div class="col-md-10 col-sm-9">
 
-                        <input id="saveExt2" type="text" name="Ext2" class="form-control" />
+                        <input id="saveExt2" type="text" name="Ext2" class="form-control"/>
 
                     </div>
                 </div>
@@ -112,7 +114,7 @@
                     <label class="col-form-label col-md-2 col-sm-2  label-align"> 扩展3 </label>
                     <div class="col-md-10 col-sm-9">
 
-                        <input id="saveExt3" type="text" name="Ext3" class="form-control" />
+                        <input id="saveExt3" type="text" name="Ext3" class="form-control"/>
 
                     </div>
                 </div>

@@ -66,12 +66,10 @@ namespace SoEasyPlatform
                             {
                                 sizeRead = StreamToZip.Read(buffer, 0, buffer.Length);
                                 ZipStream.Write(buffer, 0, sizeRead);
-                            }
-                            while (sizeRead > 0);
+                            } while (sizeRead > 0);
                         }
                         catch
                         {
-
                         }
 
                         StreamToZip.Close();
@@ -135,7 +133,7 @@ namespace SoEasyPlatform
                 byte[] buffer = new byte[4096];
                 foreach (string file in sourceFileNames)
                 {
-                    if (Directory.Exists(file))// 先当作目录处理如果存在这个目录就递归Copy该目录下面的文件
+                    if (Directory.Exists(file)) // 先当作目录处理如果存在这个目录就递归Copy该目录下面的文件
                     {
                         string pPath = "";
                         pPath += Path.GetFileName(file);
@@ -144,7 +142,6 @@ namespace SoEasyPlatform
                     }
                     else // 否则直接压缩文件
                     {
-
                         ZipEntry entry = new ZipEntry(Path.GetFileName(file));
                         entry.DateTime = DateTime.Now;
                         s.PutNextEntry(entry);
@@ -159,6 +156,7 @@ namespace SoEasyPlatform
                         }
                     }
                 }
+
                 s.Finish();
                 s.Close();
             }
@@ -207,7 +205,8 @@ namespace SoEasyPlatform
         /// <param name="s">压缩输出流对象</param>
         /// <param name="parentPath">The parent path.</param>
         /// <param name="files">需要压缩的文件</param>
-        private static void ZipSetp(string strDirectory, ZipOutputStream s, string parentPath, List<string> files = null!)
+        private static void ZipSetp(string strDirectory, ZipOutputStream s, string parentPath,
+            List<string> files = null!)
         {
             if (strDirectory[strDirectory.Length - 1] != Path.DirectorySeparatorChar)
             {
@@ -217,13 +216,14 @@ namespace SoEasyPlatform
             string[] filenames = Directory.GetFileSystemEntries(strDirectory);
 
             byte[] buffer = new byte[4096];
-            foreach (string file in filenames)// 遍历所有的文件和目录
+            foreach (string file in filenames) // 遍历所有的文件和目录
             {
                 if (files != null && !files.Contains(file))
                 {
                     continue;
                 }
-                if (Directory.Exists(file))// 先当作目录处理如果存在这个目录就递归Copy该目录下面的文件
+
+                if (Directory.Exists(file)) // 先当作目录处理如果存在这个目录就递归Copy该目录下面的文件
                 {
                     string pPath = parentPath;
                     pPath += Path.GetFileName(file);
@@ -247,7 +247,6 @@ namespace SoEasyPlatform
                             sourceBytes = fs.Read(buffer, 0, buffer.Length);
                             s.Write(buffer, 0, sourceBytes);
                         } while (sourceBytes > 0);
-
                     }
                 }
             }
@@ -262,7 +261,6 @@ namespace SoEasyPlatform
         /// <param name="overWrite">是否覆盖已存在的文件。</param>
         public static void UnZip(string zipedFile, string strDirectory, bool overWrite, string password)
         {
-
             if (strDirectory == "")
                 strDirectory = Directory.GetCurrentDirectory();
             if (!strDirectory.EndsWith("\\"))
@@ -274,6 +272,7 @@ namespace SoEasyPlatform
                 {
                     s.Password = password;
                 }
+
                 ZipEntry theEntry;
 
                 while ((theEntry = s.GetNextEntry()) != null)
@@ -291,7 +290,8 @@ namespace SoEasyPlatform
 
                     if (fileName != "")
                     {
-                        if (File.Exists(strDirectory + directoryName + fileName) && overWrite || !File.Exists(strDirectory + directoryName + fileName))
+                        if (File.Exists(strDirectory + directoryName + fileName) && overWrite ||
+                            !File.Exists(strDirectory + directoryName + fileName))
                         {
                             using (FileStream streamWriter = File.Create(strDirectory + directoryName + fileName))
                             {
@@ -306,6 +306,7 @@ namespace SoEasyPlatform
                                     else
                                         break;
                                 }
+
                                 streamWriter.Close();
                             }
                         }
@@ -374,6 +375,7 @@ namespace SoEasyPlatform
                         }
                     }
                 }
+
                 s.Close();
             }
 
@@ -389,9 +391,5 @@ namespace SoEasyPlatform
         {
             return GetFiles(zipedFile, null!);
         }
-
-
-
-    }//Class_end
-
+    } //Class_end
 }

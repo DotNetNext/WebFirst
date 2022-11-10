@@ -26,8 +26,10 @@ namespace SoEasyPlatform.Apis
         [Route("getProjectlist")]
         public ActionResult<ApiResult<TableModel<ProjectGridViewModel>>> GetProjectList([FromForm] ProjectViewModel model)
         {
-            var result = new ApiResult<TableModel<ProjectGridViewModel>>();
-            result.Data = new TableModel<ProjectGridViewModel>();
+            var result = new ApiResult<TableModel<ProjectGridViewModel>>
+            {
+                Data = new TableModel<ProjectGridViewModel>()
+            };
             int count = 0;
             var list = ProjectDb.AsSugarClient().Queryable<Project>()
                 .WhereIF(!string.IsNullOrEmpty(model.ProjentName), it => it.ProjentName.Contains(model.ProjentName))

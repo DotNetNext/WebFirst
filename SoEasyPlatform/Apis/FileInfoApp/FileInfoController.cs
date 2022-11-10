@@ -26,8 +26,10 @@ namespace SoEasyPlatform.Apis
         [Route("getFileInfolist")]
         public ActionResult<ApiResult<TableModel<FileInfoGridViewModel>>> GetFileInfoList([FromForm] FileInfoViewModel model)
         {
-            var result = new ApiResult<TableModel<FileInfoGridViewModel>>();
-            result.Data = new TableModel<FileInfoGridViewModel>();
+            var result = new ApiResult<TableModel<FileInfoGridViewModel>>
+            {
+                Data = new TableModel<FileInfoGridViewModel>()
+            };
             int count = 0;
             var list = Db.Queryable<FileInfo>()
                 .WhereIF(!string.IsNullOrEmpty(model.Name), it => it.Name.Contains(model.Name))

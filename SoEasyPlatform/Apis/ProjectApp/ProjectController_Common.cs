@@ -115,7 +115,7 @@ Global", sb.ToString());
         private static List<ExpandoObject> GetJsonItems(dynamic obj)
         {
             List<ExpandoObject> result = new List<ExpandoObject>();
-            foreach (var item in (obj as JArray))
+            foreach (var item in ((JArray)obj))
             {
                 if (item is JObject)
                 {

@@ -26,8 +26,10 @@ namespace SoEasyPlatform.Apis
         [Route("GetCommonFieldList")]
         public ActionResult<ApiResult<TableModel<CommonFieldGridViewModel>>> GetCommonFieldList([FromForm] CommonFieldViewModel model)
         {
-            var result = new ApiResult<TableModel<CommonFieldGridViewModel>>();
-            result.Data = new TableModel<CommonFieldGridViewModel>();
+            var result = new ApiResult<TableModel<CommonFieldGridViewModel>>
+            {
+                Data = new TableModel<CommonFieldGridViewModel>()
+            };
             int count = 0;
             var list = CommonFieldDb.AsQueryable()
                 .ToPageList(model.PageIndex, model.PageSize, ref count);

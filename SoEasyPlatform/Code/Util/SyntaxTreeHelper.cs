@@ -9,7 +9,7 @@ using System.Reflection;
 using System.Runtime.Loader;
 using System.Threading.Tasks;
 
-namespace SoEasyPlatform 
+namespace SoEasyPlatform
 {
     public class SyntaxTreeHelper
     {
@@ -19,11 +19,13 @@ namespace SoEasyPlatform
             SyntaxTree syntaxTree = CSharpSyntaxTree.ParseText(classString);
 
             string assemblyName = Path.GetRandomFileName();
-            var refPaths = new[] {
+            var refPaths = new[]
+            {
                 //typeof(AccessViolationException).Assembly.Location,
                 typeof(System.Object).GetTypeInfo().Assembly.Location,
                 typeof(Console).GetTypeInfo().Assembly.Location,
-                Path.Combine(Path.GetDirectoryName(typeof(System.Runtime.GCSettings).GetTypeInfo().Assembly.Location), "System.Runtime.dll"),
+                Path.Combine(Path.GetDirectoryName(typeof(System.Runtime.GCSettings).GetTypeInfo().Assembly.Location),
+                    "System.Runtime.dll"),
                 typeof(SqlSugar.SqlSugarClient).Assembly.Location
             };
             MetadataReference[] references = refPaths.Select(r => MetadataReference.CreateFromFile(r)).ToArray();
@@ -56,7 +58,8 @@ namespace SoEasyPlatform
                     {
                         message += diagnostic.GetMessage();
                     }
-                    throw new Exception("解析实体类出错，请检查命名" + message +" \r\n "+classString);
+
+                    throw new Exception("解析实体类出错，请检查命名" + message + " \r\n " + classString);
                 }
                 else
                 {

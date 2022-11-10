@@ -9,14 +9,13 @@ namespace SoEasyPlatform
 {
     public class TableModel<T>
     {
-        
         [JsonProperty(PropertyName = "columns")]
         public List<TableColumn> Columns
         {
             get
             {
                 List<TableColumn> columnList = new List<TableColumn>();
-                columnList.Add(new TableColumn() { Checkbox = true, Visible=true });
+                columnList.Add(new TableColumn() { Checkbox = true, Visible = true });
                 var properties = typeof(T).GetProperties();
                 foreach (var item in properties)
                 {
@@ -29,44 +28,45 @@ namespace SoEasyPlatform
                     {
                         column.Title = (attr as DisplayName).Name;
                     }
+
                     var attrNone = attrs.FirstOrDefault(it => it is DisplayNone);
-                    if (attrNone != null)
-                    {
-                        column.Visible = false;
-                    }
-                    else 
-                    {
-                        column.Visible = true;
-                    }
+                    column.Visible = attrNone == null;
                     columnList.Add(column);
                 }
+
                 return columnList;
             }
         }
-        [JsonProperty(PropertyName = "data")]
+
+        [JsonProperty(PropertyName = "data")] 
         public List<T> Rows { get; set; }
-        [JsonProperty(PropertyName = "total")]
+        [JsonProperty(PropertyName = "total")] 
         public int Total { get; set; }
+
         [JsonProperty(PropertyName = "pagination")]
         public bool Pagination => true;
+
         [JsonProperty(PropertyName = "pageList")]
         public int[] PageList => new int[] { 10, 25, 50, 100 };
+
         [JsonProperty(PropertyName = "pageSize")]
         public int PageSize { get; set; }
+
         [JsonProperty(PropertyName = "pageNumber")]
         public int PageNumber { get; set; }
     }
 
     public class TableColumn
     {
-        [JsonProperty(PropertyName = "field")]
+        [JsonProperty(PropertyName = "field")] 
         public string Field { get; set; }
-        [JsonProperty(PropertyName = "title")]
+        [JsonProperty(PropertyName = "title")] 
         public string Title { get; set; }
+
         [JsonProperty(PropertyName = "checkbox")]
         public bool Checkbox { get; set; }
+
         [JsonProperty(PropertyName = "visible")]
         public bool Visible { get; set; }
-
     }
 }
