@@ -34,18 +34,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="WebFirst.exe" />
-  </ItemGroup>
-
-  
-
-  <ItemGroup>
-    <Content Include="WebFirst.exe">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="wwwroot\vendors\bootstrap\.github\CODEOWNERS" />
     <None Include="wwwroot\vendors\bootstrap\.github\CONTRIBUTING.md" />
     <None Include="wwwroot\vendors\bootstrap\.github\ISSUE_TEMPLATE\bug.md" />
