@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -64,6 +65,22 @@ namespace SoEasyPlatform
                     db.ConfigQuery.SetTable<Template>(it => it.Id, it => it.Title);
                     db.ConfigQuery.SetTable<TemplateType>(it => it.Id, it => it.Name);
                 }
+            });
+            Task.Run(() =>
+            {
+                Task.Run(() =>
+                {
+                    System.Threading.Thread.Sleep(200);
+                    var url = "http://localhost:5000?id=" + SqlSugar.SnowFlakeSingle.Instance.NextId();
+                    try
+                    {
+                        Process.Start(new ProcessStartInfo { UseShellExecute = true, FileName =url, Arguments = "chrome.exe" });
+                    }
+                    catch (Exception)
+                    {
+                        Process.Start("explorer", url);
+                    }
+                });
             });
         }
 
