@@ -105,7 +105,7 @@ namespace SoEasyPlatform.Apis
                     {
                         var dbType = GetTypeInfoByDatabaseType(codeType.DbType, databasedbType);
                         var dbColumnInfo = tableColumns.FirstOrDefault(it => it.DbColumnName.ToLower() == column.DbColumnName.ToLower());
-                        if (!string.IsNullOrEmpty(dbColumnInfo.OracleDataType)) 
+                        if (!string.IsNullOrEmpty(dbColumnInfo?.OracleDataType)) 
                         {
                             dbColumnInfo.DataType = dbColumnInfo.OracleDataType;
                         }
