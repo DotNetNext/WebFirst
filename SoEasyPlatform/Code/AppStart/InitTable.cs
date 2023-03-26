@@ -89,7 +89,7 @@ namespace SoEasyPlatform
                 {
                     FileSuffix = ".cs",
                     TemplateId1 = _entitytempId + "",
-                    FileModel = "[{ \"name\":\"" + _defaultNamespace + ".Entities\",\"nuget\":[{ \"name\":\"SqlSugarCore\",\"version\":\"5.1.4.62\" }]}]",
+                    FileModel = "[{ \"name\":\"" + _defaultNamespace + ".Entities\",\"nuget\":[{ \"name\":\"SqlSugarCore\",\"version\":\"5.1.4.60\" }]}]",
                     FileInfo = _net5lib + "",
                     NameFormat = "DbModels\\{0}",
                     ProjentName = "[简单三层]_方案_实体_Sugar",
@@ -103,7 +103,7 @@ namespace SoEasyPlatform
                     FileSuffix = ".cs",
                     NameFormat = "Services\\{0}Manager",
                     TemplateId1 = _biztempId + "",
-                    FileModel = "[{ \"name\":\""+_defaultNamespace+ ".Services\",\"nuget\":[{ \"name\":\"SqlSugarCore\",\"version\":\"5.1.4.62\" }]},{\"name\":\"Repository\", \"name_space\":\"" + _defaultNamespace+ ".Services\" }]",
+                    FileModel = "[{ \"name\":\""+_defaultNamespace+ ".Services\",\"nuget\":[{ \"name\":\"SqlSugarCore\",\"version\":\"5.1.4.60\" }]},{\"name\":\"Repository\", \"name_space\":\"" + _defaultNamespace+ ".Services\" }]",
                     FileInfo = _net5lib + ","+_dbcontext,
                     ProjentName = "[简单三层]_方案_业务_Sugar",
                     Path = FileSugar.MergeUrl(@"c:\" + _defaultNamespace + @"\Services"),
@@ -116,7 +116,7 @@ namespace SoEasyPlatform
                 {
                     FileSuffix = ".cs",
                     TemplateId1 = _webtempId + "",
-                    FileModel = "[{ \"name\":\"命名空间\",\"nuget\":[{ \"name\":\"SqlSugarCore\",\"version\":\"5.1.4.62\" },{ \"name\":\"Microsoft.AspNetCore.Mvc.NewtonsoftJson\",\"version\":\"5.0.10\" },{ \"name\":\"Swashbuckle.AspNetCore\",\"version\":\"5.6.3\" }]},{\"name\":\"Startup\", \"name_space\":\"命名空间\" },{\"name\":\"Program\", \"name_space\":\"命名空间\" },{\"name\":\"appsettings\", \"name_space\":\"命名空间\"}]".Replace("命名空间",$"{_defaultNamespace}.Api"),
+                    FileModel = "[{ \"name\":\"命名空间\",\"nuget\":[{ \"name\":\"SqlSugarCore\",\"version\":\"5.1.4.60\" },{ \"name\":\"Microsoft.AspNetCore.Mvc.NewtonsoftJson\",\"version\":\"5.0.10\" },{ \"name\":\"Swashbuckle.AspNetCore\",\"version\":\"5.6.3\" }]},{\"name\":\"Startup\", \"name_space\":\"命名空间\" },{\"name\":\"Program\", \"name_space\":\"命名空间\" },{\"name\":\"appsettings\", \"name_space\":\"命名空间\"}]".Replace("命名空间",$"{_defaultNamespace}.Api"),
                     FileInfo =string.Join(",",_WebFiles),
                     ProjentName = "[简单三层]_方案_前端_Sugar",
                     NameFormat = "Controllers\\{0}Controller",
