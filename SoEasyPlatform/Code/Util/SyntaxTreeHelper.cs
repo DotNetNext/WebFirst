@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.Loader;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace SoEasyPlatform 
@@ -15,6 +16,11 @@ namespace SoEasyPlatform
     {
         public static Type GetModelTypeByClass(string classString, string typeName)
         {
+            var typeFirstChar = typeName.FirstOrDefault() + "";
+            if (Regex.IsMatch(typeFirstChar,@"^\d$"))
+            {
+                throw new Exception("类的首字母不能是数字");
+            }
             //Write("Parsing the code into the SyntaxTree");
             SyntaxTree syntaxTree = CSharpSyntaxTree.ParseText(classString);
 
