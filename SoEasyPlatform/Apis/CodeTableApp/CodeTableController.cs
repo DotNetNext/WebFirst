@@ -321,7 +321,7 @@ namespace SoEasyPlatform.Apis
             var tableList = CodeTableDb.GetList(it => tableids.Contains(it.Id));
             int dbId = tableList.First().DbId;
             var connection = base.GetTryDb(dbId);
-            List<EntitiesGen> genList = GetGenList(tableList, CodeTypeDb.GetList(), connection.CurrentConnectionConfig.DbType);
+            List<EntitiesGen> genList = GetGenList(tableList, CodeTypeDb.GetList(),connection, connection.CurrentConnectionConfig.DbType);
             string key = TemplateHelper.EntityKey + template.GetHashCode();
             foreach (var item in genList)
             {
@@ -379,7 +379,7 @@ namespace SoEasyPlatform.Apis
                 var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<CodeTableViewModel>>(model);
                 var oldList = CodeTableDb.AsQueryable().In(list.Select(it => it.Id).ToList()).ToList();
                 base.Check(oldList.Any(it => it.IsLock), string.Join(",", oldList.Where(it => it.IsLock).Select(it => it.ClassName)) + "是锁表状态禁止建表");
-                List<EntitiesGen> genList = GetGenList(oldList, CodeTypeDb.GetList(), tableDb.CurrentConnectionConfig.DbType);
+                List<EntitiesGen> genList = GetGenList(oldList, CodeTypeDb.GetList(),tableDb, tableDb.CurrentConnectionConfig.DbType);
                 foreach (var item in genList)
                 {
                     item.PropertyGens = item.PropertyGens.Where(it => it.IsIgnore == false).ToList();
@@ -454,7 +454,7 @@ namespace SoEasyPlatform.Apis
                 var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<CodeTableViewModel>>(model);
                 var oldList = CodeTableDb.AsQueryable().In(list.Select(it => it.Id).ToList()).ToList();
                 base.Check(oldList.Any(it => it.IsLock), string.Join(",", oldList.Where(it => it.IsLock).Select(it => it.ClassName)) + "是锁表状态禁止建表");
-                List<EntitiesGen> genList = GetGenList(oldList, CodeTypeDb.GetList(), tableDb.CurrentConnectionConfig.DbType);
+                List<EntitiesGen> genList = GetGenList(oldList, CodeTypeDb.GetList(),tableDb, tableDb.CurrentConnectionConfig.DbType);
                 foreach (var item in genList)
                 {
                     item.PropertyGens = item.PropertyGens.Where(it => it.IsIgnore == false).ToList();
@@ -716,7 +716,7 @@ namespace SoEasyPlatform.Apis
             var tableList = CodeTableDb.GetList(it => tableids.Contains(it.Id));
             int dbId = tableList.First().DbId;
             var connection = base.GetTryDb(dbId);
-            List<EntitiesGen> genList = GetGenList(tableList, CodeTypeDb.GetList(), connection.CurrentConnectionConfig.DbType);
+            List<EntitiesGen> genList = GetGenList(tableList, CodeTypeDb.GetList(),connection, connection.CurrentConnectionConfig.DbType);
             string key = TemplateHelper.EntityKey + template.GetHashCode();
             foreach (var item in genList.Take(1))
             {

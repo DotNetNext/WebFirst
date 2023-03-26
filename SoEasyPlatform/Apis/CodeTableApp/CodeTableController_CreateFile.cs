@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Npgsql.TypeHandlers.DateTimeHandlers;
 using SqlSugar;
 using System;
 using System.Collections.Generic;
@@ -52,7 +53,7 @@ namespace SoEasyPlatform.Apis
 
             }
         }
-        private List<EntitiesGen> GetGenList(List<CodeTable> tableList, List<CodeType> types,SqlSugar.DbType databasedbType)
+        private List<EntitiesGen> GetGenList(List<CodeTable> tableList, List<CodeType> types, SqlSugarClient db, SqlSugar.DbType databasedbType)
         {
             List<EntitiesGen> result = new List<EntitiesGen>();
             var mapping = Db.Queryable<MappingProperty>().ToList();
@@ -67,6 +68,7 @@ namespace SoEasyPlatform.Apis
             }
             foreach (var item in tableList)
             {
+                var tableColumns = db.DbMaintenance.GetColumnInfosByTableName(item.TableName,false);
                 EntitiesGen gen = new EntitiesGen()
                 {
                     ClassName = item.ClassName,
@@ -102,6 +104,11 @@ namespace SoEasyPlatform.Apis
                     else
                     {
                         var dbType = GetTypeInfoByDatabaseType(codeType.DbType, databasedbType);
+                        var dbColumnInfo = tableColumns.FirstOrDefault(it => it.DbColumnName.ToLower() == column.DbColumnName.ToLower());
+                        if (!string.IsNullOrEmpty(dbColumnInfo.OracleDataType)) 
+                        {
+                            dbColumnInfo.DataType = dbColumnInfo.OracleDataType;
+                        }
                         PropertyGen proGen = new PropertyGen()
                         {
                             DbColumnName = column.DbColumnName,
@@ -113,6 +120,9 @@ namespace SoEasyPlatform.Apis
                             IsNullable = column.Required == false,
                             DbType = dbType.Name,
                             Length = dbType.Length,
+                            Db_Length = dbColumnInfo?.Length,
+                            Db_DecimalDigits = dbColumnInfo?.DecimalDigits,
+                            Db_DateType=dbColumnInfo?.DataType,
                             DecimalDigits = dbType.DecimalDigits,
                             IsSpecialType= IsSpecialType(column),
                             CodeType= column.CodeType,

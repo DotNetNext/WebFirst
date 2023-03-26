@@ -69,15 +69,15 @@ namespace SoEasyPlatform
         /// </summary>
         public bool IsNullable { get;  set; }
         /// <summary>
-        /// 精度
+        /// Mapping精度
         /// </summary>
         public int? DecimalDigits { get;  set; }
         /// <summary>
-        /// 长度
+        /// Mapping长度
         /// </summary>
         public int? Length { get;  set; }
         /// <summary>
-        /// 数据库类型
+        /// Mapping数据库类型
         /// </summary>
         public string DbType { get;  set; }
         /// <summary>
@@ -100,5 +100,17 @@ namespace SoEasyPlatform
         /// 扩展属性
         /// </summary>
         public List<TagProperty> MappingProperties { get; set; }
+        /// <summary>
+        /// 数据库长度
+        /// </summary>
+        public int? Db_Length { get;  set; }
+        /// <summary>
+        /// 数据库精度
+        /// </summary>
+        public int? Db_DecimalDigits { get;  set; }
+        /// <summary>
+        /// 数据库类型
+        /// </summary>
+        public string Db_DateType { get;  set; }
     }
 }
