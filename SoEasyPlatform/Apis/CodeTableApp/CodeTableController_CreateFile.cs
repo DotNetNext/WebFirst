@@ -68,7 +68,11 @@ namespace SoEasyPlatform.Apis
             }
             foreach (var item in tableList)
             {
-                var tableColumns = db.DbMaintenance.GetColumnInfosByTableName(item.TableName,false);
+                var tableColumns = new List<DbColumnInfo> { };
+                if (db.DbMaintenance.IsAnyTable(item.TableName,false))
+                {
+                    tableColumns=db.DbMaintenance.GetColumnInfosByTableName(item.TableName, false);
+                }
                 EntitiesGen gen = new EntitiesGen()
                 {
                     ClassName = item.ClassName,
