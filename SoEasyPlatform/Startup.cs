@@ -68,6 +68,7 @@ namespace SoEasyPlatform
             });
             Task.Run(() =>
             {
+                #if !DEBUG
                 Task.Run(() =>
                 {
                     System.Threading.Thread.Sleep(200);
@@ -81,6 +82,7 @@ namespace SoEasyPlatform
                         Process.Start("explorer", url);
                     }
                 });
+               #endif
             });
         }
 
@@ -97,6 +99,6 @@ namespace SoEasyPlatform
         {
             Configures.AddConfigure(app, env);
         }
-        #endregion
+#endregion
     }
 }
