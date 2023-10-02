@@ -17,9 +17,14 @@ namespace SoEasyPlatform.Apis
         private SortTypeInfo GetEntityType(List<CodeType> types, DbColumnInfo columnInfo, CodeTableController codeTableController,DbType dbtype)
         {
             var typeInfo = types.FirstOrDefault(y => y.DbType.Any(it => it.Name.Equals(columnInfo.DataType, StringComparison.OrdinalIgnoreCase)));
-            if(typeInfo == null && (columnInfo.DataType+"").ToLower()=="double")
+            if (typeInfo == null && (columnInfo.DataType + "").ToLower() == "double")
             {
                 var type = types.First(it => it.Name == "decimal_18_4");
+                return new SortTypeInfo() { CodeType = type, DbTypeInfo = type.DbType[0] };
+            }
+            else if (typeInfo == null && columnInfo.DataType == "int unsigned") 
+            {
+                var type = types.First(it => it.Name == "int");
                 return new SortTypeInfo() { CodeType = type, DbTypeInfo = type.DbType[0] };
             }
             else if (typeInfo == null)
@@ -27,12 +32,12 @@ namespace SoEasyPlatform.Apis
                 var type = types.First(it => it.Name == "string100");
                 return new SortTypeInfo() { CodeType = type, DbTypeInfo = type.DbType[0] };
             }
-            else  if (columnInfo.DataType == "json")
+            else if (columnInfo.DataType == "json")
             {
                 var type = types.First(it => it.Name.ToLower() == "string2000");
                 return new SortTypeInfo() { CodeType = type, DbTypeInfo = type.DbType[0] };
             }
-            else if (columnInfo.DataType == "timestamp"&&dbtype!=DbType.SqlServer)
+            else if (columnInfo.DataType == "timestamp" && dbtype != DbType.SqlServer)
             {
                 var type = types.First(it => it.Name.ToLower() == "datetime");
                 return new SortTypeInfo() { CodeType = type, DbTypeInfo = type.DbType[0] };
