@@ -48,7 +48,12 @@ namespace SoEasyPlatform
                 DbType = type,
                 InitKeyType = InitKeyType.Attribute,
                 IsAutoCloseConnection = true,
-                ConnectionString = connection 
+                ConnectionString = connection
+            }, db => {
+                db.Aop.OnLogExecuting = (s, p) =>
+                {
+                    Console.WriteLine(s);
+                };
             });
         }
     }

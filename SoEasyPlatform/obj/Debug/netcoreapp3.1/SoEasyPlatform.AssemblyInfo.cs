@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SoEasyPlatform")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+eb7f38223922b253bdfee660d355d75aa0e28bcc")]
 [assembly: System.Reflection.AssemblyProductAttribute("SoEasyPlatform")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SoEasyPlatform")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
