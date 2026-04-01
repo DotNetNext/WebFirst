@@ -151,7 +151,7 @@
     <PackageReference Include="SqlSugar.IOC" Version="1.8.0" />
     <PackageReference Include="SqlSugarCore" Version="5.1.4.132" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.1" />
-    <PackageReference Include="AutoMapper" Version="11.0.1" />
+    <PackageReference Include="AutoMapper" Version="15.1.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="ClosedXML" Version="0.95.4" />
     <PackageReference Include="RazorEngine.NetCore" Version="3.1.0" />
